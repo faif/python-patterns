@@ -27,4 +27,4 @@ def get_localizer(language="English"):
 e, j = get_localizer("English"), get_localizer("Greek")  
 # Localize some text 
 for msgid in "dog parrot cat bear".split():     
-    print e.get(msgid), j.get(msgid)
+    print(e.get(msgid), j.get(msgid))
