@@ -26,13 +26,13 @@ class qObj():
             self.o = None   
 
 if __name__ == "__main__":   
-    import queue    
+    import Queue    
 
     def testObj(Q):       
         someObj = qObj(Q, True)        
         print('Inside func: {}'.format(someObj.o))    
 
-    aQ = queue.Queue()    
+    aQ = Queue.Queue()    
     aQ.put("yam")    
 
     with qObj(aQ) as obj:       
