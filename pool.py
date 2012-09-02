@@ -25,14 +25,17 @@ class qObj():
             self._q.put(self.o)           
             self.o = None   
 
-if __name__ == "__main__":   
-    import Queue    
+if __name__ == "__main__":
+    try:
+        import queue as Queue
+    except:                     # python 2.x compatibility
+        import Queue
 
     def testObj(Q):       
         someObj = qObj(Q, True)        
         print('Inside func: {}'.format(someObj.o))    
 
-    aQ = Queue.Queue()    
+    aQ = Queue.Queue()
     aQ.put("yam")    
 
     with qObj(aQ) as obj:       
