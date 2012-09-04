@@ -14,7 +14,7 @@ class Proxy:
 
     def work (self):                         
         print("Proxy checking for Sales Manager availability")                         
-        if self.busy == 'Yes':                                      
+        if self.busy == 'No':                                      
             self.sales = SalesManager()                                      
             time.sleep(2);                                      
             self.sales.talk()                         
