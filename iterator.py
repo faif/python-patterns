@@ -4,8 +4,8 @@
 def count_to(count):
     """Counts by word numbers, up to a maximum of five"""
     numbers = ["one", "two", "three", "four", "five"]
-    # The zip keeps from counting over the limit
-    for number, pos in zip(numbers, list(range(count))):
+    # enumerate() returns a tuple containing a count (from start which defaults to 0) and the values obtained from iterating over sequence
+    for pos, number in enumerate(numbers):
         yield number
 
 # Test the generator
