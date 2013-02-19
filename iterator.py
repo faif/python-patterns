@@ -5,7 +5,7 @@ def count_to(count):
     """Counts by word numbers, up to a maximum of five"""
     numbers = ["one", "two", "three", "four", "five"]
     # enumerate() returns a tuple containing a count (from start which defaults to 0) and the values obtained from iterating over sequence
-    for pos, number in enumerate(numbers):
+    for pos, number in zip(numbers, range(count)):
         yield number
 
 # Test the generator
