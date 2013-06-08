@@ -33,7 +33,7 @@ class Data(Subject):
     
     @data.setter
     def data(self, value):
-        self._data = value):
+        self._data = value:
         self.notify()
 
 
