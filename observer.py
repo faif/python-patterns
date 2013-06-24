@@ -1,6 +1,6 @@
 '''http://code.activestate.com/recipes/131499-observer-pattern/'''
 
-class Subject:
+class Subject(object):
     def __init__(self):
         self._observers = []
 
@@ -33,7 +33,7 @@ class Data(Subject):
     
     @data.setter
     def data(self, value):
-        self._data = value:
+        self._data = value
         self.notify()
 
 
@@ -61,20 +61,20 @@ def main():
     data2.attach(view1)
 
     print("Setting Data 1 = 10")
-    data1.data(10)
+    data1.data = 10
     print("Setting Data 2 = 15")
-    data2.data(15)
+    data2.data = 15
     print("Setting Data 1 = 3")
-    data1.data(3)
+    data1.data = 3
     print("Setting Data 2 = 5")
-    data2.data(5)
+    data2.data = 5
     print("Detach HexViewer from data1 and data2.")
     data1.detach(view2)
     data2.detach(view2)
     print("Setting Data 1 = 10")
-    data1.data(10)
+    data1.data = 10
     print("Setting Data 2 = 15")
-    data2.data(15)
+    data2.data = 15
 
 if __name__ == '__main__':
     main()
