@@ -1,9 +1,21 @@
-'''http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html'''
+"""http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html"""
 
-class Node(object): pass
-class A(Node): pass
-class B(Node): pass
-class C(A,B): pass
+
+class Node(object):
+    pass
+
+
+class A(Node):
+    pass
+
+
+class B(Node):
+    pass
+
+
+class C(A, B):
+    pass
+
 
 class Visitor(object):
     def visit(self, node, *args, **kwargs):

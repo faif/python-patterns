@@ -1,8 +1,9 @@
-'''http://dpip.testingperspective.com/?p=26'''
+"""http://dpip.testingperspective.com/?p=26"""
 
 import time
 
 SLEEP = 0.5
+
 
 # Complex Parts
 class TC1:
@@ -17,6 +18,7 @@ class TC1:
         time.sleep(SLEEP)
         print("Test Finished\n")
 
+
 class TC2:
     def run(self):
         print("###### In Test 2 ######")
@@ -28,6 +30,7 @@ class TC2:
         print("Tearing down")
         time.sleep(SLEEP)
         print("Test Finished\n")
+
 
 class TC3:
     def run(self):
@@ -41,6 +44,7 @@ class TC3:
         time.sleep(SLEEP)
         print("Test Finished\n")
 
+
 # Facade
 class TestRunner:
     def __init__(self):
@@ -51,6 +55,7 @@ class TestRunner:
 
     def runAll(self):
         [i.run() for i in self.tests]
+
 
 # Client
 if __name__ == '__main__':

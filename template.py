@@ -1,38 +1,45 @@
-'''http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/'''
+"""http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/"""
 
 """An example of the Template pattern in Python"""  
 
 ingredients = "spam eggs apple"
 line = '-' * 10
 
-# Skeletons 
+
+# Skeletons
 def iter_elements(getter, action):     
     """Template skeleton that iterates items"""      
     for element in getter():         
         action(element)     
         print(line)  
 
-def rev_elements(getter, action):     
+
+def rev_elements(getter, action):
     """Template skeleton that iterates items in reverse order"""      
     for element in getter()[::-1]:         
         action(element)     
         print(line)  
 
-# Getters 
+
+# Getters
 def get_list():     
     return ingredients.split()  
 
-def get_lists():     
+
+def get_lists():
     return [list(x) for x in ingredients.split()]  
 
-# Actions 
+
+# Actions
 def print_item(item):     
     print(item)  
 
-def reverse_item(item):     
+
+def reverse_item(item):
     print(item[::-1])  
 
-# Makes templates 
+
+# Makes templates
 def make_template(skeleton, getter, action):     
     """Instantiate a template method with getter and action"""     
     def template():         

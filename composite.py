@@ -19,17 +19,19 @@ def normalize(val):
     to a Python object """
     
     if val.find('-') != -1:
-        val = val.replace('-','_')
+        val = val.replace('-', '_')
 
     return val
+
 
 def denormalize(val):
     """ De-normalize a string """
-    
+
     if val.find('_') != -1:
-        val = val.replace('_','-')
+        val = val.replace('_', '-')
 
     return val
+
 
 class SpecialDict(dict):
     """ A dictionary type which allows direct attribute
@@ -64,24 +66,25 @@ class SpecialDict(dict):
                 # New attribute
                 self[name] = value
         
+
 class CompositeDict(SpecialDict):
     """ A class which works like a hierarchical dictionary.
     This class is based on the Composite design-pattern """
-    
+
     ID = 0
-    
+
     def __init__(self, name=''):
 
         if name:
             self._name = name
         else:
-            self._name = ''.join(('id#',str(self.__class__.ID)))
+            self._name = ''.join(('id#', str(self.__class__.ID)))
             self.__class__.ID += 1
-        
+
         self._children = []
         # Link  back to father
         self._father = None
-        self[self._name] =  SpecialDict()
+        self[self._name] = SpecialDict()
 
     def __getattr__(self, name):
 
@@ -101,7 +104,8 @@ class CompositeDict(SpecialDict):
                     return child
                 else:
                     attr = getattr(self[self._name], name)
-                    if attr: return attr
+                    if attr:
+                        return attr
                     
                     raise AttributeError('no attribute named %s' % name)
 
@@ -306,17 +310,18 @@ class CompositeDict(SpecialDict):
             self._children.append(child)
             self.__setChildDict(child)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     window = CompositeDict('Window')
     frame = window.addChild('Frame')
     tfield = frame.addChild('Text Field')
-    tfield.setAttribute('size','20')
+    tfield.setAttribute('size', '20')
     
     btn = frame.addChild('Button1')
-    btn.setAttribute('label','Submit')
+    btn.setAttribute('label', 'Submit')
 
     btn = frame.addChild('Button2')
-    btn.setAttribute('label','Browse')
+    btn.setAttribute('label', 'Browse')
 
     # print(window)
     # print(window.Frame)
