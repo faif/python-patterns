@@ -6,6 +6,7 @@
     https://gist.github.com/420905#file_builder_python.py
 """
 
+
 # Director
 class Director(object):
     def __init__(self):
@@ -19,6 +20,7 @@ class Director(object):
     def get_building(self):
         return self.builder.building
 
+
 # Abstract Builder
 class Builder(object):
     def __init__(self):
@@ -27,20 +29,23 @@ class Builder(object):
     def new_building(self):
         self.building = Building()
 
+
 # Concrete Builder
 class BuilderHouse(Builder):
     def build_floor(self):
-        self.building.floor ='One'
+        self.building.floor = 'One'
 
     def build_size(self):
         self.building.size = 'Big'
 
+
 class BuilderFlat(Builder):
     def build_floor(self):
-        self.building.floor ='More than One'
+        self.building.floor = 'More than One'
         
     def build_size(self):
         self.building.size = 'Small'
+
 
 # Product
 class Building(object):
@@ -51,8 +56,9 @@ class Building(object):
     def __repr__(self):
         return 'Floor: %s | Size: %s' % (self.floor, self.size)
 
+
 # Client
-if __name__== "__main__":
+if __name__ == "__main__":
     director = Director()
     director.builder = BuilderHouse()
     director.construct_building()

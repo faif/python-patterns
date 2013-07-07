@@ -7,6 +7,7 @@ class Borg:
     def __str__(self):
         return self.state
 
+
 class YourBorg(Borg):
     pass
 
@@ -33,4 +34,3 @@ if __name__ == '__main__':
     print('rm1:', rm1)
     print('rm2:', rm2)
     print('rm3:', rm3)
-

@@ -2,7 +2,8 @@
 
 '''http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/'''
 
-class State(object):     
+
+class State(object):
     """Base state. This is to share functionality"""      
 
     def scan(self):         
@@ -12,7 +13,8 @@ class State(object):
             self.pos = 0         
         print("Scanning... Station is", self.stations[self.pos], self.name)  
 
-class AmState(State):     
+
+class AmState(State):
     def __init__(self, radio):         
         self.radio = radio         
         self.stations = ["1250", "1380", "1510"]         
@@ -23,7 +25,8 @@ class AmState(State):
         print("Switching to FM")         
         self.radio.state = self.radio.fmstate  
 
-class FmState(State):     
+
+class FmState(State):
     def __init__(self, radio):         
         self.radio = radio         
         self.stations = ["81.3", "89.1", "103.9"]         
@@ -34,7 +37,8 @@ class FmState(State):
         print("Switching to AM")         
         self.radio.state = self.radio.amstate  
 
-class Radio(object):     
+
+class Radio(object):
     """A radio.     It has a scan button, and an AM/FM toggle switch."""      
     def __init__(self):         
         """We have an AM state and an FM state"""          
@@ -47,6 +51,7 @@ class Radio(object):
 
     def scan(self):         
         self.state.scan()  
+
 
 # Test our radio out
 if __name__ == '__main__':

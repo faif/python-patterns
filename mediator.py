@@ -1,8 +1,9 @@
-'''http://dpip.testingperspective.com/?p=28'''
+"""http://dpip.testingperspective.com/?p=28"""
 
 import time 
 
-class TC:             
+
+class TC:
     def __init__(self):                         
         self._tm = tm                         
         self._bProblem = 0             
@@ -27,13 +28,14 @@ class TC:
         else:                                      
             print("Test not executed. No tear down required.")             
 
-    def setTM(self,TM):                         
+    def setTM(self, TM):
         self._tm = tm             
 
     def setProblem(self, value):                         
         self._bProblem = value 
 
-class Reporter:             
+
+class Reporter:
     def __init__(self):                         
         self._tm = None             
 
@@ -45,10 +47,11 @@ class Reporter:
         print("Reporting the results of Test")                         
         time.sleep(1)             
 
-    def setTM(self,TM):                         
+    def setTM(self, TM):
         self._tm = tm 
 
-class DB:             
+
+class DB:
     def __init__(self):                         
         self._tm = None             
 
@@ -57,17 +60,18 @@ class DB:
         time.sleep(1)                         
         #Following code is to simulate a communication from DB to TC                         
         import random                         
-        if random.randrange(1,4) == 3:
+        if random.randrange(1, 4) == 3:
             return -1             
 
     def update(self):                         
         print("Updating the test results in Database")                         
         time.sleep(1)             
 
-    def setTM(self,TM):                         
+    def setTM(self, TM):
         self._tm = tm 
 
-class TestManager:             
+
+class TestManager:
     def __init__(self):                         
         self._reporter = None                         
         self._db = None                         
@@ -89,8 +93,9 @@ class TestManager:
         self._db.update()                         
         rvalue = self._reporter.report()             
 
-    def setTC(self,tc):                         
+    def setTC(self, tc):
         self._tc = tc 
+
 
 if __name__ == '__main__':             
     reporter = Reporter()             
@@ -101,7 +106,8 @@ if __name__ == '__main__':
     reporter.setTM(tm)             
     db.setTM(tm)             
     # For simplification we are looping on the same test.             
-    # Practically, it could be about various unique test classes and their objects             
+    # Practically, it could be about various unique test classes and their
+    # objects
     while (True):                         
         tc = TC()                         
         tc.setTM(tm)                         

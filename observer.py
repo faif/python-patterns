@@ -1,4 +1,5 @@
-'''http://code.activestate.com/recipes/131499-observer-pattern/'''
+"""http://code.activestate.com/recipes/131499-observer-pattern/"""
+
 
 class Subject(object):
     def __init__(self):
@@ -75,6 +76,7 @@ def main():
     data1.data = 10
     print("Setting Data 2 = 15")
     data2.data = 15
+
 
 if __name__ == '__main__':
     main()

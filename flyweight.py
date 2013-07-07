@@ -1,13 +1,14 @@
-'''http://codesnipers.com/?q=python-flyweights'''
+"""http://codesnipers.com/?q=python-flyweights"""
 
 import weakref  
 
+
 class Card(object):
-    '''The object pool. Has builtin reference counting'''
+    """The object pool. Has builtin reference counting"""
     _CardPool = weakref.WeakValueDictionary() 
 
-    '''Flyweight implementation. If the object exists in the
-    pool just return it (instead of creating a new one)'''
+    """Flyweight implementation. If the object exists in the
+    pool just return it (instead of creating a new one)"""
     def __new__(cls, value, suit):         
         obj = Card._CardPool.get(value + suit, None)         
         if not obj:             
@@ -21,6 +22,7 @@ class Card(object):
 
     def __repr__(self):         
         return "<Card: %s%s>" % (self.value, self.suit)      
+
 
 if __name__ == '__main__':
     # comment __new__ and uncomment __init__ to see the difference
