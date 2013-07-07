@@ -1,5 +1,6 @@
 import os
 
+
 class MoveFileCommand(object):
     def __init__(self, src, dest):
         self.src = src
@@ -32,5 +33,5 @@ if __name__ == "__main__":
 
     # and can also be undone on will
     for cmd in undo_stack:
-        undo_stack.pop().undo() # Now it's bar.txt
-        undo_stack.pop().undo() # and back to foo.txt
+        undo_stack.pop().undo()  # Now it's bar.txt
+        undo_stack.pop().undo()  # and back to foo.txt

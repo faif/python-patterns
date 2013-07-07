@@ -2,12 +2,14 @@
 
 import os
 
+
 class Dog(object):
     def __init__(self):
         self.name = "Dog"
 
     def bark(self):
         return "woof!"
+
 
 class Cat(object):
     def __init__(self):
@@ -16,6 +18,7 @@ class Cat(object):
     def meow(self):
         return "meow!"
 
+
 class Human(object):
     def __init__(self):
         self.name = "Human"
@@ -23,12 +26,14 @@ class Human(object):
     def speak(self):
         return "'hello'"
 
+
 class Car(object):
     def __init__(self):
         self.name = "Car"
 
     def make_noise(self, octane_level):
         return "vroom%s" % ("!" * octane_level)
+
 
 class Adapter(object):
     """
@@ -46,6 +51,7 @@ class Adapter(object):
         """All non-adapted calls are passed to the object"""
         return getattr(self.obj, attr)
 
+
 def main():
     objects = []
     dog = Dog()
@@ -55,11 +61,12 @@ def main():
     human = Human()
     objects.append(Adapter(human, dict(make_noise=human.speak)))
     car = Car()
-    car_noise = lambda : car.make_noise(3)
+    car_noise = lambda: car.make_noise(3)
     objects.append(Adapter(car, dict(make_noise=car_noise)))
 
     for obj in objects:
         print("A", obj.name, "goes", obj.make_noise())
+
 
 if __name__ == "__main__":
     main()

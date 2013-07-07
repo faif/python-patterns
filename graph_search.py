@@ -1,6 +1,7 @@
 class GraphSearch:
-    """Graph search emulation in python, from source http://www.python.org/doc/essays/graphs/"""
-    
+    """Graph search emulation in python, from source
+    http://www.python.org/doc/essays/graphs/"""
+
     def __init__(self, graph):
         self.graph = graph 
     
@@ -8,8 +9,8 @@ class GraphSearch:
         self.start = start
         self.end = end
         self.path = path
-        
-        self.path+=[self.start]
+
+        self.path += [self.start]
         if self.start == self.end:
             return self.path
         if not self.graph.has_key(self.start):
@@ -20,30 +21,30 @@ class GraphSearch:
                 if newpath:
                     return newpath
         return None
-    
+
     def find_all_path(self, start, end, path=[]):            
         self.start = start
         self.end = end
         self.path = path
-        self.path+=[self.start]
+        self.path += [self.start]
         if self.start == self.end:
             return [self.path]
         if not self.graph.has_key(self.start):
             return []
-        paths=[]
+        paths = []
         for node in self.graph[self.start]:
             if node not in self.path:
                 newpaths = self.find_all_path(node, self.end, self.path)
                 for newpath in newpaths:
                     paths.append(newpath)                
         return paths
-    
+
     def find_shortest_path(self, start, end, path=[]):         
         self.start = start
         self.end = end
         self.path = path
         
-        self.path+=[self.start]
+        self.path += [self.start]
         if self.start == self.end:
             return self.path
         if not self.graph.has_key(self.start):
@@ -58,13 +59,13 @@ class GraphSearch:
         return shortest
 
 #example of graph usage
-graph = {'A':['B', 'C'],
+graph = {'A': ['B', 'C'],
          'B': ['C', 'D'],
          'C': ['D'],
          'D': ['C'],
          'E': ['F'],
          'F': ['C']   
-            }
+         }
 
 #inistialization of new graph search object
 graph1 = GraphSearch(graph)

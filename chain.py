@@ -1,8 +1,10 @@
 # http://www.testingperspective.com/wiki/doku.php/collaboration/chetan/designpatternsinpython/chain-of-responsibilitypattern
 
+
 class Handler:
     def successor(self, successor):
         self.successor = successor
+
 
 class ConcreteHandler1(Handler):
     def handle(self, request):
@@ -11,6 +13,7 @@ class ConcreteHandler1(Handler):
         else:
             self.successor.handle(request)
  
+
 class ConcreteHandler2(Handler):
     def handle(self, request):
         if request > 10 and request <= 20:
@@ -18,6 +21,7 @@ class ConcreteHandler2(Handler):
         else:
             self.successor.handle(request)
  
+
 class ConcreteHandler3(Handler):
     def handle(self, request):
         if request > 20 and request <= 30:
@@ -25,6 +29,7 @@ class ConcreteHandler3(Handler):
         else:
             print('end of chain, no handler for {}'.format(request))
  
+
 class Client:
     def __init__(self):
         h1 = ConcreteHandler1()
@@ -38,5 +43,6 @@ class Client:
         for request in requests:
             h1.handle(request)
 
-if __name__== "__main__":
+
+if __name__ == "__main__":
     client = Client()

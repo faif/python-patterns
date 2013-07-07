@@ -1,24 +1,28 @@
-'''http://stackoverflow.com/questions/963965/how-is-this-strategy-pattern-written-in-python-the-sample-in-wikipedia'''
+"""http://stackoverflow.com/questions/963965/how-is-this-strategy-pattern-written-in-python-the-sample-in-wikipedia"""
 
 import types  
 
-class StrategyExample:      
+
+class StrategyExample:
 
     def __init__(self, func=None):         
         self.name = "Strategy Example 0"         
-        if func :              
+        if func:
             self.execute = types.MethodType(func, self)      
 
     def execute(self):         
         print(self.name)   
 
-def executeReplacement1(self):         
+
+def executeReplacement1(self):
     print(self.name + " from execute 1")   
 
-def executeReplacement2(self):          
+
+def executeReplacement2(self):
     print(self.name + " from execute 2")  
 
-if __name__ == "__main__":      
+
+if __name__ == "__main__":
     strat0 = StrategyExample()     
 
     strat1 = StrategyExample(executeReplacement1)     

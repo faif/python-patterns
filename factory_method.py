@@ -1,5 +1,6 @@
 #encoding=utf-8
-'''http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/'''
+"""http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/"""
+
 
 class GreekGetter:
     """A simple localizer a la gettext"""
@@ -13,10 +14,12 @@ class GreekGetter:
         except KeyError:
             return str(msgid)
 
+
 class EnglishGetter:
     """Simply echoes the msg ids"""     
     def get(self, msgid):
         return str(msgid)
+
 
 def get_localizer(language="English"):
     """The factory method"""
