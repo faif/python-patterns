@@ -19,19 +19,17 @@ class MoveFileCommand(object):
 
 
 if __name__ == "__main__":
-    undo_stack = []
-    ren1 = MoveFileCommand('foo.txt', 'bar.txt')
-    ren2 = MoveFileCommand('bar.txt', 'baz.txt')
+    command_stack = []
 
     # commands are just pushed into the command stack
-    for cmd in ren1, ren2:
-        undo_stack.append(cmd)
+    command_stack.append(MoveFileCommand('foo.txt', 'bar.txt'))
+    command_stack.append(MoveFileCommand('bar.txt', 'baz.txt'))
 
-    # they can be executed later on will
-    for cmd in undo_stack:
-        cmd.execute()     # foo.txt is now renamed to baz.txt
 
-    # and can also be undone on will
-    for cmd in undo_stack:
-        undo_stack.pop().undo()  # Now it's bar.txt
-        undo_stack.pop().undo()  # and back to foo.txt
+    # they can be executed later on
+    for cmd in command_stack:
+        cmd.execute()
+
+    # and can also be undone at will
+    for cmd in reversed(command_stack):
+        cmd.undo()
