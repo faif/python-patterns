@@ -2,32 +2,32 @@
 
 
 # ConcreteImplementor 1/2
-class DrawingAPI1:
-    def drawCircle(self, x, y, radius):
+class DrawingAPI1(object):
+    def draw_circle(self, x, y, radius):
         print('API1.circle at {}:{} radius {}'.format(x, y, radius))
 
 
 # ConcreteImplementor 2/2
-class DrawingAPI2:
-    def drawCircle(self, x, y, radius):
+class DrawingAPI2(object):
+    def draw_circle(self, x, y, radius):
         print('API2.circle at {}:{} radius {}'.format(x, y, radius))
 
 
 # Refined Abstraction
-class CircleShape:
-    def __init__(self, x, y, radius, drawingAPI):
-        self.__x = x
-        self.__y = y
-        self.__radius = radius
-        self.__drawingAPI = drawingAPI
+class CircleShape(object):
+    def __init__(self, x, y, radius, drawing_api):
+        self._x = x
+        self._y = y
+        self._radius = radius
+        self._drawing_api = drawing_api
  
     # low-level i.e. Implementation specific
     def draw(self):
-        self.__drawingAPI.drawCircle(self.__x, self.__y, self.__radius)
+        self._drawing_api.draw_circle(self._x, self._y, self._radius)
  
     # high-level i.e. Abstraction specific
-    def resizeByPercentage(self, pct):
-        self.__radius *= pct
+    def scale(self, pct):
+        self._radius *= pct
 
 
 def main():
@@ -37,9 +37,9 @@ def main():
     )
  
     for shape in shapes:
-        shape.resizeByPercentage(2.5)
+        shape.scale(2.5)
         shape.draw()
  
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
