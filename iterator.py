@@ -1,6 +1,6 @@
-"""http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/"""
+"""http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
-"""Implementation of the iterator pattern with a generator"""
+Implementation of the iterator pattern with a generator"""
 
 
 def count_to(count):
