@@ -8,7 +8,7 @@ class MoveFileCommand(object):
 
     def execute(self):
         self()
-        
+
     def __call__(self):
         print('renaming {} to {}'.format(self.src, self.dest))
         os.rename(self.src, self.dest)
@@ -24,7 +24,6 @@ if __name__ == "__main__":
     # commands are just pushed into the command stack
     command_stack.append(MoveFileCommand('foo.txt', 'bar.txt'))
     command_stack.append(MoveFileCommand('bar.txt', 'baz.txt'))
-
 
     # they can be executed later on
     for cmd in command_stack:

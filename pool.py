@@ -11,7 +11,7 @@ class QueueObject():
             self.object = self._queue.get()
         return self.object
 
-    def __exit__(self, type, value, traceback):
+    def __exit__(self, Type, value, traceback):
         if self.object is not None:
             self._queue.put(self.object)
             self.object = None

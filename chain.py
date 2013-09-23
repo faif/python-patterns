@@ -8,27 +8,27 @@ class Handler:
 
 class ConcreteHandler1(Handler):
     def handle(self, request):
-        if request > 0 and request <= 10:
+        if 0 < request <= 10:
             print("in handler1")
         else:
             self.successor.handle(request)
- 
+
 
 class ConcreteHandler2(Handler):
     def handle(self, request):
-        if request > 10 and request <= 20:
+        if 10 < request <= 20:
             print("in handler2")
         else:
             self.successor.handle(request)
- 
+
 
 class ConcreteHandler3(Handler):
     def handle(self, request):
-        if request > 20 and request <= 30:
+        if 20 < request <= 30:
             print("in handler3")
         else:
             print('end of chain, no handler for {}'.format(request))
- 
+
 
 class Client:
     def __init__(self):
