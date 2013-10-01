@@ -44,11 +44,13 @@ class Ui(object):
             print('That product "{0}" does not exist in the records'.format(product))
 
 
-if __name__ == '__main__':
-
+def main():
     ui = Ui()
     ui.get_product_list()
     ui.get_product_information('cheese')
     ui.get_product_information('eggs')
     ui.get_product_information('milk')
     ui.get_product_information('arepas')
+
+if __name__ == '__main__':
+    main()
