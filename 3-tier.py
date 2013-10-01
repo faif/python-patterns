@@ -37,9 +37,9 @@ class Ui(object):
         product_info = self.business_logic.product_information(product)
         if product_info is not None:
             print('PRODUCT INFORMATION:')
-            print('Name: %s, Price: %.2f, Quantity: %d\n' % \
-                  (product.title(), product_info.get('price', 0), \
-                   product_info.get('quantity', 0)))
+            print('Name: {:.s}, Price: {:.2f}, Quantity: {:.d}'.format(
+                   product.title(), product_info.get('price', 0),
+                   product_info.get('quantity', 0))
         else:
             print('That product "%s" does not exist in the records' % product)
 
