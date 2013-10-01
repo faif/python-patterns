@@ -32,7 +32,7 @@ class Car(object):
         self.name = "Car"
 
     def make_noise(self, octane_level):
-        return "vroom%s" % ("!" * octane_level)
+        return "vroom{0}".format("!" * octane_level)
 
 
 class Adapter(object):
@@ -61,8 +61,7 @@ def main():
     human = Human()
     objects.append(Adapter(human, dict(make_noise=human.speak)))
     car = Car()
-    car_noise = lambda: car.make_noise(3)
-    objects.append(Adapter(car, dict(make_noise=car_noise)))
+    objects.append(Adapter(car, dict(make_noise=lambda: car.make_noise(3))))
 
     for obj in objects:
         print("A", obj.name, "goes", obj.make_noise())
