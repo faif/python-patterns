@@ -2,8 +2,8 @@
 # -*- coding : utf-8 -*-
 
 """
-    @author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
-    https://gist.github.com/420905#file_builder_python.py
+@author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
+https://gist.github.com/420905#file_builder_python.py
 """
 
 
@@ -54,7 +54,7 @@ class Building(object):
         self.size = None
 
     def __repr__(self):
-        return 'Floor: %s | Size: %s' % (self.floor, self.size)
+        return 'Floor: {0.floor} | Size: {0.size}'.format(self)
 
 
 # Client
