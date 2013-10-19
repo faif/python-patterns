@@ -39,10 +39,14 @@ class Client:
         h1.successor(h2)
         h2.successor(h3)
 
-        requests = [2, 5, 14, 22, 18, 3, 35, 27, 20]
+        self.handlers = (h1,h2,h3)
+
+    def delegate(self, requests):
         for request in requests:
-            h1.handle(request)
+            self.handlers[0].handle(request)
 
 
 if __name__ == "__main__":
     client = Client()
+    requests = [2, 5, 14, 22, 18, 3, 35, 27, 20]
+    client.delegate(requests)

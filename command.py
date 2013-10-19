@@ -18,7 +18,7 @@ class MoveFileCommand(object):
         os.rename(self.dest, self.src)
 
 
-if __name__ == "__main__":
+def main():
     command_stack = []
 
     # commands are just pushed into the command stack
@@ -32,3 +32,6 @@ if __name__ == "__main__":
     # and can also be undone at will
     for cmd in reversed(command_stack):
         cmd.undo()
+
+if __name__ == "__main__":
+    main()

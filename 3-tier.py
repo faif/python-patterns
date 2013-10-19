@@ -36,20 +36,22 @@ class Ui(object):
 
     def get_product_information(self, product):
         product_info = self.business_logic.product_information(product)
-        if product_info is not None:
+        if product_info:
             print('PRODUCT INFORMATION:')
-            print('Name: %s, Price: %.2f, Quantity: %d\n' %
-                  (product.title(), product_info.get('price', 0),
+            print('Name: {0}, Price: {1:.2f}, Quantity: {2:}'.format(
+                   product.title(), product_info.get('price', 0),
                    product_info.get('quantity', 0)))
         else:
-            print('That product "%s" does not exist in the records' % product)
+            print('That product "{0}" does not exist in the records'.format(product))
 
 
-if __name__ == '__main__':
-
+def main():
     ui = Ui()
     ui.get_product_list()
     ui.get_product_information('cheese')
     ui.get_product_information('eggs')
     ui.get_product_information('milk')
     ui.get_product_information('arepas')
+
+if __name__ == '__main__':
+    main()

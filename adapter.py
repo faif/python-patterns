@@ -32,7 +32,7 @@ class Car(object):
         self.name = "Car"
 
     def make_noise(self, octane_level):
-        return "vroom%s" % ("!" * octane_level)
+        return "vroom{0}".format("!" * octane_level)
 
 
 class Adapter(object):
@@ -68,6 +68,21 @@ class Adapter(object):
     def __getattr__(self, attr):
         """All non-adapted calls are passed to the object"""
         return getattr(self.obj, attr)
+
+
+def main():
+    objects = []
+    dog = Dog()
+    objects.append(Adapter(dog, dict(make_noise=dog.bark)))
+    cat = Cat()
+    objects.append(Adapter(cat, dict(make_noise=cat.meow)))
+    human = Human()
+    objects.append(Adapter(human, dict(make_noise=human.speak)))
+    car = Car()
+    objects.append(Adapter(car, dict(make_noise=lambda: car.make_noise(3))))
+
+    for obj in objects:
+        print("A {0} goes {1}".format(obj.name, obj.make_noise()))
 
 
 if __name__ == "__main__":
