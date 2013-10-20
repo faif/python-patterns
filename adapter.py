@@ -54,11 +54,11 @@ class Adapter(object):
     >>> objects.append(Adapter(car, dict(make_noise=car_noise)))
 
     >>> for obj in objects:
-    ...     print("A", obj.name, "goes", obj.make_noise())
-    ('A', 'Dog', 'goes', 'woof!')
-    ('A', 'Cat', 'goes', 'meow!')
-    ('A', 'Human', 'goes', "'hello'")
-    ('A', 'Car', 'goes', 'vroom!!!')
+    ...     print('A {} goes {}'.format(obj.name, obj.make_noise()))
+    A Dog goes woof!
+    A Cat goes meow!
+    A Human goes 'hello'
+    A Car goes vroom!!!
     """
     def __init__(self, obj, adapted_methods):
         """We set the adapted methods in the object's dict"""
