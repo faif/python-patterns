@@ -1,11 +1,12 @@
 """http://dpip.testingperspective.com/?p=28"""
 
+import random
 import time
 
 
 class TC:
     def __init__(self):
-        self._tm = tm
+        self._tm = None
         self._bProblem = 0
 
     def setup(self):
@@ -28,7 +29,7 @@ class TC:
         else:
             print("Test not executed. No tear down required.")
 
-    def setTM(self, TM):
+    def setTM(self, tm):
         self._tm = tm
 
     def setProblem(self, value):
@@ -47,7 +48,7 @@ class Reporter:
         print("Reporting the results of Test")
         time.sleep(1)
 
-    def setTM(self, TM):
+    def setTM(self, tm):
         self._tm = tm
 
 
@@ -67,7 +68,7 @@ class DB:
         print("Updating the test results in Database")
         time.sleep(1)
 
-    def setTM(self, TM):
+    def setTM(self, tm):
         self._tm = tm
 
 
@@ -91,7 +92,7 @@ class TestManager:
 
     def publishReport(self):
         self._db.update()
-        rvalue = self._reporter.report()
+        self._reporter.report()
 
     def setTC(self, tc):
         self._tc = tc
