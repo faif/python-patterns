@@ -1,5 +1,6 @@
 # http://stackoverflow.com/questions/3118929/implementing-the-decorator-pattern-in-python
 
+
 class foo_decorator(object):
     def __init__(self, decoratee):
         self._decoratee = decoratee
@@ -11,12 +12,14 @@ class foo_decorator(object):
     def __getattr__(self, name):
         return getattr(self._decoratee, name)
 
+
 class undecorated_foo(object):
     def f1(self):
         print("original f1")
 
     def f2(self):
         print("original f2")
+
 
 @foo_decorator
 class decorated_foo(object):
