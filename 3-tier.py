@@ -39,10 +39,11 @@ class Ui(object):
         if product_info:
             print('PRODUCT INFORMATION:')
             print('Name: {0}, Price: {1:.2f}, Quantity: {2:}'.format(
-                   product.title(), product_info.get('price', 0),
-                   product_info.get('quantity', 0)))
+                product.title(), product_info.get('price', 0),
+                product_info.get('quantity', 0)))
         else:
-            print('That product "{0}" does not exist in the records'.format(product))
+            print('That product "{0}" does not exist in the records'.format(
+                product))
 
 
 def main():

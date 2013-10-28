@@ -39,7 +39,7 @@ class Client:
         h1.successor(h2)
         h2.successor(h3)
 
-        self.handlers = (h1,h2,h3)
+        self.handlers = (h1, h2, h3)
 
     def delegate(self, requests):
         for request in requests:
