@@ -14,6 +14,17 @@ class PetShop:
 
         self.pet_factory = animal_factory
 
+
+    def show_pet(self):
+        """Creates and shows a pet using the
+        abstract factory"""
+
+        pet = self.pet_factory.get_pet()
+        print("This is a lovely {}".format(pet))
+        print("It says {}".format(pet.speak()))
+        print("It eats {}".format(self.pet_factory.get_food()))
+
+
     def show_pet(self):
         """Creates and shows a pet using the
         abstract factory"""
