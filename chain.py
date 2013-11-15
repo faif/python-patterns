@@ -2,6 +2,9 @@
 
 
 class Handler:
+    def __init__(self):
+        self.successor = None
+
     def successor(self, successor):
         self.successor = successor
 
@@ -9,7 +12,7 @@ class Handler:
 class ConcreteHandler1(Handler):
     def handle(self, request):
         if 0 < request <= 10:
-            print("in handler1")
+            print 'request {0} handeled in handler 1'.format(request)
         else:
             self.successor.handle(request)
 
@@ -17,7 +20,7 @@ class ConcreteHandler1(Handler):
 class ConcreteHandler2(Handler):
     def handle(self, request):
         if 10 < request <= 20:
-            print("in handler2")
+            print 'request {0} handeled in handler 2'.format(request)
         else:
             self.successor.handle(request)
 
@@ -25,7 +28,7 @@ class ConcreteHandler2(Handler):
 class ConcreteHandler3(Handler):
     def handle(self, request):
         if 20 < request <= 30:
-            print("in handler3")
+            print 'request {0} handeled in handler 3'.format(request)
         else:
             print('end of chain, no handler for {}'.format(request))
 
