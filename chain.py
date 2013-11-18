@@ -5,6 +5,7 @@ class Handler:
     def successor(self, successor):
         self.successor = successor
 
+
 class ConcreteHandler1(Handler):
     def handle(self, request):
         if 0 < request <= 10:
