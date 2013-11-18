@@ -14,7 +14,6 @@ class PetShop:
 
         self.pet_factory = animal_factory
 
-
     def show_pet(self):
         """Creates and shows a pet using the
         abstract factory"""
