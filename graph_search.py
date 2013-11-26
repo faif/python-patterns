@@ -67,7 +67,7 @@ graph = {'A': ['B', 'C'],
          'F': ['C']   
          }
 
-#inistialization of new graph search object
+#initialization of new graph search object
 graph1 = GraphSearch(graph)
 
 
