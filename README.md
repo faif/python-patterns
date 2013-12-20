@@ -32,3 +32,4 @@ Current Patterns:
 * command		
 * memento		
 * visitor
+* publish_subscribe
