@@ -49,7 +49,7 @@ class Subscriber:
         self.provider.subscribe(msg, self)
 
     def run(self, msg):
-        print "%s got %s" % (self.name, msg)
+        print("{} got {}".format(self.name, msg))
 
 
 def main():
