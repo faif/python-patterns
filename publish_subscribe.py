@@ -8,42 +8,42 @@ Author: https://github.com/HanWenfang
 
 class Provider:
     def __init__(self):
-        self.msgQueue = []
+        self.msg_queue = []
         self.subscribers = {}
 
     def notify(self, msg):
-        self.msgQueue.append(msg)
+        self.msg_queue.append(msg)
 
     def subscribe(self, msg, subscriber):
         if not msg in self.subscribers:
             self.subscribers[msg] = []
-            self.subscribers[msg].append(subscriber) #unfair
+            self.subscribers[msg].append(subscriber)  # unfair
         else:
             self.subscribers[msg].append(subscriber)
 
-    def unSubscribe(self, msg, subscriber):
+    def unsubscribe(self, msg, subscriber):
         self.subscribers[msg].remove(subscriber)
 
     def update(self):
-        for msg in self.msgQueue:
+        for msg in self.msg_queue:
             if msg in self.subscribers:
                 for sub in self.subscribers[msg]:
                     sub.run(msg)
-        self.msgQueue = []
+        self.msg_queue = []
 
 
 class Publisher:
-    def __init__(self, msgCenter):
-        self.provider = msgCenter
+    def __init__(self, msg_center):
+        self.provider = msg_center
 
     def publish(self, msg):
         self.provider.notify(msg)
 
 
 class Subscriber:
-    def __init__(self, name, msgCenter):
+    def __init__(self, name, msg_center):
         self.name = name
-        self.provider = msgCenter
+        self.provider = msg_center
 
     def subscribe(self, msg):
         self.provider.subscribe(msg, self)
@@ -53,15 +53,15 @@ class Subscriber:
 
 
 def main():
-    messageCenter = Provider()
+    message_center = Provider()
 
-    fftv = Publisher(messageCenter)
+    fftv = Publisher(message_center)
 
-    jim = Subscriber("jim", messageCenter)
+    jim = Subscriber("jim", message_center)
     jim.subscribe("cartoon")
-    jack = Subscriber("jack", messageCenter)
+    jack = Subscriber("jack", message_center)
     jack.subscribe("music")
-    gee = Subscriber("gee", messageCenter)
+    gee = Subscriber("gee", message_center)
     gee.subscribe("movie")
 
     fftv.publish("cartoon")
@@ -73,7 +73,7 @@ def main():
     fftv.publish("movie")
     fftv.publish("blank")
 
-    messageCenter.update()
+    message_center.update()
 
 
 if __name__ == "__main__":
