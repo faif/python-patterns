@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://code.activestate.com/recipes/131499-observer-pattern/"""
 
 
@@ -31,7 +34,7 @@ class Data(Subject):
     @property
     def data(self):
         return self._data
-    
+
     @data.setter
     def data(self, value):
         self._data = value

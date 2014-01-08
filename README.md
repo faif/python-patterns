@@ -1,35 +1,35 @@
 python-patterns
 ===============
 
-A collection of design patterns implemented (by other people) in python
+A collection of design patterns implemented (by other people) in python.
 
 Current Patterns:
 
-* 3-tier		
-* composite		
+* 3-tier
+* composite
 * mvc
-* decorator		
+* decorator
 * null
-* facade		
+* facade
 * observer
-* abstract_factory	
-* factory_method	
+* abstract_factory
+* factory_method
 * pool
-* adapter		
-* flyweight		
+* adapter
+* flyweight
 * prototype
-* borg					
+* borg
 * proxy
-* bridge		
-* graph_search		
+* bridge
+* graph_search
 * state
-* builder		
-* iterator		
+* builder
+* iterator
 * strategy
-* chain		
-* mediator		
+* chain
+* mediator
 * template
-* command		
-* memento		
+* command
+* memento
 * visitor
 * publish_subscribe

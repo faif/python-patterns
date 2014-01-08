@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://codesnipers.com/?q=python-flyweights"""
 
 import weakref

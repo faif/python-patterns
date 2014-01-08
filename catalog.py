@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 A class that uses different static function depending of a parameter passed in init
 Note the use of a single dictionnary instead of multiple conditions

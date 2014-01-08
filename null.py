@@ -1,4 +1,5 @@
-#!/user/bin/env python 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """http://code.activestate.com/recipes/68205-null-object-design-pattern/"""
 
@@ -72,7 +73,7 @@ def test():
     del n.attr1.attr2.attr3
 
     # representation and conversion to a string
-    
+
     assert repr(n) == '<Null>'
     assert str(n) == 'Null'
 
