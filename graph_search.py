@@ -1,10 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 class GraphSearch:
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/"""
 
     def __init__(self, graph):
-        self.graph = graph 
-    
+        self.graph = graph
+
     def find_path(self, start, end, path=[]):
         self.start = start
         self.end = end
@@ -22,7 +25,7 @@ class GraphSearch:
                     return newpath
         return None
 
-    def find_all_path(self, start, end, path=[]):            
+    def find_all_path(self, start, end, path=[]):
         self.start = start
         self.end = end
         self.path = path
@@ -36,14 +39,14 @@ class GraphSearch:
             if node not in self.path:
                 newpaths = self.find_all_path(node, self.end, self.path)
                 for newpath in newpaths:
-                    paths.append(newpath)                
+                    paths.append(newpath)
         return paths
 
-    def find_shortest_path(self, start, end, path=[]):         
+    def find_shortest_path(self, start, end, path=[]):
         self.start = start
         self.end = end
         self.path = path
-        
+
         self.path += [self.start]
         if self.start == self.end:
             return self.path
@@ -64,7 +67,7 @@ graph = {'A': ['B', 'C'],
          'C': ['D'],
          'D': ['C'],
          'E': ['F'],
-         'F': ['C']   
+         'F': ['C']
          }
 
 #initialization of new graph search object

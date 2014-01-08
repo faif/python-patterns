@@ -1,4 +1,7 @@
-# http://en.wikibooks.org/wiki/Computer_Science_Design_Patterns/Bridge_Pattern#Python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""http://en.wikibooks.org/wiki/Computer_Science_Design_Patterns/Bridge_Pattern#Python"""
 
 
 # ConcreteImplementor 1/2
@@ -20,11 +23,11 @@ class CircleShape(object):
         self._y = y
         self._radius = radius
         self._drawing_api = drawing_api
- 
+
     # low-level i.e. Implementation specific
     def draw(self):
         self._drawing_api.draw_circle(self._x, self._y, self._radius)
- 
+
     # high-level i.e. Abstraction specific
     def scale(self, pct):
         self._radius *= pct
@@ -35,11 +38,11 @@ def main():
         CircleShape(1, 2, 3, DrawingAPI1()),
         CircleShape(5, 7, 11, DrawingAPI2())
     )
- 
+
     for shape in shapes:
         shape.scale(2.5)
         shape.draw()
- 
+
 
 if __name__ == '__main__':
     main()

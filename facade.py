@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://dpip.testingperspective.com/?p=26"""
 
 import time

@@ -1,4 +1,6 @@
-#encoding=utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/"""
 
 
@@ -8,7 +10,7 @@ class GreekGetter:
         self.trans = dict(dog="σκύλος", cat="γάτα")
 
     def get(self, msgid):
-        """We'll punt if we don't have a translation"""          
+        """We'll punt if we don't have a translation"""
         try:
             return self.trans[msgid]
         except KeyError:
@@ -16,7 +18,7 @@ class GreekGetter:
 
 
 class EnglishGetter:
-    """Simply echoes the msg ids"""     
+    """Simply echoes the msg ids"""
     def get(self, msgid):
         return str(msgid)
 

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
 """Implementation of the abstract factory pattern"""

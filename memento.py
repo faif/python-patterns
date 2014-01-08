@@ -1,4 +1,7 @@
-"""code.activestate.com/recipes/413838-memento-closure/"""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""http://code.activestate.com/recipes/413838-memento-closure/"""
 
 import copy
 

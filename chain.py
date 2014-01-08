@@ -1,4 +1,7 @@
-# http://www.testingperspective.com/wiki/doku.php/collaboration/chetan/designpatternsinpython/chain-of-responsibilitypattern
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""http://www.testingperspective.com/wiki/doku.php/collaboration/chetan/designpatternsinpython/chain-of-responsibilitypattern"""
 
 
 class Handler:
