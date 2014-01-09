@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 class GraphSearch:
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/"""
