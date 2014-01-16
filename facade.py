@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""http://dpip.testingperspective.com/?p=26"""
-
 import time
 
 SLEEP = 0.5
-
 
 # Complex Parts
 class TC1:
