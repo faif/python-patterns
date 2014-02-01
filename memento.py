@@ -95,3 +95,28 @@ if __name__ == '__main__':
         traceback.print_exc(file=sys.stdout)
         pass
     print(n)
+
+### OUTPUT ###
+# <NumObj: -1>
+# <NumObj: 0>
+# <NumObj: 1>
+# <NumObj: 2>
+# -- commited
+# <NumObj: 3>
+# <NumObj: 4>
+# <NumObj: 5>
+# -- rolled back
+# <NumObj: 2>
+# -- now doing stuff ...
+# -> doing stuff failed!
+# Traceback (most recent call last):
+#   File "memento.py", line 91, in <module>
+#     n.DoStuff()
+#   File "memento.py", line 47, in transaction
+#     return self.method(obj, *args, **kwargs)
+#   File "memento.py", line 67, in DoStuff
+#     self.Increment()     # <- will fail and rollback
+#   File "memento.py", line 62, in Increment
+#     self.value += 1
+# TypeError: Can't convert 'int' object to str implicitly
+# <NumObj: 2>

@@ -61,3 +61,23 @@ class TestRunner:
 if __name__ == '__main__':
     testrunner = TestRunner()
     testrunner.runAll()
+
+### OUTPUT ###
+# ###### In Test 1 ######
+# Setting up
+# Running test
+# Tearing down
+# Test Finished
+# 
+# ###### In Test 2 ######
+# Setting up
+# Running test
+# Tearing down
+# Test Finished
+# 
+# ###### In Test 3 ######
+# Setting up
+# Running test
+# Tearing down
+# Test Finished
+# 

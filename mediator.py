@@ -118,3 +118,22 @@ if __name__ == '__main__':
         tc.setup()
         tc.execute()
         tc.tearDown()
+
+### OUTPUT ###
+# Setting up the Test
+# Inserting the execution begin status in the Database
+# Executing the test
+# Tearing down
+# Updating the test results in Database
+# Reporting the results of Test
+# Setting up the Test
+# Inserting the execution begin status in the Database
+# Reporter Class is preparing to report the results
+# Problem in setup. Test not executed.
+# Test not executed. No tear down required.
+# Setting up the Test
+# Inserting the execution begin status in the Database
+# Executing the test
+# Tearing down
+# Updating the test results in Database
+# Reporting the results of Test

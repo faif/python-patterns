@@ -78,3 +78,8 @@ graph1 = GraphSearch(graph)
 print(graph1.find_path('A', 'D'))
 print(graph1.find_all_path('A', 'D'))
 print(graph1.find_shortest_path('A', 'D'))
+
+### OUTPUT ###
+# ['A', 'B', 'C', 'D']
+# [['A', 'B', 'C', 'D']]
+# ['A', 'B', 'C', 'D']

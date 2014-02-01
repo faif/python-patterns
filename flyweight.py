@@ -34,3 +34,8 @@ if __name__ == '__main__':
     print(c1, c2)
     print(c1 == c2)
     print(id(c1), id(c2))
+
+### OUTPUT ###
+# <Card: 9h> <Card: 9h>
+# True
+# 140368617673296 140368617673296

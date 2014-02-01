@@ -45,3 +45,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+### OUTPUT ###
+# decorated f1
+# original f1
+# original f2

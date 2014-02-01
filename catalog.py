@@ -58,3 +58,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+### OUTPUT ###
+# executed method 2!

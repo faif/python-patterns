@@ -80,3 +80,10 @@ def test():
 
 if __name__ == '__main__':
     test()
+
+### OUTPUT ###
+# Null
+# Null
+# Null
+# Null
+# attr1 Null

@@ -46,3 +46,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+### OUTPUT ###
+# API1.circle at 1:2 radius 7.5
+# API2.circle at 5:7 radius 27.5

@@ -332,3 +332,7 @@ if __name__ == "__main__":
     # print(window.Frame.Button2)
     print(window.Frame.Button1.label)
     print(window.Frame.Button2.label)
+
+### OUTPUT ###
+# Submit
+# Browse
