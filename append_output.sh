@@ -2,7 +2,7 @@
 
 set -e
 
-src=$(sed -n -e "0,/### OUTPUT ###/p" "$1")
+src=$(sed -n -e '/### OUTPUT ###/,$!p' "$1")
 output=$(python "$1" | sed 's/^/# /')
 
 # These are done separately to avoid having to insert a newline, which causes
