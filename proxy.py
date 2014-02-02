@@ -33,3 +33,9 @@ if __name__ == '__main__':
     p.work()
     p.busy = 'Yes'
     p.work()
+
+### OUTPUT ###
+# Proxy checking for Sales Manager availability
+# Sales Manager ready to talk
+# Proxy checking for Sales Manager availability
+# Sales Manager is busy

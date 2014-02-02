@@ -29,3 +29,9 @@ for number in count_to_five():
     print(number, end=' ')
 
 print()
+
+### OUTPUT ###
+# Counting to two...
+# one two 
+# Counting to five...
+# one two three four five 

@@ -17,7 +17,7 @@ class GraphSearch:
         self.path += [self.start]
         if self.start == self.end:
             return self.path
-        if not self.graph.has_key(self.start):
+        if not self.start in self.graph:
             return None
         for node in self.graph[self.start]:
             if node not in self.path:
@@ -33,7 +33,7 @@ class GraphSearch:
         self.path += [self.start]
         if self.start == self.end:
             return [self.path]
-        if not self.graph.has_key(self.start):
+        if not self.start in self.graph:
             return []
         paths = []
         for node in self.graph[self.start]:
@@ -51,7 +51,7 @@ class GraphSearch:
         self.path += [self.start]
         if self.start == self.end:
             return self.path
-        if not self.graph.has_key(self.start):
+        if not self.start in self.graph:
             return None
         shortest = None
         for node in self.graph[self.start]:
@@ -75,6 +75,11 @@ graph = {'A': ['B', 'C'],
 graph1 = GraphSearch(graph)
 
 
-print graph1.find_path('A', 'D')
-print graph1.find_all_path('A', 'D')
-print graph1.find_shortest_path('A', 'D')
+print(graph1.find_path('A', 'D'))
+print(graph1.find_all_path('A', 'D'))
+print(graph1.find_shortest_path('A', 'D'))
+
+### OUTPUT ###
+# ['A', 'B', 'C', 'D']
+# [['A', 'B', 'C', 'D']]
+# ['A', 'B', 'C', 'D']

@@ -68,3 +68,7 @@ if __name__ == "__main__":
     director.construct_building()
     building = director.get_building()
     print(building)
+
+### OUTPUT ###
+# Floor: One | Size: Big
+# Floor: More than One | Size: Small

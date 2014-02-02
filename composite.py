@@ -273,7 +273,7 @@ class CompositeDict(SpecialDict):
 
         child = self.getChild(name)
         if child:
-            # print 'Child %s present!' % name
+            # print('Child %s present!' % name)
             # Replace it if force==True
             if force:
                 index = self.getIndex(child)
@@ -332,3 +332,7 @@ if __name__ == "__main__":
     # print(window.Frame.Button2)
     print(window.Frame.Button1.label)
     print(window.Frame.Button2.label)
+
+### OUTPUT ###
+# Submit
+# Browse
