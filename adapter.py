@@ -89,8 +89,10 @@ def main():
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    main()
 
 ### OUTPUT ###
-
+# A Dog goes woof!
+# A Cat goes meow!
+# A Human goes 'hello'
+# A Car goes vroom!!!
