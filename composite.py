@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 A class which defines a composite object which can store
 hieararchical dictionaries with names.
 
 This class is same as a hiearchical dictionary, but it
-provides methods to add/access/modify children by name, 
+provides methods to add/access/modify children by name,
 like a Composite.
 
 Created Anand B Pillai     <abpillai@gmail.com>
@@ -17,19 +20,21 @@ __version__ = "0.2"
 def normalize(val):
     """ Normalize a string so that it can be used as an attribute
     to a Python object """
-    
+
     if val.find('-') != -1:
-        val = val.replace('-','_')
+        val = val.replace('-', '_')
 
     return val
+
 
 def denormalize(val):
     """ De-normalize a string """
-    
+
     if val.find('_') != -1:
-        val = val.replace('_','-')
+        val = val.replace('_', '-')
 
     return val
+
 
 class SpecialDict(dict):
     """ A dictionary type which allows direct attribute
@@ -63,25 +68,26 @@ class SpecialDict(dict):
             else:
                 # New attribute
                 self[name] = value
-        
+
+
 class CompositeDict(SpecialDict):
     """ A class which works like a hierarchical dictionary.
     This class is based on the Composite design-pattern """
-    
+
     ID = 0
-    
+
     def __init__(self, name=''):
 
         if name:
             self._name = name
         else:
-            self._name = ''.join(('id#',str(self.__class__.ID)))
+            self._name = ''.join(('id#', str(self.__class__.ID)))
             self.__class__.ID += 1
-        
+
         self._children = []
         # Link  back to father
         self._father = None
-        self[self._name] =  SpecialDict()
+        self[self._name] = SpecialDict()
 
     def __getattr__(self, name):
 
@@ -101,8 +107,9 @@ class CompositeDict(SpecialDict):
                     return child
                 else:
                     attr = getattr(self[self._name], name)
-                    if attr: return attr
-                    
+                    if attr:
+                        return attr
+
                     raise AttributeError('no attribute named %s' % name)
 
     def isRoot(self):
@@ -110,7 +117,7 @@ class CompositeDict(SpecialDict):
 
         # If I don't have a parent, I am root
         return not self._father
-    
+
     def isLeaf(self):
         """ Return whether I am a leaf component or not """
 
@@ -124,7 +131,7 @@ class CompositeDict(SpecialDict):
 
     def getIndex(self, child):
         """ Return the index of the child ConfigInfo object 'child' """
-        
+
         if child in self._children:
             return self._children.index(child)
         else:
@@ -132,7 +139,7 @@ class CompositeDict(SpecialDict):
 
     def getDict(self):
         """ Return the contained dictionary """
-        
+
         return self[self._name]
 
     def getProperty(self, child, key):
@@ -152,25 +159,25 @@ class CompositeDict(SpecialDict):
         childDict = self.getInfoDict(child)
         if childDict:
             childDict[key] = value
-    
+
     def getChildren(self):
         """ Return the list of immediate children of this object """
-        
+
         return self._children
 
     def getAllChildren(self):
         """ Return the list of all children of this object """
-        
+
         l = []
         for child in self._children:
             l.append(child)
             l.extend(child.getAllChildren())
-            
+
         return l
 
     def getChild(self, name):
         """ Return the immediate child object with the given name """
-        
+
         for child in self._children:
             if child.getName() == name:
                 return child
@@ -181,7 +188,7 @@ class CompositeDict(SpecialDict):
         # Note - this returns the first child of the given name
         # any other children with similar names down the tree
         # is not considered.
-        
+
         for child in self.getAllChildren():
             if child.getName() == name:
                 return child
@@ -191,33 +198,33 @@ class CompositeDict(SpecialDict):
 
         # Note: this returns a list of all the children of a given
         # name, irrespective of the depth of look-up.
-        
+
         children = []
-        
+
         for child in self.getAllChildren():
             if child.getName() == name:
                 children.append(child)
 
         return children
-            
+
     def getPropertyDict(self):
         """ Return the property dictionary """
-        
+
         d = self.getChild('__properties')
         if d:
             return d.getDict()
         else:
             return {}
-        
+
     def getParent(self):
         """ Return the person who created me """
 
         return self._father
-    
+
     def __setChildDict(self, child):
         """ Private method to set the dictionary of the child
         object 'child' in the internal dictionary """
-        
+
         d = self[self._name]
         d[child.getName()] = child.getDict()
 
@@ -232,25 +239,25 @@ class CompositeDict(SpecialDict):
         # child is orphaned - see addChild and addChild2
         # methods !
         self._father = father
-        
+
     def setName(self, name):
-        """ Set the name of this ConfigInfo object to 'name' """        
+        """ Set the name of this ConfigInfo object to 'name' """
 
         self._name = name
 
     def setDict(self, d):
         """ Set the contained dictionary """
-        
+
         self[self._name] = d.copy()
-        
+
     def setAttribute(self, name, value):
         """ Set a name value pair in the contained dictionary """
-        
+
         self[self._name][name] = value
 
     def getAttribute(self, name):
         """ Return value of an attribute from the contained dictionary """
-        
+
         return self[self._name][name]
 
     def addChild(self, name, force=False):
@@ -260,13 +267,13 @@ class CompositeDict(SpecialDict):
 
         This function returns the child object, whether
         new or existing """
-        
+
         if type(name) != str:
             raise ValueError('Argument should be a string!')
-        
+
         child = self.getChild(name)
         if child:
-            # print 'Child %s present!' % name
+            # print('Child %s present!' % name)
             # Replace it if force==True
             if force:
                 index = self.getIndex(child)
@@ -274,22 +281,22 @@ class CompositeDict(SpecialDict):
                     child = self.__class__(name)
                     self._children[index] = child
                     child.setParent(self)
-                    
+
                     self.__setChildDict(child)
             return child
         else:
             child = self.__class__(name)
             child.setParent(self)
-            
+
             self._children.append(child)
             self.__setChildDict(child)
 
             return child
-        
+
     def addChild2(self, child):
         """ Add the child object 'child'. If it is already present,
         it is overwritten by default """
-        
+
         currChild = self.getChild(child.getName())
         if currChild:
             index = self.getIndex(currChild)
@@ -299,24 +306,25 @@ class CompositeDict(SpecialDict):
                 # Unset the existing child's parent
                 currChild.setParent(None)
                 del currChild
-                
+
                 self.__setChildDict(child)
         else:
-            child.setParent(self)            
+            child.setParent(self)
             self._children.append(child)
             self.__setChildDict(child)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     window = CompositeDict('Window')
     frame = window.addChild('Frame')
     tfield = frame.addChild('Text Field')
-    tfield.setAttribute('size','20')
-    
+    tfield.setAttribute('size', '20')
+
     btn = frame.addChild('Button1')
-    btn.setAttribute('label','Submit')
+    btn.setAttribute('label', 'Submit')
 
     btn = frame.addChild('Button2')
-    btn.setAttribute('label','Browse')
+    btn.setAttribute('label', 'Browse')
 
     # print(window)
     # print(window.Frame)
@@ -324,3 +332,7 @@ if __name__=="__main__":
     # print(window.Frame.Button2)
     print(window.Frame.Button1.label)
     print(window.Frame.Button2.label)
+
+### OUTPUT ###
+# Submit
+# Browse

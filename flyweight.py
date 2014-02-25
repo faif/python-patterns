@@ -1,26 +1,31 @@
-'''http://codesnipers.com/?q=python-flyweights'''
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-import weakref  
+"""http://codesnipers.com/?q=python-flyweights"""
+
+import weakref
+
 
 class Card(object):
-    '''The object pool. Has builtin reference counting'''
-    _CardPool = weakref.WeakValueDictionary() 
+    """The object pool. Has builtin reference counting"""
+    _CardPool = weakref.WeakValueDictionary()
 
-    '''Flyweight implementation. If the object exists in the
-    pool just return it (instead of creating a new one)'''
-    def __new__(cls, value, suit):         
-        obj = Card._CardPool.get(value + suit, None)         
-        if not obj:             
-            obj = object.__new__(cls)             
-            Card._CardPool[value + suit] = obj             
-            obj.value, obj.suit = value, suit          
+    """Flyweight implementation. If the object exists in the
+    pool just return it (instead of creating a new one)"""
+    def __new__(cls, value, suit):
+        obj = Card._CardPool.get(value + suit, None)
+        if not obj:
+            obj = object.__new__(cls)
+            Card._CardPool[value + suit] = obj
+            obj.value, obj.suit = value, suit
         return obj
 
-    # def __init__(self, value, suit):         
-    #     self.value, self.suit = value, suit      
+    # def __init__(self, value, suit):
+    #     self.value, self.suit = value, suit
 
-    def __repr__(self):         
-        return "<Card: %s%s>" % (self.value, self.suit)      
+    def __repr__(self):
+        return "<Card: %s%s>" % (self.value, self.suit)
+
 
 if __name__ == '__main__':
     # comment __new__ and uncomment __init__ to see the difference
@@ -29,3 +34,8 @@ if __name__ == '__main__':
     print(c1, c2)
     print(c1 == c2)
     print(id(c1), id(c2))
+
+### OUTPUT ###
+# <Card: 9h> <Card: 9h>
+# True
+# 140368617673296 140368617673296

@@ -2,9 +2,10 @@
 # -*- coding : utf-8 -*-
 
 """
-    @author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
-    https://gist.github.com/420905#file_builder_python.py
+@author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
+https://gist.github.com/420905#file_builder_python.py
 """
+
 
 # Director
 class Director(object):
@@ -19,6 +20,7 @@ class Director(object):
     def get_building(self):
         return self.builder.building
 
+
 # Abstract Builder
 class Builder(object):
     def __init__(self):
@@ -27,20 +29,23 @@ class Builder(object):
     def new_building(self):
         self.building = Building()
 
+
 # Concrete Builder
 class BuilderHouse(Builder):
     def build_floor(self):
-        self.building.floor ='One'
+        self.building.floor = 'One'
 
     def build_size(self):
         self.building.size = 'Big'
 
+
 class BuilderFlat(Builder):
     def build_floor(self):
-        self.building.floor ='More than One'
+        self.building.floor = 'More than One'
         
     def build_size(self):
         self.building.size = 'Small'
+
 
 # Product
 class Building(object):
@@ -49,10 +54,11 @@ class Building(object):
         self.size = None
 
     def __repr__(self):
-        return 'Floor: %s | Size: %s' % (self.floor, self.size)
+        return 'Floor: {0.floor} | Size: {0.size}'.format(self)
+
 
 # Client
-if __name__== "__main__":
+if __name__ == "__main__":
     director = Director()
     director.builder = BuilderHouse()
     director.construct_building()
@@ -62,3 +68,7 @@ if __name__== "__main__":
     director.construct_building()
     building = director.get_building()
     print(building)
+
+### OUTPUT ###
+# Floor: One | Size: Big
+# Floor: More than One | Size: Small

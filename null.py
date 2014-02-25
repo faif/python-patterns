@@ -1,38 +1,41 @@
-#!/user/bin/env python 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-'''http://code.activestate.com/recipes/68205-null-object-design-pattern/'''
+"""http://code.activestate.com/recipes/68205-null-object-design-pattern/"""
+
 
 class Null:
     def __init__(self, *args, **kwargs):
-        "Ignore parameters."
+        """Ignore parameters."""
         return None
 
     def __call__(self, *args, **kwargs):
-        "Ignore method calls."
+        """Ignore method calls."""
         return self
 
     def __getattr__(self, mname):
-        "Ignore attribute requests."
+        """Ignore attribute requests."""
         return self
 
     def __setattr__(self, name, value):
-        "Ignore attribute setting."
+        """Ignore attribute setting."""
         return self
 
     def __delattr__(self, name):
-        "Ignore deleting attributes."
+        """Ignore deleting attributes."""
         return self
 
     def __repr__(self):
-        "Return a string representation."
+        """Return a string representation."""
         return "<Null>"
 
     def __str__(self):
-        "Convert to a string and return it."
+        """Convert to a string and return it."""
         return "Null"
 
+
 def test():
-    "Perform some decent tests, or rather: demos."
+    """Perform some decent tests, or rather: demos."""
 
     # constructing and calling
 
@@ -70,9 +73,17 @@ def test():
     del n.attr1.attr2.attr3
 
     # representation and conversion to a string
-    
+
     assert repr(n) == '<Null>'
     assert str(n) == 'Null'
 
+
 if __name__ == '__main__':
     test()
+
+### OUTPUT ###
+# Null
+# Null
+# Null
+# Null
+# attr1 Null
