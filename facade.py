@@ -5,6 +5,7 @@ import time
 
 SLEEP = 0.5
 
+
 # Complex Parts
 class TC1:
     def run(self):
@@ -68,16 +69,16 @@ if __name__ == '__main__':
 # Running test
 # Tearing down
 # Test Finished
-# 
+#
 # ###### In Test 2 ######
 # Setting up
 # Running test
 # Tearing down
 # Test Finished
-# 
+#
 # ###### In Test 3 ######
 # Setting up
 # Running test
 # Tearing down
 # Test Finished
-# 
+#

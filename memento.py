@@ -91,7 +91,8 @@ if __name__ == '__main__':
         n.DoStuff()
     except:
         print('-> doing stuff failed!')
-        import sys, traceback
+        import sys
+        import traceback
         traceback.print_exc(file=sys.stdout)
         pass
     print(n)
