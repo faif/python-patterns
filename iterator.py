@@ -32,6 +32,6 @@ print()
 
 ### OUTPUT ###
 # Counting to two...
-# one two 
+# one two
 # Counting to five...
-# one two three four five 
+# one two three four five

@@ -61,14 +61,14 @@ if __name__ == '__main__':
 # cheese
 # eggs
 # milk
-# 
+#
 # PRODUCT INFORMATION:
 # Name: Cheese, Price: 2.00, Quantity: 10
-# 
+#
 # PRODUCT INFORMATION:
 # Name: Eggs, Price: 0.20, Quantity: 100
-# 
+#
 # PRODUCT INFORMATION:
 # Name: Milk, Price: 1.50, Quantity: 10
-# 
+#
 # That product "arepas" does not exist in the records

@@ -3,6 +3,7 @@
 
 
 class GraphSearch:
+
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/"""
 
@@ -62,7 +63,7 @@ class GraphSearch:
                         shortest = newpath
         return shortest
 
-#example of graph usage
+# example of graph usage
 graph = {'A': ['B', 'C'],
          'B': ['C', 'D'],
          'C': ['D'],
@@ -71,7 +72,7 @@ graph = {'A': ['B', 'C'],
          'F': ['C']
          }
 
-#initialization of new graph search object
+# initialization of new graph search object
 graph1 = GraphSearch(graph)
 
 

@@ -5,11 +5,13 @@
 
 
 class Handler:
+
     def successor(self, successor):
         self.successor = successor
 
 
 class ConcreteHandler1(Handler):
+
     def handle(self, request):
         if 0 < request <= 10:
             print('request {} handled in handler 1'.format(request))
@@ -18,6 +20,7 @@ class ConcreteHandler1(Handler):
 
 
 class ConcreteHandler2(Handler):
+
     def handle(self, request):
         if 10 < request <= 20:
             print('request {} handled in handler 2'.format(request))
@@ -26,6 +29,7 @@ class ConcreteHandler2(Handler):
 
 
 class ConcreteHandler3(Handler):
+
     def handle(self, request):
         if 20 < request <= 30:
             print('request {} handled in handler 3'.format(request))
@@ -34,6 +38,7 @@ class ConcreteHandler3(Handler):
 
 
 class Client:
+
     def __init__(self):
         h1 = ConcreteHandler1()
         h2 = ConcreteHandler2()

@@ -5,7 +5,9 @@
 
 
 class GreekGetter:
+
     """A simple localizer a la gettext"""
+
     def __init__(self):
         self.trans = dict(dog="σκύλος", cat="γάτα")
 
@@ -18,7 +20,9 @@ class GreekGetter:
 
 
 class EnglishGetter:
+
     """Simply echoes the msg ids"""
+
     def get(self, msgid):
         return str(msgid)
 
