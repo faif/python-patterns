@@ -10,6 +10,7 @@ __gist__ = "<https://gist.github.com/diopib/7679559>"
 
 
 class Catalog():
+
     """
     catalog of multiple static methods that are executed depending on an init
     parameter

@@ -5,6 +5,7 @@
 
 
 class QueueObject():
+
     def __init__(self, queue, auto_get=False):
         self._queue = queue
         self.object = self._queue.get() if auto_get else None

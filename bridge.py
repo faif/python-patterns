@@ -6,18 +6,21 @@
 
 # ConcreteImplementor 1/2
 class DrawingAPI1(object):
+
     def draw_circle(self, x, y, radius):
         print('API1.circle at {}:{} radius {}'.format(x, y, radius))
 
 
 # ConcreteImplementor 2/2
 class DrawingAPI2(object):
+
     def draw_circle(self, x, y, radius):
         print('API2.circle at {}:{} radius {}'.format(x, y, radius))
 
 
 # Refined Abstraction
 class CircleShape(object):
+
     def __init__(self, x, y, radius, drawing_api):
         self._x = x
         self._y = y

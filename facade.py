@@ -8,6 +8,7 @@ SLEEP = 0.5
 
 # Complex Parts
 class TC1:
+
     def run(self):
         print("###### In Test 1 ######")
         time.sleep(SLEEP)
@@ -21,6 +22,7 @@ class TC1:
 
 
 class TC2:
+
     def run(self):
         print("###### In Test 2 ######")
         time.sleep(SLEEP)
@@ -34,6 +36,7 @@ class TC2:
 
 
 class TC3:
+
     def run(self):
         print("###### In Test 3 ######")
         time.sleep(SLEEP)
@@ -48,6 +51,7 @@ class TC3:
 
 # Facade
 class TestRunner:
+
     def __init__(self):
         self.tc1 = TC1()
         self.tc2 = TC2()

@@ -9,6 +9,7 @@ https://gist.github.com/420905#file_builder_python.py
 
 # Director
 class Director(object):
+
     def __init__(self):
         self.builder = None
 
@@ -23,6 +24,7 @@ class Director(object):
 
 # Abstract Builder
 class Builder(object):
+
     def __init__(self):
         self.building = None
 
@@ -32,6 +34,7 @@ class Builder(object):
 
 # Concrete Builder
 class BuilderHouse(Builder):
+
     def build_floor(self):
         self.building.floor = 'One'
 
@@ -40,15 +43,17 @@ class BuilderHouse(Builder):
 
 
 class BuilderFlat(Builder):
+
     def build_floor(self):
         self.building.floor = 'More than One'
-        
+
     def build_size(self):
         self.building.size = 'Small'
 
 
 # Product
 class Building(object):
+
     def __init__(self):
         self.floor = None
         self.size = None

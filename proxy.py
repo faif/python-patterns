@@ -5,6 +5,7 @@ import time
 
 
 class SalesManager:
+
     def work(self):
         print("Sales Manager working...")
 
@@ -13,6 +14,7 @@ class SalesManager:
 
 
 class Proxy:
+
     def __init__(self):
         self.busy = 'No'
         self.sales = None

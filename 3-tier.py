@@ -62,7 +62,7 @@ if __name__ == '__main__':
 # eggs
 # milk
 # cheese
-# 
+#
 # PRODUCT INFORMATION:
 # Name: Cheese, Price: 2.00, Quantity: 10
 # PRODUCT INFORMATION:

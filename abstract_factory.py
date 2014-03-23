@@ -9,6 +9,7 @@ import random
 
 
 class PetShop:
+
     """A pet shop"""
 
     def __init__(self, animal_factory=None):
@@ -30,6 +31,7 @@ class PetShop:
 # Stuff that our factory makes
 
 class Dog:
+
     def speak(self):
         return "woof"
 
@@ -38,6 +40,7 @@ class Dog:
 
 
 class Cat:
+
     def speak(self):
         return "meow"
 
@@ -48,6 +51,7 @@ class Cat:
 # Factory classes
 
 class DogFactory:
+
     def get_pet(self):
         return Dog()
 
@@ -56,6 +60,7 @@ class DogFactory:
 
 
 class CatFactory:
+
     def get_pet(self):
         return Cat()
 

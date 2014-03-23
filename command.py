@@ -5,6 +5,7 @@ import os
 
 
 class MoveFileCommand(object):
+
     def __init__(self, src, dest):
         self.src = src
         self.dest = dest

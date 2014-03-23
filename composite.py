@@ -37,6 +37,7 @@ def denormalize(val):
 
 
 class SpecialDict(dict):
+
     """ A dictionary type which allows direct attribute
     access to its keys """
 
@@ -71,6 +72,7 @@ class SpecialDict(dict):
 
 
 class CompositeDict(SpecialDict):
+
     """ A class which works like a hierarchical dictionary.
     This class is based on the Composite design-pattern """
 

@@ -16,6 +16,7 @@ def Memento(obj, deep=False):
 
 
 class Transaction:
+
     """A transaction guard. This is really just
       syntactic suggar arount a memento closure.
       """
@@ -34,9 +35,11 @@ class Transaction:
 
 
 class transactional(object):
+
     """Adds transactional semantics to methods. Methods decorated  with
     @transactional will rollback to entry state upon exceptions.
     """
+
     def __init__(self, method):
         self.method = method
 
@@ -52,6 +55,7 @@ class transactional(object):
 
 
 class NumObj(object):
+
     def __init__(self, value):
         self.value = value
 
@@ -116,7 +120,7 @@ if __name__ == '__main__':
 #   File "memento.py", line 47, in transaction
 #     return self.method(obj, *args, **kwargs)
 #   File "memento.py", line 67, in DoStuff
-#     self.Increment()     # <- will fail and rollback
+# self.Increment()     # <- will fail and rollback
 #   File "memento.py", line 62, in Increment
 #     self.value += 1
 # TypeError: Can't convert 'int' object to str implicitly
