@@ -12,7 +12,7 @@ class Handler:
     def successor(self, successor):
         self._successor = successor
 
-    def handler(self, request):
+    def handle(self, request):
         raise NotImplementedError('Must provide implementation in subclass.')
 
 class ConcreteHandler1(Handler):
