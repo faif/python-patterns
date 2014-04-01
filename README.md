@@ -37,3 +37,4 @@ Current Patterns:
 * strategy
 * template
 * visitor
+* Singleton
