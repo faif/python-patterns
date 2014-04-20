@@ -5,7 +5,7 @@
 
 
 class Handler:
-    
+
     def __init__(self):
         self._successor = None
 
@@ -14,6 +14,7 @@ class Handler:
 
     def handle(self, request):
         raise NotImplementedError('Must provide implementation in subclass.')
+
 
 class ConcreteHandler1(Handler):
 
@@ -40,6 +41,7 @@ class ConcreteHandler3(Handler):
             print('request {} handled in handler 3'.format(request))
         elif self._successor:
             self._successor.handle(request)
+
 
 class DefaultHandler(Handler):
 

@@ -18,7 +18,7 @@ class GraphSearch:
         self.path += [self.start]
         if self.start == self.end:
             return self.path
-        if not self.start in self.graph:
+        if self.start not in self.graph:
             return None
         for node in self.graph[self.start]:
             if node not in self.path:
@@ -34,7 +34,7 @@ class GraphSearch:
         self.path += [self.start]
         if self.start == self.end:
             return [self.path]
-        if not self.start in self.graph:
+        if self.start not in self.graph:
             return []
         paths = []
         for node in self.graph[self.start]:
@@ -52,7 +52,7 @@ class GraphSearch:
         self.path += [self.start]
         if self.start == self.end:
             return self.path
-        if not self.start in self.graph:
+        if self.start not in self.graph:
             return None
         shortest = None
         for node in self.graph[self.start]:

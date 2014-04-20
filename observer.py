@@ -10,7 +10,7 @@ class Subject(object):
         self._observers = []
 
     def attach(self, observer):
-        if not observer in self._observers:
+        if observer not in self._observers:
             self._observers.append(observer)
 
     def detach(self, observer):
