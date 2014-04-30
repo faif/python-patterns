@@ -5,6 +5,7 @@
 
 
 class foo_decorator(object):
+
     def __init__(self, decoratee):
         self._decoratee = decoratee
 
@@ -17,6 +18,7 @@ class foo_decorator(object):
 
 
 class undecorated_foo(object):
+
     def f1(self):
         print("original f1")
 
@@ -26,6 +28,7 @@ class undecorated_foo(object):
 
 @foo_decorator
 class decorated_foo(object):
+
     def f1(self):
         print("original f1")
 

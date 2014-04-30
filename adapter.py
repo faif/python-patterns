@@ -7,6 +7,7 @@ import os
 
 
 class Dog(object):
+
     def __init__(self):
         self.name = "Dog"
 
@@ -15,6 +16,7 @@ class Dog(object):
 
 
 class Cat(object):
+
     def __init__(self):
         self.name = "Cat"
 
@@ -23,6 +25,7 @@ class Cat(object):
 
 
 class Human(object):
+
     def __init__(self):
         self.name = "Human"
 
@@ -31,6 +34,7 @@ class Human(object):
 
 
 class Car(object):
+
     def __init__(self):
         self.name = "Car"
 
@@ -39,6 +43,7 @@ class Car(object):
 
 
 class Adapter(object):
+
     """
     Adapts an object by replacing methods.
     Usage:
@@ -63,6 +68,7 @@ class Adapter(object):
     A Human goes 'hello'
     A Car goes vroom!!!
     """
+
     def __init__(self, obj, adapted_methods):
         """We set the adapted methods in the object's dict"""
         self.obj = obj
