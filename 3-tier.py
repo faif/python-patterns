@@ -38,7 +38,8 @@ class Ui(object):
     def get_product_list(self):
         print('PRODUCT LIST:')
         for product in self.business_logic.product_list():
-            print(product)
+            #print(product)
+            yield product
         print('')
 
     def get_product_information(self, product):
