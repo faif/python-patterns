@@ -1,10 +1,11 @@
 python-patterns
 ===============
 
-A collection of design patterns implemented (by other people) in python.
+A collection of design patterns and idioms in Python.
 
 When an implementation is added or modified, be sure to update this file and
-rerun `append_output.sh` to keep the output comments at the bottom up to date.
+rerun `append_output.sh` (eg. ./append_output.sh borg.py) to keep the output
+comments at the bottom up to date.
 
 Current Patterns:
 
