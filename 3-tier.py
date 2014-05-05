@@ -66,12 +66,6 @@ if __name__ == '__main__':
     main()
 
 ### OUTPUT ###
-# PRODUCT LIST:
-# (Fetching from Data Store)
-# cheese
-# eggs
-# milk
-# 
 # (Fetching from Data Store)
 # PRODUCT INFORMATION:
 # Name: Cheese, Price: 2.00, Quantity: 10

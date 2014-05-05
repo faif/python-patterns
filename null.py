@@ -100,9 +100,6 @@ if __name__ == '__main__':
     test()
     import doctest
     doctest.testmod()
+
 ### OUTPUT ###
-# Null
-# Null
-# Null
-# Null
-# attr1 Null
+# ('attr1', <Null>)
