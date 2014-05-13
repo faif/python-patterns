@@ -36,23 +36,40 @@ class Null:
 
 
 def test():
-    """Perform some decent tests, or rather: demos."""
+    """
+    Perform some decent tests, or rather: demos.
+    >>> print(Null())
+    Null
+    >>> print(Null('value'))
+    Null
+    >>> n= Null('vale',param='value')
+    >>> print(n)
+    Null
+    >>> n()
+    <Null>
+    >>> n('value')
+    <Null>
+    >>> n('value', param='value')
+    <Null>
+    >>> print(n)
+    Null
+    """
 
     # constructing and calling
 
-    n = Null()
-    print(n)
+    #n = Null()
+    #print(n)
 
-    n = Null('value')
-    print(n)
+    #n = Null('value')
+    #print(n)
 
     n = Null('value', param='value')
-    print(n)
+    #print(n)
 
     n()
-    n('value')
-    n('value', param='value')
-    print(n)
+    #n('value')
+    #n('value', param='value')
+    #print(n)
 
     # attribute handling
 
@@ -81,10 +98,8 @@ def test():
 
 if __name__ == '__main__':
     test()
+    import doctest
+    doctest.testmod()
 
 ### OUTPUT ###
-# Null
-# Null
-# Null
-# Null
-# attr1 Null
+# ('attr1', <Null>)
