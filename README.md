@@ -30,7 +30,6 @@ Current Patterns:
 | [mediator](mediator.py) | an object that knows how to connect other objects and act as a proxy |
 | [memento](memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [mvc](mvc.py) | model<->view<->controller (non-strict relationships) |
-| [null](null.py) | (no clear use in modern Python) |
 | [observer](observer.py) | provide a callback for notification of events/changes to data |
 | [pool](pool.py) | preinstantiate and maintain a group of instances of the same type |
 | [prototype](prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
