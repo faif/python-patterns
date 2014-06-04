@@ -8,6 +8,7 @@ import time
 
 
 class TC:
+
     def __init__(self):
         self._tm = None
         self._bProblem = 0
@@ -40,6 +41,7 @@ class TC:
 
 
 class Reporter:
+
     def __init__(self):
         self._tm = None
 
@@ -56,13 +58,14 @@ class Reporter:
 
 
 class DB:
+
     def __init__(self):
         self._tm = None
 
     def insert(self):
         print("Inserting the execution begin status in the Database")
         time.sleep(0.1)
-        #Following code is to simulate a communication from DB to TC
+        # Following code is to simulate a communication from DB to TC
         if random.randrange(1, 4) == 3:
             return -1
 
@@ -75,6 +78,7 @@ class DB:
 
 
 class TestManager:
+
     def __init__(self):
         self._reporter = None
         self._db = None

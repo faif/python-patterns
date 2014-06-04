@@ -7,6 +7,7 @@ import weakref
 
 
 class Card(object):
+
     """The object pool. Has builtin reference counting"""
     _CardPool = weakref.WeakValueDictionary()
 

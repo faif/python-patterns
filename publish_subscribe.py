@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''
+"""
 Reference: http://www.slideshare.net/ishraqabd/publish-subscribe-model-overview-13368808
 Author: https://github.com/HanWenfang
-'''
+"""
 
 
 class Provider:
+
     def __init__(self):
         self.msg_queue = []
         self.subscribers = {}
@@ -16,7 +17,7 @@ class Provider:
         self.msg_queue.append(msg)
 
     def subscribe(self, msg, subscriber):
-        if not msg in self.subscribers:
+        if msg not in self.subscribers:
             self.subscribers[msg] = []
             self.subscribers[msg].append(subscriber)  # unfair
         else:
@@ -34,6 +35,7 @@ class Provider:
 
 
 class Publisher:
+
     def __init__(self, msg_center):
         self.provider = msg_center
 
@@ -42,6 +44,7 @@ class Publisher:
 
 
 class Subscriber:
+
     def __init__(self, name, msg_center):
         self.name = name
         self.provider = msg_center
