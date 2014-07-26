@@ -25,3 +25,9 @@ if __name__ == '__main__':
     print('>>> two\'s id: ', id(two))
     if one is two:
         print('Singletion implementation...')
+
+### OUTPUT ###
+# 123
+# (">>> one's id: ", 140700252715024)
+# (">>> two's id: ", 140700252715024)
+# Singletion implementation...
