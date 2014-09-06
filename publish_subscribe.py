@@ -10,9 +10,8 @@ Author: https://github.com/HanWenfang
 class Provider:
 
     def __init__(self):
-        self.msg_queue = []
-        self.subscribers = {}
-
+        self.subscribe_queue = {}
+        self.msg_queue=[]
     def notify(self, msg):
         self.msg_queue.append(msg)
 
@@ -25,12 +24,14 @@ class Provider:
 
     def unsubscribe(self, msg, subscriber):
         self.subscribers[msg].remove(subscriber)
+        if !self.subscribe[msg]:
+            del self.subscribe[msg]
 
     def update(self):
         for msg in self.msg_queue:
-            if msg in self.subscribers:
-                for sub in self.subscribers[msg]:
-                    sub.run(msg)
+            if msg in self.subscribers.keys():
+                for suber in self.subscribers[msg]:
+                    suber.get(msg)
         self.msg_queue = []
 
 
@@ -52,7 +53,7 @@ class Subscriber:
     def subscribe(self, msg):
         self.provider.subscribe(msg, self)
 
-    def run(self, msg):
+    def get(self, msg):
         print("{} got {}".format(self.name, msg))
 
 
