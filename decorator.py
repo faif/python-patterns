@@ -1,7 +1,8 @@
-'''https://docs.python.org/2/library/functools.html#functools.wraps'''
-'''https://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/739665#739665'''
+"""https://docs.python.org/2/library/functools.html#functools.wraps"""
+"""https://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/739665#739665"""
 
 from functools import wraps
+
 
 def makebold(fn):
     @wraps(fn)
@@ -9,16 +10,18 @@ def makebold(fn):
         return "<b>" + fn() + "</b>"
     return wrapped
 
+
 def makeitalic(fn):
     @wraps(fn)
     def wrapped():
         return "<i>" + fn() + "</i>"
     return wrapped
 
+
 @makebold
 @makeitalic
 def hello():
-    '''a decorated hello world'''
+    """a decorated hello world"""
     return "hello world"
 
 if __name__ == '__main__':
