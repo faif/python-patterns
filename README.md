@@ -26,7 +26,6 @@ Current Patterns:
 | [factory_method](factory_method.py) | delegate a specialized function/method to create instances |
 | [flyweight](flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
 | [graph_search](graph_search.py) | (graphing algorithms, not design patterns) |
-| [iterator](iterator.py) | structure repeated, identical calls as a generator |
 | [mediator](mediator.py) | an object that knows how to connect other objects and act as a proxy |
 | [memento](memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [mvc](mvc.py) | model<->view<->controller (non-strict relationships) |
