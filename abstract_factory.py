@@ -52,11 +52,17 @@ class DogFactory:
     def get_pet(self):
         return Dog()
 
+    def get_food(self):
+        return "dog food"
+
 
 class CatFactory:
 
     def get_pet(self):
         return Cat()
+
+    def get_food(self):
+        return "cat food"
 
 # Create the proper family
 def get_factory():
