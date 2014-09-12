@@ -86,7 +86,7 @@ if __name__ == "__main__":
 # It says woof
 # We also have dog food
 # ====================
-# We have a lovely Dog
-# It says woof
-# We also have dog food
+# We have a lovely Cat
+# It says meow
+# We also have cat food
 # ====================
