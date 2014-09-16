@@ -29,5 +29,5 @@ if __name__ == '__main__':
     person = Person('Jack', move)
     person.do_action().amount('5m').stop()
 
-#===== Output =====
+### OUTPUT ###
 # Jack move 5m then stop
