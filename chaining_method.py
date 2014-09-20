@@ -8,7 +8,7 @@ class Person(object):
         self.action = action
 
     def do_action(self):
-        print self.name, self.action.name,
+        print(self.name, self.action.name, end=' ')
         return self.action
 
 class Action(object):
@@ -17,11 +17,11 @@ class Action(object):
         self.name = name
 
     def amount(self, val):
-        print val,
+        print(val, end=' ')
         return self
 
     def stop(self):
-        print 'then stop'
+        print('then stop')
 
 if __name__ == '__main__':
 
