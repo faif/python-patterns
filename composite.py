@@ -5,10 +5,11 @@
 A class which defines a composite object which can store
 hieararchical dictionaries with names.
 
-This class is same as a hiearchical dictionary, but it provides methods
-to add/access/modify children by name, like a Composite.
+This class is same as a hiearchical dictionary, but it
+provides methods to add/access/modify children by name,
+like a Composite.
 
-Created Anand B Pillai <abpillai@gmail.com>
+Created Anand B Pillai     <abpillai@gmail.com>
 
 """
 __author__ = "Anand B Pillai"
@@ -17,10 +18,8 @@ __version__ = "0.2"
 
 
 def normalize(val):
-    """Normalize a string so that it can be used as an attribute to a Python
-
-    object
-    """
+    """ Normalize a string so that it can be used as an attribute
+    to a Python object """
 
     if val.find('-') != -1:
         val = val.replace('-', '_')
@@ -39,7 +38,8 @@ def denormalize(val):
 
 class SpecialDict(dict):
 
-    """A dictionary type which allows direct attribute access to its keys """
+    """ A dictionary type which allows direct attribute
+    access to its keys """
 
     def __getattr__(self, name):
 
@@ -127,13 +127,11 @@ class CompositeDict(SpecialDict):
         return not self._children
 
     def getName(self):
-        
         """ Return the name of this ConfigInfo object """
 
         return self._name
 
     def getIndex(self, child):
-        
         """ Return the index of the child ConfigInfo object 'child' """
 
         if child in self._children:
@@ -147,17 +145,17 @@ class CompositeDict(SpecialDict):
         return self[self._name]
 
     def getProperty(self, child, key):
-        
-        """Return the value for the property for child 'child' with key 'key' """
+        """ Return the value for the property for child
+        'child' with key 'key' """
 
         # First get the child's dictionary
         childDict = self.getInfoDict(child)
         if childDict:
             return childDict.get(key, None)
 
-        def setProperty(self, child, key, value):
-            
-            """Set the value for the property 'key' for the child 'child' to 'value' """
+    def setProperty(self, child, key, value):
+        """ Set the value for the property 'key' for
+        the child 'child' to 'value' """
 
         # First get the child's dictionary
         childDict = self.getInfoDict(child)
@@ -165,13 +163,11 @@ class CompositeDict(SpecialDict):
             childDict[key] = value
 
     def getChildren(self):
-        
         """ Return the list of immediate children of this object """
 
         return self._children
 
     def getAllChildren(self):
-        
         """ Return the list of all children of this object """
 
         l = []
@@ -182,7 +178,6 @@ class CompositeDict(SpecialDict):
         return l
 
     def getChild(self, name):
-        
         """ Return the immediate child object with the given name """
 
         for child in self._children:
@@ -190,7 +185,6 @@ class CompositeDict(SpecialDict):
                 return child
 
     def findChild(self, name):
-        
         """ Return the child with the given name from the tree """
 
         # Note - this returns the first child of the given name
@@ -202,7 +196,6 @@ class CompositeDict(SpecialDict):
                 return child
 
     def findChildren(self, name):
-        
         """ Return a list of children with the given name from the tree """
 
         # Note: this returns a list of all the children of a given
@@ -217,7 +210,6 @@ class CompositeDict(SpecialDict):
         return children
 
     def getPropertyDict(self):
-        
         """ Return the property dictionary """
 
         d = self.getChild('__properties')
@@ -227,7 +219,6 @@ class CompositeDict(SpecialDict):
             return {}
 
     def getParent(self):
-        
         """ Return the person who created me """
 
         return self._father
