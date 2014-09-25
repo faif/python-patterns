@@ -8,7 +8,7 @@ rerun `append_output.sh` (eg. ./append_output.sh borg.py) to keep the output
 comments at the bottom up to date.
 
 Current Patterns:
-
+gj
 | Pattern | Description |
 |:-------:| ----------- |
 | [3-tier](3-tier.py) | data<->business logic<->presentation separation (strict relationships) |
