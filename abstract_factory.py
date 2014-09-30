@@ -72,16 +72,12 @@ def get_factory():
 
 # Show pets with various factories
 if __name__ == "__main__":
-    for i in range(3):
+    for i in range(2):
         shop = PetShop(get_factory())
         shop.show_pet()
         print("=" * 20)
 
 ### OUTPUT ###
-# We have a lovely Dog
-# It says woof
-# We also have dog food
-# ====================
 # We have a lovely Dog
 # It says woof
 # We also have dog food
