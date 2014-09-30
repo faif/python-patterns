@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """http://www.testingperspective.com/wiki/doku.php/collaboration/chetan/designpatternsinpython/chain-of-responsibilitypattern"""
-
+###
 class Handler:
     def __init__(self,successor):
         self._successor = successor;

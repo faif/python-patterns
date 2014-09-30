@@ -8,6 +8,10 @@ rerun `append_output.sh` (eg. ./append_output.sh borg.py) to keep the output
 comments at the bottom up to date.
 
 Current Patterns:
+HEAD
+### hi
+=======
+gj
 
 | Pattern | Description |
 |:-------:| ----------- |
