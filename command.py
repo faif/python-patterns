@@ -1,15 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 
 
 class MoveFileCommand(object):
+
     def __init__(self, src, dest):
         self.src = src
         self.dest = dest
 
     def execute(self):
-        self()
-
-    def __call__(self):
         print('renaming {} to {}'.format(self.src, self.dest))
         os.rename(self.src, self.dest)
 
@@ -35,3 +36,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+### OUTPUT ###
+# renaming foo.txt to bar.txt
+# renaming bar.txt to baz.txt
+# renaming baz.txt to bar.txt
+# renaming bar.txt to foo.txt

@@ -55,3 +55,20 @@ if __name__ == '__main__':
     controller.get_product_information('eggs')
     controller.get_product_information('milk')
     controller.get_product_information('arepas')
+
+### OUTPUT ###
+# PRODUCT LIST:
+# cheese
+# eggs
+# milk
+#
+# PRODUCT INFORMATION:
+# Name: Cheese, Price: 2.00, Quantity: 10
+#
+# PRODUCT INFORMATION:
+# Name: Eggs, Price: 0.20, Quantity: 100
+#
+# PRODUCT INFORMATION:
+# Name: Milk, Price: 1.50, Quantity: 10
+#
+# That product "arepas" does not exist in the records

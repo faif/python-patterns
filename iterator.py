@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
 Implementation of the iterator pattern with a generator"""
@@ -26,3 +29,9 @@ for number in count_to_five():
     print(number, end=' ')
 
 print()
+
+### OUTPUT ###
+# Counting to two...
+# one two
+# Counting to five...
+# one two three four five

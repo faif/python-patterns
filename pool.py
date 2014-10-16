@@ -1,7 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://stackoverflow.com/questions/1514120/python-implementation-of-the-object-pool-design-pattern"""
 
 
 class QueueObject():
+
     def __init__(self, queue, auto_get=False):
         self._queue = queue
         self.object = self._queue.get() if auto_get else None
@@ -49,3 +53,9 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+### OUTPUT ###
+# Inside with: yam
+# Outside with: yam
+# Inside func: sam
+# Outside func: sam

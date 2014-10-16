@@ -1,12 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """http://code.activestate.com/recipes/131499-observer-pattern/"""
 
 
 class Subject(object):
+
     def __init__(self):
         self._observers = []
 
     def attach(self, observer):
-        if not observer in self._observers:
+        if observer not in self._observers:
             self._observers.append(observer)
 
     def detach(self, observer):
@@ -23,6 +27,7 @@ class Subject(object):
 
 # Example usage
 class Data(Subject):
+
     def __init__(self, name=''):
         Subject.__init__(self)
         self.name = name
@@ -31,7 +36,7 @@ class Data(Subject):
     @property
     def data(self):
         return self._data
-    
+
     @data.setter
     def data(self, value):
         self._data = value
@@ -39,12 +44,14 @@ class Data(Subject):
 
 
 class HexViewer:
+
     def update(self, subject):
         print('HexViewer: Subject %s has data 0x%x' %
               (subject.name, subject.data))
 
 
 class DecimalViewer:
+
     def update(self, subject):
         print('DecimalViewer: Subject %s has data %d' %
               (subject.name, subject.data))
@@ -80,3 +87,22 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+### OUTPUT ###
+# Setting Data 1 = 10
+# DecimalViewer: Subject Data 1 has data 10
+# HexViewer: Subject Data 1 has data 0xa
+# Setting Data 2 = 15
+# HexViewer: Subject Data 2 has data 0xf
+# DecimalViewer: Subject Data 2 has data 15
+# Setting Data 1 = 3
+# DecimalViewer: Subject Data 1 has data 3
+# HexViewer: Subject Data 1 has data 0x3
+# Setting Data 2 = 5
+# HexViewer: Subject Data 2 has data 0x5
+# DecimalViewer: Subject Data 2 has data 5
+# Detach HexViewer from data1 and data2.
+# Setting Data 1 = 10
+# DecimalViewer: Subject Data 1 has data 10
+# Setting Data 2 = 15
+# DecimalViewer: Subject Data 2 has data 15

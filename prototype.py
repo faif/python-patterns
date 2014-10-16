@@ -1,7 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import copy
 
 
 class Prototype:
+
     def __init__(self):
         self._objects = {}
 
@@ -20,18 +24,27 @@ class Prototype:
         return obj
 
 
-def main():
-    class A:
-        pass
+class A:
+    def __init__(self):
+        self.x = 3
+        self.y = 8
+        self.z = 15
+        self.garbage = [38, 11, 19]
 
+    def __str__(self):
+        return '{} {} {} {}'.format(self.x, self.y, self.z, self.garbage)
+
+
+def main():
     a = A()
     prototype = Prototype()
-    prototype.register_object('a', a)
-    b = prototype.clone('a', a=1, b=2, c=3)
-
-    print(a)
-    print(b.a, b.b, b.c)
-
+    prototype.register_object('objecta', a)
+    b = prototype.clone('objecta')
+    c = prototype.clone('objecta', x=1, y=2, garbage=[88, 1])
+    print([str(i) for i in (a, b, c)])
 
 if __name__ == '__main__':
     main()
+
+### OUTPUT ###
+# ['3 8 15 [38, 11, 19]', '3 8 15 [38, 11, 19]', '1 2 15 [88, 1]']

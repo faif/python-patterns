@@ -12,6 +12,7 @@ import types
 
 
 class StrategyExample:
+
     def __init__(self, func=None):
         self.name = 'Strategy Example 0'
         if func is not None:
@@ -41,3 +42,8 @@ if __name__ == '__main__':
     strat0.execute()
     strat1.execute()
     strat2.execute()
+
+### OUTPUT ###
+# Strategy Example 0
+# Strategy Example 1 from execute 1
+# Strategy Example 2 from execute 2

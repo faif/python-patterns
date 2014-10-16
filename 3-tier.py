@@ -3,6 +3,7 @@
 
 
 class Data(object):
+    """ Data Store Class """
 
     products = {
         'milk': {'price': 1.50, 'quantity': 10},
@@ -10,20 +11,26 @@ class Data(object):
         'cheese': {'price': 2.00, 'quantity': 10}
     }
 
+    def __get__(self, obj, klas):
+        print ("(Fetching from Data Store)")
+        return {'products': self.products}
+
 
 class BusinessLogic(object):
 
-    def __init__(self):
-        self.data = Data()
+    """ Business logic holding data store instances """
+
+    data = Data()
 
     def product_list(self):
-        return self.data.products.keys()
+        return self.data['products'].keys()
 
     def product_information(self, product):
-        return self.data.products.get(product, None)
+        return self.data['products'].get(product, None)
 
 
 class Ui(object):
+    """ UI interaction class """
 
     def __init__(self):
         self.business_logic = BusinessLogic()
@@ -31,7 +38,8 @@ class Ui(object):
     def get_product_list(self):
         print('PRODUCT LIST:')
         for product in self.business_logic.product_list():
-            print(product)
+            #print(product)
+            yield product
         print('')
 
     def get_product_information(self, product):
@@ -56,3 +64,16 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+### OUTPUT ###
+# (Fetching from Data Store)
+# PRODUCT INFORMATION:
+# Name: Cheese, Price: 2.00, Quantity: 10
+# (Fetching from Data Store)
+# PRODUCT INFORMATION:
+# Name: Eggs, Price: 0.20, Quantity: 100
+# (Fetching from Data Store)
+# PRODUCT INFORMATION:
+# Name: Milk, Price: 1.50, Quantity: 10
+# (Fetching from Data Store)
+# That product "arepas" does not exist in the records
