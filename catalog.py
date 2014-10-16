@@ -21,29 +21,29 @@ class Catalog():
         # dictionary that will be used to determine which static method is
         # to be executed but that will be also used to store possible param
         # value
-        self.static_method_choices = {'param_value_1': self.static_method_1,
-                                      'param_value_2': self.static_method_2}
+        self._static_method_choices = {'param_value_1': self._static_method_1,
+                                      'param_value_2': self._static_method_2}
 
         # simple test to validate param value
-        if param in self.static_method_choices.keys():
+        if param in self._static_method_choices.keys():
             self.param = param
         else:
             raise Exception("Invalid Value for Param: {0}".format(param))
 
     @staticmethod
-    def static_method_1():
+    def _static_method_1():
         print("executed method 1!")
 
     @staticmethod
-    def static_method_2():
+    def _static_method_2():
         print("executed method 2!")
 
     def main_method(self):
         """
-        will execute either static_method_1 or static_method_2
+        will execute either _static_method_1 or _static_method_2
         depending on self.param value
         """
-        self.static_method_choices[self.param]()
+        self._static_method_choices[self.param]()
 
 
 def main():
