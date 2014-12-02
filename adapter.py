@@ -3,23 +3,27 @@
 
 """http://ginstrom.com/scribbles/2008/11/06/generic-adapter-class-in-python/"""
 
-import os
 
 class Dog(object):
     def __init__(self):
         self.name = "Dog"
+
     def bark(self):
         return "woof!"
+
 
 class Cat(object):
     def __init__(self):
         self.name = "Cat"
+
     def meow(self):
         return "meow!"
+
 
 class Human(object):
     def __init__(self):
         self.name = "Human"
+
     def speak(self):
         return "'hello'"
 
@@ -27,6 +31,7 @@ class Human(object):
 class Car(object):
     def __init__(self):
         self.name = "Car"
+
     def make_noise(self, octane_level):
         return "vroom{0}".format("!" * octane_level)
 
@@ -37,18 +42,18 @@ class Adapter(object):
     Adapts an object by replacing methods.
     Usage:
     dog = Dog
-    dog = Adapter(dog, dict(make_noise=dog.bark))
+    dog = Adapter(dog, dict(emit_sound=dog.bark))
 
     >>> objects = []
     >>> dog = Dog()
-    >>> objects.append(Adapter(dog, dict(make_noise=dog.bark)))
+    >>> objects.append(Adapter(dog, dict(emit_sound=dog.bark)))
     >>> cat = Cat()
-    >>> objects.append(Adapter(cat, dict(make_noise=cat.meow)))
+    >>> objects.append(Adapter(cat, dict(emit_sound=cat.meow)))
     >>> human = Human()
-    >>> objects.append(Adapter(human, dict(make_noise=human.speak)))
+    >>> objects.append(Adapter(human, dict(emit_sound=human.speak)))
     >>> car = Car()
     >>> car_noise = lambda: car.make_noise(3)
-    >>> objects.append(Adapter(car, dict(make_noise=car_noise)))
+    >>> objects.append(Adapter(car, dict(emit_sound=car_noise)))
 
     >>> for obj in objects:
     ...     print('A {} goes {}'.format(obj.name, obj.make_noise()))
@@ -58,8 +63,8 @@ class Adapter(object):
     A Car goes vroom!!!
     """
 
-    def __init__(self, obj, adapted_methods):
-        """We set the adapted methods in the object's dict"""
+    def __init__(self, obj, **adapted_methods):
+        """We set the adapted methods in the kwargs"""
         self.obj = obj
         self.__dict__.update(adapted_methods)
 
@@ -71,16 +76,16 @@ class Adapter(object):
 def main():
     objects = []
     dog = Dog()
-    objects.append(Adapter(dog, dict(make_noise=dog.bark)))
+    objects.append(Adapter(dog, emit_sound=dog.bark))
     cat = Cat()
-    objects.append(Adapter(cat, dict(make_noise=cat.meow)))
+    objects.append(Adapter(cat, emit_sound=cat.meow))
     human = Human()
-    objects.append(Adapter(human, dict(make_noise=human.speak)))
+    objects.append(Adapter(human, emit_sound=human.speak))
     car = Car()
-    objects.append(Adapter(car, dict(make_noise=lambda: car.make_noise(3))))
+    objects.append(Adapter(car, emit_sound=lambda: car.make_noise(3)))
 
     for obj in objects:
-        print("A {0} goes {1}".format(obj.name, obj.make_noise()))
+        print("A {0} goes {1}".format(obj.name, obj.emit_sound()))
 
 
 if __name__ == "__main__":

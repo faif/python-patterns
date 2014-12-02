@@ -11,15 +11,18 @@ https://gist.github.com/420905#file_builder_python.py
 class Director(object):
 
     def __init__(self):
-        self.builder = None
+        self._builder = None
+
+    def set_builder(self, builder):
+        self._builder = builder
 
     def construct_building(self):
-        self.builder.new_building()
-        self.builder.build_floor()
-        self.builder.build_size()
+        self._builder.new_building()
+        self._builder.build_floor()
+        self._builder.build_size()
 
     def get_building(self):
-        return self.builder.building
+        return self._builder.building
 
 
 # Abstract Builder
@@ -65,11 +68,11 @@ class Building(object):
 # Client
 if __name__ == "__main__":
     director = Director()
-    director.builder = BuilderHouse()
+    director.set_builder(BuilderHouse())
     director.construct_building()
     building = director.get_building()
     print(building)
-    director.builder = BuilderFlat()
+    director.set_builder(BuilderFlat())
     director.construct_building()
     building = director.get_building()
     print(building)
