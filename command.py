@@ -11,9 +11,6 @@ class MoveFileCommand(object):
         self.dest = dest
 
     def execute(self):
-        self()
-
-    def __call__(self):
         print('renaming {} to {}'.format(self.src, self.dest))
         os.rename(self.src, self.dest)
 

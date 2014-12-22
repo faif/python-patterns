@@ -10,10 +10,10 @@ class GraphSearch:
     def __init__(self, graph):
         self.graph = graph
 
-    def find_path(self, start, end, path=[]):
+    def find_path(self, start, end, path=None):
         self.start = start
         self.end = end
-        self.path = path
+        self.path = path if path else []
 
         self.path += [self.start]
         if self.start == self.end:
@@ -27,37 +27,37 @@ class GraphSearch:
                     return newpath
         return None
 
-    def find_all_path(self, start, end, path=[]):
+    def find_all_path(self, start, end, path=None):
         self.start = start
         self.end = end
-        self.path = path
-        self.path += [self.start]
+        _path = path if path else []
+        _path += [self.start]
         if self.start == self.end:
-            return [self.path]
+            return [_path]
         if self.start not in self.graph:
             return []
         paths = []
         for node in self.graph[self.start]:
-            if node not in self.path:
-                newpaths = self.find_all_path(node, self.end, self.path)
+            if node not in _path:
+                newpaths = self.find_all_path(node, self.end, _path[:])
                 for newpath in newpaths:
                     paths.append(newpath)
         return paths
 
-    def find_shortest_path(self, start, end, path=[]):
+    def find_shortest_path(self, start, end, path=None):
         self.start = start
         self.end = end
-        self.path = path
+        _path = path if path else []
 
-        self.path += [self.start]
+        _path += [self.start]
         if self.start == self.end:
-            return self.path
+            return _path
         if self.start not in self.graph:
             return None
         shortest = None
         for node in self.graph[self.start]:
-            if node not in self.path:
-                newpath = self.find_shortest_path(node, self.end, self.path)
+            if node not in _path:
+                newpath = self.find_shortest_path(node, self.end, _path[:])
                 if newpath:
                     if not shortest or len(newpath) < len(shortest):
                         shortest = newpath
@@ -82,5 +82,5 @@ print(graph1.find_shortest_path('A', 'D'))
 
 ### OUTPUT ###
 # ['A', 'B', 'C', 'D']
-# [['A', 'B', 'C', 'D']]
-# ['A', 'B', 'C', 'D']
+# [['A', 'B', 'C', 'D'], ['A', 'B', 'D'], ['A', 'C', 'D']]
+# ['A', 'B', 'D']

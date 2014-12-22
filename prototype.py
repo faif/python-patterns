@@ -23,6 +23,7 @@ class Prototype:
         obj.__dict__.update(attr)
         return obj
 
+
 class A:
     def __init__(self):
         self.x = 3
