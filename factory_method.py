@@ -33,7 +33,7 @@ def get_localizer(language="English"):
     return languages[language]()
 
 # Create our localizers
-e, g = get_localizer("English"), get_localizer("Greek")
+e, g = get_localizer(language="English"), get_localizer(language="Greek")
 # Localize some text
 for msgid in "dog parrot cat bear".split():
     print(e.get(msgid), g.get(msgid))
