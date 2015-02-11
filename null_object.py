@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+Author: https://github.com/fousteris-dim
+Reference: http://en.wikipedia.org/wiki/Null_Object_pattern
+"""
+
 class Item:
 	"""Represents an abstract item"""
 	def __init__(self):
