@@ -40,7 +40,7 @@ class ItemStore:
 	def setItem(self, name, value):
 		item = self._items.setdefault(name, None)
 		if item != None:
-			item.value = value
+			item.setValue(value)
 		else:
 			self._items[name] = RealItem(value)
 		
