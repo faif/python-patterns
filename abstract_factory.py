@@ -5,13 +5,16 @@
 
 """Implementation of the abstract factory pattern"""
 
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod  # Be able writing abstract classes
 
 # Factories
 
 
 class AbstractFactory:
     __metaclass__ = ABCMeta
+
+    def __init__(self):
+        pass
 
     @abstractmethod
     def create_text(self, content):
@@ -23,6 +26,9 @@ class AbstractFactory:
 
 
 class HtmlFactory(AbstractFactory):
+    def __init__(self):
+        super(HtmlFactory, self).__init__()
+
     def create_picture(self, path, name):
         return HtmlPicture(path, name)
 
@@ -31,6 +37,9 @@ class HtmlFactory(AbstractFactory):
 
 
 class JsonFactory(AbstractFactory):
+    def __init__(self):
+        super(JsonFactory, self).__init__()
+
     def create_picture(self, path, name):
         return JsonPicture(path, name)
 
@@ -41,48 +50,43 @@ class JsonFactory(AbstractFactory):
 # Entities
 
 class MediaInterface():
+    def __init__(self):
+        pass
+
     def render(self):
         raise NotImplementedError
 
 
-class AbstractPicture():
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
+class Picture():
     def __init__(self, path, name):
         self._path = str(path)
         self._name = str(name)
 
 
-class AbstractText():
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
+class Text():
     def __init__(self, content):
         self._content = str(content)
 
 
-class HtmlPicture(AbstractPicture, MediaInterface):
+class HtmlPicture(Picture, MediaInterface):
     def render(self):
         return '<img src="{path}" title="{name}" />'.format(path=self._path, name=self._name)
 
 
-class HtmlText(AbstractText, MediaInterface):
+class HtmlText(Text, MediaInterface):
     def render(self):
         return '<div>{content}</div>'.format(content=self._content)
 
 
-class JsonPicture(AbstractPicture, MediaInterface):
+class JsonPicture(Picture, MediaInterface):
     def render(self):
         import json
-
         return json.dumps({'type': 'picture', 'name': self._name, 'path': self._path})
 
 
-class JsonText(AbstractText, MediaInterface):
+class JsonText(Text, MediaInterface):
     def render(self):
         import json
-
         return json.dumps({'type': 'text', 'content': self._content})
 
 
