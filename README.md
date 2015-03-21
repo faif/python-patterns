@@ -9,8 +9,8 @@ comments at the bottom up to date.
 
 Current Patterns:
 
-| Pattern | Description | Code / Diagram |
-|:-------:| ----------- | -------------- |
+| Pattern | Description |   |
+|:-------:| ----------- | - |
 | [3-tier](3-tier.py) | data<->business logic<->presentation separation (strict relationships) | |
 | [abstract_factory](abstract_factory.py) | use a generic function with specific factories | [:page_facing_up:](abstract_factory.py) [:bar_chart:](diagrams/abstract_factory.png?raw=true) |
 | [adapter](adapter.py) | adapt one interface to another using a whitelist | |
