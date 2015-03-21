@@ -48,6 +48,7 @@ class MediaInterface():
 class AbstractPicture():
     __metaclass__ = ABCMeta
 
+    @abstractmethod
     def __init__(self, path, name):
         self._path = str(path)
         self._name = str(name)
@@ -56,6 +57,7 @@ class AbstractPicture():
 class AbstractText():
     __metaclass__ = ABCMeta
 
+    @abstractmethod
     def __init__(self, content):
         self._content = str(content)
 
