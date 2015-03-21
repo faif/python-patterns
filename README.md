@@ -12,7 +12,7 @@ Current Patterns:
 | Pattern | Description |     |
 |:-------:| ----------- | --- |
 | [3-tier](3-tier.py) | data<->business logic<->presentation separation (strict relationships) | |
-| [abstract_factory](abstract_factory.py) | use a generic function with specific factories | [:page_facing_up:](abstract_factory.py)[:bar_chart:](diagrams/abstract_factory.png?raw=true)[:book:](http://en.wikipedia.org/wiki/Abstract_factory_pattern) |
+| [abstract_factory](abstract_factory.py) | use a generic function with specific factories | [:page_facing_up:](abstract_factory.py)<br>[:bar_chart:](diagrams/abstract_factory.png?raw=true)<br>[:book:](http://en.wikipedia.org/wiki/Abstract_factory_pattern) |
 | [adapter](adapter.py) | adapt one interface to another using a whitelist | |
 | [borg](borg.py) | a singleton with shared-state among instances | |
 | [bridge](bridge.py) | a client-provider middleman to soften interface changes | |
