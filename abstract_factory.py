@@ -1,92 +1,128 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
+# http://en.wikipedia.org/wiki/Abstract_factory_pattern
 
 """Implementation of the abstract factory pattern"""
 
-import random
+from abc import ABCMeta, abstractmethod
 
-class PetShop:
-
-    """A pet shop"""
-
-    def __init__(self, animal_factory=None):
-        """pet_factory is our abstract factory.  We can set it at will."""
-
-        self.pet_factory = animal_factory
-
-    def show_pet(self):
-        """Creates and shows a pet using the abstract factory"""
-
-        pet = self.pet_factory.get_pet()
-        print("We have a lovely {}".format(pet))
-        print("It says {}".format(pet.speak()))
-        print("We also have {}".format(self.pet_factory.get_food()))
+# Factories
 
 
-# Stuff that our factory makes
+class AbstractFactory:
+    __metaclass__ = ABCMeta
 
-class Dog:
+    @abstractmethod
+    def create_text(self, content):
+        pass
 
-    def speak(self):
-        return "woof"
-
-    def __str__(self):
-        return "Dog"
-
-
-class Cat:
-
-    def speak(self):
-        return "meow"
-
-    def __str__(self):
-        return "Cat"
+    @abstractmethod
+    def create_picture(self, path, name):
+        pass
 
 
-# Factory classes
+class HtmlFactory(AbstractFactory):
+    def create_picture(self, path, name):
+        return HtmlPicture(path, name)
 
-class DogFactory:
-
-    def get_pet(self):
-        return Dog()
-
-    def get_food(self):
-        return "dog food"
+    def create_text(self, content):
+        return HtmlText(content)
 
 
-class CatFactory:
+class JsonFactory(AbstractFactory):
+    def create_picture(self, path, name):
+        return JsonPicture(path, name)
 
-    def get_pet(self):
-        return Cat()
+    def create_text(self, content):
+        return JsonText(content)
 
-    def get_food(self):
-        return "cat food"
 
-# Create the proper family
+# Entities
+
+class MediaInterface():
+    def render(self):
+        raise NotImplementedError
+
+
+class AbstractPicture():
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def __init__(self, path, name):
+        self._path = str(path)
+        self._name = str(name)
+
+
+class AbstractText():
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def __init__(self, content):
+        self._content = str(content)
+
+
+class HtmlPicture(AbstractPicture, MediaInterface):
+    def render(self):
+        return '<img src="{path}" title="{name}" />'.format(path=self._path, name=self._name)
+
+
+class HtmlText(AbstractText, MediaInterface):
+    def render(self):
+        return '<div>{content}</div>'.format(content=self._content)
+
+
+class JsonPicture(AbstractPicture, MediaInterface):
+    def render(self):
+        import json
+
+        return json.dumps({'type': 'picture', 'name': self._name, 'path': self._path})
+
+
+class JsonText(AbstractText, MediaInterface):
+    def render(self):
+        import json
+
+        return json.dumps({'type': 'text', 'content': self._content})
+
+
+# Client factory call
+
 def get_factory():
-    """Let's be dynamic!"""
-    return random.choice([DogFactory, CatFactory])()
+    import random
 
+    """
+    Let's be dynamic!
+    :rtype: AbstractFactory
+    """
+    return random.choice([HtmlFactory, JsonFactory])()
 
-# Show pets with various factories
+# Display picture and text in specific environment
 if __name__ == "__main__":
     for i in range(3):
-        shop = PetShop(get_factory())
-        shop.show_pet()
+        elements_factory = get_factory()
+        picture = elements_factory.create_picture('path/to/image.jpg', 'sample image')
+        text = elements_factory.create_text('This is our test text')
+
+        if isinstance(elements_factory, HtmlFactory):
+            print "Rendering html for a page response:"
+        else:
+            print "Rendering json for an API response:"
+
+        print picture.render()
+        print text.render()
         print("=" * 20)
 
 ### OUTPUT ###
-# We have a lovely Dog
-# It says woof
-# We also have dog food
+# Rendering html for a page response:
+# <img src="path/to/image.jpg" title="sample image" />
+# <div>This is our test text</div>
 # ====================
-# We have a lovely Dog
-# It says woof
-# We also have dog food
+# Rendering html for a page response:
+# <img src="path/to/image.jpg" title="sample image" />
+# <div>This is our test text</div>
 # ====================
-# We have a lovely Cat
-# It says meow
-# We also have cat food
+# Rendering html for a page response:
+# <img src="path/to/image.jpg" title="sample image" />
+# <div>This is our test text</div>
 # ====================
