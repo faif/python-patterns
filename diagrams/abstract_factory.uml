@@ -3,81 +3,81 @@
   <ID>Python</ID>
   <OriginalElement>#/home/georgiev/Projects/python-patterns/abstract_factory.py</OriginalElement>
   <nodes>
-    <node x="320.0" y="129.0">abstract_factory.HtmlFactory</node>
-    <node x="368.25" y="253.0">abstract_factory.MediaInterface</node>
-    <node x="254.99999999999997" y="358.0">abstract_factory.JsonPicture</node>
-    <node x="0.0" y="358.0">abstract_factory.HtmlPicture</node>
-    <node x="179.0" y="0.0">abstract_factory.AbstractFactory</node>
-    <node x="56.125" y="253.0">abstract_factory.AbstractPicture</node>
-    <node x="745.3125" y="358.0">abstract_factory.HtmlText</node>
-    <node x="668.6875" y="253.0">abstract_factory.AbstractText</node>
-    <node x="0.0" y="129.0">abstract_factory.JsonFactory</node>
-    <node x="509.3125" y="358.0">abstract_factory.JsonText</node>
+    <node x="256.0" y="153.0">abstract_factory.HtmlFactory</node>
+    <node x="368.25" y="301.0">abstract_factory.MediaInterface</node>
+    <node x="73.125" y="313.0">abstract_factory.Picture</node>
+    <node x="255.0" y="430.0">abstract_factory.JsonPicture</node>
+    <node x="0.0" y="430.0">abstract_factory.HtmlPicture</node>
+    <node x="115.25" y="0.0">abstract_factory.AbstractFactory</node>
+    <node x="745.0" y="430.0">abstract_factory.HtmlText</node>
+    <node x="0.0" y="153.0">abstract_factory.JsonFactory</node>
+    <node x="509.0" y="430.0">abstract_factory.JsonText</node>
+    <node x="687.375" y="313.0">abstract_factory.Text</node>
   </nodes>
   <notes />
   <edges>
     <edge source="abstract_factory.JsonPicture" target="abstract_factory.MediaInterface">
       <point x="58.5" y="-27.5" />
-      <point x="430.5" y="338.0" />
-      <point x="464.625" y="338.0" />
-      <point x="-32.125" y="27.5" />
+      <point x="430.5" y="410.0" />
+      <point x="464.625" y="410.0" />
+      <point x="-32.125" y="39.5" />
     </edge>
     <edge source="abstract_factory.HtmlText" target="abstract_factory.MediaInterface">
       <point x="-54.25" y="-27.5" />
-      <point x="799.5625" y="328.0" />
-      <point x="593.125" y="328.0" />
-      <point x="96.375" y="27.5" />
-    </edge>
-    <edge source="abstract_factory.JsonText" target="abstract_factory.AbstractText">
-      <point x="54.0" y="-27.5" />
-      <point x="671.3125" y="338.0" />
-      <point x="729.1875" y="338.0" />
-      <point x="-60.5" y="27.5" />
-    </edge>
-    <edge source="abstract_factory.JsonPicture" target="abstract_factory.AbstractPicture">
-      <point x="-58.5" y="-27.5" />
-      <point x="313.5" y="328.0" />
-      <point x="251.125" y="328.0" />
-      <point x="65.0" y="27.5" />
+      <point x="799.25" y="400.0" />
+      <point x="593.125" y="400.0" />
+      <point x="96.375" y="39.5" />
     </edge>
     <edge source="abstract_factory.HtmlPicture" target="abstract_factory.MediaInterface">
       <point x="58.75" y="-27.5" />
-      <point x="176.25" y="338.0" />
-      <point x="400.375" y="338.0" />
-      <point x="-96.375" y="27.5" />
+      <point x="176.25" y="410.0" />
+      <point x="400.375" y="410.0" />
+      <point x="-96.375" y="39.5" />
     </edge>
     <edge source="abstract_factory.HtmlFactory" target="abstract_factory.AbstractFactory">
-      <point x="0.0" y="-39.5" />
-      <point x="470.0" y="104.0" />
-      <point x="375.5" y="104.0" />
-      <point x="65.5" y="39.5" />
+      <point x="0.0" y="-51.5" />
+      <point x="374.5" y="128.0" />
+      <point x="311.75" y="128.0" />
+      <point x="65.5" y="51.5" />
     </edge>
-    <edge source="abstract_factory.HtmlPicture" target="abstract_factory.AbstractPicture">
+    <edge source="abstract_factory.HtmlPicture" target="abstract_factory.Picture">
       <point x="-58.75" y="-27.5" />
-      <point x="58.75" y="338.0" />
-      <point x="121.125" y="338.0" />
-      <point x="-65.0" y="27.5" />
+      <point x="58.75" y="410.0" />
+      <point x="129.625" y="410.0" />
+      <point x="-56.5" y="27.5" />
     </edge>
-    <edge source="abstract_factory.HtmlText" target="abstract_factory.AbstractText">
+    <edge source="abstract_factory.JsonText" target="abstract_factory.Text">
+      <point x="54.0" y="-27.5" />
+      <point x="671.0" y="410.0" />
+      <point x="738.375" y="410.0" />
+      <point x="-51.0" y="27.5" />
+    </edge>
+    <edge source="abstract_factory.HtmlText" target="abstract_factory.Text">
       <point x="54.25" y="-27.5" />
-      <point x="908.0625" y="338.0" />
-      <point x="850.1875" y="338.0" />
-      <point x="60.5" y="27.5" />
+      <point x="907.75" y="410.0" />
+      <point x="840.375" y="410.0" />
+      <point x="51.0" y="27.5" />
     </edge>
     <edge source="abstract_factory.JsonText" target="abstract_factory.MediaInterface">
       <point x="-54.0" y="-27.5" />
-      <point x="563.3125" y="338.0" />
-      <point x="528.875" y="338.0" />
-      <point x="32.125" y="27.5" />
+      <point x="563.0" y="410.0" />
+      <point x="528.875" y="410.0" />
+      <point x="32.125" y="39.5" />
+    </edge>
+    <edge source="abstract_factory.JsonPicture" target="abstract_factory.Picture">
+      <point x="-58.5" y="-27.5" />
+      <point x="313.5" y="400.0" />
+      <point x="242.625" y="400.0" />
+      <point x="56.5" y="27.5" />
     </edge>
     <edge source="abstract_factory.JsonFactory" target="abstract_factory.AbstractFactory">
-      <point x="0.0" y="-39.5" />
-      <point x="150.0" y="104.0" />
-      <point x="244.5" y="104.0" />
-      <point x="-65.5" y="39.5" />
+      <point x="0.0" y="-51.5" />
+      <point x="118.0" y="128.0" />
+      <point x="180.75" y="128.0" />
+      <point x="-65.5" y="51.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="481.5" y="206.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="481.5" y="275.5" />
   <SelectedNodes />
   <Categories>
     <Category>Methods</Category>
