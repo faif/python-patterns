@@ -34,6 +34,8 @@ Current Patterns:
 | [prototype](prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
 | [proxy](proxy.py) | an object funnels operations to something else |
 | [publish_subscribe](publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
+| [singleton](singleton.py) |  is a design pattern that restricts the instantiation of a class to one object |
+| [singleton_on_metaclass](singleton_metaclass.py) | metaclass-version of singleton |
 | [state](state.py) | logic is org'd into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](strategy.py) | selectable operations over the same data |
 | [template](template.py) | an object imposes a structure but takes pluggable components |
