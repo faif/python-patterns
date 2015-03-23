@@ -6,3 +6,19 @@
    more efficiently when only one object exists, or that restrict the 
    instantiation to a certain number of objects. The term comes from the 
    mathematical concept of a singleton."""
+
+
+class SingletonMeta(type):
+        def __init__(cls, *args, **kw):
+            cls.instance = None
+        def __call__(cls, *args, **kw):
+            if cls.instance is None:
+                cls.instance = super(SingletonMeta, cls).__call__(*args, **kw)
+            return cls.instance
+
+class C(metaclass=SingletonMeta):
+    pass
+
+c = C()
+b = C()
+print(c is b)  # True

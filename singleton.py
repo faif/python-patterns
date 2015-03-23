@@ -7,9 +7,14 @@
    instantiation to a certain number of objects. The term comes from the 
    mathematical concept of a singleton."""
 
-class C(object):
+
+class C:
     instance = None
     def __new__(cls):
         if cls.instance is None:
             cls.instance = super(C, cls).__new__(cls)
         return cls.instance
+
+c = C()
+b = C()
+print(c is b)  # True
