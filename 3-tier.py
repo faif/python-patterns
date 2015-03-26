@@ -38,8 +38,7 @@ class Ui(object):
     def get_product_list(self):
         print('PRODUCT LIST:')
         for product in self.business_logic.product_list():
-            #print(product)
-            yield product
+            print(product)
         print('')
 
     def get_product_information(self, product):
@@ -66,6 +65,12 @@ if __name__ == '__main__':
     main()
 
 ### OUTPUT ###
+# PRODUCT LIST:
+# (Fetching from Data Store)
+# cheese
+# eggs
+# milk
+# 
 # (Fetching from Data Store)
 # PRODUCT INFORMATION:
 # Name: Cheese, Price: 2.00, Quantity: 10
