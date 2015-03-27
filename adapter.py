@@ -3,7 +3,6 @@
 
 """http://ginstrom.com/scribbles/2008/11/06/generic-adapter-class-in-python/"""
 
-import os
 
 class Dog(object):
     def __init__(self):
