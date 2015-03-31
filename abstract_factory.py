@@ -7,6 +7,7 @@
 
 import random
 
+
 class PetShop:
 
     """A pet shop"""
@@ -63,6 +64,7 @@ class CatFactory:
 
     def get_food(self):
         return "cat food"
+
 
 # Create the proper family
 def get_factory():
