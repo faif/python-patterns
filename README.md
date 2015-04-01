@@ -19,6 +19,7 @@ Current Patterns:
 | [builder](builder.py) | call many little discrete methods rather than having a huge number of constructor parameters |
 | [catalog](catalog.py) | general methods will call different specialized methods based on construction parameter |
 | [chain](chain.py) | apply a chain of successive handlers to try and process the data |
+| [chaining_method](chaining_method.py) | continue callback next object method |
 | [command](command.py) | bundle a command and arguments to call later |
 | [composite](composite.py) | encapsulate and provide access to a number of different objects |
 | [decorator](decorator.py) | wrap functionality with other functionality in order to affect outputs |
@@ -26,6 +27,7 @@ Current Patterns:
 | [factory_method](factory_method.py) | delegate a specialized function/method to create instances |
 | [flyweight](flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
 | [graph_search](graph_search.py) | (graphing algorithms, not design patterns) |
+| [lazy_evaluation](lazy_evaluation.py) | lazily-evaluated property pattern in Python |
 | [mediator](mediator.py) | an object that knows how to connect other objects and act as a proxy |
 | [memento](memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [mvc](mvc.py) | model<->view<->controller (non-strict relationships) |
@@ -38,4 +40,3 @@ Current Patterns:
 | [strategy](strategy.py) | selectable operations over the same data |
 | [template](template.py) | an object imposes a structure but takes pluggable components |
 | [visitor](visitor.py) | invoke a callback for all items of a collection |
-| [chaining_method](chaining_method.py) | continue callback next object method |
