@@ -45,7 +45,7 @@ if __name__ == '__main__':
     p.work()
     p = NoTalkProxy()
     p.work()
-    p.busy = 'Yse'
+    p.busy = 'Yes'
     p.work()
 
 ### OUTPUT ###
