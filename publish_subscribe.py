@@ -19,9 +19,8 @@ class Provider:
     def subscribe(self, msg, subscriber):
         if msg not in self.subscribers:
             self.subscribers[msg] = []
-            self.subscribers[msg].append(subscriber)  # unfair
-        else:
-            self.subscribers[msg].append(subscriber)
+
+        self.subscribers[msg].append(subscriber)
 
     def unsubscribe(self, msg, subscriber):
         self.subscribers[msg].remove(subscriber)
