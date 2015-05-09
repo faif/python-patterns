@@ -17,11 +17,7 @@ class Provider:
         self.msg_queue.append(msg)
 
     def subscribe(self, msg, subscriber):
-        if msg not in self.subscribers:
-            self.subscribers[msg] = []
-            self.subscribers[msg].append(subscriber)  # unfair
-        else:
-            self.subscribers[msg].append(subscriber)
+        self.subscribers.setdefault(msg, []).append(subscriber)
 
     def unsubscribe(self, msg, subscriber):
         self.subscribers[msg].remove(subscriber)
