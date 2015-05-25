@@ -25,6 +25,7 @@ Current Patterns:
 | [decorator](decorator.py) | wrap functionality with other functionality in order to affect outputs |
 | [facade](facade.py) | use one class as an API to a number of others |
 | [factory_method](factory_method.py) | delegate a specialized function/method to create instances |
+| [front controller](front_controller.py) | single handler requests coming to the application |
 | [flyweight](flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
 | [graph_search](graph_search.py) | (graphing algorithms, not design patterns) |
 | [lazy_evaluation](lazy_evaluation.py) | lazily-evaluated property pattern in Python |
