@@ -37,7 +37,6 @@ class Car(object):
 
 
 class Adapter(object):
-
     """
     Adapts an object by replacing methods.
     Usage:

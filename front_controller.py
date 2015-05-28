@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-@author: Gordeev Andrei <gordeev.and.and@gmail.com>
+@author: Gordeev Andrey <gordeev.and.and@gmail.com>
 The controller provides a centralized entry point that controls and manages
 request handling.
 """
