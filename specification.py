@@ -8,20 +8,19 @@ Specification provide recombination business logic by
 chaining together using boolean logic
 """
 
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 
 
-class Specification:
-    __metaclass__ = ABCMeta
+class Specification(object):
 
     def and_specification(self, candidate):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def or_specification(self, candidate):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     def not_specification(self):
-        raise NotImplementedError
+        raise NotImplementedError()
 
     @abstractmethod
     def is_satisfied_by(self, candidate):
@@ -101,10 +100,18 @@ if __name__ == '__main__':
     print('Specification')
     andrey = User()
     ivan = User(super_user=True)
+    vasiliy = 'not User instance'
 
     root_specification = UserSpecification().\
         and_specification(SuperUserSpecification())
 
     print(root_specification.is_satisfied_by(andrey))
     print(root_specification.is_satisfied_by(ivan))
+    print(root_specification.is_satisfied_by(vasiliy))
 
+
+### OUTPUT ###
+# Specification
+# False
+# True
+# False
