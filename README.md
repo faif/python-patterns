@@ -25,6 +25,7 @@ Current Patterns:
 | [decorator](decorator.py) | wrap functionality with other functionality in order to affect outputs |
 | [facade](facade.py) | use one class as an API to a number of others |
 | [factory_method](factory_method.py) | delegate a specialized function/method to create instances |
+| [front_controller](front_controller.py) | single handler requests coming to the application |
 | [flyweight](flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
 | [graph_search](graph_search.py) | (graphing algorithms, not design patterns) |
 | [lazy_evaluation](lazy_evaluation.py) | lazily-evaluated property pattern in Python |
@@ -36,6 +37,7 @@ Current Patterns:
 | [prototype](prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
 | [proxy](proxy.py) | an object funnels operations to something else |
 | [publish_subscribe](publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
+| [specification](specification.py) |  business rules can be recombined by chaining the business rules together using boolean logic |
 | [state](state.py) | logic is org'd into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](strategy.py) | selectable operations over the same data |
 | [template](template.py) | an object imposes a structure but takes pluggable components |

@@ -12,12 +12,11 @@ class Data(object):
     }
 
     def __get__(self, obj, klas):
-        print ("(Fetching from Data Store)")
+        print("(Fetching from Data Store)")
         return {'products': self.products}
 
 
 class BusinessLogic(object):
-
     """ Business logic holding data store instances """
 
     data = Data()
