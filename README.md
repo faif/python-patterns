@@ -37,6 +37,7 @@ Current Patterns:
 | [prototype](prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
 | [proxy](proxy.py) | an object funnels operations to something else |
 | [publish_subscribe](publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
+| [registry](registry.py) | keeping track of all subclasses of a given class |
 | [specification](specification.py) |  business rules can be recombined by chaining the business rules together using boolean logic |
 | [state](state.py) | logic is org'd into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](strategy.py) | selectable operations over the same data |
