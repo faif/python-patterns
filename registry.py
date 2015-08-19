@@ -31,7 +31,7 @@ class BaseRegisteredClass:
 
 if __name__ == "__main__":
     print("Before subclassing: ")
-    for k in RegistryHolder.REGISTRY.keys():
+    for k in RegistryHolder.REGISTRY:
         print(k)
 
     class ClassRegistree(BaseRegisteredClass):
