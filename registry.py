@@ -20,7 +20,8 @@ class RegistryHolder(type):
         return dict(cls.REGISTRY)
 
 
-class BaseRegisteredClass(metaclass=RegistryHolder):
+class BaseRegisteredClass:
+    __metaclass__ = RegistryHolder
     """
         Any class that will inherits from BaseRegisteredClass will be included
         inside the dict RegistryHolder.REGISTRY, the key being the name of the
@@ -30,18 +31,20 @@ class BaseRegisteredClass(metaclass=RegistryHolder):
 
 if __name__ == "__main__":
     print("Before subclassing: ")
-    for k in RegistryHolder.REGISTRY:
+    for k in RegistryHolder.REGISTRY.keys():
         print(k)
 
     class ClassRegistree(BaseRegisteredClass):
 
         def __init__(self, *args, **kwargs):
             pass
+            
+
     print("After subclassing: ")
     for k in RegistryHolder.REGISTRY:
         print(k)
 
-### OUTPUT ###
+###  OUTPUT ###
 # Before subclassing: 
 # BaseRegisteredClass
 # After subclassing: 
