@@ -15,7 +15,7 @@ __Creational Patterns__:
 |:-------:| ----------- |
 | [abstract_factory](abstract_factory.py) | use a generic function with specific factories |
 | [borg](borg.py) | a singleton with shared-state among instances |
-| [builder](builder.py) | call many little discrndler requests coming to the application |
+| [builder](builder.py) | instead of using multiple constructors, builder object receives parameters and returns constructed objects |
 | [factory_method](factory_method.py) | delegate a specialized function/method to create instances |
 | [lazy_evaluation](lazy_evaluation.py) | lazily-evaluated property pattern in Python |
 | [pool](pool.py) | preinstantiate and maintain a group of instances of the same type |
@@ -26,7 +26,7 @@ __Structural Patterns__:
 | Pattern | Description |
 |:-------:| ----------- |
 | [3-tier](3-tier.py) | data<->business logic<->presentation separation (strict relationships) |
-| [adapter](adapter.py) | adapt one interface to another using a whitelist |
+| [adapter](adapter.py) | adapt one interface to another using a white-list |
 | [bridge](bridge.py) | a client-provider middleman to soften interface changes |
 | [composite](composite.py) | encapsulate and provide access to a number of different objects |
 | [decorator](decorator.py) | wrap functionality with other functionality in order to affect outputs |
@@ -50,7 +50,7 @@ __Behavioral Patterns__:
 | [publish_subscribe](publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
 | [registry](registry.py) | keeping track of all subclasses of a given class |
 | [specification](specification.py) |  business rules can be recombined by chaining the business rules together using boolean logic |
-| [state](state.py) | logic is org'd into a discrete number of potential states and the next state that can be transitioned to |
+| [state](state.py) | logic is organized into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](strategy.py) | selectable operations over the same data |
 | [template](template.py) | an object imposes a structure but takes pluggable components |
 | [visitor](visitor.py) | invoke a callback for all items of a collection |
@@ -60,5 +60,4 @@ __Others__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [graph_search](graph_search.py) | (graphing algorithms, not ete methods rather than having a huge number of constructor parameters |
 | [graph_search](graph_search.py) | (graphing algorithms, not design patterns) |
