@@ -3,41 +3,41 @@
 
 """http://code.activestate.com/recipes/413838-memento-closure/"""
 
-import copy
+from copy import copy, deepcopy
 
 
-def Memento(obj, deep=False):
-    state = (copy.copy, copy.deepcopy)[bool(deep)](obj.__dict__)
+def memento(obj, deep=False):
+    state = copy(obj.__dict__) if deep else deepcopy(obj.__dict__)
 
-    def Restore():
+    def restore():
         obj.__dict__.clear()
         obj.__dict__.update(state)
-    return Restore
+
+    return restore
 
 
 class Transaction:
-
-    """A transaction guard. This is really just
-      syntactic suggar arount a memento closure.
-      """
+    """A transaction guard.
+    This is, in fact, just syntactic sugar around a memento closure.
+    """
     deep = False
+    states = []
 
     def __init__(self, *targets):
         self.targets = targets
-        self.Commit()
+        self.commit()
 
-    def Commit(self):
-        self.states = [Memento(target, self.deep) for target in self.targets]
+    def commit(self):
+        self.states = [memento(target, self.deep) for target in self.targets]
 
-    def Rollback(self):
-        for st in self.states:
-            st()
+    def rollback(self):
+        for a_state in self.states:
+            a_state()
 
 
-class transactional(object):
-
+class Transactional(object):
     """Adds transactional semantics to methods. Methods decorated  with
-    @transactional will rollback to entry state upon exceptions.
+    @Transactional will rollback to entry-state upon exceptions.
     """
 
     def __init__(self, method):
@@ -45,68 +45,72 @@ class transactional(object):
 
     def __get__(self, obj, T):
         def transaction(*args, **kwargs):
-            state = Memento(obj)
+            state = memento(obj)
             try:
                 return self.method(obj, *args, **kwargs)
-            except:
+            except Exception as e:
                 state()
-                raise
+                raise e
+
         return transaction
 
 
 class NumObj(object):
-
     def __init__(self, value):
         self.value = value
 
     def __repr__(self):
         return '<%s: %r>' % (self.__class__.__name__, self.value)
 
-    def Increment(self):
+    def increment(self):
         self.value += 1
 
-    @transactional
-    def DoStuff(self):
+    @Transactional
+    def do_stuff(self):
         self.value = '1111'  # <- invalid value
-        self.Increment()     # <- will fail and rollback
+        self.increment()  # <- will fail and rollback
 
 
 if __name__ == '__main__':
-    n = NumObj(-1)
-    print(n)
-    t = Transaction(n)
+    num_obj = NumObj(-1)
+    print(num_obj)
+
+    a_transaction = Transaction(num_obj)
     try:
         for i in range(3):
-            n.Increment()
-            print(n)
-        t.Commit()
-        print('-- commited')
+            num_obj.increment()
+            print(num_obj)
+        a_transaction.commit()
+        print('-- committed')
+
         for i in range(3):
-            n.Increment()
-            print(n)
-        n.value += 'x'  # will fail
-        print(n)
-    except:
-        t.Rollback()
+            num_obj.increment()
+            print(num_obj)
+        num_obj.value += 'x'  # will fail
+        print(num_obj)
+    except Exception as e:
+        a_transaction.rollback()
         print('-- rolled back')
-    print(n)
+    print(num_obj)
+
     print('-- now doing stuff ...')
     try:
-        n.DoStuff()
-    except:
+        num_obj.do_stuff()
+    except Exception as e:
         print('-> doing stuff failed!')
         import sys
         import traceback
+
         traceback.print_exc(file=sys.stdout)
-        pass
-    print(n)
+    print(num_obj)
+
 
 ### OUTPUT ###
 # <NumObj: -1>
 # <NumObj: 0>
 # <NumObj: 1>
 # <NumObj: 2>
-# -- commited
+# -- committed
 # <NumObj: 3>
 # <NumObj: 4>
 # <NumObj: 5>
@@ -115,13 +119,15 @@ if __name__ == '__main__':
 # -- now doing stuff ...
 # -> doing stuff failed!
 # Traceback (most recent call last):
-#   File "memento.py", line 91, in <module>
-#     n.DoStuff()
-#   File "memento.py", line 47, in transaction
+# File "memento.py", line 97, in <module>
+#     num_obj.do_stuff()
+#   File "memento.py", line 52, in transaction
+#     raise e
+#   File "memento.py", line 49, in transaction
 #     return self.method(obj, *args, **kwargs)
-#   File "memento.py", line 67, in DoStuff
-# self.Increment()     # <- will fail and rollback
-#   File "memento.py", line 62, in Increment
+#   File "memento.py", line 70, in do_stuff
+#     self.increment()     # <- will fail and rollback
+#   File "memento.py", line 65, in increment
 #     self.value += 1
 # TypeError: Can't convert 'int' object to str implicitly
 # <NumObj: 2>
