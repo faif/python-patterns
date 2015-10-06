@@ -23,7 +23,8 @@ class Transaction:
     deep = False
     states = []
 
-    def __init__(self, *targets):
+    def __init__(self, deep, *targets):
+        self.deep = deep
         self.targets = targets
         self.commit()
 
@@ -75,7 +76,7 @@ if __name__ == '__main__':
     num_obj = NumObj(-1)
     print(num_obj)
 
-    a_transaction = Transaction(num_obj)
+    a_transaction = Transaction(True, num_obj)
     try:
         for i in range(3):
             num_obj.increment()
