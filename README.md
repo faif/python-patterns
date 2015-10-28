@@ -48,7 +48,7 @@ __Behavioral Patterns__:
 | [memento](memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [observer](observer.py) | provide a callback for notification of events/changes to data |
 | [publish_subscribe](publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
-| [registry](registry.py) | keeping track of all subclasses of a given class |
+| [registry](registry.py) | keep track of all subclasses of a given class |
 | [specification](specification.py) |  business rules can be recombined by chaining the business rules together using boolean logic |
 | [state](state.py) | logic is organized into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](strategy.py) | selectable operations over the same data |
