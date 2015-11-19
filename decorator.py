@@ -5,16 +5,17 @@ from functools import wraps
 
 
 def makebold(fn):
-    @wraps(fn)
-    def wrapped():
-        return "<b>" + fn() + "</b>"
-    return wrapped
+    return getwrapped(fn, "b")
 
 
 def makeitalic(fn):
+    return getwrapped(fn, "i")
+
+
+def getwrapped(fn, tag):
     @wraps(fn)
     def wrapped():
-        return "<i>" + fn() + "</i>"
+        return "<%s>%s</%s>" % (tag, fn(), tag)
     return wrapped
 
 
