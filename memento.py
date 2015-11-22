@@ -7,7 +7,7 @@ from copy import copy, deepcopy
 
 
 def memento(obj, deep=False):
-    state = copy(obj.__dict__) if deep else deepcopy(obj.__dict__)
+    state = deepcopy(obj.__dict__) if deep else copy(obj.__dict__)
 
     def restore():
         obj.__dict__.clear()
