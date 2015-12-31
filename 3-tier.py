@@ -3,6 +3,7 @@
 
 
 class Data(object):
+    """ Data Store Class """
 
     products = {
         'milk': {'price': 1.50, 'quantity': 10},
@@ -10,23 +11,29 @@ class Data(object):
         'cheese': {'price': 2.00, 'quantity': 10}
     }
 
+    def __get__(self, obj, klas):
+        print("(Fetching from Data Store)")
+        return {'products': self.products}
+
 
 class BusinessLogic(object):
+    """ Business logic holding data store instances """
 
-    def __init__(self):
-        self.data = Data()
+    def __init__(self, data):
+        self.data = data
 
     def product_list(self):
-        return self.data.products.keys()
+        return self.data['products'].keys()
 
     def product_information(self, product):
-        return self.data.products.get(product, None)
+        return self.data['products'].get(product, None)
 
 
 class Ui(object):
+    """ UI interaction class """
 
-    def __init__(self):
-        self.business_logic = BusinessLogic()
+    def __init__(self, logic):
+        self.business_logic = logic
 
     def get_product_list(self):
         print('PRODUCT LIST:')
@@ -47,7 +54,9 @@ class Ui(object):
 
 
 def main():
-    ui = Ui()
+    data = Data()
+    logic = BusinessLogic(data)
+    ui = Ui(logic)
     ui.get_product_list()
     ui.get_product_information('cheese')
     ui.get_product_information('eggs')
@@ -59,14 +68,19 @@ if __name__ == '__main__':
 
 ### OUTPUT ###
 # PRODUCT LIST:
+# (Fetching from Data Store)
+# cheese
 # eggs
 # milk
-# cheese
-# 
+#
+# (Fetching from Data Store)
 # PRODUCT INFORMATION:
 # Name: Cheese, Price: 2.00, Quantity: 10
+# (Fetching from Data Store)
 # PRODUCT INFORMATION:
 # Name: Eggs, Price: 0.20, Quantity: 100
+# (Fetching from Data Store)
 # PRODUCT INFORMATION:
 # Name: Milk, Price: 1.50, Quantity: 10
+# (Fetching from Data Store)
 # That product "arepas" does not exist in the records

@@ -5,7 +5,9 @@
 
 
 class GreekGetter:
+
     """A simple localizer a la gettext"""
+
     def __init__(self):
         self.trans = dict(dog="σκύλος", cat="γάτα")
 
@@ -18,7 +20,9 @@ class GreekGetter:
 
 
 class EnglishGetter:
+
     """Simply echoes the msg ids"""
+
     def get(self, msgid):
         return str(msgid)
 
@@ -29,7 +33,7 @@ def get_localizer(language="English"):
     return languages[language]()
 
 # Create our localizers
-e, g = get_localizer("English"), get_localizer("Greek")
+e, g = get_localizer(language="English"), get_localizer(language="Greek")
 # Localize some text
 for msgid in "dog parrot cat bear".split():
     print(e.get(msgid), g.get(msgid))

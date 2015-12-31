@@ -5,20 +5,20 @@ import os
 
 
 class MoveFileCommand(object):
+
     def __init__(self, src, dest):
         self.src = src
         self.dest = dest
 
     def execute(self):
-        self()
-
-    def __call__(self):
-        print('renaming {} to {}'.format(self.src, self.dest))
-        os.rename(self.src, self.dest)
+        self.rename(self.src, self.dest)
 
     def undo(self):
-        print('renaming {} to {}'.format(self.dest, self.src))
-        os.rename(self.dest, self.src)
+        self.rename(self.dest, self.src)
+
+    def rename(self, src, dest):
+        print('renaming {} to {}'.format(src, dest))
+        os.rename(src, dest)
 
 
 def main():

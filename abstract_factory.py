@@ -9,27 +9,27 @@ import random
 
 
 class PetShop:
+
     """A pet shop"""
 
     def __init__(self, animal_factory=None):
-        """pet_factory is our abstract factory.
-        We can set it at will."""
+        """pet_factory is our abstract factory.  We can set it at will."""
 
         self.pet_factory = animal_factory
 
     def show_pet(self):
-        """Creates and shows a pet using the
-        abstract factory"""
+        """Creates and shows a pet using the abstract factory"""
 
         pet = self.pet_factory.get_pet()
-        print("This is a lovely {}".format(pet))
+        print("We have a lovely {}".format(pet))
         print("It says {}".format(pet.speak()))
-        print("It eats {}".format(self.pet_factory.get_food()))
+        print("We also have {}".format(self.pet_factory.get_food()))
 
 
 # Stuff that our factory makes
 
 class Dog:
+
     def speak(self):
         return "woof"
 
@@ -38,6 +38,7 @@ class Dog:
 
 
 class Cat:
+
     def speak(self):
         return "meow"
 
@@ -48,6 +49,7 @@ class Cat:
 # Factory classes
 
 class DogFactory:
+
     def get_pet(self):
         return Dog()
 
@@ -56,6 +58,7 @@ class DogFactory:
 
 
 class CatFactory:
+
     def get_pet(self):
         return Cat()
 
@@ -71,22 +74,21 @@ def get_factory():
 
 # Show pets with various factories
 if __name__ == "__main__":
-    shop = PetShop()
     for i in range(3):
-        shop.pet_factory = get_factory()
+        shop = PetShop(get_factory())
         shop.show_pet()
         print("=" * 20)
 
 ### OUTPUT ###
-# This is a lovely Dog
+# We have a lovely Dog
 # It says woof
-# It eats dog food
+# We also have dog food
 # ====================
-# This is a lovely Cat
+# We have a lovely Dog
+# It says woof
+# We also have dog food
+# ====================
+# We have a lovely Cat
 # It says meow
-# It eats cat food
-# ====================
-# This is a lovely Dog
-# It says woof
-# It eats dog food
+# We also have cat food
 # ====================

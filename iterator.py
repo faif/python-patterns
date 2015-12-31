@@ -5,6 +5,8 @@
 
 Implementation of the iterator pattern with a generator"""
 
+from __future__ import print_function
+
 
 def count_to(count):
     """Counts by word numbers, up to a maximum of five"""
@@ -32,6 +34,6 @@ print()
 
 ### OUTPUT ###
 # Counting to two...
-# one two 
+# one two
 # Counting to five...
-# one two three four five 
+# one two three four five
