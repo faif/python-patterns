@@ -5,7 +5,6 @@ class StrategyTest(unittest.TestCase):
 
     def test_print_output(self):
         output = subprocess.check_output(["python", "strategy.py"])
-        print(output)
         expected_output = 'Strategy Example 0\r\n\
 Strategy Example 1 from execute 1\r\n\
 Strategy Example 2 from execute 2\r\n'
