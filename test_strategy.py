@@ -1,24 +1,17 @@
 import unittest
-import strategy
+import subprocess
 
 class StrategyTest(unittest.TestCase):
 
     def test_print_output(self):
-        strat0 = strategy.StrategyExample()
-
-        strat1 = strategy.StrategyExample(strategy.execute_replacement1)
-        strat1.name = 'Strategy Example 1'
-
-        strat2 = strategy.StrategyExample(strategy.execute_replacement2)
-        strat2.name = 'Strategy Example 2'
-
-        first_line = strat0.execute()
-        second_line = strat1.execute()
-        third_line = strat2.execute()
-
-        self.assertEqual(first_line, 'Strategy Example 0')
-        self.assertEqual(second_line, 'Strategy Example 1 from execute 1')
-        self.assertEqual(third_line, 'Strategy Example 2 from execute 2')
+        output = subprocess.check_output(["python", "strategy.py"])
+        print(output)
+        expected_output = 'Strategy Example 0\r\n\
+Strategy Example 1 from execute 1\r\n\
+Strategy Example 2 from execute 2\r\n'
+        # byte representation required due to EOF returned subprocess
+        expected_output_as_bytes = expected_output.encode(encoding='UTF-8')
+        self.assertEqual(output, expected_output_as_bytes)
 
 if __name__ == "__main__":
     unitest.main()

@@ -20,17 +20,14 @@ class StrategyExample:
 
     def execute(self):
         print(self.name)
-        return self.name
 
 
 def execute_replacement1(self):
     print(self.name + ' from execute 1')
-    return self.name + ' from execute 1'
 
 
 def execute_replacement2(self):
     print(self.name + ' from execute 2')
-    return self.name + ' from execute 2'
 
 
 if __name__ == '__main__':
