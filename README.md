@@ -20,6 +20,7 @@ __Creational Patterns__:
 | [lazy_evaluation](lazy_evaluation.py) | lazily-evaluated property pattern in Python |
 | [pool](pool.py) | preinstantiate and maintain a group of instances of the same type |
 | [prototype](prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
+| [singleton](singleton.py) | a singleton with overriding __new__ method |
 
 __Structural Patterns__:
 
