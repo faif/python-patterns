@@ -13,10 +13,7 @@ class GreekGetter:
 
     def get(self, msgid):
         """We'll punt if we don't have a translation"""
-        try:
-            return self.trans[msgid]
-        except KeyError:
-            return str(msgid)
+        return self.trans.get(msgid, str(msgid))
 
 
 class EnglishGetter:
