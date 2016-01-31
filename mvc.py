@@ -19,6 +19,7 @@ class Model(object):
 class ProductModel(Model):
 
     class Price(float):
+        """A polymorphic way to pass a float with a particular __str__ functionality."""
         def __str__(self):
             first_digits_str = str(round(self,2))
             try:
