@@ -1,6 +1,10 @@
 from command import MoveFileCommand
-import unittest, os, shutil, subprocess
+import os, shutil, subprocess, sys
 
+if sys.version_info < (2, 7):
+    import unittest2 as unittest
+else:
+    import unittest
 
 class CommandTest(unittest.TestCase):
 
