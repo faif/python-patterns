@@ -2,8 +2,12 @@
 Tests for strategy.py
 """
 
-import unittest
-import subprocess
+import subprocess, sys
+
+if sys.version_info < (2, 7):
+    import unittest2 as unittest
+else:
+    import unittest
 
 class StrategyTest(unittest.TestCase):
 
