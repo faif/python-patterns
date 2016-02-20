@@ -1,4 +1,4 @@
-from proxy import Proxy
+from proxy import Proxy, NoTalkProxy
 from io import StringIO
 import sys
 
@@ -39,6 +39,40 @@ Sales Manager ready to talk\n'
         print_output = self.output.getvalue()
         expected_print_output = 'Proxy checking for Sales Manager availability\n\
 Sales Manager is busy\n'
+        self.assertEqual(print_output, expected_print_output)
+
+class NoTalkProxyTest(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(self):
+        """ Class scope setup. """
+        self.ntp = NoTalkProxy()
+
+    def setUp(self):
+        """ Function/test case scope setup. """
+        self.output = StringIO()
+        self.saved_stdout = sys.stdout
+        sys.stdout = self.output
+
+    def tearDown(self):
+        """ Function/test case scope teardown. """
+        self.output.close()
+        sys.stdout = self.saved_stdout
+
+    def test_sales_manager_shall_not_work_through_proxy(self):
+        self.ntp.busy = 'No'
+        self.ntp.work()
+        print_output = self.output.getvalue()
+        expected_print_output = 'Proxy checking for Sales Manager availability\n\
+This Sales Manager will not talk to you whether he/she is busy or not\n'
+        self.assertEqual(print_output, expected_print_output)
+
+    def test_sales_manager_shall_not_respond_through_proxy(self):
+        self.ntp.busy = 'Yes'
+        self.ntp.work()
+        print_output = self.output.getvalue()
+        expected_print_output = 'Proxy checking for Sales Manager availability\n\
+This Sales Manager will not talk to you whether he/she is busy or not\n'
         self.assertEqual(print_output, expected_print_output)
 
 if __name__ == "__main__":
