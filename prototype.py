@@ -9,7 +9,7 @@ class Prototype:
     value = 'default'
 
     def clone(self, **attrs):
-        """Clone a registered object and update inner attributes dictionary"""
+        """Clone a prototype and update inner attributes dictionary"""
         obj = copy.deepcopy(self)
         obj.__dict__.update(attrs)
         return obj
