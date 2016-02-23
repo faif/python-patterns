@@ -6,8 +6,23 @@ import copy
 
 class Prototype:
 
+    value = 'default'
+
+    def clone(self, **attrs):
+        """Clone a prototype and update inner attributes dictionary"""
+        obj = copy.deepcopy(self)
+        obj.__dict__.update(attrs)
+        return obj
+
+
+class PrototypeDispatcher:
+
     def __init__(self):
         self._objects = {}
+
+    def get_objects(self):
+        """Get all objects"""
+        return self._objects
 
     def register_object(self, name, obj):
         """Register an object"""
@@ -17,34 +32,21 @@ class Prototype:
         """Unregister an object"""
         del self._objects[name]
 
-    def clone(self, name, **attr):
-        """Clone a registered object and update inner attributes dictionary"""
-        obj = copy.deepcopy(self._objects.get(name))
-        obj.__dict__.update(attr)
-        return obj
-
-
-class A:
-    def __init__(self):
-        self.x = 3
-        self.y = 8
-        self.z = 15
-        self.garbage = [38, 11, 19]
-
-    def __str__(self):
-        return '{} {} {} {}'.format(self.x, self.y, self.z, self.garbage)
-
 
 def main():
-    a = A()
+    dispatcher = PrototypeDispatcher()
     prototype = Prototype()
-    prototype.register_object('objecta', a)
-    b = prototype.clone('objecta')
-    c = prototype.clone('objecta', x=1, y=2, garbage=[88, 1])
-    print([str(i) for i in (a, b, c)])
+
+    d = prototype.clone()
+    a = prototype.clone(value='a-value', category='a')
+    b = prototype.clone(value='b-value', is_checked=True)
+    dispatcher.register_object('objecta', a)
+    dispatcher.register_object('objectb', b)
+    dispatcher.register_object('default', d)
+    print([{n: p.value} for n, p in dispatcher.get_objects().items()])
 
 if __name__ == '__main__':
     main()
 
 ### OUTPUT ###
-# ['3 8 15 [38, 11, 19]', '3 8 15 [38, 11, 19]', '1 2 15 [88, 1]']
+# [{'objectb': 'b-value'}, {'default': 'default'}, {'objecta': 'a-value'}]
