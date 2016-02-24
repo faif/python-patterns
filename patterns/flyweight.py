@@ -27,7 +27,7 @@ class FlyweightMeta(type):
         Simple implementation is just to serialize it as a string
 
         """
-        args_list = map(str, args)
+        args_list = list(map(str, args))
         args_list.extend([str(kwargs), cls.__name__])
         key = ''.join(args_list)
         return key
@@ -65,7 +65,7 @@ class Card(object):
         return "<Card: %s%s>" % (self.value, self.suit)
 
 
-class Card2(object):
+class Card2(object, metaclass=FlyweightMeta):
     __metaclass__ = FlyweightMeta
 
     def __init__(self, *args, **kwargs):

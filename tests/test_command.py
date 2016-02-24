@@ -1,10 +1,7 @@
-from command import MoveFileCommand
-import os, shutil, subprocess, sys
+import os, shutil, subprocess
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
+from .compat import unittest
+from patterns.command import MoveFileCommand
 
 class CommandTest(unittest.TestCase):
 

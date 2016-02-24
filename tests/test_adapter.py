@@ -1,4 +1,4 @@
-from adapter import Dog, Cat, Human, Car, Adapter
+from patterns.adapter import Dog, Cat, Human, Car, Adapter
 import sys
 
 if sys.version_info < (2, 7):

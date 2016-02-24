@@ -1,1 +1,77 @@
-__pycache__
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.DS_Store
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+.DS_Store
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+*.sqlite3
+
+src/ralph_assets
+src/ralph/settings/*local.py
+src/ralph/urls/*local.py
+
+# Vagrant
+vagrant/.vagrant
+vagrant/Vagrantfile.local
+vagrant/provision.local.sh
+
+# mkdocs
+site/
+
+# Static files
+bower_components/
+node_modules/
+src/ralph/static/css/
+src/ralph/static/vendor/
+src/ralph/var/
+
+debian/ralph-core*
+
+.idea

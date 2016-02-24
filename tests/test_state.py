@@ -1,4 +1,4 @@
-from state import Radio
+from patterns.state import Radio
 import sys
 
 if sys.version_info < (2, 7):
