@@ -41,37 +41,4 @@ htmlcov/
 nosetests.xml
 coverage.xml
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-
-# Sphinx documentation
-docs/_build/
-
-*.sqlite3
-
-src/ralph_assets
-src/ralph/settings/*local.py
-src/ralph/urls/*local.py
-
-# Vagrant
-vagrant/.vagrant
-vagrant/Vagrantfile.local
-vagrant/provision.local.sh
-
-# mkdocs
-site/
-
-# Static files
-bower_components/
-node_modules/
-src/ralph/static/css/
-src/ralph/static/vendor/
-src/ralph/var/
-
-debian/ralph-core*
-
 .idea
