@@ -79,6 +79,7 @@ if __name__ == "__main__":
         shop.show_pet()
         print("=" * 20)
 
+
 ### OUTPUT ###
 # We have a lovely Dog
 # It says woof

@@ -1,4 +1,4 @@
-"""http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html"""
+"""http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html"""  # noqa
 
 
 class Node(object):

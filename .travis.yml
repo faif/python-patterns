@@ -13,6 +13,9 @@ before_install:
     - pip install -e '.[test]'
     - pip install -e '.[travis]'
 
+before_script:
+  - flake8
+
 script:
     - tox -e $TOX_ENV
 

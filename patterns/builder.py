@@ -37,6 +37,7 @@ class Builder(object):
     def build_size(self):
         raise NotImplementedError
 
+
 # Concrete Builder
 class BuilderHouse(Builder):
 

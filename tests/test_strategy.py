@@ -1,13 +1,10 @@
 """
 Tests for strategy.py
 """
+import subprocess
 
-import subprocess, sys
+from .compat import unittest
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 class StrategyTest(unittest.TestCase):
 
@@ -24,6 +21,3 @@ Strategy Example 2 from execute 2\r\n'
         # byte representation required due to EOF returned subprocess
         expected_output_as_bytes = expected_output.encode(encoding='UTF-8')
         self.assertEqual(output, expected_output_as_bytes)
-
-if __name__ == "__main__":
-    unitest.main()

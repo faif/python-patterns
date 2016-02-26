@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 class Person(object):
 
     def __init__(self, name, action):
@@ -10,6 +11,7 @@ class Person(object):
     def do_action(self):
         print(self.name, self.action.name, end=' ')
         return self.action
+
 
 class Action(object):
 

@@ -1,10 +1,7 @@
 from patterns.adapter import Dog, Cat, Human, Car, Adapter
-import sys
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
+from .compat import unittest
+
 
 class ClassTest(unittest.TestCase):
 
@@ -39,6 +36,7 @@ class ClassTest(unittest.TestCase):
         noise = self.car.make_noise(10)
         expected_noise = "vroom!!!!!!!!!!"
         self.assertEqual(noise, expected_noise)
+
 
 class AdapterTest(unittest.TestCase):
 
