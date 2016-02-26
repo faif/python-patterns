@@ -1,0 +1,6 @@
+[run]
+source = patterns
+branch = 1
+
+[report]
+omit = *tests*,*__init__*

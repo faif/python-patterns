@@ -23,8 +23,13 @@ setup(
         'six'
     ],
     extras_require={
-        'test': [
-            'tox'
+        'dev': [
+            'tox',
+            'flake8',
+            'coverage',
+        ],
+        'travis': [
+            'python-coveralls',
         ]
     },
     test_suite='tests',
