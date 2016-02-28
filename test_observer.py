@@ -4,9 +4,11 @@ from observer import Subject, Data, DecimalViewer, HexViewer
 
 if sys.version_info < (2, 7):
     import unittest2 as unittest
+    
 else:
     import unittest
-
+    
+from unittest.mock import patch
 
 class TestSubject(unittest.TestCase):
 
@@ -39,27 +41,26 @@ class TestData(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        dec_obs = DecimalViewer()
-        hex_obs = HexViewer()
-        self.sub1 = Data('Data 1')
-        self.sub2 = Data('Data 2')
+        self.dec_obs = DecimalViewer()
+        self.hex_obs = HexViewer()
+        self.sub = Data('Data')
         #inherited behavior already tested with TestSubject
-        self.sub1.attach(dec_obs)
-        self.sub1.attach(hex_obs)
-        self.sub2.attach(dec_obs)
-        self.sub2.attach(hex_obs)
+        self.sub.attach(self.dec_obs)
+        self.sub.attach(self.hex_obs)
 
-    def setUp(self):
-        self.output = StringIO()
-        self.saved_stdout = sys.stdout
-        sys.stdout = self.output
+    def test_data_change_shall_notify_all_observers_once(self):
+        with patch.object(self.dec_obs, 'update') as mock_dec_obs_update, patch.object(self.hex_obs, 'update') as mock_hex_obs_update:
+                self.sub.data = 10
+                self.assertEqual(mock_dec_obs_update.call_count, 1)
+                self.assertEqual(mock_hex_obs_update.call_count, 1)
 
-#    def test_observers_shall_be_notified(self):
-#        self.sub1.data = 10
+    def test_data_value_shall_be_changeable(self):
+        self.sub.data = 20
+        self.assertEqual(self.sub._data, 20)
 
-    def tearDown(self):
-        self.output.close()
-        sys.stdout = self.saved_stdout
+    def test_data_name_shall_be_changeable(self):
+        self.sub.name = 'New Data Name'
+        self.assertEqual(self.sub.name, 'New Data Name')
 
 if __name__ == "__main__":
     unittest.main()
