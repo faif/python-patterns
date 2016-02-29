@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """http://codesnipers.com/?q=python-flyweights"""
+from six import with_metaclass
 
 import weakref
 
@@ -65,8 +65,7 @@ class Card(object):
         return "<Card: %s%s>" % (self.value, self.suit)
 
 
-class Card2(object, metaclass=FlyweightMeta):
-    __metaclass__ = FlyweightMeta
+class Card2(with_metaclass(object, FlyweightMeta)):
 
     def __init__(self, *args, **kwargs):
         # print('Init {}: {}'.format(self.__class__, (args, kwargs)))
