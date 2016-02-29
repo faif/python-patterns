@@ -6,11 +6,11 @@ env:
 
 python:
     - "2.7"
-    - "3.5"
+    - "3.6"
 
 before_install:
     - pip install -e .
-    - pip install -e '.[test]'
+    - pip install -e '.[dev]'
     - pip install -e '.[travis]'
 
 before_script:
