@@ -1,10 +1,6 @@
-from state import Radio
-import sys
+from .compat import unittest
+from patterns.state import Radio
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 class RadioTest(unittest.TestCase):
     """
@@ -56,7 +52,3 @@ class RadioTest(unittest.TestCase):
         state = self.radio.state.name
         expected_state_name = 'AM'
         self.assertEqual(state, expected_state_name)
-
-if __name__ == "__main__":
-    unittest.main()
-

@@ -72,10 +72,11 @@ class Adapter(object):
     def __getattr__(self, attr):
         """All non-adapted calls are passed to the object"""
         return getattr(self.obj, attr)
-        
+
     def original_dict(self):
         """Print original object dict"""
         return self.obj.__dict__
+
 
 def main():
     objects = []
@@ -100,7 +101,7 @@ if __name__ == "__main__":
 
 ### OUTPUT ###
 # {'name': 'Dog'}
-# {'make_noise': <bound method Dog.bark of <__main__.Dog object at 0x7f631ba3fb00>>, 'obj': <__main__.Dog object at 0x7f631ba3fb00>}
+# {'make_noise': <bound method Dog.bark of <__main__.Dog object at 0x7f631ba3fb00>>, 'obj': <__main__.Dog object at 0x7f631ba3fb00>}  # noqa
 # {'name': 'Dog'}
 # A Dog goes woof!
 # A Cat goes meow!

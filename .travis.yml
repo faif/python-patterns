@@ -1,0 +1,27 @@
+sudo: false
+
+language: python
+
+env:
+    - TOX_ENV=py27
+    - TOX_ENV=py35
+
+python:
+    - "2.7"
+    - "3.5"
+
+before_install:
+    - pip install -e .
+    - pip install -e '.[dev]'
+    - pip install -e '.[travis]'
+
+before_script:
+  - flake8
+
+script:
+    - tox -e $TOX_ENV
+
+after_success:
+  - coverage run setup.py test
+  - coverage report
+  - coveralls

@@ -1,13 +1,10 @@
 """
 Tests for strategy.py
 """
+import subprocess
 
-import subprocess, sys
+from .compat import unittest
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 class StrategyTest(unittest.TestCase):
 
@@ -17,13 +14,12 @@ class StrategyTest(unittest.TestCase):
         The expected_output is equivalent to the output on the command
         line when running 'python strategy.py'.
         """
-        output = subprocess.check_output(["python", "strategy.py"])
+        output = subprocess.check_output(["python", "patterns/strategy.py"])
         expected_output = 'Strategy Example 0\r\n\
 Strategy Example 1 from execute 1\r\n\
 Strategy Example 2 from execute 2\r\n'
         # byte representation required due to EOF returned subprocess
         expected_output_as_bytes = expected_output.encode(encoding='UTF-8')
-        self.assertEqual(output, expected_output_as_bytes)
-
-if __name__ == "__main__":
-    unitest.main()
+        self.assertEqual(
+            output.splitlines(), expected_output_as_bytes.splitlines()
+        )

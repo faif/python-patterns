@@ -35,7 +35,7 @@ class NoTalkProxy(Proxy):
     def work(self):
         print("Proxy checking for Sales Manager availability")
         time.sleep(2)
-        print("This Sales Manager will not talk to you whether he/she is busy or not")
+        print("This Sales Manager will not talk to you whether he/she is busy or not")  # noqa
 
 
 if __name__ == '__main__':

@@ -1,22 +1,29 @@
-from command import MoveFileCommand
-import os, shutil, subprocess, sys
+import os
+import shutil
+import tempfile
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
+from .compat import unittest
+from patterns.command import MoveFileCommand
+
+
+TEST_DIRECTORY = 'test_command'
+
 
 class CommandTest(unittest.TestCase):
 
     @classmethod
-    def __get_test_directory(self):
+    def __get_test_directory(cls):
         """
         Get the temporary directory for the tests.
         """
-        self.test_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_command')
+        cls.test_dir = os.path.join(
+            tempfile.gettempdir(), 'test_command'
+        )
+        if not os.path.exists(cls.test_dir):
+            os.mkdir(cls.test_dir)
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         """
         - Create a temporary directory and file
         /test_command
@@ -24,12 +31,21 @@ class CommandTest(unittest.TestCase):
         - get the temporary test directory
         - and initializes the command stack.
         """
-        os.mkdir('test_command')
-        open('test_command/foo.txt', 'w').close()
-        self.__get_test_directory()
-        self.command_stack = []
-        self.command_stack.append(MoveFileCommand(os.path.join(self.test_dir, 'foo.txt'), os.path.join(self.test_dir, 'bar.txt')))
-        self.command_stack.append(MoveFileCommand(os.path.join(self.test_dir, 'bar.txt'), os.path.join(self.test_dir, 'baz.txt')))
+        cls.__get_test_directory()
+        open(os.path.join(cls.test_dir, 'foo.txt'), 'w').close()
+        cls.command_stack = []
+        cls.command_stack.append(
+            MoveFileCommand(
+                os.path.join(cls.test_dir, 'foo.txt'),
+                os.path.join(cls.test_dir, 'bar.txt')
+            )
+        )
+        cls.command_stack.append(
+            MoveFileCommand(
+                os.path.join(cls.test_dir, 'bar.txt'),
+                os.path.join(cls.test_dir, 'baz.txt')
+            )
+        )
 
     def test_sequential_execution(self):
         self.command_stack[0].execute()
@@ -49,11 +65,11 @@ class CommandTest(unittest.TestCase):
         self.assertEqual(output_after_second_undo[0], 'foo.txt')
 
     @classmethod
-    def tearDownClass(self):
+    def tearDownClass(cls):
         """
         Remove the temporary directory /test_command and its content.
         """
-        shutil.rmtree('test_command')
+        shutil.rmtree(cls.test_dir)
 
 if __name__ == "__main__":
     unittest.main()

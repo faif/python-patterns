@@ -21,8 +21,10 @@ class Catalog():
         # dictionary that will be used to determine which static method is
         # to be executed but that will be also used to store possible param
         # value
-        self._static_method_choices = {'param_value_1': self._static_method_1,
-                                      'param_value_2': self._static_method_2}
+        self._static_method_choices = {
+            'param_value_1': self._static_method_1,
+            'param_value_2': self._static_method_2
+        }
 
         # simple test to validate param value
         if param in self._static_method_choices.keys():
@@ -69,9 +71,10 @@ class CatalogInstance:
     def _instance_method_2(self):
         print("Value {}".format(self.x2))
 
-    _instance_method_choices = {'param_value_1': _instance_method_1,
-                                'param_value_2': _instance_method_2}
-
+    _instance_method_choices = {
+        'param_value_1': _instance_method_1,
+        'param_value_2': _instance_method_2
+    }
 
     def main_method(self):
         """
@@ -138,8 +141,10 @@ class CatalogStatic:
     def _static_method_2():
         print("executed method 2!")
 
-    _static_method_choices = {'param_value_1': _static_method_1,
-                             'param_value_2': _static_method_2}
+    _static_method_choices = {
+        'param_value_1': _static_method_1,
+        'param_value_2': _static_method_2
+    }
 
     def main_method(self):
         """
@@ -147,6 +152,7 @@ class CatalogStatic:
         depending on self.param value
         """
         self._static_method_choices[self.param].__get__(None, self.__class__)()
+
 
 def main():
     """

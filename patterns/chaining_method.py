@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+
 
 class Person(object):
 
@@ -10,6 +12,7 @@ class Person(object):
     def do_action(self):
         print(self.name, self.action.name, end=' ')
         return self.action
+
 
 class Action(object):
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from six import with_metaclass
+
 
 class RegistryHolder(type):
 
@@ -20,8 +22,7 @@ class RegistryHolder(type):
         return dict(cls.REGISTRY)
 
 
-class BaseRegisteredClass:
-    __metaclass__ = RegistryHolder
+class BaseRegisteredClass(with_metaclass(object, RegistryHolder)):
     """
         Any class that will inherits from BaseRegisteredClass will be included
         inside the dict RegistryHolder.REGISTRY, the key being the name of the
@@ -38,15 +39,14 @@ if __name__ == "__main__":
 
         def __init__(self, *args, **kwargs):
             pass
-            
 
     print("After subclassing: ")
     for k in RegistryHolder.REGISTRY:
         print(k)
 
 ###  OUTPUT ###
-# Before subclassing: 
+# Before subclassing:
 # BaseRegisteredClass
-# After subclassing: 
+# After subclassing:
 # BaseRegisteredClass
 # ClassRegistree
