@@ -7,10 +7,10 @@ from observer import Subject, Data, DecimalViewer, HexViewer
 
 if sys.version_info < (2, 7):
     import unittest2 as unittest
-    
+
 else:
     import unittest
-    
+
 from unittest.mock import patch
 
 class TestSubject(unittest.TestCase):
@@ -52,10 +52,11 @@ class TestData(unittest.TestCase):
         cls.sub.attach(cls.hex_obs)
 
     def test_data_change_shall_notify_all_observers_once(cls):
-        with patch.object(cls.dec_obs, 'update') as mock_dec_obs_update, patch.object(cls.hex_obs, 'update') as mock_hex_obs_update:
-                cls.sub.data = 10
-                cls.assertEqual(mock_dec_obs_update.call_count, 1)
-                cls.assertEqual(mock_hex_obs_update.call_count, 1)
+        with patch.object(cls.dec_obs, 'update') as mock_dec_obs_update,\
+            patch.object(cls.hex_obs, 'update') as mock_hex_obs_update:
+            cls.sub.data = 10
+            cls.assertEqual(mock_dec_obs_update.call_count, 1)
+            cls.assertEqual(mock_hex_obs_update.call_count, 1)
 
     def test_data_value_shall_be_changeable(cls):
         cls.sub.data = 20
