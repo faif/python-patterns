@@ -10,6 +10,8 @@ if version_info < (2, 7):
 else:
     import unittest
 
+from unittest.mock import patch, call
+
 class TestProvider(unittest.TestCase):
     """
     Integration tests ~ provider class with as little mocking as possible.
@@ -39,6 +41,32 @@ class TestProvider(unittest.TestCase):
         pub.publish(expected_msg)
         cls.assertEqual(len(pro.msg_queue), 1)
         cls.assertEqual(pro.msg_queue[0], expected_msg)
+
+    def test_provider_shall_update_affected_subscribers_with_published_messages(cls):
+        pro = Provider()
+        pub = Publisher(pro)
+        sub1 = Subscriber('sub 1 name', pro)
+        sub1.subscribe('sub 1 msg 1')
+        sub1.subscribe('sub 1 msg 2')
+        sub2 = Subscriber('sub 2 name', pro)
+        sub2.subscribe('sub 2 msg 1')
+        sub2.subscribe('sub 2 msg 2')
+        with patch.object(sub1, 'run') as mock_subscriber1_run,\
+             patch.object(sub2, 'run') as mock_subscriber2_run:
+            pro.update()
+            cls.assertEqual(mock_subscriber1_run.call_count, 0)
+            cls.assertEqual(mock_subscriber2_run.call_count, 0)
+        pub.publish('sub 1 msg 1')
+        pub.publish('sub 1 msg 2')
+        pub.publish('sub 2 msg 1')
+        pub.publish('sub 2 msg 2')
+        with patch.object(sub1, 'run') as mock_subscriber1_run,\
+             patch.object(sub2, 'run') as mock_subscriber2_run:
+            pro.update()
+            expected_sub1_calls = [call('sub 1 msg 1'), call('sub 1 msg 2')]
+            mock_subscriber1_run.assert_has_calls(expected_sub1_calls)
+            expected_sub2_calls = [call('sub 2 msg 1'), call('sub 2 msg 2')]
+            mock_subscriber2_run.assert_has_calls(expected_sub2_calls)
 
 if __name__ == "__main__":
     unittest.main()
