@@ -16,22 +16,24 @@ class TestProvider(unittest.TestCase):
     """
     Integration tests ~ provider class with as little mocking as possible.
     """
-    def test_subscriber_shall_be_attachable(cls):
+    def test_subscriber_shall_be_attachable_to_subscriptions(cls):
+        subscription = 'sub msg'
         pro = Provider()
         cls.assertEqual(len(pro.subscribers), 0)
         sub = Subscriber('sub name', pro)
-        sub.subscribe('sub msg')
-        cls.assertEqual(len(pro.subscribers), 1)
+        sub.subscribe(subscription)
+        cls.assertEqual(len(pro.subscribers[subscription]), 1)
 
-#    def test_subscriber_shall_be_detachable(cls):
-#        pro = Provider()
-#        sub = Subscriber('sub name', pro)
-#        sub.subscribe('sub msg')
-#        cls.assertEqual(len(pro.subscribers), 1)
-#        pro.unsubscribe('sub msg', sub)
-#        cls.assertEqual(len(pro.subscribers), 0)
+    def test_subscriber_shall_be_detachable_from_subscriptions(cls):
+        subscription = 'sub msg'
+        pro = Provider()
+        sub = Subscriber('sub name', pro)
+        sub.subscribe(subscription)
+        cls.assertEqual(len(pro.subscribers[subscription]), 1)
+        sub.unsubscribe(subscription)
+        cls.assertEqual(len(pro.subscribers[subscription]), 0)
 
-    def test_publisher_shall_append_message(cls):
+    def test_publisher_shall_append_subscription_message_to_queue(cls):
         ''' msg_queue ~ Provider.notify(msg) ~ Publisher.publish(msg) '''
         expected_msg = 'expected msg'
         pro = Provider()
@@ -42,7 +44,7 @@ class TestProvider(unittest.TestCase):
         cls.assertEqual(len(pro.msg_queue), 1)
         cls.assertEqual(pro.msg_queue[0], expected_msg)
 
-    def test_provider_shall_update_affected_subscribers_with_published_messages(cls):
+    def test_provider_shall_update_affected_subscribers_with_published_subscription(cls):
         pro = Provider()
         pub = Publisher(pro)
         sub1 = Subscriber('sub 1 name', pro)
