@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from proxy import Proxy, NoTalkProxy
 from io import StringIO
 import sys
