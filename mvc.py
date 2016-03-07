@@ -6,7 +6,7 @@ class Model(object):
         raise NotImplementedError
 
     def get(self, item):
-        """Returns an an object with a .items() call method
+        """Returns an object with a .items() call method
         that iterates over key,value pairs of its information."""
         raise NotImplementedError
 
