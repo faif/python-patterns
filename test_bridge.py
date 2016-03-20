@@ -25,6 +25,15 @@ class BridgeTest(unittest.TestCase):
             sh2.draw()
             cls.assertEqual(mock_ci2_draw_circle.call_count, 1)
 
+    def test_bridge_shall_scale_with_own_implementation(cls):
+        ci = DrawingAPI1()
+        sh = CircleShape(1, 2, 3, ci)
+        sh.scale(2)
+        cls.assertEqual(sh._radius, 6)
+        with patch.object(sh, 'scale') as mock_sh_scale_circle:
+            sh.scale(2)
+            cls.assertEqual(mock_sh_scale_circle.call_count, 1)
+
 if __name__ == "__main__":
     unittest.main()
 
