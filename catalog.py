@@ -75,7 +75,7 @@ class CatalogInstance:
 
     def main_method(self):
         """
-        will execute either _instance_method_1 or _instance_method_1
+        will execute either _instance_method_1 or _instance_method_2
         depending on self.param value
         """
         self._instance_method_choices[self.param].__get__(self)()
@@ -111,7 +111,7 @@ class CatalogClass:
 
     def main_method(self):
         """
-        will execute either _instance_method_1 or _instance_method_1
+        will execute either _class_method_1 or _class_method_2
         depending on self.param value
         """
         self._class_method_choices[self.param].__get__(None, self.__class__)()
@@ -143,7 +143,7 @@ class CatalogStatic:
 
     def main_method(self):
         """
-        will execute either _instance_method_1 or _instance_method_1
+        will execute either _static_method_1 or _static_method_2
         depending on self.param value
         """
         self._static_method_choices[self.param].__get__(None, self.__class__)()
