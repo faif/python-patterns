@@ -13,7 +13,7 @@ class Delegator(object):
     >>> delegator.do_something("nothing")
     'Doing nothing'
     >>> delegator.do_anything()
-    'Default implementation'
+
     """
     def __init__(self, delegate):
         self.delegate = delegate
@@ -24,7 +24,6 @@ class Delegator(object):
                 attr = getattr(self.delegate, name)
                 if callable(attr):
                     return attr(*args, **kwargs)
-            return 'Default implementation'
         return wrapper
 
 
