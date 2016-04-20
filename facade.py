@@ -56,7 +56,7 @@ class TestRunner:
         self.tc1 = TC1()
         self.tc2 = TC2()
         self.tc3 = TC3()
-        self.tests = [i for i in (self.tc1, self.tc2, self.tc3)]
+        self.tests = [self.tc1, self.tc2, self.tc3]
 
     def runAll(self):
         [i.run() for i in self.tests]
