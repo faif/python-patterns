@@ -40,9 +40,9 @@ class HierachicalStateMachine(object):
                               'operator inservice': self._current_state.on_operator_inservice}
 
     def _next_state(self, state):
-        if state in self.states.keys():
+        try:
             self._current_state = self.states[state]
-        else:
+        except KeyError:
             raise UnsupportedState
 
     def _send_diagnostics_request(self):
