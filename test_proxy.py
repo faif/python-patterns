@@ -30,10 +30,10 @@ class ProxyTest(unittest.TestCase):
         cls.output.close()
         sys.stdout = cls.saved_stdout
 
-    def test_sales_manager_shall_work_through_proxy_with_delay(cls):
+    def test_sales_manager_shall_talk_through_proxy_with_delay(cls):
         cls.p.busy = 'No'
         start_time = time()
-        cls.p.work()
+        cls.p.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
@@ -46,7 +46,7 @@ Sales Manager ready to talk\n'
     def test_sales_manager_shall_respond_through_proxy_with_delay(cls):
         cls.p.busy = 'Yes'
         start_time = time()
-        cls.p.work()
+        cls.p.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
@@ -75,10 +75,10 @@ class NoTalkProxyTest(unittest.TestCase):
         cls.output.close()
         sys.stdout = cls.saved_stdout
 
-    def test_sales_manager_shall_not_work_through_proxy_with_delay(cls):
+    def test_sales_manager_shall_not_talk_through_proxy_with_delay(cls):
         cls.ntp.busy = 'No'
         start_time = time()
-        cls.ntp.work()
+        cls.ntp.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
@@ -91,7 +91,7 @@ This Sales Manager will not talk to you whether he/she is busy or not\n'
     def test_sales_manager_shall_not_respond_through_proxy_with_delay(cls):
         cls.ntp.busy = 'Yes'
         start_time = time()
-        cls.ntp.work()
+        cls.ntp.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
