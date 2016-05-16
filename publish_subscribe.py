@@ -48,6 +48,9 @@ class Subscriber:
     def subscribe(self, msg):
         self.provider.subscribe(msg, self)
 
+    def unsubscribe(self, msg):
+        self.provider.unsubscribe(msg, self)
+
     def run(self, msg):
         print("{} got {}".format(self.name, msg))
 
@@ -63,6 +66,9 @@ def main():
     jack.subscribe("music")
     gee = Subscriber("gee", message_center)
     gee.subscribe("movie")
+    vani = Subscriber("vani", message_center)
+    vani.subscribe("movie")
+    vani.unsubscribe("movie")
 
     fftv.publish("cartoon")
     fftv.publish("music")
