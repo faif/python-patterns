@@ -2,9 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from proxy import Proxy, NoTalkProxy
-from io import StringIO
 import sys
 from time import time
+
+if sys.version_info[0] == 2:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
 if sys.version_info < (2, 7):
     import unittest2 as unittest
@@ -40,8 +44,8 @@ class ProxyTest(unittest.TestCase):
         expected_print_output = 'Proxy checking for Sales Manager availability\n\
 Sales Manager ready to talk\n'
         cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 2
-        cls.assertEqual(int(execution_time), expected_execution_time)
+        expected_execution_time = 1
+        cls.assertEqual(int(execution_time*10), expected_execution_time)
 
     def test_sales_manager_shall_respond_through_proxy_with_delay(cls):
         cls.p.busy = 'Yes'
@@ -53,8 +57,8 @@ Sales Manager ready to talk\n'
         expected_print_output = 'Proxy checking for Sales Manager availability\n\
 Sales Manager is busy\n'
         cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 2
-        cls.assertEqual(int(execution_time), expected_execution_time)
+        expected_execution_time = 1
+        cls.assertEqual(int(execution_time*10), expected_execution_time)
 
 
 class NoTalkProxyTest(unittest.TestCase):
@@ -85,8 +89,8 @@ class NoTalkProxyTest(unittest.TestCase):
         expected_print_output = 'Proxy checking for Sales Manager availability\n\
 This Sales Manager will not talk to you whether he/she is busy or not\n'
         cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 2
-        cls.assertEqual(int(execution_time), expected_execution_time)
+        expected_execution_time = 1
+        cls.assertEqual(int(execution_time*10), expected_execution_time)
 
     def test_sales_manager_shall_not_respond_through_proxy_with_delay(cls):
         cls.ntp.busy = 'Yes'
@@ -98,8 +102,8 @@ This Sales Manager will not talk to you whether he/she is busy or not\n'
         expected_print_output = 'Proxy checking for Sales Manager availability\n\
 This Sales Manager will not talk to you whether he/she is busy or not\n'
         cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 2
-        cls.assertEqual(int(execution_time), expected_execution_time)
+        expected_execution_time = 1
+        cls.assertEqual(int(execution_time*10), expected_execution_time)
 
 if __name__ == "__main__":
     unittest.main()
