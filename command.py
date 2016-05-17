@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-
+from os.path import lexists
 
 class MoveFileCommand(object):
 
@@ -28,13 +28,23 @@ def main():
     command_stack.append(MoveFileCommand('foo.txt', 'bar.txt'))
     command_stack.append(MoveFileCommand('bar.txt', 'baz.txt'))
 
-    # they can be executed later on
-    for cmd in command_stack:
-        cmd.execute()
+    # verify that none of the target files exist
+    assert(not lexists("foo.txt"))
+    assert(not lexists("bar.txt"))
+    assert(not lexists("baz.txt"))
+    try:
+        with open("foo.txt", "w"):  # Creating the file
+            pass
 
-    # and can also be undone at will
-    for cmd in reversed(command_stack):
-        cmd.undo()
+        # they can be executed later on
+        for cmd in command_stack:
+            cmd.execute()
+
+        # and can also be undone at will
+        for cmd in reversed(command_stack):
+            cmd.undo()
+    finally:
+        os.unlink("foo.txt")
 
 if __name__ == "__main__":
     main()
