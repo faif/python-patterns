@@ -7,11 +7,14 @@ from observer import Subject, Data, DecimalViewer, HexViewer
 
 if sys.version_info < (2, 7):
     import unittest2 as unittest
-
 else:
     import unittest
 
-from unittest.mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock import patch
+
 
 class TestSubject(unittest.TestCase):
 

@@ -9,7 +9,11 @@ if version_info < (2, 7):
 else:
     import unittest
 
-from unittest.mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock import patch
+
 
 class BridgeTest(unittest.TestCase):
 
