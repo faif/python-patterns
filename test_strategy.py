@@ -33,4 +33,4 @@ class StrategyTest(unittest.TestCase):
         self.assertEqual(output, expected_output_as_bytes)
 
 if __name__ == "__main__":
-    unitest.main()
+    unittest.main()
