@@ -4,7 +4,7 @@
 from bridge import DrawingAPI1, DrawingAPI2, CircleShape
 from sys import version_info
 
-if version_info < (2, 7):
+if version_info < (2, 7):  # pragma: no cover
     import unittest2 as unittest
 else:
     import unittest

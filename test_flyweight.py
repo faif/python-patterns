@@ -4,7 +4,7 @@
 from flyweight import Card
 from sys import version_info
 
-if version_info < (2, 7):
+if version_info < (2, 7):  # pragma: no cover
     import unittest2 as unittest
 else:
     import unittest
