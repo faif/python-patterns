@@ -1,0 +1,29 @@
+# vim ft=yaml
+# travis-ci.org definition for python-patterns build
+language: python
+
+sudo: false
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "pypy"
+  - "pypy3"
+
+cache:
+  - pip
+
+install:
+  - travis_retry pip install -q coveralls codecov
+  - pip install flake8  # eventually worth
+
+script:
+  - PYTHONPATH=. nosetests -s -v --with-doctest --with-cov --cover-package . --logging-level=INFO -v .
+  # for now failure in flaking is ignored
+  - flake8 *py || echo "PEP8 the code"
+
+after_success:
+  - coveralls
+  - codecov
