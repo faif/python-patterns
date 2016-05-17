@@ -46,8 +46,10 @@ class Adapter(object):
     >>> objects = []
     >>> dog = Dog()
     >>> print(dog.__dict__)
+    {'name': 'Dog'}
     >>> objects.append(Adapter(dog, make_noise=dog.bark))
     >>> print(objects[0].original_dict())
+    {'name': 'Dog'}
     >>> cat = Cat()
     >>> objects.append(Adapter(cat, make_noise=cat.meow))
     >>> human = Human()
