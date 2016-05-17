@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from hsm import HierachicalStateMachine, UnsupportedMessageType,\
     UnsupportedState, UnsupportedTransition, Active, Standby, Suspect, Failed
 from sys import version_info

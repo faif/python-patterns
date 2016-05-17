@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from adapter import Dog, Cat, Human, Car, Adapter
 import sys
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from borg import Borg, YourBorg
 import sys
 

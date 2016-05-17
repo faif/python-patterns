@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """https://docs.python.org/2/library/functools.html#functools.wraps"""
 """https://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/739665#739665"""
 
