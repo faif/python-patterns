@@ -9,8 +9,9 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
-  - "pypy"
-  - "pypy3"
+# Disabled for now since cause more pain than gain
+#  - "pypy"
+#  - "pypy3"
 
 cache:
   - pip
