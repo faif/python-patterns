@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from state import Radio
 import sys
 

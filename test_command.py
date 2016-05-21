@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from command import MoveFileCommand
 import os, shutil, subprocess, sys
 

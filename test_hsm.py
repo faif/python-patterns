@@ -1,13 +1,17 @@
+#!/usr/bin/env python
 from hsm import HierachicalStateMachine, UnsupportedMessageType,\
     UnsupportedState, UnsupportedTransition, Active, Standby, Suspect, Failed
 from sys import version_info
 
-if version_info < (2, 7):
+if version_info < (2, 7):  # pragma: no cover
     import unittest2 as unittest
 else:
     import unittest
 
-from unittest.mock import patch
+try:
+    from unittest.mock import patch
+except ImportError:
+    from mock import patch
 
 
 class HsmMethodTest(unittest.TestCase):
@@ -74,17 +78,17 @@ class StandbyStateTest(unittest.TestCase):
     def test_given_standby_on_message_diagnostics_failed_shall_raise_exception_and_keep_in_state(cls):
         with cls.assertRaises(UnsupportedTransition) as context:
             cls.hsm.on_message('diagnostics failed')
-            cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
+        cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
 
     def test_given_standby_on_message_diagnostics_passed_shall_raise_exception_and_keep_in_state(cls):
         with cls.assertRaises(UnsupportedTransition) as context:
             cls.hsm.on_message('diagnostics passed')
-            cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
+        cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
 
     def test_given_standby_on_message_operator_inservice_shall_raise_exception_and_keep_in_state(cls):
         with cls.assertRaises(UnsupportedTransition) as context:
             cls.hsm.on_message('operator inservice')
-            cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
+        cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
 
 
 if __name__ == "__main__":

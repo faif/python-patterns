@@ -74,6 +74,11 @@ class Card2(object):
 
 
 if __name__ == '__main__':
+    import sys
+    if sys.version_info[0] > 2:
+        sys.stderr.write("!!! This example is compatible only with Python 2 ATM !!!\n")
+        raise SystemExit(0)
+
     # comment __new__ and uncomment __init__ to see the difference
     c1 = Card('9', 'h')
     c2 = Card('9', 'h')

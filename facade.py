@@ -3,7 +3,7 @@
 
 import time
 
-SLEEP = 0.5
+SLEEP = 0.1
 
 
 # Complex Parts

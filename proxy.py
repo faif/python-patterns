@@ -18,17 +18,17 @@ class Proxy:
         print("Proxy checking for Sales Manager availability")
         if self.busy == 'No':
             self.sales = SalesManager()
-            time.sleep(2)
+            time.sleep(0.1)
             self.sales.talk()
         else:
-            time.sleep(2)
+            time.sleep(0.1)
             print("Sales Manager is busy")
 
 
 class NoTalkProxy(Proxy):
     def talk(self):
         print("Proxy checking for Sales Manager availability")
-        time.sleep(2)
+        time.sleep(0.1)
         print("This Sales Manager will not talk to you whether he/she is busy or not")
 
 

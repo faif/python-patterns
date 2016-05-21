@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # http://stackoverflow.com/questions/963965/how-is-this-strategy-pattern
 # -written-in-python-the-sample-in-wikipedia
 """

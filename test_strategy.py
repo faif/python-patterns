@@ -1,13 +1,17 @@
+#!/usr/bin/env python
 """
 Tests for strategy.py
 """
 
-import subprocess, sys
+import os
+import subprocess
+import sys
 
 if sys.version_info < (2, 7):
     import unittest2 as unittest
 else:
     import unittest
+
 
 class StrategyTest(unittest.TestCase):
 
@@ -18,12 +22,15 @@ class StrategyTest(unittest.TestCase):
         line when running 'python strategy.py'.
         """
         output = subprocess.check_output(["python", "strategy.py"])
-        expected_output = 'Strategy Example 0\r\n\
-Strategy Example 1 from execute 1\r\n\
-Strategy Example 2 from execute 2\r\n'
+        expected_output = os.linesep.join([
+            'Strategy Example 0',
+            'Strategy Example 1 from execute 1',
+            'Strategy Example 2 from execute 2',
+            ''
+        ])
         # byte representation required due to EOF returned subprocess
         expected_output_as_bytes = expected_output.encode(encoding='UTF-8')
         self.assertEqual(output, expected_output_as_bytes)
 
 if __name__ == "__main__":
-    unitest.main()
+    unittest.main()

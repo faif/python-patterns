@@ -4,13 +4,16 @@
 from sys import version_info
 from publish_subscribe import Provider, Publisher, Subscriber
 
-if version_info < (2, 7):
+if version_info < (2, 7):  # pragma: no cover
     import unittest2 as unittest
-
 else:
     import unittest
 
-from unittest.mock import patch, call
+try:
+    from unittest.mock import patch, call
+except ImportError:
+    from mock import patch, call
+
 
 class TestProvider(unittest.TestCase):
     """
