@@ -31,6 +31,11 @@ class Builder(object):
     def new_building(self):
         self.building = Building()
 
+    def build_floor(self):
+        raise NotImplementedError
+
+    def build_size(self):
+        raise NotImplementedError
 
 # Concrete Builder
 class BuilderHouse(Builder):
