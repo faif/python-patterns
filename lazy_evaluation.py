@@ -67,4 +67,4 @@ if __name__ == '__main__':
 # {'name': 'Jhon', 'occupation': 'Coder'}
 # Jhon's relatives: Many relatives.
 # After we've accessed `relatives`:
-# {'_lazy_relatives': 'Many relatives.', 'name': 'Jhon', 'occupation': 'Coder'}
+# {'relatives': 'Many relatives.', 'name': 'Jhon', 'occupation': 'Coder'}
