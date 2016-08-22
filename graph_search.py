@@ -38,7 +38,7 @@ class GraphSearch:
         path = path or []
         path.append(start)
 
-        if self.start == self.end:
+        if start == end:
             return path
         shortest = None
         for node in self.graph.get(start, []):
