@@ -24,9 +24,8 @@ class Provider:
 
     def update(self):
         for msg in self.msg_queue:
-            if msg in self.subscribers:
-                for sub in self.subscribers[msg]:
-                    sub.run(msg)
+            for sub in self.subscribers.get(msg, []):
+                sub.run(msg)
         self.msg_queue = []
 
 
