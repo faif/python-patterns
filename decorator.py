@@ -1,33 +1,37 @@
 #!/usr/bin/env python
-"""https://docs.python.org/2/library/functools.html#functools.wraps"""
-"""https://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python/739665#739665"""
-
-from functools import wraps
-
-
-def makebold(fn):
-    return getwrapped(fn, "b")
+"""
+Reference: https://en.wikipedia.org/wiki/Decorator_pattern
+"""
 
 
-def makeitalic(fn):
-    return getwrapped(fn, "i")
+class TextTag(object):
+    """Represents a base text tag"""
+    def __init__(self, text):
+        self._text = text
+
+    def render(self):
+        return self._text
 
 
-def getwrapped(fn, tag):
-    @wraps(fn)
-    def wrapped():
-        return "<%s>%s</%s>" % (tag, fn(), tag)
-    return wrapped
+class BoldWrapper(object):
+    """Wraps a tag in <b>"""
+    def __init__(self, wrapped):
+        self._wrapped = wrapped
+
+    def render(self):
+        return "<b>{}</b>".format(self._wrapped.render())
 
 
-@makebold
-@makeitalic
-def hello():
-    """a decorated hello world"""
-    return "hello world"
+class ItalicWrapper(object):
+    """Wraps a tag in <i>"""
+    def __init__(self, wrapped):
+        self._wrapped = wrapped
+
+    def render(self):
+        return "<i>{}</i>".format(self._wrapped.render())
 
 if __name__ == '__main__':
-    print('result:{}   name:{}   doc:{}'.format(hello(), hello.__name__, hello.__doc__))
-
-### OUTPUT ###
-# result:<b><i>hello world</i></b>   name:hello   doc:a decorated hello world
+    simple_hello = TextTag("hello, world!")
+    special_hello = ItalicWrapper(BoldWrapper(simple_hello))
+    print("before:", simple_hello.render())
+    print("after:", special_hello.render())
