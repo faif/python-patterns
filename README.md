@@ -60,4 +60,5 @@ __Others__:
 
 | Pattern | Description |
 |:-------:| ----------- |
+| [blackboard](blackboard.py) | (architectural model, assemble different sub-system knowledge to build a solution, AI approach - non gang of four pattern) |
 | [graph_search](graph_search.py) | (graphing algorithms, not design patterns) |
