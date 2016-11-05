@@ -5,10 +5,14 @@
 
 import weakref
 
+from six import add_metaclass
+
 
 class FlyweightMeta(type):
+
     def __new__(mcs, name, parents, dct):
         """
+        Set up object pool
 
         :param name: class name
         :param parents: class parents
@@ -16,18 +20,16 @@ class FlyweightMeta(type):
         static methods, etc
         :return: new class
         """
-
-        # set up instances pool
         dct['pool'] = weakref.WeakValueDictionary()
         return super(FlyweightMeta, mcs).__new__(mcs, name, parents, dct)
 
     @staticmethod
     def _serialize_params(cls, *args, **kwargs):
-        """Serialize input parameters to a key.
-        Simple implementation is just to serialize it as a string
-
         """
-        args_list = map(str, args)
+        Serialize input parameters to a key.
+        Simple implementation is just to serialize it as a string
+        """
+        args_list = list(map(str, args))
         args_list.extend([str(kwargs), cls.__name__])
         key = ''.join(args_list)
         return key
@@ -65,8 +67,8 @@ class Card(object):
         return "<Card: %s%s>" % (self.value, self.suit)
 
 
+@add_metaclass(FlyweightMeta)
 class Card2(object):
-    __metaclass__ = FlyweightMeta
 
     def __init__(self, *args, **kwargs):
         # print('Init {}: {}'.format(self.__class__, (args, kwargs)))
@@ -74,11 +76,6 @@ class Card2(object):
 
 
 if __name__ == '__main__':
-    import sys
-    if sys.version_info[0] > 2:
-        sys.stderr.write("!!! This example is compatible only with Python 2 ATM !!!\n")
-        raise SystemExit(0)
-
     # comment __new__ and uncomment __init__ to see the difference
     c1 = Card('9', 'h')
     c2 = Card('9', 'h')
