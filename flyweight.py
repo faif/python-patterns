@@ -5,8 +5,6 @@
 
 import weakref
 
-from six import add_metaclass
-
 
 class FlyweightMeta(type):
 
@@ -67,8 +65,12 @@ class Card(object):
         return "<Card: %s%s>" % (self.value, self.suit)
 
 
-@add_metaclass(FlyweightMeta)
-class Card2(object):
+def with_metaclass(meta, *bases):
+    """ Provide python cross-version metaclass compatibility. """
+    return meta("NewBase", bases, {})
+
+
+class Card2(with_metaclass(FlyweightMeta)):
 
     def __init__(self, *args, **kwargs):
         # print('Init {}: {}'.format(self.__class__, (args, kwargs)))
