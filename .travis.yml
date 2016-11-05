@@ -18,7 +18,7 @@ cache:
 
 install:
   - travis_retry pip install -q coveralls codecov
-  - pip install flake8  # eventually worth
+  - pip install flake8 six  # eventually worth
 
 script:
   # Run tests
