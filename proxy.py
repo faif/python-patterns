@@ -3,13 +3,17 @@
 
 import time
 
+class AbstractSales:
+    def talk(self):
+        raise NotImplementEderror
 
-class SalesManager:
+
+class SalesManager(AbstractSales):
     def talk(self):
         print("Sales Manager ready to talk")
 
 
-class Proxy:
+class Proxy(AbstractSales):
     def __init__(self):
         self.busy = 'No'
         self.sales = None
@@ -25,7 +29,11 @@ class Proxy:
             print("Sales Manager is busy")
 
 
-class NoTalkProxy(Proxy):
+class NoTalkProxy(AbstractSales):
+    def __init__(self):
+        self.busy = 'No'
+        self.sales = None
+
     def talk(self):
         print("Proxy checking for Sales Manager availability")
         time.sleep(0.1)
