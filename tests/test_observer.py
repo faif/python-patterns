@@ -3,7 +3,7 @@
 
 import sys
 from io import StringIO
-from ..behavioral.observer import Subject, Data, DecimalViewer, HexViewer
+from behavioral.observer import Subject, Data, DecimalViewer, HexViewer
 
 if sys.version_info < (2, 7):
     import unittest2 as unittest

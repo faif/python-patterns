@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ..behavioral.state import Radio
+from behavioral.state import Radio
 import sys
 
 if sys.version_info < (2, 7):

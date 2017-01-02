@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from ..behavioral.command import MoveFileCommand
+from behavioral.command import MoveFileCommand
 import os, shutil, subprocess, sys
 
 if sys.version_info < (2, 7):
