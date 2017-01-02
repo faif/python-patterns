@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .bridge import DrawingAPI1, DrawingAPI2, CircleShape
+from ..structural.bridge import DrawingAPI1, DrawingAPI2, CircleShape
 from sys import version_info
 
 if version_info < (2, 7):  # pragma: no cover
