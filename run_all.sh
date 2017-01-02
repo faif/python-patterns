@@ -12,7 +12,7 @@ else
     COVERAGE=''
 fi
 for f in */[^_]*py; do
-    python $COVERAGE $f || failed+=" $f"
+    PYTHONPATH=. python $COVERAGE $f || failed+=" $f"
     echo "I: done $f. Exit code $?"
 done;
 
