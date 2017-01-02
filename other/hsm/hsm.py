@@ -1,5 +1,5 @@
 """
-Implementation of the HSM (hierachrical state machine) or
+Implementation of the HSM (hierarchical state machine) or
 NFSM (nested finite state machine) C++ example from
 http://www.eventhelix.com/RealtimeMantra/HierarchicalStateMachine.htm#.VwqLVEL950w
 in Python
