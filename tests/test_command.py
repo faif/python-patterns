@@ -25,8 +25,8 @@ class CommandTest(unittest.TestCase):
         - get the temporary test directory
         - and initializes the command stack.
         """
-        os.mkdir('behavioral/test_command')
-        open('behavioral/test_command/foo.txt', 'w').close()
+        os.mkdir('tests/test_command')
+        open('tests/test_command/foo.txt', 'w').close()
         self.__get_test_directory()
         self.command_stack = []
         self.command_stack.append(MoveFileCommand(os.path.join(self.test_dir, 'foo.txt'), os.path.join(self.test_dir, 'bar.txt')))
@@ -54,7 +54,7 @@ class CommandTest(unittest.TestCase):
         """
         Remove the temporary directory /test_command and its content.
         """
-        shutil.rmtree('behavioral/test_command')
+        shutil.rmtree('tests/test_command')
 
 if __name__ == "__main__":
     unittest.main()
