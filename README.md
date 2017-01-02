@@ -56,6 +56,11 @@ __Behavioral Patterns__:
 | [template](behavioral/template.py) | an object imposes a structure but takes pluggable components |
 | [visitor](behavioral/visitor.py) | invoke a callback for all items of a collection |
 
+__Fundamental Patterns__:
+
+| Pattern | Description |
+|:-------:| ----------- |
+| [delegation_pattern](fundamental/delegation_pattern.py) | an object handles a request by delegating to a second object (the delegate) |
 
 __Others__:
 
