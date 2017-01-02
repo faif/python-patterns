@@ -21,7 +21,7 @@ class StrategyTest(unittest.TestCase):
         The expected_output is equivalent to the output on the command
         line when running 'python strategy.py'.
         """
-        output = subprocess.check_output(["python", "strategy.py"])
+        output = subprocess.check_output(["python", "behavioral/strategy.py"])
         expected_output = os.linesep.join([
             'Strategy Example 0',
             'Strategy Example 1 from execute 1',
