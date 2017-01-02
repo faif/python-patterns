@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from abstract_factory import PetShop, Dog, Cat, DogFactory, CatFactory
+from .abstract_factory import PetShop, Dog, Cat, DogFactory, CatFactory
 import sys
 
 if sys.version_info < (2, 7):

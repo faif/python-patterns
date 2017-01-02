@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from proxy import Proxy, NoTalkProxy
+from .proxy import Proxy, NoTalkProxy
 import sys
 from time import time
 

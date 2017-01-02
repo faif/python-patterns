@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from borg import Borg, YourBorg
+from .borg import Borg, YourBorg
 import sys
 
 if sys.version_info < (2, 7):

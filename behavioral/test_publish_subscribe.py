@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sys import version_info
-from publish_subscribe import Provider, Publisher, Subscriber
+from .publish_subscribe import Provider, Publisher, Subscriber
 
 if version_info < (2, 7):  # pragma: no cover
     import unittest2 as unittest
