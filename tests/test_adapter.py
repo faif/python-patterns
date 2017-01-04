@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from adapter import Dog, Cat, Human, Car, Adapter
+from structural.adapter import Dog, Cat, Human, Car, Adapter
 import sys
 
 if sys.version_info < (2, 7):

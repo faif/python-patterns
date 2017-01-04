@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flyweight import Card
+from structural.flyweight import Card
 from sys import version_info
 
 if version_info < (2, 7):  # pragma: no cover
