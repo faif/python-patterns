@@ -9,8 +9,7 @@ else:
 
 class ClassTest(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(self):
+    def setUp(self):
         self.dog = Dog()
         self.cat = Cat()
         self.human = Human()
