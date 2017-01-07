@@ -1,18 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
+import unittest
+from unittest.mock import patch
 from creational.abstract_factory import PetShop,\
     Dog, Cat, DogFactory, CatFactory
-
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
-
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
 
 
 class TestPetShop(unittest.TestCase):
