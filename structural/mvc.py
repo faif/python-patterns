@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 class Model(object):
+
     def __iter__(self):
         raise NotImplementedError
 
@@ -15,20 +17,21 @@ class Model(object):
         raise NotImplementedError
 
 
-
 class ProductModel(Model):
 
     class Price(float):
-        """A polymorphic way to pass a float with a particular __str__ functionality."""
+        """A polymorphic way to pass a float with a particular
+        __str__ functionality."""
+
         def __str__(self):
-            first_digits_str = str(round(self,2))
+            first_digits_str = str(round(self, 2))
             try:
                 dot_location = first_digits_str.index('.')
             except ValueError:
                 return (first_digits_str + '.00')
             else:
                 return (first_digits_str +
-                               '0'*(3 + dot_location - len(first_digits_str)))
+                        '0' * (3 + dot_location - len(first_digits_str)))
 
     products = {
         'milk': {'price': Price(1.50), 'quantity': 10},
@@ -48,7 +51,9 @@ class ProductModel(Model):
         except KeyError as e:
             raise KeyError((str(e) + " not in the model's item list."))
 
+
 class View(object):
+
     def show_item_list(self, item_type, item_list):
         raise NotImplementedError
 
@@ -59,6 +64,7 @@ class View(object):
 
     def item_not_found(self, item_type, item_name):
         raise NotImplementedError
+
 
 class ConsoleView(View):
 
@@ -81,7 +87,8 @@ class ConsoleView(View):
         print(printout)
 
     def item_not_found(self, item_type, item_name):
-        print('That %s "%s" does not exist in the records' % (item_type, item_name))
+        print('That %s "%s" does not exist in the records' %
+              (item_type, item_name))
 
 
 class Controller(object):
