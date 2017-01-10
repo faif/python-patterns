@@ -11,7 +11,7 @@ if which coverage > /dev/null; then
 else
     COVERAGE=''
 fi
-for f in */[^_]*py; do
+for f in */tests/[^_]*py; do
     PYTHONPATH=. python $COVERAGE $f || failed+=" $f"
     echo "I: done $f. Exit code $?"
 done;
