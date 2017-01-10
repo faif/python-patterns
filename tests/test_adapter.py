@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import unittest
 from structural.adapter import Dog, Cat, Human, Car, Adapter
 
