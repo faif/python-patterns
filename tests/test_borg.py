@@ -1,16 +1,12 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import unittest
 from creational.borg import Borg, YourBorg
-import sys
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 class BorgTest(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(self):
+    def setUp(self):
         self.b1 = Borg()
         self.b2 = Borg()
         self.ib1 = YourBorg()
@@ -27,6 +23,3 @@ class BorgTest(unittest.TestCase):
 
     def test_instances_shall_have_own_ids(self):
         self.assertNotEqual(id(self.b1), id(self.b2), id(self.ib1))
-
-if __name__ == "__main__":
-    unittest.main()

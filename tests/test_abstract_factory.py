@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
+from creational.abstract_factory import PetShop,\
+    Dog, Cat, DogFactory, CatFactory
 try:
     from unittest.mock import patch
 except ImportError:
     from mock import patch
-from creational.abstract_factory import PetShop,\
-    Dog, Cat, DogFactory, CatFactory
 
 
 class TestPetShop(unittest.TestCase):

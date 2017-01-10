@@ -1,13 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import unittest
 from structural.flyweight import Card
-from sys import version_info
 
-if version_info < (2, 7):  # pragma: no cover
-    import unittest2 as unittest
-else:
-    import unittest
 
 class TestCard(unittest.TestCase):
 
@@ -35,7 +30,3 @@ class TestCard(unittest.TestCase):
         c2 = Card('9', 'h')
         self.assertEqual(hasattr(c2, expected_attribute_name), True)
         self.assertEqual(c2.attr, expected_attribute_value)
-
-if __name__ == "__main__":
-    unittest.main()
-

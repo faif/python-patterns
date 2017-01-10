@@ -1,11 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+import shutil
+import unittest
 from behavioral.command import MoveFileCommand
-import os, shutil, subprocess, sys
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 class CommandTest(unittest.TestCase):
 
@@ -14,7 +13,8 @@ class CommandTest(unittest.TestCase):
         """
         Get the temporary directory for the tests.
         """
-        self.test_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_command')
+        self.test_dir = os.path.join(os.path.dirname(
+            os.path.realpath(__file__)), 'test_command')
 
     @classmethod
     def setUpClass(self):
@@ -29,8 +29,10 @@ class CommandTest(unittest.TestCase):
         open('tests/test_command/foo.txt', 'w').close()
         self.__get_test_directory()
         self.command_stack = []
-        self.command_stack.append(MoveFileCommand(os.path.join(self.test_dir, 'foo.txt'), os.path.join(self.test_dir, 'bar.txt')))
-        self.command_stack.append(MoveFileCommand(os.path.join(self.test_dir, 'bar.txt'), os.path.join(self.test_dir, 'baz.txt')))
+        self.command_stack.append(MoveFileCommand(os.path.join(
+            self.test_dir, 'foo.txt'), os.path.join(self.test_dir, 'bar.txt')))
+        self.command_stack.append(MoveFileCommand(os.path.join(
+            self.test_dir, 'bar.txt'), os.path.join(self.test_dir, 'baz.txt')))
 
     def test_sequential_execution(self):
         self.command_stack[0].execute()
@@ -55,6 +57,3 @@ class CommandTest(unittest.TestCase):
         Remove the temporary directory /test_command and its content.
         """
         shutil.rmtree('tests/test_command')
-
-if __name__ == "__main__":
-    unittest.main()
