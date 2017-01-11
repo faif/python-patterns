@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import unittest
 from structural.bridge import DrawingAPI1, DrawingAPI2, CircleShape
-from sys import version_info
-
-if version_info < (2, 7):  # pragma: no cover
-    import unittest2 as unittest
-else:
-    import unittest
-
 try:
     from unittest.mock import patch
 except ImportError:
@@ -21,7 +14,7 @@ class BridgeTest(unittest.TestCase):
         ci1 = DrawingAPI1()
         ci2 = DrawingAPI2()
         with patch.object(ci1, 'draw_circle') as mock_ci1_draw_circle,\
-             patch.object(ci2, 'draw_circle') as mock_ci2_draw_circle:
+                patch.object(ci2, 'draw_circle') as mock_ci2_draw_circle:
             sh1 = CircleShape(1, 2, 3, ci1)
             sh1.draw()
             cls.assertEqual(mock_ci1_draw_circle.call_count, 1)
@@ -45,11 +38,8 @@ class BridgeTest(unittest.TestCase):
         cls.assertEqual(sh1._radius, EXPECTED_CIRCLE1_RADIUS)
         cls.assertEqual(sh2._radius, EXPECTED_CIRCLE2_RADIUS)
         with patch.object(sh1, 'scale') as mock_sh1_scale_circle,\
-             patch.object(sh2, 'scale') as mock_sh2_scale_circle:
+                patch.object(sh2, 'scale') as mock_sh2_scale_circle:
             sh1.scale(2)
             sh2.scale(2)
             cls.assertEqual(mock_sh1_scale_circle.call_count, 1)
             cls.assertEqual(mock_sh2_scale_circle.call_count, 1)
-
-if __name__ == "__main__":
-    unittest.main()

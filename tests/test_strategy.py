@@ -1,16 +1,8 @@
 #!/usr/bin/env python
-"""
-Tests for strategy.py
-"""
-
+# -*- coding: utf-8 -*-
 import os
 import subprocess
-import sys
-
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest
 
 
 class StrategyTest(unittest.TestCase):
@@ -31,6 +23,3 @@ class StrategyTest(unittest.TestCase):
         # byte representation required due to EOF returned subprocess
         expected_output_as_bytes = expected_output.encode(encoding='UTF-8')
         self.assertEqual(output, expected_output_as_bytes)
-
-if __name__ == "__main__":
-    unittest.main()

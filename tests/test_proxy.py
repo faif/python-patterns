@@ -1,19 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-from structural.proxy import Proxy, NoTalkProxy
 import sys
 from time import time
-
+import unittest
+from structural.proxy import Proxy, NoTalkProxy
 if sys.version_info[0] == 2:
     from StringIO import StringIO
 else:
     from io import StringIO
-
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 
 class ProxyTest(unittest.TestCase):
@@ -104,6 +98,3 @@ This Sales Manager will not talk to you whether he/she is busy or not\n'
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
         cls.assertEqual(int(execution_time*10), expected_execution_time)
-
-if __name__ == "__main__":
-    unittest.main()

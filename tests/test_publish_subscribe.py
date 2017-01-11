@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-from sys import version_info
+import unittest
 from behavioral.publish_subscribe import Provider, Publisher, Subscriber
-
-if version_info < (2, 7):  # pragma: no cover
-    import unittest2 as unittest
-else:
-    import unittest
-
 try:
     from unittest.mock import patch, call
 except ImportError:
@@ -57,7 +50,7 @@ class TestProvider(unittest.TestCase):
         sub2.subscribe('sub 2 msg 1')
         sub2.subscribe('sub 2 msg 2')
         with patch.object(sub1, 'run') as mock_subscriber1_run,\
-             patch.object(sub2, 'run') as mock_subscriber2_run:
+                patch.object(sub2, 'run') as mock_subscriber2_run:
             pro.update()
             cls.assertEqual(mock_subscriber1_run.call_count, 0)
             cls.assertEqual(mock_subscriber2_run.call_count, 0)
@@ -66,13 +59,9 @@ class TestProvider(unittest.TestCase):
         pub.publish('sub 2 msg 1')
         pub.publish('sub 2 msg 2')
         with patch.object(sub1, 'run') as mock_subscriber1_run,\
-             patch.object(sub2, 'run') as mock_subscriber2_run:
+                patch.object(sub2, 'run') as mock_subscriber2_run:
             pro.update()
             expected_sub1_calls = [call('sub 1 msg 1'), call('sub 1 msg 2')]
             mock_subscriber1_run.assert_has_calls(expected_sub1_calls)
             expected_sub2_calls = [call('sub 2 msg 1'), call('sub 2 msg 2')]
             mock_subscriber2_run.assert_has_calls(expected_sub2_calls)
-
-if __name__ == "__main__":
-    unittest.main()
-

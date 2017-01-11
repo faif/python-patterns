@@ -1,13 +1,9 @@
 #!/usr/bin/env python
-from other.hsm.hsm import HierachicalStateMachine, UnsupportedMessageType,\
-    UnsupportedState, UnsupportedTransition, Active, Standby, Suspect, Failed
-from sys import version_info
-
-if version_info < (2, 7):  # pragma: no cover
-    import unittest2 as unittest
-else:
-    import unittest
-
+# -*- coding: utf-8 -*-
+import unittest
+from other.hsm.hsm import HierachicalStateMachine,\
+    UnsupportedMessageType, UnsupportedState,\
+    UnsupportedTransition, Active, Standby, Suspect
 try:
     from unittest.mock import patch
 except ImportError:
@@ -62,9 +58,9 @@ class StandbyStateTest(unittest.TestCase):
 
     def test_given_standby_on_message_switchover_shall_call_hsm_methods(cls):
         with patch.object(cls.hsm, '_perform_switchover') as mock_perform_switchover,\
-             patch.object(cls.hsm, '_check_mate_status') as mock_check_mate_status,\
-             patch.object(cls.hsm, '_send_switchover_response') as mock_send_switchover_response,\
-             patch.object(cls.hsm, '_next_state') as mock_next_state:
+                patch.object(cls.hsm, '_check_mate_status') as mock_check_mate_status,\
+                patch.object(cls.hsm, '_send_switchover_response') as mock_send_switchover_response,\
+                patch.object(cls.hsm, '_next_state') as mock_next_state:
             cls.hsm.on_message('switchover')
             cls.assertEqual(mock_perform_switchover.call_count, 1)
             cls.assertEqual(mock_check_mate_status.call_count, 1)
@@ -89,7 +85,3 @@ class StandbyStateTest(unittest.TestCase):
         with cls.assertRaises(UnsupportedTransition) as context:
             cls.hsm.on_message('operator inservice')
         cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
-
-
-if __name__ == "__main__":
-    unittest.main()

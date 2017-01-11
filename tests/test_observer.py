@@ -1,15 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import sys
-from io import StringIO
-from behavioral.observer import Subject, Data, DecimalViewer, HexViewer
-
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
-
+import unittest
+from behavioral.observer import Subject, Data, DecimalViewer,  HexViewer
 try:
     from unittest.mock import patch
 except ImportError:
@@ -43,6 +35,7 @@ class TestSubject(unittest.TestCase):
         cls.s.detach(cls.hex_obs)
         cls.assertEqual(len(cls.s._observers), 0)
 
+
 class TestData(unittest.TestCase):
 
     @classmethod
@@ -50,13 +43,13 @@ class TestData(unittest.TestCase):
         cls.dec_obs = DecimalViewer()
         cls.hex_obs = HexViewer()
         cls.sub = Data('Data')
-        #inherited behavior already tested with TestSubject
+        # inherited behavior already tested with TestSubject
         cls.sub.attach(cls.dec_obs)
         cls.sub.attach(cls.hex_obs)
 
     def test_data_change_shall_notify_all_observers_once(cls):
         with patch.object(cls.dec_obs, 'update') as mock_dec_obs_update,\
-            patch.object(cls.hex_obs, 'update') as mock_hex_obs_update:
+                patch.object(cls.hex_obs, 'update') as mock_hex_obs_update:
             cls.sub.data = 10
             cls.assertEqual(mock_dec_obs_update.call_count, 1)
             cls.assertEqual(mock_hex_obs_update.call_count, 1)
@@ -68,6 +61,3 @@ class TestData(unittest.TestCase):
     def test_data_name_shall_be_changeable(cls):
         cls.sub.name = 'New Data Name'
         cls.assertEqual(cls.sub.name, 'New Data Name')
-
-if __name__ == "__main__":
-    unittest.main()

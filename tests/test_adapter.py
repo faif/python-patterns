@@ -1,11 +1,8 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import unittest
 from structural.adapter import Dog, Cat, Human, Car, Adapter
-import sys
 
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
 
 class ClassTest(unittest.TestCase):
 
@@ -39,6 +36,7 @@ class ClassTest(unittest.TestCase):
         noise = self.car.make_noise(10)
         expected_noise = "vroom!!!!!!!!!!"
         self.assertEqual(noise, expected_noise)
+
 
 class AdapterTest(unittest.TestCase):
 
@@ -75,7 +73,5 @@ class AdapterTest(unittest.TestCase):
         car_adapter = Adapter(car, make_noise=car.make_noise)
         noise = car_adapter.make_noise(10)
         expected_noise = "vroom!!!!!!!!!!"
-        self.assertEqual(noise, expected_noise)
 
-if __name__ == "__main__":
-    unittest.main()
+        self.assertEqual(noise, expected_noise)
