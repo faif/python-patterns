@@ -24,6 +24,7 @@ import functools
 
 
 class lazy_property(object):
+
     def __init__(self, function):
         self.function = function
         functools.update_wrapper(self, function)
@@ -37,6 +38,7 @@ class lazy_property(object):
 
 
 class Person(object):
+
     def __init__(self, name, occupation):
         self.name = name
         self.occupation = occupation

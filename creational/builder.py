@@ -38,6 +38,8 @@ class Builder(object):
         raise NotImplementedError
 
 # Concrete Builder
+
+
 class BuilderHouse(Builder):
 
     def build_floor(self):

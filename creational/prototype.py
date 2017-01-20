@@ -45,6 +45,7 @@ def main():
     dispatcher.register_object('default', d)
     print([{n: p.value} for n, p in dispatcher.get_objects().items()])
 
+
 if __name__ == '__main__':
     main()
 
