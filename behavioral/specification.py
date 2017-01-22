@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
 
@@ -28,6 +27,7 @@ class Specification(object):
 
 
 class CompositeSpecification(Specification):
+
     @abstractmethod
     def is_satisfied_by(self, candidate):
         pass

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-# http://stackoverflow.com/questions/963965/how-is-this-strategy-pattern
-# -written-in-python-the-sample-in-wikipedia
+# -*- coding: utf-8 -*-
 """
+http://stackoverflow.com/questions/963965/how-is-this-strategy-pattern
+ -written-in-python-the-sample-in-wikipedia
 In most of other languages Strategy pattern is implemented via creating some
 base strategy interface/abstract class and subclassing it with a number of
 concrete strategies (as we can see at

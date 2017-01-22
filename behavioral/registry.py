@@ -38,15 +38,14 @@ if __name__ == "__main__":
 
         def __init__(self, *args, **kwargs):
             pass
-            
 
     print("After subclassing: ")
     for k in RegistryHolder.REGISTRY:
         print(k)
 
 ###  OUTPUT ###
-# Before subclassing: 
+# Before subclassing:
 # BaseRegisteredClass
-# After subclassing: 
+# After subclassing:
 # BaseRegisteredClass
 # ClassRegistree
