@@ -15,6 +15,7 @@ class Delegator(object):
     >>> delegator.do_anything()
 
     """
+
     def __init__(self, delegate):
         self.delegate = delegate
 
