@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
-
-Implementation of the iterator pattern with a generator"""
+"""
+http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
+Implementation of the iterator pattern with a generator
+"""
 
 from __future__ import print_function
 

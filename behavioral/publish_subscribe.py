@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
-Reference: http://www.slideshare.net/ishraqabd/publish-subscribe-model-overview-13368808
+Reference:
+http://www.slideshare.net/ishraqabd/publish-subscribe-model-overview-13368808
 Author: https://github.com/HanWenfang
 """
 

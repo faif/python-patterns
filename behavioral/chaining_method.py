@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 
+
 class Person(object):
 
     def __init__(self, name, action):
@@ -12,6 +13,7 @@ class Person(object):
     def do_action(self):
         print(self.name, self.action.name, end=' ')
         return self.action
+
 
 class Action(object):
 

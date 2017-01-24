@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
 An example of the Template pattern in Python"""

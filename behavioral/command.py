@@ -4,6 +4,7 @@
 import os
 from os.path import lexists
 
+
 class MoveFileCommand(object):
 
     def __init__(self, src, dest):

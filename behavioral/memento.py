@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """http://code.activestate.com/recipes/413838-memento-closure/"""
 
 from copy import copy, deepcopy
@@ -57,6 +56,7 @@ class Transactional(object):
 
 
 class NumObj(object):
+
     def __init__(self, value):
         self.value = value
 
