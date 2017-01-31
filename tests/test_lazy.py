@@ -17,11 +17,11 @@ class TestDynamicExpanding(unittest.TestCase):
         self.assertNotIn('relatives', self.John.__dict__)
 
     def test_extended_properties(self):
-        print("Jhon's relatives: {0}".format(self.John.relatives))
+        print("John's relatives: {0}".format(self.John.relatives))
         self.assertDictEqual({'name': 'John', 'occupation': 'Coder',
                               'relatives': 'Many relatives.'},
                              self.John.__dict__)
 
     def test_relatives_after_access(self):
-        print("Jhon's relatives: {0}".format(self.John.relatives))
+        print("John's relatives: {0}".format(self.John.relatives))
         self.assertIn('relatives', self.John.__dict__)
