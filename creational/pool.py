@@ -6,26 +6,26 @@ http://stackoverflow.com/questions/1514120/python-implementation-of-the-object-p
 """
 
 
-class QueueObject():
+class ObjectPool():
 
     def __init__(self, queue, auto_get=False):
         self._queue = queue
-        self.object = self._queue.get() if auto_get else None
+        self.item = self._queue.get() if auto_get else None
 
     def __enter__(self):
-        if self.object is None:
-            self.object = self._queue.get()
-        return self.object
+        if self.item is None:
+            self.item = self._queue.get()
+        return self.item
 
     def __exit__(self, Type, value, traceback):
-        if self.object is not None:
-            self._queue.put(self.object)
-            self.object = None
+        if self.item is not None:
+            self._queue.put(self.item)
+            self.item = None
 
     def __del__(self):
-        if self.object is not None:
-            self._queue.put(self.object)
-            self.object = None
+        if self.item is not None:
+            self._queue.put(self.item)
+            self.item = None
 
 
 def main():
@@ -35,13 +35,13 @@ def main():
         import Queue as queue
 
     def test_object(queue):
-        queue_object = QueueObject(queue, True)
-        print('Inside func: {}'.format(queue_object.object))
+        pool = ObjectPool(queue, True)
+        print('Inside func: {}'.format(pool.item))
 
     sample_queue = queue.Queue()
 
     sample_queue.put('yam')
-    with QueueObject(sample_queue) as obj:
+    with ObjectPool(sample_queue) as obj:
         print('Inside with: {}'.format(obj))
     print('Outside with: {}'.format(sample_queue.get()))
 
