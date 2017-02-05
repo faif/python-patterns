@@ -8,7 +8,7 @@
 import random
 
 
-class PetShop:
+class PetShop(object):
 
     """A pet shop"""
 
@@ -28,7 +28,7 @@ class PetShop:
 
 # Stuff that our factory makes
 
-class Dog:
+class Dog(object):
 
     def speak(self):
         return "woof"
@@ -37,7 +37,7 @@ class Dog:
         return "Dog"
 
 
-class Cat:
+class Cat(object):
 
     def speak(self):
         return "meow"
@@ -48,7 +48,7 @@ class Cat:
 
 # Factory classes
 
-class DogFactory:
+class DogFactory(object):
 
     def get_pet(self):
         return Dog()
@@ -57,7 +57,7 @@ class DogFactory:
         return "dog food"
 
 
-class CatFactory:
+class CatFactory(object):
 
     def get_pet(self):
         return Cat()

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-class Borg:
+class Borg(object):
     __shared_state = {}
 
     def __init__(self):

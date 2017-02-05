@@ -8,10 +8,9 @@ __author__ = "Ibrahim Diop <http://ibrahim.zinaria.com>"
 __gist__ = "<https://gist.github.com/diopib/7679559>"
 
 
-class Catalog():
+class Catalog(object):
+    """catalog of multiple static methods that are executed depending on an init
 
-    """
-    catalog of multiple static methods that are executed depending on an init
     parameter
     """
 
@@ -38,18 +37,18 @@ class Catalog():
         print("executed method 2!")
 
     def main_method(self):
-        """
-        will execute either _static_method_1 or _static_method_2
+        """will execute either _static_method_1 or _static_method_2
+
         depending on self.param value
         """
         self._static_method_choices[self.param]()
 
 
 # Alternative implementation for different levels of methods
-class CatalogInstance:
+class CatalogInstance(object):
 
-    """
-    catalog of multiple methods that are executed depending on an init
+    """catalog of multiple methods that are executed depending on an init
+
     parameter
     """
 
@@ -72,17 +71,17 @@ class CatalogInstance:
                                 'param_value_2': _instance_method_2}
 
     def main_method(self):
-        """
-        will execute either _instance_method_1 or _instance_method_2
+        """will execute either _instance_method_1 or _instance_method_2
+
         depending on self.param value
         """
         self._instance_method_choices[self.param].__get__(self)()
 
 
-class CatalogClass:
+class CatalogClass(object):
 
-    """
-    catalog of multiple class methods that are executed depending on an init
+    """catalog of multiple class methods that are executed depending on an init
+
     parameter
     """
 
@@ -108,17 +107,17 @@ class CatalogClass:
                              'param_value_2': _class_method_2}
 
     def main_method(self):
-        """
-        will execute either _class_method_1 or _class_method_2
+        """will execute either _class_method_1 or _class_method_2
+
         depending on self.param value
         """
         self._class_method_choices[self.param].__get__(None, self.__class__)()
 
 
-class CatalogStatic:
+class CatalogStatic(object):
 
-    """
-    catalog of multiple static methods that are executed depending on an init
+    """catalog of multiple static methods that are executed depending on an init
+
     parameter
     """
 
@@ -141,8 +140,8 @@ class CatalogStatic:
                               'param_value_2': _static_method_2}
 
     def main_method(self):
-        """
-        will execute either _static_method_1 or _static_method_2
+        """will execute either _static_method_1 or _static_method_2
+
         depending on self.param value
         """
         self._static_method_choices[self.param].__get__(None, self.__class__)()

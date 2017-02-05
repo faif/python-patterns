@@ -6,7 +6,8 @@ http://stackoverflow.com/questions/1514120/python-implementation-of-the-object-p
 """
 
 
-class ObjectPool():
+
+class ObjectPool(object):
 
     def __init__(self, queue, auto_get=False):
         self._queue = queue

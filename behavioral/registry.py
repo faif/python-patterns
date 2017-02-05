@@ -20,7 +20,7 @@ class RegistryHolder(type):
         return dict(cls.REGISTRY)
 
 
-class BaseRegisteredClass:
+class BaseRegisteredClass(object):
     __metaclass__ = RegistryHolder
     """
         Any class that will inherits from BaseRegisteredClass will be included

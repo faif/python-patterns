@@ -4,7 +4,7 @@
 """http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/"""
 
 
-class GreekGetter:
+class GreekGetter(object):
 
     """A simple localizer a la gettext"""
 
@@ -16,7 +16,7 @@ class GreekGetter:
         return self.trans.get(msgid, str(msgid))
 
 
-class EnglishGetter:
+class EnglishGetter(object):
 
     """Simply echoes the msg ids"""
 

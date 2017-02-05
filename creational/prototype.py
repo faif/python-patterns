@@ -4,7 +4,7 @@
 import copy
 
 
-class Prototype:
+class Prototype(object):
 
     value = 'default'
 
@@ -15,7 +15,7 @@ class Prototype:
         return obj
 
 
-class PrototypeDispatcher:
+class PrototypeDispatcher(object):
 
     def __init__(self):
         self._objects = {}
