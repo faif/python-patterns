@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """http://www.dabeaz.com/coroutines/"""
 
-import time
+from contextlib import contextmanager
 import os
 import sys
-from contextlib import contextmanager
+import time
 
 
-class Handler:
-    
+class Handler(object):
+
     def __init__(self, successor=None):
         self._successor = successor
 
@@ -53,7 +53,7 @@ class DefaultHandler(Handler):
         return True
 
 
-class Client:
+class Client(object):
 
     def __init__(self):
         self.handler = ConcreteHandler1(

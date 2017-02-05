@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """http://code.activestate.com/recipes/413838-memento-closure/"""
 
-from copy import copy, deepcopy
+from copy import copy
+from copy import deepcopy
 
 
 def memento(obj, deep=False):
@@ -15,8 +16,9 @@ def memento(obj, deep=False):
     return restore
 
 
-class Transaction:
+class Transaction(object):
     """A transaction guard.
+
     This is, in fact, just syntactic sugar around a memento closure.
     """
     deep = False
@@ -37,6 +39,7 @@ class Transaction:
 
 class Transactional(object):
     """Adds transactional semantics to methods. Methods decorated  with
+
     @Transactional will rollback to entry-state upon exceptions.
     """
 
