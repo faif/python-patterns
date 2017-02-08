@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from behavioral.publish_subscribe import Provider, Publisher, Subscriber
+from publish_subscribe import Provider, Publisher, Subscriber
 try:
     from unittest.mock import patch, call
 except ImportError:

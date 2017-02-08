@@ -3,7 +3,7 @@
 import os
 import shutil
 import unittest
-from behavioral.command import MoveFileCommand
+from command import MoveFileCommand
 
 
 class CommandTest(unittest.TestCase):

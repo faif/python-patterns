@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from behavioral.observer import Subject, Data, DecimalViewer,  HexViewer
+from observer import Subject, Data, DecimalViewer,  HexViewer
 try:
     from unittest.mock import patch
 except ImportError:

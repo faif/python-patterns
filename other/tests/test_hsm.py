@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from other.hsm.hsm import HierachicalStateMachine,\
+from hsm.hsm import HierachicalStateMachine,\
     UnsupportedMessageType, UnsupportedState,\
     UnsupportedTransition, Active, Standby, Suspect
 try:

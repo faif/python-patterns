@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from creational.abstract_factory import PetShop,\
+from abstract_factory import PetShop,\
     Dog, Cat, DogFactory, CatFactory
 try:
     from unittest.mock import patch
