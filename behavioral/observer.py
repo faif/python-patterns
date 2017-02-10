@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 """http://code.activestate.com/recipes/131499-observer-pattern/"""
 
 
@@ -67,20 +68,20 @@ def main():
     data2.attach(view2)
     data2.attach(view1)
 
-    print("Setting Data 1 = 10")
+    print(u"Setting Data 1 = 10")
     data1.data = 10
-    print("Setting Data 2 = 15")
+    print(u"Setting Data 2 = 15")
     data2.data = 15
-    print("Setting Data 1 = 3")
+    print(u"Setting Data 1 = 3")
     data1.data = 3
-    print("Setting Data 2 = 5")
+    print(u"Setting Data 2 = 5")
     data2.data = 5
-    print("Detach HexViewer from data1 and data2.")
+    print(u"Detach HexViewer from data1 and data2.")
     data1.detach(view2)
     data2.detach(view2)
-    print("Setting Data 1 = 10")
+    print(u"Setting Data 1 = 10")
     data1.data = 10
-    print("Setting Data 2 = 15")
+    print(u"Setting Data 2 = 15")
     data2.data = 15
 
 

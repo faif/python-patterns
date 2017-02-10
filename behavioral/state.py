@@ -15,7 +15,7 @@ class State(object):
         self.pos += 1
         if self.pos == len(self.stations):
             self.pos = 0
-        print("Scanning... Station is", self.stations[self.pos], self.name)
+        print(u"Scanning... Station is", self.stations[self.pos], self.name)
 
 
 class AmState(State):
@@ -27,7 +27,7 @@ class AmState(State):
         self.name = "AM"
 
     def toggle_amfm(self):
-        print("Switching to FM")
+        print(u"Switching to FM")
         self.radio.state = self.radio.fmstate
 
 
@@ -40,7 +40,7 @@ class FmState(State):
         self.name = "FM"
 
     def toggle_amfm(self):
-        print("Switching to AM")
+        print(u"Switching to AM")
         self.radio.state = self.radio.amstate
 
 
