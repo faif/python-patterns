@@ -28,7 +28,10 @@ Test Finished"""
 
     def test_bunch_launch(self):
         import sys
-        from io import StringIO
+        try:
+            from io import StringIO
+        except:
+            from StringIO import StringIO
         out = StringIO()
         sys.stdout = out
         self.runner.runAll()
