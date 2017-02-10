@@ -46,14 +46,14 @@ class Data(Subject):
 class HexViewer:
 
     def update(self, subject):
-        print('HexViewer: Subject %s has data 0x%x' %
+        print(u'HexViewer: Subject %s has data 0x%x' %
               (subject.name, subject.data))
 
 
 class DecimalViewer:
 
     def update(self, subject):
-        print('DecimalViewer: Subject %s has data %d' %
+        print(u'DecimalViewer: Subject %s has data %d' %
               (subject.name, subject.data))
 
 
