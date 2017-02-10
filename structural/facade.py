@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from __future__ import print_function
 import time
 
 SLEEP = 0.1
@@ -10,43 +10,43 @@ SLEEP = 0.1
 class TC1:
 
     def run(self):
-        print("###### In Test 1 ######")
+        print(u"###### In Test 1 ######")
         time.sleep(SLEEP)
-        print("Setting up")
+        print(u"Setting up")
         time.sleep(SLEEP)
-        print("Running test")
+        print(u"Running test")
         time.sleep(SLEEP)
-        print("Tearing down")
+        print(u"Tearing down")
         time.sleep(SLEEP)
-        print("Test Finished\n")
+        print(u"Test Finished\n")
 
 
 class TC2:
 
     def run(self):
-        print("###### In Test 2 ######")
+        print(u"###### In Test 2 ######")
         time.sleep(SLEEP)
-        print("Setting up")
+        print(u"Setting up")
         time.sleep(SLEEP)
-        print("Running test")
+        print(u"Running test")
         time.sleep(SLEEP)
-        print("Tearing down")
+        print(u"Tearing down")
         time.sleep(SLEEP)
-        print("Test Finished\n")
+        print(u"Test Finished\n")
 
 
 class TC3:
 
     def run(self):
-        print("###### In Test 3 ######")
+        print(u"###### In Test 3 ######")
         time.sleep(SLEEP)
-        print("Setting up")
+        print(u"Setting up")
         time.sleep(SLEEP)
-        print("Running test")
+        print(u"Running test")
         time.sleep(SLEEP)
-        print("Tearing down")
+        print(u"Tearing down")
         time.sleep(SLEEP)
-        print("Test Finished\n")
+        print(u"Test Finished\n")
 
 
 # Facade
