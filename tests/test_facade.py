@@ -7,7 +7,7 @@ from structural.facade import TestRunner, TC1, TC2, TC3
 class TestRunnerFacilities(unittest.TestCase):
 
     def setUp(self):
-        self.tc = TC1
+        self.tc = TC1()
         self.average_result_tc1 = "###### In Test 1 ######\n" + \
                                   "Setting up\n" + \
                                   "Running test\n" + \
@@ -22,7 +22,7 @@ class TestRunnerFacilities(unittest.TestCase):
             from StringIO import StringIO
         out = StringIO()
         sys.stdout = out
-        self.tc.run(self)
+        self.tc.run()
         output = out.getvalue().strip()
         self.assertEqual(output, self.average_result_tc1)
 
