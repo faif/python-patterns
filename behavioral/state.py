@@ -15,7 +15,8 @@ class State(object):
         self.pos += 1
         if self.pos == len(self.stations):
             self.pos = 0
-        print(u"Scanning... Station is", self.stations[self.pos], self.name)
+        print(u"Scanning... Station is %s %s" %
+              (self.stations[self.pos], self.name))
 
 
 class AmState(State):
