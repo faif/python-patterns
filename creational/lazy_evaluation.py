@@ -19,7 +19,7 @@ werkzeug
 https://github.com/pallets/werkzeug/blob/5a2bf35441006d832ab1ed5a31963cbc366c99ac/werkzeug/utils.py#L35
 """
 
-
+from __future__ import print_function
 import functools
 
 
@@ -52,11 +52,11 @@ class Person(object):
 
 def main():
     Jhon = Person('Jhon', 'Coder')
-    print("Name: {0}    Occupation: {1}".format(Jhon.name, Jhon.occupation))
-    print("Before we access `relatives`:")
+    print(u"Name: {0}    Occupation: {1}".format(Jhon.name, Jhon.occupation))
+    print(u"Before we access `relatives`:")
     print(Jhon.__dict__)
-    print("Jhon's relatives: {0}".format(Jhon.relatives))
-    print("After we've accessed `relatives`:")
+    print(u"Jhon's relatives: {0}".format(Jhon.relatives))
+    print(u"After we've accessed `relatives`:")
     print(Jhon.__dict__)
 
 
