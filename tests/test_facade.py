@@ -31,33 +31,32 @@ class TestRunnerFacilities(unittest.TestCase):
                                   "Tearing down\n" + \
                                   "Test Finished"
         self.runner = TestRunner()
+        self.out = StringIO()
+        self.saved_stdout = sys.stdout
+        sys.stdout = self.out
+
+    def tearDown(self):
+        self.out.close()
+        sys.stdout = self.saved_stdout
 
     def test_tc1_output(self):
-        out = StringIO()
-        sys.stdout = out
         self.tc1.run()
-        output = out.getvalue().strip()
+        output = self.out.getvalue().strip()
         self.assertEqual(output, self.average_result_tc1)
 
     def test_tc2_output(self):
-        out = StringIO()
-        sys.stdout = out
         self.tc2.run()
-        output = out.getvalue().strip()
+        output = self.out.getvalue().strip()
         self.assertEqual(output, self.average_result_tc2)
 
     def test_tc3_output(self):
-        out = StringIO()
-        sys.stdout = out
         self.tc3.run()
-        output = out.getvalue().strip()
+        output = self.out.getvalue().strip()
         self.assertEqual(output, self.average_result_tc3)
 
     def test_bunch_launch(self):
-        out = StringIO()
-        sys.stdout = out
         self.runner.runAll()
-        output = out.getvalue().strip()
+        output = self.out.getvalue().strip()
         self.assertEqual(output, str(self.average_result_tc1 + '\n\n' +
                          self.average_result_tc2 + '\n\n' +
                          self.average_result_tc3))
