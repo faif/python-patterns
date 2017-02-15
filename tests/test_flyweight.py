@@ -12,12 +12,18 @@ class TestCard(unittest.TestCase):
         self.assertEqual(c1, c2)
         self.assertEqual(id(c1), id(c2))
 
-    def test_instances_with_different_suit_shall_reference_different_objects(self):
+    def test_instances_with_different_suit(self):
+        """
+        shall reference different objects
+        """
         c1 = Card('9', 'a')
         c2 = Card('9', 'b')
         self.assertNotEqual(id(c1), id(c2))
 
-    def test_instances_with_different_values_shall_reference_different_objects(self):
+    def test_instances_with_different_values(self):
+        """
+        shall reference different objects
+        """
         c1 = Card('9', 'h')
         c2 = Card('A', 'h')
         self.assertNotEqual(id(c1), id(c2))
