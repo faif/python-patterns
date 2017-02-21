@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""http://dpip.testingperspective.com/?p=28"""
+"""http://web.archive.org/web/20110207085333/http://dpip.testingperspective.com/?p=28"""
 
 import random
 import time
