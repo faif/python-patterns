@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import copy
-
 
 class Prototype(object):
 
@@ -10,7 +8,8 @@ class Prototype(object):
 
     def clone(self, **attrs):
         """Clone a prototype and update inner attributes dictionary"""
-        obj = copy.deepcopy(self)
+        # Python in Practice, Mark Summerfield
+        obj = self.__class__()
         obj.__dict__.update(attrs)
         return obj
 
