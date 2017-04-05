@@ -7,10 +7,11 @@ from dft.constructor_injection import TimeDisplay, MidnightTimeProvider, Product
 """
 Port of the Java example of "Constructor Injection" in
 "xUnit Test Patterns - Refactoring Test Code" by Gerard Meszaros
-(ISBN-10: 0131495054, ISBN-13: 978-0131495050)
+(ISBN-10: 0131495054, ISBN-13: 978-0131495050) accessible in outdated version on
+http://xunitpatterns.com/Dependency%20Injection.html.
 
 Test code which will almost always fail (if not exactly 12:01) when untestable
-production code (production code time provider is datetime) is used:
+production code (have a look into constructor_injection.py) is used:
 
     def test_display_current_time_at_midnight(self):
         class_under_test = TimeDisplay()
@@ -23,7 +24,8 @@ class ConstructorInjectionTest(unittest.TestCase):
 
     def test_display_current_time_at_midnight(self):
         """
-        Will almost always fail (despite of right at/after midnight).
+        Would almost always fail (despite of right at/after midnight) if
+        untestable production code would have been used.
         """
         time_provider_stub = MidnightTimeProvider()
         class_under_test = TimeDisplay(time_provider_stub)
@@ -32,16 +34,11 @@ class ConstructorInjectionTest(unittest.TestCase):
 
     def test_display_current_time_at_current_time(self):
         """
-        Just as justification for working example. (Will always pass.)
+        Just as justification for working example with the time provider used in
+        production. (Will always pass.)
         """
         production_code_time_provider = ProductionCodeTimeProvider()
         class_under_test = TimeDisplay(production_code_time_provider)
         current_time = datetime.datetime.now()
         expected_time = "<span class=\"tinyBoldText\">" + str(current_time.hour) + ":" + str(current_time.minute) + "</span>"
         self.assertEqual(class_under_test.get_current_time_as_html_fragment(), expected_time)
-
-if __name__ == "__main__":
-    # PYTHONPATH=$PYTHONPATH:~/ws_github/python-patterns/
-    # export PYTHONPATH
-    # python tests/test_constructor_injection.py
-    unittest.main()

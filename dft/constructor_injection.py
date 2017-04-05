@@ -5,7 +5,8 @@ import datetime
 """
 Port of the Java example of "Constructor Injection" in
 "xUnit Test Patterns - Refactoring Test Code" by Gerard Meszaros
-(ISBN-10: 0131495054, ISBN-13: 978-0131495050)
+(ISBN-10: 0131495054, ISBN-13: 978-0131495050) accessible in outdated version on
+http://xunitpatterns.com/Dependency%20Injection.html.
 
 production code which is untestable:
 
