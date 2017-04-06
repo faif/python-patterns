@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from dft.parameter_injection import TimeDisplay, MidnightTimeProvider, ProductionCodeTimeProvider, datetime
+from dft.setter_injection import TimeDisplay, MidnightTimeProvider, ProductionCodeTimeProvider, datetime
 
 """
-Port of the Java example of "Parameter Injection" in
+Port of the Java example of "Setter Injection" in
 "xUnit Test Patterns - Refactoring Test Code" by Gerard Meszaros
 (ISBN-10: 0131495054, ISBN-13: 978-0131495050) accessible in outdated version on
 http://xunitpatterns.com/Dependency%20Injection.html.
@@ -29,8 +29,9 @@ class ParameterInjectionTest(unittest.TestCase):
         """
         time_provider_stub = MidnightTimeProvider()
         class_under_test = TimeDisplay()
+        class_under_test.set_time_provider(time_provider_stub)
         expected_time = "<span class=\"tinyBoldText\">24:01</span>"
-        self.assertEqual(class_under_test.get_current_time_as_html_fragment(time_provider_stub), expected_time)
+        self.assertEqual(class_under_test.get_current_time_as_html_fragment(), expected_time)
 
     def test_display_current_time_at_current_time(self):
         """
@@ -39,6 +40,7 @@ class ParameterInjectionTest(unittest.TestCase):
         """
         production_code_time_provider = ProductionCodeTimeProvider()
         class_under_test = TimeDisplay()
+        class_under_test.set_time_provider(production_code_time_provider)
         current_time = datetime.datetime.now()
         expected_time = "<span class=\"tinyBoldText\">" + str(current_time.hour) + ":" + str(current_time.minute) + "</span>"
-        self.assertEqual(class_under_test.get_current_time_as_html_fragment(production_code_time_provider), expected_time)
+        self.assertEqual(class_under_test.get_current_time_as_html_fragment(), expected_time)
