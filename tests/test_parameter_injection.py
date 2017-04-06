@@ -42,9 +42,3 @@ class ParameterInjectionTest(unittest.TestCase):
         current_time = datetime.datetime.now()
         expected_time = "<span class=\"tinyBoldText\">" + str(current_time.hour) + ":" + str(current_time.minute) + "</span>"
         self.assertEqual(class_under_test.get_current_time_as_html_fragment(production_code_time_provider), expected_time)
-
-if __name__ == "__main__":
-    # PYTHONPATH=$PYTHONPATH:~/ws_github/python-patterns/
-    # export PYTHONPATH
-    # python tests/test_constructor_injection.py
-    unittest.main()
