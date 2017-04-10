@@ -40,5 +40,8 @@ class ConstructorInjectionTest(unittest.TestCase):
         production_code_time_provider = ProductionCodeTimeProvider()
         class_under_test = TimeDisplay(production_code_time_provider)
         current_time = datetime.datetime.now()
-        expected_time = "<span class=\"tinyBoldText\">" + str(current_time.hour) + ":" + str(current_time.minute) + "</span>"
+        expected_time = "<span class=\"tinyBoldText\">{}:{}</span>".format(current_time.hour, current_time.minute)
         self.assertEqual(class_under_test.get_current_time_as_html_fragment(), expected_time)
+
+if __name__ == "__main__":
+    unittest.main()
