@@ -61,6 +61,7 @@ __Design for Testability Patterns__:
 | Pattern | Description |
 |:-------:| ----------- |
 | [constructor_injection](dft/constructor_injection.py) | the client provides the depended-on object to the SUT via the class construtor (implmentation variant of dependency injection) |
+| [parameter_injection](dft/parameter_injection.py) | the client provides the depended-on object to the SUT via a parameter(implmentation variant of dependency injection) |
 
 __Fundamental Patterns__:
 
