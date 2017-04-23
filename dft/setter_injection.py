@@ -3,7 +3,7 @@
 import datetime
 
 """
-Port of the Java example of "Parameter Injection" in
+Port of the Java example of "Setter Injection" in
 "xUnit Test Patterns - Refactoring Test Code" by Gerard Meszaros
 (ISBN-10: 0131495054, ISBN-13: 978-0131495050) accessible in outdated version on
 http://xunitpatterns.com/Dependency%20Injection.html.
@@ -26,8 +26,11 @@ class TimeDisplay(object):
     def __init__(self):
         pass
 
-    def get_current_time_as_html_fragment(self, time_provider):
-        current_time = time_provider.now()
+    def set_time_provider(self, time_provider):
+        self.time_provider = time_provider
+
+    def get_current_time_as_html_fragment(self):
+        current_time = self.time_provider.now()
         current_time_as_html_fragment = "<span class=\"tinyBoldText\">" + current_time + "</span>"
         return current_time_as_html_fragment
 
