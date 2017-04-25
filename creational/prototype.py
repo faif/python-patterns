@@ -3,6 +3,7 @@
 
 import copy
 
+
 class Prototype(object):
 
     value = 'default'
@@ -10,6 +11,8 @@ class Prototype(object):
     def clone(self, **attrs):
         """Clone a prototype and update inner attributes dictionary"""
         obj = copy.deepcopy(self)
+        obj.__dict__.update(attrs)
+        return obj
 
 
 class PrototypeDispatcher(object):
