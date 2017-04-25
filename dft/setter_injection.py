@@ -17,7 +17,7 @@ class TimeDisplay(object):
 
     def get_current_time_as_html_fragment(self):
         current_time = self.time_provider.now()
-        current_time_as_html_fragment = "<span class=\"tinyBoldText\">" + current_time.hour + ":" + current_time.minute + "</span>"
+        current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
         return current_time_as_html_fragment
 """
 
@@ -31,7 +31,7 @@ class TimeDisplay(object):
 
     def get_current_time_as_html_fragment(self):
         current_time = self.time_provider.now()
-        current_time_as_html_fragment = "<span class=\"tinyBoldText\">" + current_time + "</span>"
+        current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
         return current_time_as_html_fragment
 
 class ProductionCodeTimeProvider(object):
@@ -42,7 +42,7 @@ class ProductionCodeTimeProvider(object):
 
     def now(self):
         current_time = datetime.datetime.now()
-        current_time_formatted = str(current_time.hour) + ":" + str(current_time.minute)
+        current_time_formatted = "{}:{}".format(current_time.hour, current_time.minute)
         return current_time_formatted
 
 class MidnightTimeProvider(object):
