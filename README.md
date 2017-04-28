@@ -56,6 +56,12 @@ __Behavioral Patterns__:
 | [template](behavioral/template.py) | an object imposes a structure but takes pluggable components |
 | [visitor](behavioral/visitor.py) | invoke a callback for all items of a collection |
 
+__Design for Testability Patterns__:
+
+| Pattern | Description |
+|:-------:| ----------- |
+| [setter_injection](dft/setter_injection.py) | the client provides the depended-on object to the SUT via the setter injection (implementation variant of dependency injection) |
+
 __Fundamental Patterns__:
 
 | Pattern | Description |
