@@ -13,7 +13,7 @@ class TextTag(object):
         return self._text
 
 
-class BoldWrapper(object):
+class BoldWrapper(TextTag):
     """Wraps a tag in <b>"""
     def __init__(self, wrapped):
         self._wrapped = wrapped
@@ -22,7 +22,7 @@ class BoldWrapper(object):
         return "<b>{}</b>".format(self._wrapped.render())
 
 
-class ItalicWrapper(object):
+class ItalicWrapper(TextTag):
     """Wraps a tag in <i>"""
     def __init__(self, wrapped):
         self._wrapped = wrapped
