@@ -21,4 +21,3 @@ class TestTextWrapping(unittest.TestCase):
         self.assertEqual(
             BoldWrapper(ItalicWrapper(self.raw_string)).render(),
             '<b><i>raw but not cruel</i></b>')
-

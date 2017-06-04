@@ -57,10 +57,14 @@ class StandbyStateTest(unittest.TestCase):
         cls.assertEqual(isinstance(cls.hsm._current_state, Active), True)
 
     def test_given_standby_on_message_switchover_shall_call_hsm_methods(cls):
-        with patch.object(cls.hsm, '_perform_switchover') as mock_perform_switchover,\
-                patch.object(cls.hsm, '_check_mate_status') as mock_check_mate_status,\
-                patch.object(cls.hsm, '_send_switchover_response') as mock_send_switchover_response,\
-                patch.object(cls.hsm, '_next_state') as mock_next_state:
+        with patch.object(cls.hsm,
+                          '_perform_switchover') as mock_perform_switchover,\
+                patch.object(cls.hsm,
+                             '_check_mate_status') as mock_check_mate_status,\
+                patch.object(cls.hsm,
+                             '_send_switchover_response') as mock_send_switchover_response,\
+                patch.object(cls.hsm,
+                             '_next_state') as mock_next_state:
             cls.hsm.on_message('switchover')
             cls.assertEqual(mock_perform_switchover.call_count, 1)
             cls.assertEqual(mock_check_mate_status.call_count, 1)

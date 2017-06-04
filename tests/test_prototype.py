@@ -49,4 +49,3 @@ class TestDispatcherFeatures(unittest.TestCase):
     def test_extended_properties_retrieving(self):
         self.assertEqual(self.dispatcher.get_objects()['A'].ext_value, 'E')
         self.assertTrue(self.dispatcher.get_objects()['B'].diff)
-
