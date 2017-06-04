@@ -5,6 +5,7 @@
 
 
 class Dog(object):
+
     def __init__(self):
         self.name = "Dog"
 
@@ -13,6 +14,7 @@ class Dog(object):
 
 
 class Cat(object):
+
     def __init__(self):
         self.name = "Cat"
 
@@ -21,6 +23,7 @@ class Cat(object):
 
 
 class Human(object):
+
     def __init__(self):
         self.name = "Human"
 
@@ -29,6 +32,7 @@ class Human(object):
 
 
 class Car(object):
+
     def __init__(self):
         self.name = "Car"
 
@@ -74,12 +78,13 @@ class Adapter(object):
     def __getattr__(self, attr):
         """All non-adapted calls are passed to the object"""
         return getattr(self.obj, attr)
-        
+
     def original_dict(self):
         """Print original object dict"""
         return self.obj.__dict__
 
 def main():
+
     objects = []
     dog = Dog()
     print(dog.__dict__)

@@ -9,16 +9,19 @@ request handling.
 
 
 class MobileView(object):
+
     def show_index_page(self):
         print('Displaying mobile index page')
 
 
 class TabletView(object):
+
     def show_index_page(self):
         print('Displaying tablet index page')
 
 
 class Dispatcher(object):
+
     def __init__(self):
         self.mobile_view = MobileView()
         self.tablet_view = TabletView()
@@ -34,6 +37,7 @@ class Dispatcher(object):
 
 class RequestController(object):
     """ front controller """
+
     def __init__(self):
         self.dispatcher = Dispatcher()
 
