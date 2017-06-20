@@ -1,7 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+*What is this pattern about?
+The Adapter pattern provides a different interface for a class. We can
+think about it as a cable adapter that allows you to charge a phone
+somewhere that has outlets in a different shape. Following this idea,
+the Adapter pattern is useful to integrate classes that couldn't be
+integrated due to their incompatible interfaces.
 
-"""http://ginstrom.com/scribbles/2008/11/06/generic-adapter-class-in-python/"""
+*What does this example do?
+
+The example has classes that represent entities (Dog, Cat, Human, Car)
+that make different noises. The Adapter class provides a different
+interface to the original methods that make such noises. So the
+original interfaces (e.g., bark and meow) are available under a
+different name: make_noise.
+
+*Where is the pattern used practically?
+The Grok framework uses adapters to make objects work with a
+particular API without modifying the objects themselves:
+http://grok.zope.org/doc/current/grok_overview.html#adapters
+
+*References:
+http://ginstrom.com/scribbles/2008/11/06/generic-adapter-class-in-python/
+https://sourcemaking.com/design_patterns/adapter
+http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.html#adapter
+"""
 
 
 class Dog(object):
