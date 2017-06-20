@@ -6,10 +6,11 @@ from contextlib import contextmanager
 import os
 import sys
 import time
-
+import abc
 
 class Handler(object):
-
+    __metaclass__ = abc.ABCMeta
+    
     def __init__(self, successor=None):
         self._successor = successor
 
@@ -17,7 +18,8 @@ class Handler(object):
         res = self._handle(request)
         if not res:
             self._successor.handle(request)
-
+    
+    @abc.abstractmethod
     def _handle(self, request):
         raise NotImplementedError('Must provide implementation in subclass.')
 
