@@ -4,8 +4,7 @@
 A class that uses different static function depending of a parameter passed in
 init. Note the use of a single dictionary instead of multiple conditions
 """
-__author__ = "Ibrahim Diop <http://ibrahim.zinaria.com>"
-__gist__ = "<https://gist.github.com/diopib/7679559>"
+__author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 
 
 class Catalog(object):
