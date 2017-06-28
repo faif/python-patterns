@@ -1,6 +1,25 @@
 #!/usr/bin/env python
 """
-Reference: https://en.wikipedia.org/wiki/Decorator_pattern
+*What is this pattern about?
+The Decorator pattern is used to dynamically add a new feature to an
+object without changing its implementation. It differs from
+inheritance because the new feature is added only to that particular
+object, not to the entire subclass.
+
+*What does this example do?
+This example shows a way to add formatting options (boldface and
+italic) to a text by appending the corresponding tags (<b> and
+<i>). Also, we can see that decorators can be applied one after the other,
+since the original text is passed to the bold wrapper, which in turn
+is passed to the italic wrapper.
+
+*Where is the pattern used practically?
+The Grok framework uses decorators to add functionalities to methods,
+like permissions or subscription to an event:
+http://grok.zope.org/doc/current/reference/decorators.html
+
+*References:
+https://sourcemaking.com/design_patterns/decorator
 """
 
 
