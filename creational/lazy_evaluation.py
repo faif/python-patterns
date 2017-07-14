@@ -87,12 +87,11 @@ if __name__ == '__main__':
 ### OUTPUT ###
 # Name: Jhon    Occupation: Coder
 # Before we access `relatives`:
-# {'name': 'Jhon', 'occupation': 'Coder'}
+# {'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
 # Jhon's relatives: Many relatives.
 # After we've accessed `relatives`:
-# {'relatives': 'Many relatives.', 'name': 'Jhon', 'occupation': 'Coder'}
+# {'relatives': 'Many relatives.', 'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
 # Father and mother
-# {'_lazy__parents': 'Father and mother', 'relatives': 'Many relatives.',
-# 'call_count2': 1, 'name': 'Jhon', 'occupation': 'Coder'}
+# {'_lazy__parents': 'Father and mother', 'relatives': 'Many relatives.', 'call_count2': 1, 'name': 'Jhon', 'occupation': 'Coder'}
 # Father and mother
 # 1
