@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from creational.abstract_factory import PetShop,\
-    Dog, Cat, DogFactory, CatFactory
+    Dog, Cat, DogFactory, CatFactory, Pet
 try:
     from unittest.mock import patch
 except ImportError:
@@ -54,3 +54,12 @@ class TestDog(unittest.TestCase):
 
     def test_dog_shall_be_printable(cls):
         cls.assertEqual(str(cls.d), 'Dog')
+
+
+class PetTest(unittest.TestCase):
+
+    def test_from_name(self):
+        test_cases = [("kitty", "Miao"), ("duck", "Quak")]
+        for name, expected_speech in test_cases:
+            pet = Pet.from_name(name)
+            self.assertEqual(pet.speak(), expected_speech)
