@@ -4,7 +4,8 @@
 # http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
 """Implementation of the abstract factory pattern"""
-
+import six
+import abc
 import random
 
 
@@ -72,6 +73,31 @@ def get_factory():
     return random.choice([DogFactory, CatFactory])()
 
 
+# Implementation 2 of an abstract factory
+@six.add_metaclass(abc.ABCMeta)
+class Pet(object):
+
+    @classmethod
+    def from_name(cls, name):
+        for sub_cls in cls.__subclasses__():
+            if name == sub_cls.__name__.lower():
+                return sub_cls()
+
+    @abc.abstractmethod
+    def speak(self):
+        """"""
+
+
+class Kitty(Pet):
+    def speak(self):
+        return "Miao"
+
+
+class Duck(Pet):
+    def speak(self):
+        return "Quak"
+
+
 # Show pets with various factories
 if __name__ == "__main__":
     for i in range(3):
@@ -79,10 +105,14 @@ if __name__ == "__main__":
         shop.show_pet()
         print("=" * 20)
 
+    for name0 in ["kitty", "duck"]:
+        pet = Pet.from_name(name0)
+        print("{}: {}".format(name0, pet.speak()))
+
 ### OUTPUT ###
-# We have a lovely Dog
-# It says woof
-# We also have dog food
+# We have a lovely Cat
+# It says meow
+# We also have cat food
 # ====================
 # We have a lovely Dog
 # It says woof
@@ -92,3 +122,5 @@ if __name__ == "__main__":
 # It says meow
 # We also have cat food
 # ====================
+# kitty: Miao
+# duck: Quak
