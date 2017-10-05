@@ -2,8 +2,28 @@
 # -*- coding : utf-8 -*-
 
 """
+*What is this pattern about?
+It decouples the creation of a complex object and its representation,
+so that the same process can be reused to build objects from the same
+family.
+This is useful when you must separate the specification of an object
+from its actual representation (generally for abstraction).
+
+*What does this example do?
+This particular example uses a Director to abtract the
+construction of a building. The user specifies a Builder (House or
+Flat) and the director specifies the methods in the order necessary
+creating a different building dependding on the sepcified
+specification (through the Builder class).
+
 @author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
 https://gist.github.com/420905#file_builder_python.py
+
+*Where is the pattern used practically?
+
+*References:
+https://sourcemaking.com/design_patterns/builder
+
 """
 
 
