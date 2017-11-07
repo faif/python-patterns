@@ -37,7 +37,7 @@ class FlyweightMeta(type):
         pool = getattr(cls, 'pool', {})
 
         instance = pool.get(key)
-        if not instance:
+        if instance is None:
             instance = super(FlyweightMeta, cls).__call__(*args, **kwargs)
             pool[key] = instance
         return instance
