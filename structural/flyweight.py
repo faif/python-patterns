@@ -3,10 +3,9 @@
 
 """http://codesnipers.com/?q=python-flyweights"""
 
-import weakref
-
 
 class FlyweightMeta(type):
+    _pool = {}
 
     def __new__(mcs, name, parents, dct):
         """
@@ -18,7 +17,7 @@ class FlyweightMeta(type):
         static methods, etc
         :return: new class
         """
-        dct['pool'] = weakref.WeakValueDictionary()
+        dct['pool'] = mcs._pool
         return super(FlyweightMeta, mcs).__new__(mcs, name, parents, dct)
 
     @staticmethod
@@ -46,7 +45,7 @@ class FlyweightMeta(type):
 class Card(object):
 
     """The object pool. Has builtin reference counting"""
-    _CardPool = weakref.WeakValueDictionary()
+    _CardPool = {}
 
     """Flyweight implementation. If the object exists in the
     pool just return it (instead of creating a new one)"""
