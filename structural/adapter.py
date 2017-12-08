@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 *What is this pattern about?
 The Adapter pattern provides a different interface for a class. We can
@@ -25,6 +26,9 @@ http://grok.zope.org/doc/current/grok_overview.html#adapters
 http://ginstrom.com/scribbles/2008/11/06/generic-adapter-class-in-python/
 https://sourcemaking.com/design_patterns/adapter
 http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.html#adapter
+
+*TL;DR80
+Allows the interface of an existing class to be used as another interface.
 """
 
 

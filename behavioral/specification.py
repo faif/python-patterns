@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
 
-Specification provide recombination business logic by
-chaining together using boolean logic
+*TL;DR80
+Provides recombination business logic by chaining together using boolean logic.
 """
 
 from abc import abstractmethod

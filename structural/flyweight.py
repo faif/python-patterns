@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""http://codesnipers.com/?q=python-flyweights"""
+"""
+*References:
+http://codesnipers.com/?q=python-flyweights
+
+*TL;DR80
+Minimizes memory usage by sharing data with other similar objects.
+"""
 
 import weakref
 

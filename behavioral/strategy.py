@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 http://stackoverflow.com/questions/963965/how-is-this-strategy-pattern
  -written-in-python-the-sample-in-wikipedia
@@ -9,7 +10,11 @@ concrete strategies (as we can see at
 http://en.wikipedia.org/wiki/Strategy_pattern), however Python supports
 higher-order functions and allows us to have only one class and inject
 functions into it's instances, as shown in this example.
+
+*TL;DR80
+Enables selecting an algorithm at runtime.
 """
+
 import types
 
 

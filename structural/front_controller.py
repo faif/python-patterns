@@ -3,10 +3,10 @@
 
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
-The controller provides a centralized entry point that controls and manages
-request handling.
-"""
 
+*TL;DR80
+Provides a centralized entry point that controls and manages request handling.
+"""
 
 class MobileView(object):
 

@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""http://web.archive.org/web/20120309135549/http://dpip.testingperspective.com/?p=28"""
+
+"""
+http://web.archive.org/web/20120309135549/http://dpip.testingperspective.com/?p=28
+
+*TL;DR80
+Encapsulates how a set of objects interact.
+"""
 
 import random
 import time

@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+*TL;DR80
+Creates new object instances by cloning prototype.
+"""
+
 
 class Prototype(object):
 

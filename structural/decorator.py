@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 *What is this pattern about?
 The Decorator pattern is used to dynamically add a new feature to an
@@ -20,6 +22,9 @@ http://grok.zope.org/doc/current/reference/decorators.html
 
 *References:
 https://sourcemaking.com/design_patterns/decorator
+
+*TL;DR80
+Adds behaviour to object without affecting its class.
 """
 
 

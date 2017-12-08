@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+"""
+http://code.activestate.com/recipes/131499-observer-pattern/
+
+*TL;DR80
+Maintains a list of dependents and notifies them of any state changes.
+"""
+
 from __future__ import print_function
-"""http://code.activestate.com/recipes/131499-observer-pattern/"""
 
 
 class Subject(object):

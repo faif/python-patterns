@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+"""
+*TL;DR80
+Encapsulates all information needed to perform an action or trigger an event.
+"""
+
 from __future__ import print_function
 import os
 from os.path import lexists

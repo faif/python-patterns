@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+*TL;DR80
+Separates presentation, application processing, and data management functions.
+"""
+
 
 class Data(object):
     """ Data Store Class """
@@ -69,7 +74,7 @@ if __name__ == '__main__':
 # cheese
 # eggs
 # milk
-# 
+#
 # (Fetching from Data Store)
 # PRODUCT INFORMATION:
 # Name: Cheese, Price: 2.00, Quantity: 10

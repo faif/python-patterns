@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html
+
+*TL;DR80
+Separates an algorithm from an object structure on which it operates.
 """
 
 
