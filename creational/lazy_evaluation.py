@@ -6,7 +6,7 @@ Lazily-evaluated property pattern in Python.
 
 https://en.wikipedia.org/wiki/Lazy_evaluation
 
-References:
+*References:
 bottle
 https://github.com/bottlepy/bottle/blob/cafc15419cbb4a6cb748e6ecdccf92893bb25ce5/bottle.py#L270
 django
@@ -17,6 +17,9 @@ pyramimd
 https://github.com/Pylons/pyramid/blob/7909e9503cdfc6f6e84d2c7ace1d3c03ca1d8b73/pyramid/decorator.py#L4
 werkzeug
 https://github.com/pallets/werkzeug/blob/5a2bf35441006d832ab1ed5a31963cbc366c99ac/werkzeug/utils.py#L35
+
+*TL;DR80
+Delays the eval of an expr until its value is needed and avoids repeated evals.
 """
 
 from __future__ import print_function

@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""http://www.dabeaz.com/coroutines/"""
+
+"""
+http://www.dabeaz.com/coroutines/
+"""
 
 from contextlib import contextmanager
 import os

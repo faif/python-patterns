@@ -36,6 +36,8 @@ https://github.com/onetwopunch/pythonDbTemplate/blob/master/database.py
 *References:
 https://fkromer.github.io/python-pattern-references/design/#singleton
 
+*TL;DR80
+Provides singletone-like behavior sharing state between instances.
 """
 
 

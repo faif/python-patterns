@@ -34,8 +34,10 @@ operations and calls other modules (e.g., os.stat) to give the result.
 https://sourcemaking.com/design_patterns/facade
 https://fkromer.github.io/python-pattern-references/design/#facade
 http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.html#facade
-"""
 
+*TL;DR80
+Provides a simpler unified interface to a complex system.
+"""
 
 from __future__ import print_function
 import time

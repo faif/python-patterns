@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""http://code.activestate.com/recipes/413838-memento-closure/"""
+
+"""
+http://code.activestate.com/recipes/413838-memento-closure/
+
+*TL;DR80
+Provides the ability to restore an object to its previous state.
+"""
 
 from copy import copy
 from copy import deepcopy

@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
-An example of the Template pattern in Python"""
+"""
+http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
+
+An example of the Template pattern in Python
+
+*TL;DR80
+Defines the skeleton of an algorithm, deferring steps to subclasses.
+"""
 
 ingredients = "spam eggs apple"
 line = '-' * 10

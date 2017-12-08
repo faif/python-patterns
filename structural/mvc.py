@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+*TL;DR80
+Separates data in GUIs from the ways it is presented, and accepted.
+"""
 
 class Model(object):
 

@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 Implementation of the iterator pattern with a generator
+
+*TL;DR80
+Traverses a container and accesses the container's elements.
 """
 
 from __future__ import print_function

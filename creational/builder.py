@@ -24,6 +24,8 @@ https://gist.github.com/420905#file_builder_python.py
 *References:
 https://sourcemaking.com/design_patterns/builder
 
+*TL;DR80
+Decouples the creation of a complex object and its representation.
 """
 
 

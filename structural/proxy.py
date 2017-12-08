@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+"""
+*TL;DR80
+Provides an interface to resource that is expensive to duplicate.
+"""
+
 from __future__ import print_function
 import time
 

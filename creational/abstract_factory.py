@@ -26,6 +26,8 @@ and  sub_cls.__name__ to get its name.
 https://sourcemaking.com/design_patterns/abstract_factory
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
+*TL;DR80
+Provides a way to encapsulate a group of individual factories.
 """
 
 

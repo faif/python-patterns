@@ -1,8 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Implementation of the state pattern"""
 
-# http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
+"""
+Implementation of the state pattern
+
+http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
+
+*TL;DR80
+Implements state as a derived class of the state pattern interface.
+Implements state transitions by invoking methods from the pattern's superclass.
+"""
+
 from __future__ import print_function
 
 

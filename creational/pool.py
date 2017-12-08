@@ -26,6 +26,9 @@ function is deleted (by the GC) and the object is returned.
 *References:
 http://stackoverflow.com/questions/1514120/python-implementation-of-the-object-pool-design-pattern
 https://sourcemaking.com/design_patterns/object_pool
+
+*TL;DR80
+Stores a set of initialized objects kept ready to use.
 """
 
 
