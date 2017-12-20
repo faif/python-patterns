@@ -13,7 +13,7 @@ from its actual representation (generally for abstraction).
 This particular example uses a Director to abtract the
 construction of a building. The user specifies a Builder (House or
 Flat) and the director specifies the methods in the order necessary
-creating a different building dependding on the sepcified
+creating a different building dependding on the specified
 specification (through the Builder class).
 
 @author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
