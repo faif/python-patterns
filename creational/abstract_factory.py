@@ -93,14 +93,15 @@ if __name__ == "__main__":
         shop.show_pet()
         print("=" * 20)
 
-
 ### OUTPUT ###
 # We have a lovely Cat
 # It says meow
-#
-# ====================
+# 
 # We have a lovely Dog
 # It says woof
+# ====================
+# We have a lovely Cat
+# It says meow
 # ====================
 # We have a lovely Cat
 # It says meow
