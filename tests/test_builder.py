@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from creational.builder import Director, BuilderHouse,  BuilderFlat
+from creational.builder import construct_building, BuilderHouse,  BuilderFlat
 
 
 class TestHouseBuilding(unittest.TestCase):
 
     def setUp(self):
-        self.director = Director()
-        self.director.builder = BuilderHouse()
-        self.director.construct_building()
-        self.building = self.director.get_building()
+        self.building = construct_building(BuilderHouse())
 
     def test_house_size(self):
         self.assertEqual(self.building.size, 'Big')
@@ -22,10 +19,7 @@ class TestHouseBuilding(unittest.TestCase):
 class TestFlatBuilding(unittest.TestCase):
 
     def setUp(self):
-        self.director = Director()
-        self.director.builder = BuilderFlat()
-        self.director.construct_building()
-        self.building = self.director.get_building()
+        self.building = construct_building(BuilderFlat())
 
     def test_house_size(self):
         self.assertEqual(self.building.size, 'Small')

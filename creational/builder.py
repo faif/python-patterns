@@ -10,10 +10,10 @@ This is useful when you must separate the specification of an object
 from its actual representation (generally for abstraction).
 
 *What does this example do?
-This particular example uses a Director to abtract the
+This particular example uses a director function to abtract the
 construction of a building. The user specifies a Builder (House or
 Flat) and the director specifies the methods in the order necessary
-creating a different building dependding on the specified
+creating a different building depending on the specified
 specification (through the Builder class).
 
 @author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
@@ -29,19 +29,11 @@ Decouples the creation of a complex object and its representation.
 """
 
 
-# Director
-class Director(object):
-
-    def __init__(self):
-        self.builder = None
-
-    def construct_building(self):
-        self.builder.new_building()
-        self.builder.build_floor()
-        self.builder.build_size()
-
-    def get_building(self):
-        return self.builder.building
+def construct_building(builder):
+    builder.new_building()
+    builder.build_floor()
+    builder.build_size()
+    return builder.building
 
 
 # Abstract Builder
@@ -93,14 +85,9 @@ class Building(object):
 
 # Client
 if __name__ == "__main__":
-    director = Director()
-    director.builder = BuilderHouse()
-    director.construct_building()
-    building = director.get_building()
+    building = construct_building(BuilderHouse())
     print(building)
-    director.builder = BuilderFlat()
-    director.construct_building()
-    building = director.get_building()
+    building = construct_building(BuilderFlat())
     print(building)
 
 ### OUTPUT ###
