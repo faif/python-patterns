@@ -10,11 +10,11 @@ This is useful when you must separate the specification of an object
 from its actual representation (generally for abstraction).
 
 *What does this example do?
-This particular example uses a director function to abtract the
+This particular example uses a director function to abstract the
 construction of a building. The user specifies a Builder (House or
-Flat) and the director specifies the methods in the order necessary
-creating a different building depending on the specified
-specification (through the Builder class).
+Flat) and the director specifies the methods in the order necessary,
+creating a different building depending on the specification 
+(from the Builder class).
 
 @author: Diogenes Augusto Fernandes Herminio <diofeher@gmail.com>
 https://gist.github.com/420905#file_builder_python.py
