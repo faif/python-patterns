@@ -17,7 +17,7 @@ custom ObjectPool object to use with the with statement), and it is
 populated with strings.
 As we can see, the first string object put in "yam" is USED by the
 with statement. But because it is released back into the pool
-aftwerwards it is reused by the explicit call to sample_queue.get().
+afterwards it is reused by the explicit call to sample_queue.get().
 Same thing happens with "sam", when the ObjectPool created insided the
 function is deleted (by the GC) and the object is returned.
 
