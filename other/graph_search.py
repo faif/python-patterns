@@ -19,7 +19,7 @@ class GraphSearch:
             return path
         for node in self.graph.get(start, []):
             if node not in path:
-                newpath = self.find_path(node, end, path)
+                newpath = self.find_path(node, end, path[:])
                 if newpath:
                     return newpath
 
