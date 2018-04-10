@@ -11,7 +11,7 @@ actual class.
 The idea is to abstract the creation of objects depending on business
 logic, platform choice, etc.
 
-In Python, we interface we use is simply a callable, which is "builtin" interface
+In Python, the interface we use is simply a callable, which is "builtin" interface
 in Python, and in normal circumstances we can simply use the class itself as
 that callable, because classes are first class objects in Python.
 
