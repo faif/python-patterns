@@ -27,6 +27,7 @@ https://sourcemaking.com/design_patterns/decorator
 Adds behaviour to object without affecting its class.
 """
 
+from __future__ import print_function
 
 class TextTag(object):
     """Represents a base text tag"""
