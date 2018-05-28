@@ -72,8 +72,8 @@ class Adapter(object):
     """
     Adapts an object by replacing methods.
     Usage:
-    dog = Dog
-    dog = Adapter(dog, dict(make_noise=dog.bark))
+    dog = Dog()
+    dog = Adapter(dog, make_noise=dog.bark)
 
     >>> objects = []
     >>> dog = Dog()
