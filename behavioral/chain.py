@@ -2,7 +2,22 @@
 # -*- coding: utf-8 -*-
 
 """
+*What is this pattern about?
+This pattern aims to decouple the senders of a request from its
+receivers. It does this by allowing a request to move through chained
+objects until it is handled by an appropriate receiver.
+
+This is useful as it reduces the number of connections between objects,
+since the sender does not need explicit knowledge of the handler, and
+the receiver won't need to refer to all potential receivers, but keeps
+a reference to a single successor.
+
+*References:
 http://www.dabeaz.com/coroutines/
+
+*TL;DR80
+Allow a request to pass down a chain of objects until an object handles
+the request.
 """
 
 from contextlib import contextmanager
