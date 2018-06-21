@@ -29,12 +29,12 @@ class StrategyExample:
         print(self.name)
 
 
-def execute_replacement1(self):
-    print(self.name + ' from execute 1')
+    def execute_replacement1(self):
+        print(self.name + ' from execute 1')
 
 
-def execute_replacement2(self):
-    print(self.name + ' from execute 2')
+    def execute_replacement2(self):
+        print(self.name + ' from execute 2')
 
 
 if __name__ == '__main__':
