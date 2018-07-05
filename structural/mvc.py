@@ -5,23 +5,59 @@
 *TL;DR80
 Separates data in GUIs from the ways it is presented, and accepted.
 """
+from abc import ABC, abstractmethod
 
-class Model(object):
 
+class Model(ABC):
+    """Abstract model defines interfaces."""
+
+    @abstractmethod
     def __iter__(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def get(self, item):
         """Returns an object with a .items() call method
         that iterates over key,value pairs of its information."""
-        raise NotImplementedError
+        pass
 
-    @property
+    @abstractmethod
     def item_type(self):
-        raise NotImplementedError
+        pass
+
+
+class View(ABC):
+    """Abstract view defines interfaces."""
+
+    @abstractmethod
+    def show_item_list(self, item_type, item_list):
+        pass
+
+    @abstractmethod
+    def show_item_information(self, item_type, item_name, item_info):
+        """Will look for item information by iterating over key,value pairs
+        yielded by item_info.items()"""
+        pass
+
+    @abstractmethod
+    def item_not_found(self, item_type, item_name):
+        pass
+
+
+class Controller(ABC):
+    """Abstract controller defines interfaces."""
+
+    @abstractmethod
+    def show_items(self):
+        pass
+
+    @abstractmethod
+    def show_item_information(self, item_name):
+        pass
 
 
 class ProductModel(Model):
+    """Concrete product model."""
 
     class Price(float):
         """A polymorphic way to pass a float with a particular
@@ -32,10 +68,8 @@ class ProductModel(Model):
             try:
                 dot_location = first_digits_str.index('.')
             except ValueError:
-                return (first_digits_str + '.00')
-            else:
-                return (first_digits_str +
-                        '0' * (3 + dot_location - len(first_digits_str)))
+                return '{}.00'.format(first_digits_str)
+            return '{}{}'.format(first_digits_str, '0' * (3 + dot_location - len(first_digits_str)))
 
     products = {
         'milk': {'price': Price(1.50), 'quantity': 10},
@@ -43,7 +77,9 @@ class ProductModel(Model):
         'cheese': {'price': Price(2.00), 'quantity': 10}
     }
 
-    item_type = 'product'
+    @property
+    def item_type(self):
+        return 'product'
 
     def __iter__(self):
         for item in self.products:
@@ -53,80 +89,68 @@ class ProductModel(Model):
         try:
             return self.products[product]
         except KeyError as e:
-            raise KeyError((str(e) + " not in the model's item list."))
+            raise KeyError(str(e) + " not in the model's item list.")
 
-
-class View(object):
-
-    def show_item_list(self, item_type, item_list):
-        raise NotImplementedError
-
-    def show_item_information(self, item_type, item_name, item_info):
-        """Will look for item information by iterating over key,value pairs
-        yielded by item_info.items()"""
-        raise NotImplementedError
-
-    def item_not_found(self, item_type, item_name):
-        raise NotImplementedError
 
 
 class ConsoleView(View):
+    """Concrete console view."""
 
     def show_item_list(self, item_type, item_list):
-        print(item_type.upper() + ' LIST:')
+        print("{} LIST:".format(item_type.upper()))
         for item in item_list:
             print(item)
-        print('')
+        print('\n')
 
     @staticmethod
     def capitalizer(string):
-        return string[0].upper() + string[1:].lower()
+        return '{}{}'.format(string[0].upper(), string[1:].lower())
 
     def show_item_information(self, item_type, item_name, item_info):
-        print(item_type.upper() + ' INFORMATION:')
-        printout = 'Name: %s' % item_name
+        print('{} INFORMATION:'.format(item_type.upper()))
+        printout = 'Name: {}'.format(item_name)
         for key, value in item_info.items():
-            printout += (', ' + self.capitalizer(str(key)) + ': ' + str(value))
+            printout += ', ' + self.capitalizer(str(key)) + ': ' + str(value)
         printout += '\n'
         print(printout)
 
     def item_not_found(self, item_type, item_name):
-        print('That %s "%s" does not exist in the records' %
-              (item_type, item_name))
+        print('That {} "{}" does not exist in the records'.format(item_type, item_name))
 
 
-class Controller(object):
+class ItemController(Controller):
+    """Concrete item controller."""
 
     def __init__(self, model, view):
-        self.model = model
-        self.view = view
+        self._model = model
+        self._view = view
 
     def show_items(self):
-        items = list(self.model)
-        item_type = self.model.item_type
-        self.view.show_item_list(item_type, items)
+        items = list(self._model)
+        item_type = self._model.item_type
+        self._view.show_item_list(item_type, items)
 
     def show_item_information(self, item_name):
         try:
-            item_info = self.model.get(item_name)
-        except:
-            item_type = self.model.item_type
-            self.view.item_not_found(item_type, item_name)
+            item_info = self._model.get(item_name)
+        except KeyError:
+            item_type = self._model.item_type
+            self._view.item_not_found(item_type, item_name)
         else:
-            item_type = self.model.item_type
-            self.view.show_item_information(item_type, item_name, item_info)
+            item_type = self._model.item_type
+            self._view.show_item_information(item_type, item_name, item_info)
 
 
 if __name__ == '__main__':
-
     model = ProductModel()
     view = ConsoleView()
-    controller = Controller(model, view)
+    controller = ItemController(model, view)
     controller.show_items()
     controller.show_item_information('cheese')
     controller.show_item_information('eggs')
     controller.show_item_information('milk')
     controller.show_item_information('arepas')
+
 
 ### OUTPUT ###
 # PRODUCT LIST:
