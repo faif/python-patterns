@@ -1,0 +1,6 @@
+[report]
+exclude_lines =
+    pragma: no cover
+    # Don't complain if tests don't hit defensive assertion code:
+    # See: https://stackoverflow.com/a/9212387/3407256
+    raise NotImplementedError
