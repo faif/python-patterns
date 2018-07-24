@@ -24,7 +24,7 @@ dictionary itself is shared (which is __shared_state), all other
 attributes will also be shared.
 For this reason, when the attribute self.state is modified using
 instance rm2, the value of self.state in instance rm1 also chages. The
-same happends if self.state is modified using rm3, which is an
+same happens if self.state is modified using rm3, which is an
 instance from a subclass.
 Notice that even though they share attributes, the instances are not
 the same, as seen by their ids.
@@ -37,7 +37,7 @@ https://github.com/onetwopunch/pythonDbTemplate/blob/master/database.py
 https://fkromer.github.io/python-pattern-references/design/#singleton
 
 *TL;DR80
-Provides singletone-like behavior sharing state between instances.
+Provides singleton-like behavior sharing state between instances.
 """
 
 
