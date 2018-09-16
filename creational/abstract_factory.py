@@ -54,7 +54,6 @@ class PetShop(object):
 
 
 class Dog(object):
-
     def speak(self):
         return "woof"
 
@@ -63,7 +62,6 @@ class Dog(object):
 
 
 class Cat(object):
-
     def speak(self):
         return "meow"
 
@@ -96,7 +94,7 @@ if __name__ == "__main__":
 ### OUTPUT ###
 # We have a lovely Cat
 # It says meow
-# 
+#
 # We have a lovely Dog
 # It says woof
 # ====================

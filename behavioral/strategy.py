@@ -37,7 +37,6 @@ import types
 
 
 class StrategyExample:
-
     def __init__(self, func=None):
         self.name = 'Strategy Example 0'
         if func is not None:

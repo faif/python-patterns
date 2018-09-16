@@ -5,7 +5,6 @@ from creational.prototype import Prototype, PrototypeDispatcher
 
 
 class TestPrototypeFeatures(unittest.TestCase):
-
     def setUp(self):
         self.prototype = Prototype()
 
@@ -27,7 +26,6 @@ class TestPrototypeFeatures(unittest.TestCase):
 
 
 class TestDispatcherFeatures(unittest.TestCase):
-
     def setUp(self):
         self.dispatcher = PrototypeDispatcher()
         self.prototype = Prototype()

@@ -6,8 +6,8 @@
 Separates data in GUIs from the ways it is presented, and accepted.
 """
 
-class Model(object):
 
+class Model(object):
     def __iter__(self):
         raise NotImplementedError
 
@@ -22,7 +22,6 @@ class Model(object):
 
 
 class ProductModel(Model):
-
     class Price(float):
         """A polymorphic way to pass a float with a particular
         __str__ functionality."""
@@ -32,15 +31,14 @@ class ProductModel(Model):
             try:
                 dot_location = first_digits_str.index('.')
             except ValueError:
-                return (first_digits_str + '.00')
+                return first_digits_str + '.00'
             else:
-                return (first_digits_str +
-                        '0' * (3 + dot_location - len(first_digits_str)))
+                return first_digits_str + '0' * (3 + dot_location - len(first_digits_str))
 
     products = {
         'milk': {'price': Price(1.50), 'quantity': 10},
         'eggs': {'price': Price(0.20), 'quantity': 100},
-        'cheese': {'price': Price(2.00), 'quantity': 10}
+        'cheese': {'price': Price(2.00), 'quantity': 10},
     }
 
     item_type = 'product'
@@ -57,7 +55,6 @@ class ProductModel(Model):
 
 
 class View(object):
-
     def show_item_list(self, item_type, item_list):
         raise NotImplementedError
 
@@ -71,7 +68,6 @@ class View(object):
 
 
 class ConsoleView(View):
-
     def show_item_list(self, item_type, item_list):
         print(item_type.upper() + ' LIST:')
         for item in item_list:
@@ -86,17 +82,15 @@ class ConsoleView(View):
         print(item_type.upper() + ' INFORMATION:')
         printout = 'Name: %s' % item_name
         for key, value in item_info.items():
-            printout += (', ' + self.capitalizer(str(key)) + ': ' + str(value))
+            printout += ', ' + self.capitalizer(str(key)) + ': ' + str(value)
         printout += '\n'
         print(printout)
 
     def item_not_found(self, item_type, item_name):
-        print('That %s "%s" does not exist in the records' %
-              (item_type, item_name))
+        print('That %s "%s" does not exist in the records' % (item_type, item_name))
 
 
 class Controller(object):
-
     def __init__(self, model, view):
         self.model = model
         self.view = view
@@ -109,7 +103,7 @@ class Controller(object):
     def show_item_information(self, item_name):
         try:
             item_info = self.model.get(item_name)
-        except:
+        except Exception:
             item_type = self.model.item_type
             self.view.item_not_found(item_type, item_name)
         else:
@@ -127,6 +121,7 @@ if __name__ == '__main__':
     controller.show_item_information('eggs')
     controller.show_item_information('milk')
     controller.show_item_information('arepas')
+
 
 ### OUTPUT ###
 # PRODUCT LIST:

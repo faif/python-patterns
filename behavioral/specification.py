@@ -12,7 +12,6 @@ from abc import abstractmethod
 
 
 class Specification(object):
-
     def and_specification(self, candidate):
         raise NotImplementedError()
 
@@ -28,7 +27,6 @@ class Specification(object):
 
 
 class CompositeSpecification(Specification):
-
     @abstractmethod
     def is_satisfied_by(self, candidate):
         pass
@@ -52,8 +50,7 @@ class AndSpecification(CompositeSpecification):
         self._other = other
 
     def is_satisfied_by(self, candidate):
-        return bool(self._one.is_satisfied_by(candidate) and
-                    self._other.is_satisfied_by(candidate))
+        return bool(self._one.is_satisfied_by(candidate) and self._other.is_satisfied_by(candidate))
 
 
 class OrSpecification(CompositeSpecification):
@@ -65,8 +62,7 @@ class OrSpecification(CompositeSpecification):
         self._other = other
 
     def is_satisfied_by(self, candidate):
-        return bool(self._one.is_satisfied_by(candidate) or
-                    self._other.is_satisfied_by(candidate))
+        return bool(self._one.is_satisfied_by(candidate) or self._other.is_satisfied_by(candidate))
 
 
 class NotSpecification(CompositeSpecification):
@@ -80,19 +76,16 @@ class NotSpecification(CompositeSpecification):
 
 
 class User(object):
-
     def __init__(self, super_user=False):
         self.super_user = super_user
 
 
 class UserSpecification(CompositeSpecification):
-
     def is_satisfied_by(self, candidate):
         return isinstance(candidate, User)
 
 
 class SuperUserSpecification(CompositeSpecification):
-
     def is_satisfied_by(self, candidate):
         return getattr(candidate, 'super_user', False)
 
@@ -103,8 +96,7 @@ if __name__ == '__main__':
     ivan = User(super_user=True)
     vasiliy = 'not User instance'
 
-    root_specification = UserSpecification().\
-        and_specification(SuperUserSpecification())
+    root_specification = UserSpecification().and_specification(SuperUserSpecification())
 
     print(root_specification.is_satisfied_by(andrey))
     print(root_specification.is_satisfied_by(ivan))

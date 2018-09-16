@@ -5,7 +5,6 @@ from __future__ import print_function
 
 
 class Person(object):
-
     def __init__(self, name, action):
         self.name = name
         self.action = action
@@ -16,7 +15,6 @@ class Person(object):
 
 
 class Action(object):
-
     def __init__(self, name):
         self.name = name
 
@@ -26,6 +24,7 @@ class Action(object):
 
     def stop(self):
         print('then stop')
+
 
 if __name__ == '__main__':
 

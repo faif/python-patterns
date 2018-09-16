@@ -26,8 +26,7 @@ script:
   - PYTHONPATH=. nosetests -s -v --with-doctest --with-cov --cover-package . --logging-level=INFO -v .
   # Actually run all the scripts, contributing to coverage
   - PYTHONPATH=. ./run_all.sh
-  # for now failure in flaking is ignored
-  - flake8 *py || echo "PEP8 the code"
+  - flake8 *py
 
 after_success:
   - coveralls

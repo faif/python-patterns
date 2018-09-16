@@ -22,22 +22,25 @@ class UnsupportedTransition(BaseException):
 
 
 class HierachicalStateMachine(object):
-
     def __init__(self):
         self._active_state = Active(self)  # Unit.Inservice.Active()
         self._standby_state = Standby(self)  # Unit.Inservice.Standby()
         self._suspect_state = Suspect(self)  # Unit.OutOfService.Suspect()
         self._failed_state = Failed(self)  # Unit.OutOfService.Failed()
         self._current_state = self._standby_state
-        self.states = {'active': self._active_state,
-                       'standby': self._standby_state,
-                       'suspect': self._suspect_state,
-                       'failed': self._failed_state}
-        self.message_types = {'fault trigger': self._current_state.on_fault_trigger,
-                              'switchover': self._current_state.on_switchover,
-                              'diagnostics passed': self._current_state.on_diagnostics_passed,
-                              'diagnostics failed': self._current_state.on_diagnostics_failed,
-                              'operator inservice': self._current_state.on_operator_inservice}
+        self.states = {
+            'active': self._active_state,
+            'standby': self._standby_state,
+            'suspect': self._suspect_state,
+            'failed': self._failed_state,
+        }
+        self.message_types = {
+            'fault trigger': self._current_state.on_fault_trigger,
+            'switchover': self._current_state.on_switchover,
+            'diagnostics passed': self._current_state.on_diagnostics_passed,
+            'diagnostics failed': self._current_state.on_diagnostics_failed,
+            'operator inservice': self._current_state.on_operator_inservice,
+        }
 
     def _next_state(self, state):
         try:
@@ -83,7 +86,6 @@ class HierachicalStateMachine(object):
 
 
 class Unit(object):
-
     def __init__(self, HierachicalStateMachine):
         self.hsm = HierachicalStateMachine
 
@@ -100,11 +102,10 @@ class Unit(object):
         raise UnsupportedTransition
 
     def on_operator_inservice(self):
-         raise UnsupportedTransition
+        raise UnsupportedTransition
 
 
 class Inservice(Unit):
-
     def __init__(self, HierachicalStateMachine):
         self._hsm = HierachicalStateMachine
 
@@ -120,7 +121,6 @@ class Inservice(Unit):
 
 
 class Active(Inservice):
-
     def __init__(self, HierachicalStateMachine):
         self._hsm = HierachicalStateMachine
 
@@ -134,17 +134,15 @@ class Active(Inservice):
 
 
 class Standby(Inservice):
-
     def __init__(self, HierachicalStateMachine):
         self._hsm = HierachicalStateMachine
 
     def on_switchover(self):
-        super(Standby, self).on_switchover() #message ignored
+        super(Standby, self).on_switchover()  # message ignored
         self._hsm._next_state('active')
 
 
 class OutOfService(Unit):
-
     def __init__(self, HierachicalStateMachine):
         self._hsm = HierachicalStateMachine
 
@@ -155,7 +153,6 @@ class OutOfService(Unit):
 
 
 class Suspect(OutOfService):
-
     def __init__(self, HierachicalStateMachine):
         self._hsm = HierachicalStateMachine
 
@@ -174,8 +171,7 @@ class Suspect(OutOfService):
 
 
 class Failed(OutOfService):
-    '''No need to override any method.'''
+    """No need to override any method."""
 
     def __init__(self, HierachicalStateMachine):
         self._hsm = HierachicalStateMachine
-

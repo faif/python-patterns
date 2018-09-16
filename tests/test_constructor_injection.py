@@ -19,8 +19,8 @@ production code (production code time provider is datetime) is used:
         self.assertEqual(result, expected_time)
 """
 
-class ConstructorInjectionTest(unittest.TestCase):
 
+class ConstructorInjectionTest(unittest.TestCase):
     def test_display_current_time_at_midnight(self):
         """
         Will almost always fail (despite of right at/after midnight).
@@ -39,4 +39,3 @@ class ConstructorInjectionTest(unittest.TestCase):
         current_time = datetime.datetime.now()
         expected_time = "<span class=\"tinyBoldText\">{}:{}</span>".format(current_time.hour, current_time.minute)
         self.assertEqual(class_under_test.get_current_time_as_html_fragment(), expected_time)
-

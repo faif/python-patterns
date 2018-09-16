@@ -33,7 +33,6 @@ Allows the interface of an existing class to be used as another interface.
 
 
 class Dog(object):
-
     def __init__(self):
         self.name = "Dog"
 
@@ -42,7 +41,6 @@ class Dog(object):
 
 
 class Cat(object):
-
     def __init__(self):
         self.name = "Cat"
 
@@ -51,7 +49,6 @@ class Cat(object):
 
 
 class Human(object):
-
     def __init__(self):
         self.name = "Human"
 
@@ -60,7 +57,6 @@ class Human(object):
 
 
 class Car(object):
-
     def __init__(self):
         self.name = "Car"
 
@@ -111,6 +107,7 @@ class Adapter(object):
         """Print original object dict"""
         return self.obj.__dict__
 
+
 def main():
 
     objects = []
@@ -135,7 +132,7 @@ if __name__ == "__main__":
 
 ### OUTPUT ###
 # {'name': 'Dog'}
-# {'make_noise': <bound method Dog.bark of <__main__.Dog object at 0x7f631ba3fb00>>, 'obj': <__main__.Dog object at 0x7f631ba3fb00>}
+# {'make_noise': <bound method Dog.bark of <__main__.Dog object at 0x7f631ba3fb00>>, 'obj': <__main__.Dog object at 0x7f631ba3fb00>}    # noqa flake8
 # {'name': 'Dog'}
 # A Dog goes woof!
 # A Cat goes meow!
