@@ -20,8 +20,8 @@ production code (have a look into constructor_injection.py) is used:
         self.assertEqual(result, expected_time)
 """
 
-class ParameterInjectionTest(unittest.TestCase):
 
+class ParameterInjectionTest(unittest.TestCase):
     def test_display_current_time_at_midnight(self):
         """
         Would almost always fail (despite of right at/after midnight) if

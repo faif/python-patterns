@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
+
 try:
     import queue
 except ImportError:  # python 2.x compatibility
@@ -9,7 +10,6 @@ from creational.pool import ObjectPool
 
 
 class TestPool(unittest.TestCase):
-
     def setUp(self):
         self.sample_queue = queue.Queue()
         self.sample_queue.put('first')
@@ -48,7 +48,6 @@ class TestNaitivePool(unittest.TestCase):
         self.assertFalse(sample_queue.empty())
         self.assertTrue(sample_queue.get() == 'yam')
         self.assertTrue(sample_queue.empty())
-        
 
     # sample_queue.put('sam')
     # test_object(sample_queue)

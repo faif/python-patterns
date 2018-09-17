@@ -38,7 +38,6 @@ class Prototype(object):
 
 
 class PrototypeDispatcher(object):
-
     def __init__(self):
         self._objects = {}
 

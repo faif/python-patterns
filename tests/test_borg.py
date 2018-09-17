@@ -5,7 +5,6 @@ from creational.borg import Borg, YourBorg
 
 
 class BorgTest(unittest.TestCase):
-
     def setUp(self):
         self.b1 = Borg()
         self.b2 = Borg()

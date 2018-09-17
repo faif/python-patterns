@@ -44,7 +44,6 @@ class Handler(object):
 
 
 class ConcreteHandler1(Handler):
-
     def _handle(self, request):
         if 0 < request <= 10:
             print('request {} handled in handler 1'.format(request))
@@ -52,7 +51,6 @@ class ConcreteHandler1(Handler):
 
 
 class ConcreteHandler2(Handler):
-
     def _handle(self, request):
         if 10 < request <= 20:
             print('request {} handled in handler 2'.format(request))
@@ -60,7 +58,6 @@ class ConcreteHandler2(Handler):
 
 
 class ConcreteHandler3(Handler):
-
     def _handle(self, request):
         if 20 < request <= 30:
             print('request {} handled in handler 3'.format(request))
@@ -68,17 +65,14 @@ class ConcreteHandler3(Handler):
 
 
 class DefaultHandler(Handler):
-
     def _handle(self, request):
         print('end of chain, no handler for {}'.format(request))
         return True
 
 
 class Client(object):
-
     def __init__(self):
-        self.handler = ConcreteHandler1(
-            ConcreteHandler3(ConcreteHandler2(DefaultHandler())))
+        self.handler = ConcreteHandler1(ConcreteHandler3(ConcreteHandler2(DefaultHandler())))
 
     def delegate(self, requests):
         for request in requests:
@@ -90,6 +84,7 @@ def coroutine(func):
         cr = func(*args, **kwargs)
         next(cr)
         return cr
+
     return start
 
 
@@ -131,7 +126,6 @@ def default_coroutine():
 
 
 class ClientCoroutine:
-
     def __init__(self):
         self.target = coroutine1(coroutine3(coroutine2(default_coroutine())))
 
@@ -141,12 +135,12 @@ class ClientCoroutine:
 
 
 def timeit(func):
-
     def count(*args, **kwargs):
         start = time.time()
         res = func(*args, **kwargs)
         count._time = time.time() - start
         return res
+
     return count
 
 

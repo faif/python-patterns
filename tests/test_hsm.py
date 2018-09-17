@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from other.hsm.hsm import HierachicalStateMachine,\
-    UnsupportedMessageType, UnsupportedState,\
-    UnsupportedTransition, Active, Standby, Suspect
+from other.hsm.hsm import (
+    HierachicalStateMachine,
+    UnsupportedMessageType,
+    UnsupportedState,
+    UnsupportedTransition,
+    Active,
+    Standby,
+    Suspect,
+)
+
 try:
     from unittest.mock import patch
 except ImportError:
@@ -11,7 +18,6 @@ except ImportError:
 
 
 class HsmMethodTest(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         cls.hsm = HierachicalStateMachine()
@@ -20,11 +26,11 @@ class HsmMethodTest(unittest.TestCase):
         cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
 
     def test_unsupported_state_shall_raise_exception(cls):
-        with cls.assertRaises(UnsupportedState) as context:
+        with cls.assertRaises(UnsupportedState):
             cls.hsm._next_state('missing')
 
     def test_unsupported_message_type_shall_raise_exception(cls):
-        with cls.assertRaises(UnsupportedMessageType) as context:
+        with cls.assertRaises(UnsupportedMessageType):
             cls.hsm.on_message('trigger')
 
     def test_calling_next_state_shall_change_current_state(cls):
@@ -57,14 +63,13 @@ class StandbyStateTest(unittest.TestCase):
         cls.assertEqual(isinstance(cls.hsm._current_state, Active), True)
 
     def test_given_standby_on_message_switchover_shall_call_hsm_methods(cls):
-        with patch.object(cls.hsm,
-                          '_perform_switchover') as mock_perform_switchover,\
-                patch.object(cls.hsm,
-                             '_check_mate_status') as mock_check_mate_status,\
-                patch.object(cls.hsm,
-                             '_send_switchover_response') as mock_send_switchover_response,\
-                patch.object(cls.hsm,
-                             '_next_state') as mock_next_state:
+        with patch.object(cls.hsm, '_perform_switchover') as mock_perform_switchover, patch.object(
+            cls.hsm, '_check_mate_status'
+        ) as mock_check_mate_status, patch.object(
+            cls.hsm, '_send_switchover_response'
+        ) as mock_send_switchover_response, patch.object(
+            cls.hsm, '_next_state'
+        ) as mock_next_state:
             cls.hsm.on_message('switchover')
             cls.assertEqual(mock_perform_switchover.call_count, 1)
             cls.assertEqual(mock_check_mate_status.call_count, 1)
@@ -76,16 +81,16 @@ class StandbyStateTest(unittest.TestCase):
         cls.assertEqual(isinstance(cls.hsm._current_state, Suspect), True)
 
     def test_given_standby_on_message_diagnostics_failed_shall_raise_exception_and_keep_in_state(cls):
-        with cls.assertRaises(UnsupportedTransition) as context:
+        with cls.assertRaises(UnsupportedTransition):
             cls.hsm.on_message('diagnostics failed')
         cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
 
     def test_given_standby_on_message_diagnostics_passed_shall_raise_exception_and_keep_in_state(cls):
-        with cls.assertRaises(UnsupportedTransition) as context:
+        with cls.assertRaises(UnsupportedTransition):
             cls.hsm.on_message('diagnostics passed')
         cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)
 
     def test_given_standby_on_message_operator_inservice_shall_raise_exception_and_keep_in_state(cls):
-        with cls.assertRaises(UnsupportedTransition) as context:
+        with cls.assertRaises(UnsupportedTransition):
             cls.hsm.on_message('operator inservice')
         cls.assertEqual(isinstance(cls.hsm._current_state, Standby), True)

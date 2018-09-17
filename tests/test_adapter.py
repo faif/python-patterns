@@ -5,7 +5,6 @@ from structural.adapter import Dog, Cat, Human, Car, Adapter
 
 
 class ClassTest(unittest.TestCase):
-
     def setUp(self):
         self.dog = Dog()
         self.cat = Cat()
@@ -39,7 +38,6 @@ class ClassTest(unittest.TestCase):
 
 
 class AdapterTest(unittest.TestCase):
-
     def test_dog_adapter_shall_make_noise(self):
         dog = Dog()
         dog_adapter = Adapter(dog, make_noise=dog.bark)

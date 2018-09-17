@@ -29,13 +29,13 @@ class BaseRegisteredClass(object):
     """
     pass
 
+
 if __name__ == "__main__":
     print("Before subclassing: ")
     for k in RegistryHolder.REGISTRY:
         print(k)
 
     class ClassRegistree(BaseRegisteredClass):
-
         def __init__(self, *args, **kwargs):
             pass
 

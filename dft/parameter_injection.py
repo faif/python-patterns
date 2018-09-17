@@ -21,8 +21,8 @@ class TimeDisplay(object):
         return current_time_as_html_fragment
 """
 
-class TimeDisplay(object):
 
+class TimeDisplay(object):
     def __init__(self):
         pass
 
@@ -30,6 +30,7 @@ class TimeDisplay(object):
         current_time = time_provider.now()
         current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
         return current_time_as_html_fragment
+
 
 class ProductionCodeTimeProvider(object):
     """
@@ -41,6 +42,7 @@ class ProductionCodeTimeProvider(object):
         current_time = datetime.datetime.now()
         current_time_formatted = "{}:{}".format(current_time.hour, current_time.minute)
         return current_time_formatted
+
 
 class MidnightTimeProvider(object):
     """

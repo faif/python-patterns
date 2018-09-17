@@ -17,14 +17,13 @@ import random
 
 
 class Blackboard(object):
-
     def __init__(self):
         self.experts = []
         self.common_state = {
             'problems': 0,
             'suggestions': 0,
             'contributions': [],
-            'progress': 0   # percentage, if 100 -> task is finished
+            'progress': 0,  # percentage, if 100 -> task is finished
         }
 
     def add_expert(self, expert):
@@ -32,7 +31,6 @@ class Blackboard(object):
 
 
 class Controller(object):
-
     def __init__(self, blackboard):
         self.blackboard = blackboard
 
@@ -61,7 +59,6 @@ class AbstractExpert(object):
 
 
 class Student(AbstractExpert):
-
     @property
     def is_eager_to_contribute(self):
         return True
@@ -74,7 +71,6 @@ class Student(AbstractExpert):
 
 
 class Scientist(AbstractExpert):
-
     @property
     def is_eager_to_contribute(self):
         return random.randint(0, 1)
@@ -87,7 +83,6 @@ class Scientist(AbstractExpert):
 
 
 class Professor(AbstractExpert):
-
     @property
     def is_eager_to_contribute(self):
         return True if self.blackboard.common_state['problems'] > 100 else False
@@ -110,6 +105,7 @@ if __name__ == '__main__':
     contributions = c.run_loop()
 
     from pprint import pprint
+
     pprint(contributions)
 
 ### OUTPUT ###

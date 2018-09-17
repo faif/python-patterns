@@ -5,10 +5,8 @@ from creational.factory_method import get_localizer
 
 
 class TestLocalizer(unittest.TestCase):
-
     def setUp(self):
-        self.e, self.g = get_localizer(language="English"), \
-                         get_localizer(language="Greek")
+        self.e, self.g = get_localizer(language="English"), get_localizer(language="Greek")
 
     def test_parrot_eng_localization(self):
         self.assertEqual(self.e.get('parrot'), 'parrot')

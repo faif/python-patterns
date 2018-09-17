@@ -27,7 +27,6 @@ import functools
 
 
 class lazy_property(object):
-
     def __init__(self, function):
         self.function = function
         functools.update_wrapper(self, function)
@@ -48,11 +47,11 @@ def lazy_property2(fn):
         if not hasattr(self, attr):
             setattr(self, attr, fn(self))
         return getattr(self, attr)
+
     return _lazy_property
 
 
 class Person(object):
-
     def __init__(self, name, occupation):
         self.name = name
         self.occupation = occupation
@@ -95,6 +94,6 @@ if __name__ == '__main__':
 # After we've accessed `relatives`:
 # {'relatives': 'Many relatives.', 'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
 # Father and mother
-# {'_lazy__parents': 'Father and mother', 'relatives': 'Many relatives.', 'call_count2': 1, 'name': 'Jhon', 'occupation': 'Coder'}
+# {'_lazy__parents': 'Father and mother', 'relatives': 'Many relatives.', 'call_count2': 1, 'name': 'Jhon', 'occupation': 'Coder'}  # noqa flake8
 # Father and mother
 # 1

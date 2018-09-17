@@ -5,7 +5,6 @@ from structural.flyweight import Card
 
 
 class TestCard(unittest.TestCase):
-
     def test_instances_shall_reference_same_object(self):
         c1 = Card('9', 'h')
         c2 = Card('9', 'h')

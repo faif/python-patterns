@@ -22,7 +22,6 @@ class TimeDisplay(object):
 
 
 class TimeDisplay(object):
-
     def __init__(self, time_provider):
         self.time_provider = time_provider
 
@@ -40,8 +39,7 @@ class ProductionCodeTimeProvider(object):
 
     def now(self):
         current_time = datetime.datetime.now()
-        current_time_formatted = "{}:{}".format(current_time.hour,
-                                                current_time.minute)
+        current_time_formatted = "{}:{}".format(current_time.hour, current_time.minute)
         return current_time_formatted
 
 

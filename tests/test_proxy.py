@@ -4,6 +4,7 @@ import sys
 from time import time
 import unittest
 from structural.proxy import Proxy, NoTalkProxy
+
 if sys.version_info[0] == 2:
     from StringIO import StringIO
 else:
@@ -11,7 +12,6 @@ else:
 
 
 class ProxyTest(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         """ Class scope setup. """
@@ -39,7 +39,7 @@ class ProxyTest(unittest.TestCase):
 Sales Manager ready to talk\n'
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
-        cls.assertEqual(int(execution_time*10), expected_execution_time)
+        cls.assertEqual(int(execution_time * 10), expected_execution_time)
 
     def test_sales_manager_shall_respond_through_proxy_with_delay(cls):
         cls.p.busy = 'Yes'
@@ -52,11 +52,10 @@ Sales Manager ready to talk\n'
 Sales Manager is busy\n'
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
-        cls.assertEqual(int(execution_time*10), expected_execution_time)
+        cls.assertEqual(int(execution_time * 10), expected_execution_time)
 
 
 class NoTalkProxyTest(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
         """ Class scope setup. """
@@ -84,7 +83,7 @@ class NoTalkProxyTest(unittest.TestCase):
 This Sales Manager will not talk to you whether he/she is busy or not\n'
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
-        cls.assertEqual(int(execution_time*10), expected_execution_time)
+        cls.assertEqual(int(execution_time * 10), expected_execution_time)
 
     def test_sales_manager_shall_not_respond_through_proxy_with_delay(cls):
         cls.ntp.busy = 'Yes'
@@ -97,4 +96,4 @@ This Sales Manager will not talk to you whether he/she is busy or not\n'
 This Sales Manager will not talk to you whether he/she is busy or not\n'
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
-        cls.assertEqual(int(execution_time*10), expected_execution_time)
+        cls.assertEqual(int(execution_time * 10), expected_execution_time)

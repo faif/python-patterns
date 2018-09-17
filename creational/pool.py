@@ -33,7 +33,6 @@ Stores a set of initialized objects kept ready to use.
 
 
 class ObjectPool(object):
-
     def __init__(self, queue, auto_get=False):
         self._queue = queue
         self.item = self._queue.get() if auto_get else None

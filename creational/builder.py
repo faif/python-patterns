@@ -16,8 +16,8 @@ class for a building, where the initializer (__init__ method) specifies the
 steps needed, and the concrete subclasses implement these steps.
 
 In other programming languages, a more complex arrangement is sometimes
-necessary. In particular, you cannot have polymorphic behaviour in a
-constructor in C++ - see https://stackoverflow.com/questions/1453131/how-can-i-get-polymorphic-behavior-in-a-c-constructor
+necessary. In particular, you cannot have polymorphic behaviour in a constructor in C++ -
+see https://stackoverflow.com/questions/1453131/how-can-i-get-polymorphic-behavior-in-a-c-constructor
 - which means this Python technique will not work. The polymorphism
 required has to be provided by an external, already constructed
 instance of a different class.
@@ -37,7 +37,6 @@ Decouples the creation of a complex object and its representation.
 
 # Abstract Building
 class Building(object):
-
     def __init__(self):
         self.build_floor()
         self.build_size()
@@ -54,7 +53,6 @@ class Building(object):
 
 # Concrete Buildings
 class House(Building):
-
     def build_floor(self):
         self.floor = 'One'
 
@@ -63,7 +61,6 @@ class House(Building):
 
 
 class Flat(Building):
-
     def build_floor(self):
         self.floor = 'More than One'
 

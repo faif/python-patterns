@@ -26,7 +26,6 @@ class C(A, B):
 
 
 class Visitor(object):
-
     def visit(self, node, *args, **kwargs):
         meth = None
         for cls in node.__class__.__mro__:

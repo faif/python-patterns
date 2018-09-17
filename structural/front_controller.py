@@ -8,20 +8,18 @@
 Provides a centralized entry point that controls and manages request handling.
 """
 
-class MobileView(object):
 
+class MobileView(object):
     def show_index_page(self):
         print('Displaying mobile index page')
 
 
 class TabletView(object):
-
     def show_index_page(self):
         print('Displaying tablet index page')
 
 
 class Dispatcher(object):
-
     def __init__(self):
         self.mobile_view = MobileView()
         self.tablet_view = TabletView()

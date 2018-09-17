@@ -7,14 +7,12 @@ from behavioral.command import MoveFileCommand
 
 
 class CommandTest(unittest.TestCase):
-
     @classmethod
     def __get_test_directory(self):
         """
         Get the temporary directory for the tests.
         """
-        self.test_dir = os.path.join(os.path.dirname(
-            os.path.realpath(__file__)), 'test_command')
+        self.test_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'test_command')
 
     @classmethod
     def setUpClass(self):
@@ -29,10 +27,12 @@ class CommandTest(unittest.TestCase):
         open('tests/test_command/foo.txt', 'w').close()
         self.__get_test_directory()
         self.command_stack = []
-        self.command_stack.append(MoveFileCommand(os.path.join(
-            self.test_dir, 'foo.txt'), os.path.join(self.test_dir, 'bar.txt')))
-        self.command_stack.append(MoveFileCommand(os.path.join(
-            self.test_dir, 'bar.txt'), os.path.join(self.test_dir, 'baz.txt')))
+        self.command_stack.append(
+            MoveFileCommand(os.path.join(self.test_dir, 'foo.txt'), os.path.join(self.test_dir, 'bar.txt'))
+        )
+        self.command_stack.append(
+            MoveFileCommand(os.path.join(self.test_dir, 'bar.txt'), os.path.join(self.test_dir, 'baz.txt'))
+        )
 
     def test_sequential_execution(self):
         self.command_stack[0].execute()

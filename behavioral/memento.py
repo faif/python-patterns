@@ -27,6 +27,7 @@ class Transaction(object):
 
     This is, in fact, just syntactic sugar around a memento closure.
     """
+
     deep = False
     states = []
 
@@ -65,7 +66,6 @@ class Transactional(object):
 
 
 class NumObj(object):
-
     def __init__(self, value):
         self.value = value
 

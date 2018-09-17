@@ -18,6 +18,7 @@ def count_to(count):
     for number in numbers[:count]:
         yield number
 
+
 # Test the generator
 count_to_two = lambda: count_to(2)
 count_to_five = lambda: count_to(5)

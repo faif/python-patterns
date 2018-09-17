@@ -50,15 +50,20 @@ def reverse_item(item):
 # Makes templates
 def make_template(skeleton, getter, action):
     """Instantiate a template method with getter and action"""
+
     def template():
         skeleton(getter, action)
+
     return template
 
+
 # Create our template functions
-templates = [make_template(s, g, a)
-             for g in (get_list, get_lists)
-             for a in (print_item, reverse_item)
-             for s in (iter_elements, rev_elements)]
+templates = [
+    make_template(s, g, a)
+    for g in (get_list, get_lists)
+    for a in (print_item, reverse_item)
+    for s in (iter_elements, rev_elements)
+]
 
 # Execute them
 for template in templates:

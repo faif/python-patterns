@@ -28,15 +28,16 @@ class Delegator(object):
                 attr = getattr(self.delegate, name)
                 if callable(attr):
                     return attr(*args, **kwargs)
+
         return wrapper
 
 
 class Delegate(object):
-
     def do_something(self, something):
         return "Doing %s" % something
 
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()

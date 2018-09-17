@@ -28,7 +28,6 @@ import weakref
 
 
 class FlyweightMeta(type):
-
     def __new__(mcs, name, parents, dct):
         """
         Set up object pool
@@ -67,10 +66,12 @@ class FlyweightMeta(type):
 class Card(object):
 
     """The object pool. Has builtin reference counting"""
+
     _CardPool = weakref.WeakValueDictionary()
 
     """Flyweight implementation. If the object exists in the
     pool just return it (instead of creating a new one)"""
+
     def __new__(cls, value, suit):
         obj = Card._CardPool.get(value + suit)
         if not obj:
@@ -92,7 +93,6 @@ def with_metaclass(meta, *bases):
 
 
 class Card2(with_metaclass(FlyweightMeta)):
-
     def __init__(self, *args, **kwargs):
         # print('Init {}: {}'.format(self.__class__, (args, kwargs)))
         pass
