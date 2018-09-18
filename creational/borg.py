@@ -23,7 +23,7 @@ added to the instance's attribute dictionary, but, since the attribute
 dictionary itself is shared (which is __shared_state), all other
 attributes will also be shared.
 For this reason, when the attribute self.state is modified using
-instance rm2, the value of self.state in instance rm1 also chages. The
+instance rm2, the value of self.state in instance rm1 also changes. The
 same happens if self.state is modified using rm3, which is an
 instance from a subclass.
 Notice that even though they share attributes, the instances are not
