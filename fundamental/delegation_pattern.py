@@ -9,6 +9,7 @@ Author: https://github.com/IuryAlves
 Allows object composition to achieve the same code reuse as inheritance.
 """
 
+
 class Delegator(object):
     """
     >>> delegator = Delegator(Delegate())
