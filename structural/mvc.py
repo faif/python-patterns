@@ -27,13 +27,7 @@ class ProductModel(Model):
         __str__ functionality."""
 
         def __str__(self):
-            first_digits_str = str(round(self, 2))
-            try:
-                dot_location = first_digits_str.index('.')
-            except ValueError:
-                return first_digits_str + '.00'
-            else:
-                return first_digits_str + '0' * (3 + dot_location - len(first_digits_str))
+            return "{:.2f}".format(self)
 
     products = {
         'milk': {'price': Price(1.50), 'quantity': 10},
