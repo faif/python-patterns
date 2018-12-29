@@ -2,119 +2,68 @@
 # -*- coding: utf-8 -*-
 
 """
-http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
-
 An example of the Template pattern in Python
 
 *TL;DR80
-Defines the skeleton of an algorithm, deferring steps to subclasses.
+Defines the skeleton of a base algorithm, deferring definition of exact 
+steps to subclasses.
 """
 
-ingredients = "spam eggs apple"
-line = '-' * 10
+
+def get_text():
+    return "plain-text"
 
 
-# Skeletons
-def iter_elements(getter, action):
-    """Template skeleton that iterates items"""
-    for element in getter():
-        action(element)
-        print(line)
+def get_pdf():
+    return "pdf"
 
 
-def rev_elements(getter, action):
-    """Template skeleton that iterates items in reverse order"""
-    for element in getter()[::-1]:
-        action(element)
-        print(line)
+def get_csv():
+    return "csv"
 
 
-# Getters
-def get_list():
-    return ingredients.split()
+def convert_to_text(data):
+    print("[CONVERT]")
+    return "{} as text".format(data)
 
 
-def get_lists():
-    return [list(x) for x in ingredients.split()]
+def saver():
+    print("[SAVE]")
 
 
-# Actions
-def print_item(item):
-    print(item)
+def template_function(getter, converter=False, to_save=False):
+    data = getter()
+    print("Got `{}`".format(data))
+
+    if len(data) <= 3 and converter:
+        data = converter(data)
+    else:
+        print("Skip conversion")
+
+    if to_save:
+        saver()
+
+    print("`{}` was processed".format(data))
 
 
-def reverse_item(item):
-    print(item[::-1])
-
-
-# Makes templates
-def make_template(skeleton, getter, action):
-    """Instantiate a template method with getter and action"""
-
-    def template():
-        skeleton(getter, action)
-
-    return template
-
-
-# Create our template functions
-templates = [
-    make_template(s, g, a)
-    for g in (get_list, get_lists)
-    for a in (print_item, reverse_item)
-    for s in (iter_elements, rev_elements)
-]
-
-# Execute them
-for template in templates:
-    template()
+if __name__ == "__main__":
+    template_function(get_text, to_save=True)
+    print("-" * 30)
+    template_function(get_pdf, converter=convert_to_text)
+    print("-" * 30)
+    template_function(get_csv, to_save=True)
 
 ### OUTPUT ###
-# spam
-# ----------
-# eggs
-# ----------
-# apple
-# ----------
-# apple
-# ----------
-# eggs
-# ----------
-# spam
-# ----------
-# maps
-# ----------
-# sgge
-# ----------
-# elppa
-# ----------
-# elppa
-# ----------
-# sgge
-# ----------
-# maps
-# ----------
-# ['s', 'p', 'a', 'm']
-# ----------
-# ['e', 'g', 'g', 's']
-# ----------
-# ['a', 'p', 'p', 'l', 'e']
-# ----------
-# ['a', 'p', 'p', 'l', 'e']
-# ----------
-# ['e', 'g', 'g', 's']
-# ----------
-# ['s', 'p', 'a', 'm']
-# ----------
-# ['m', 'a', 'p', 's']
-# ----------
-# ['s', 'g', 'g', 'e']
-# ----------
-# ['e', 'l', 'p', 'p', 'a']
-# ----------
-# ['e', 'l', 'p', 'p', 'a']
-# ----------
-# ['s', 'g', 'g', 'e']
-# ----------
-# ['m', 'a', 'p', 's']
-# ----------
+# Got `plain-text`
+# Skip conversion
+# [SAVE]
+# `plain-text` was processed
+# ------------------------------
+# Got `pdf`
+# [CONVERT]
+# `pdf as text` was processed
+# ------------------------------
+# Got `csv`
+# Skip conversion
+# [SAVE]
+# `csv` was processed
