@@ -48,36 +48,53 @@ class Handler(object):
 
 
 class ConcreteHandler0(Handler):
-    def compare(self, request):
+    """Each handler can be different.
+    Be simple and static...
+    """
+
+    @staticmethod
+    def compare(request):
         if 0 <= request < 10:
-            print('request {} handled in handler 0'.format(request))
+            print("request {} handled in handler 0".format(request))
             return True
 
 
 class ConcreteHandler1(Handler):
+    """... With it's own internal state"""
+
+    start, end = 10, 20
+
     def compare(self, request):
-        if 10 <= request < 20:
-            print('request {} handled in handler 1'.format(request))
+        if self.start <= request < self.end:
+            print("request {} handled in handler 1".format(request))
             return True
 
 
 class ConcreteHandler2(Handler):
+    """... With helper methods."""
+
     def compare(self, request):
-        if 20 <= request < 30:
-            print('request {} handled in handler 2'.format(request))
+        start, end = self.get_interval_from_db()
+        if start <= request < end:
+            print("request {} handled in handler 2".format(request))
             return True
 
+    @staticmethod
+    def get_interval_from_db():
+        return (20, 30)
 
-class DefaultHandler(Handler):
-    def compare(self, request):
-        print('end of chain, no handler for {}'.format(request))
+
+class FallbackHandler(Handler):
+    @staticmethod
+    def compare(request):
+        print("end of chain, no handler for {}".format(request))
         return False
 
 
 if __name__ == "__main__":
     h0 = ConcreteHandler0()
     h1 = ConcreteHandler1()
-    h2 = ConcreteHandler2(DefaultHandler())
+    h2 = ConcreteHandler2(FallbackHandler())
     h0.successor = h1
     h1.successor = h2
 
