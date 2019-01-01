@@ -38,12 +38,12 @@ class Handler(object):
         As an alternative you might even in case of success
         call the next handler.
         """
-        res = self.compare(request)
+        res = self.check_range(request)
         if not res and self.successor:
             self.successor.handle(request)
 
     @abc.abstractmethod
-    def compare(self, request):
+    def check_range(self, request):
         """Compare passed value to predefined interval"""
 
 
@@ -53,7 +53,7 @@ class ConcreteHandler0(Handler):
     """
 
     @staticmethod
-    def compare(request):
+    def check_range(request):
         if 0 <= request < 10:
             print("request {} handled in handler 0".format(request))
             return True
@@ -64,7 +64,7 @@ class ConcreteHandler1(Handler):
 
     start, end = 10, 20
 
-    def compare(self, request):
+    def check_range(self, request):
         if self.start <= request < self.end:
             print("request {} handled in handler 1".format(request))
             return True
@@ -73,7 +73,7 @@ class ConcreteHandler1(Handler):
 class ConcreteHandler2(Handler):
     """... With helper methods."""
 
-    def compare(self, request):
+    def check_range(self, request):
         start, end = self.get_interval_from_db()
         if start <= request < end:
             print("request {} handled in handler 2".format(request))
@@ -86,7 +86,7 @@ class ConcreteHandler2(Handler):
 
 class FallbackHandler(Handler):
     @staticmethod
-    def compare(request):
+    def check_range(request):
         print("end of chain, no handler for {}".format(request))
         return False
 
