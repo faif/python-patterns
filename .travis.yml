@@ -17,7 +17,7 @@ cache:
   - pip
 
 install:
-  - travis_retry pip install -q coveralls codecov six
+  - travis_retry pip install -q codecov six
   - pip install flake8  # eventually worth
 
 script:
@@ -28,5 +28,4 @@ script:
   - flake8 *py
 
 after_success:
-  - coveralls
   - codecov
