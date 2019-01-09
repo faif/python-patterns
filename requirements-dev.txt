@@ -1,0 +1,2 @@
+pytest~=4.1
+pytest-cov~=2.6
