@@ -14,7 +14,7 @@ class StrategyTest(unittest.TestCase):
         """
         output = subprocess.check_output(["python", "behavioral/strategy.py"])
         expected_output = os.linesep.join(
-            ['Strategy Example 0', 'Strategy Example 1 from execute 1', 'Strategy Example 2 from execute 2', '']
+            ['<Price: 100, price after discount: 100>', '<Price: 100, price after discount: 90.0>', '<Price: 1000, price after discount: 730.0>', '']
         )
         # byte representation required due to EOF returned subprocess
         expected_output_as_bytes = expected_output.encode(encoding='UTF-8')
