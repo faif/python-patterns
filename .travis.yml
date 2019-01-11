@@ -17,12 +17,13 @@ cache:
   - pip
 
 install:
-  - travis_retry pip install -q codecov six
-  - pip install flake8  # eventually worth
+  - travis_retry pip install -q codecov
+  - pip install flake8
+  - pip install -r requirements-dev.txt
 
 script:
-  # Run tests
-  - PYTHONPATH=. nosetests -s -v --with-doctest --with-cov --cover-package . --logging-level=INFO -v .
+  - pytest --doctest-modules behavioral/ creational/ dft/ fundamental/ other/ structural/  # exclude tests/
+  - pytest -s -vv --cov=. --log-level=INFO tests/
   # Actually run all the scripts, contributing to coverage
   - PYTHONPATH=. ./run_all.sh
   - flake8 *py
