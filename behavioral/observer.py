@@ -6,6 +6,10 @@ http://code.activestate.com/recipes/131499-observer-pattern/
 
 *TL;DR80
 Maintains a list of dependents and notifies them of any state changes.
+
+*Examples in Python ecosystem:
+Django Signals: https://docs.djangoproject.com/en/2.1/topics/signals/
+Flask Signals: http://flask.pocoo.org/docs/1.0/signals/
 """
 
 from __future__ import print_function

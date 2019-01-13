@@ -7,6 +7,9 @@ An example of the Template pattern in Python
 *TL;DR80
 Defines the skeleton of a base algorithm, deferring definition of exact 
 steps to subclasses.
+
+*Examples in Python ecosystem:
+Django class based views: https://docs.djangoproject.com/en/2.1/topics/class-based-views/
 """
 
 
