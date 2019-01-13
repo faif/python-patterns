@@ -1,2 +1,5 @@
+-e .
 pytest~=4.1
 pytest-cov~=2.6
+flake8~=3.6
+codecov~=2.0

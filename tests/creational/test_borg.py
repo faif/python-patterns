@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from creational.borg import Borg, YourBorg
+from patterns.creational.borg import Borg, YourBorg
 
 
 class BorgTest(unittest.TestCase):

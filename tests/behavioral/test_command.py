@@ -3,7 +3,7 @@
 import os
 import shutil
 import unittest
-from behavioral.command import MoveFileCommand
+from patterns.behavioral.command import MoveFileCommand
 
 
 class CommandTest(unittest.TestCase):
@@ -23,8 +23,8 @@ class CommandTest(unittest.TestCase):
         - get the temporary test directory
         - and initializes the command stack.
         """
-        os.mkdir('tests/test_command')
-        open('tests/test_command/foo.txt', 'w').close()
+        os.mkdir('tests/behavioral/test_command')
+        open('tests/behavioral/test_command/foo.txt', 'w').close()
         self.__get_test_directory()
         self.command_stack = []
         self.command_stack.append(
@@ -56,4 +56,4 @@ class CommandTest(unittest.TestCase):
         """
         Remove the temporary directory /test_command and its content.
         """
-        shutil.rmtree('tests/test_command')
+        shutil.rmtree('tests/behavioral/test_command')

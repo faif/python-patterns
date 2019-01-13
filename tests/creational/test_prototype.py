@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from creational.prototype import Prototype, PrototypeDispatcher
+from patterns.creational.prototype import Prototype, PrototypeDispatcher
 
 
 class TestPrototypeFeatures(unittest.TestCase):

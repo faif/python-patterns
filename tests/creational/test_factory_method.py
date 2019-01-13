@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from creational.factory_method import get_localizer
+from patterns.creational.factory_method import get_localizer
 
 
 class TestLocalizer(unittest.TestCase):

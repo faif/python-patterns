@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from dft.constructor_injection import TimeDisplay, MidnightTimeProvider, ProductionCodeTimeProvider, datetime
+from patterns.dft.constructor_injection import TimeDisplay, MidnightTimeProvider, ProductionCodeTimeProvider, datetime
 
 """
 Port of the Java example of "Constructor Injection" in

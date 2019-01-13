@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from dft.setter_injection import TimeDisplay, MidnightTimeProvider, ProductionCodeTimeProvider, datetime
+from patterns.dft.setter_injection import TimeDisplay, MidnightTimeProvider, ProductionCodeTimeProvider, datetime
 
 """
 Port of the Java example of "Setter Injection" in
