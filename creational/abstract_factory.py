@@ -17,7 +17,7 @@ that callable, because classes are first class objects in Python.
 
 *What does this example do?
 This particular implementation abstracts the creation of a pet and
-does so depending on the factory we chose (Dog or Cat, or random_animal)
+dogs so depending on the factory we chose (Dog or Cat, or random_animal)
 This works because both Dog/Cat and random_animal respect a common
 interface (callable for creation and .speak()).
 Now my application can create pets abstractly and decide later,
