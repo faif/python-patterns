@@ -45,15 +45,22 @@ class Visitor(object):
         print('visit_B ' + node.__class__.__name__)
 
 
-a = A()
-b = B()
-c = C()
-visitor = Visitor()
-visitor.visit(a)
-visitor.visit(b)
-visitor.visit(c)
+def main():
+    a = A()
+    b = B()
+    c = C()
+    visitor = Visitor()
+    visitor.visit(a)
+    visitor.visit(b)
+    visitor.visit(c)
 
-### OUTPUT ###
-# generic_visit A
-# visit_B B
-# visit_B C
+
+if __name__ == "__main__":
+    main()
+
+
+OUTPUT = """
+generic_visit A
+visit_B B
+visit_B C
+"""

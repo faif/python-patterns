@@ -3,27 +3,24 @@
 
 """
 *What is this pattern about?
+
+The Chain of responsibility is an object oriented version of the
+`if ... elif ... elif ... else ...` idiom, with the
+benefit that the condition–action blocks can be dynamically rearranged
+and reconfigured at runtime.
+
 This pattern aims to decouple the senders of a request from its
-receivers. It does this by allowing a request to move through chained
-objects until it is handled by an appropriate receiver.
+receivers by allowing request to move through chained
+receivers until it is handled.
 
-This is useful as it reduces the number of connections between objects,
-since the sender does not need explicit knowledge of the handler, and
-the receiver won't need to refer to all potential receivers, but keeps
-a reference to a single successor.
-
-*References:
-http://www.dabeaz.com/coroutines/
+Request receiver in simple form keeps a reference to a single successor.
+As a variation some receivers may be capable of sending requests out
+in several directions, forming a `tree of responsibility`.
 
 *TL;DR80
-Allow a request to pass down a chain of objects until an object handles
-the request.
+Allow a request to pass down a chain of receivers until it is handled.
 """
 
-from contextlib import contextmanager
-import os
-import sys
-import time
 import abc
 
 
@@ -31,164 +28,87 @@ class Handler(object):
     __metaclass__ = abc.ABCMeta
 
     def __init__(self, successor=None):
-        self._successor = successor
+        self.successor = successor
 
     def handle(self, request):
-        res = self._handle(request)
-        if not res:
-            self._successor.handle(request)
+        """
+        Handle request and stop.
+        If can't - call next handler in chain.
+
+        As an alternative you might even in case of success
+        call the next handler.
+        """
+        res = self.check_range(request)
+        if not res and self.successor:
+            self.successor.handle(request)
 
     @abc.abstractmethod
-    def _handle(self, request):
-        raise NotImplementedError('Must provide implementation in subclass.')
+    def check_range(self, request):
+        """Compare passed value to predefined interval"""
+
+
+class ConcreteHandler0(Handler):
+    """Each handler can be different.
+    Be simple and static...
+    """
+
+    @staticmethod
+    def check_range(request):
+        if 0 <= request < 10:
+            print("request {} handled in handler 0".format(request))
+            return True
 
 
 class ConcreteHandler1(Handler):
-    def _handle(self, request):
-        if 0 < request <= 10:
-            print('request {} handled in handler 1'.format(request))
+    """... With it's own internal state"""
+
+    start, end = 10, 20
+
+    def check_range(self, request):
+        if self.start <= request < self.end:
+            print("request {} handled in handler 1".format(request))
             return True
 
 
 class ConcreteHandler2(Handler):
-    def _handle(self, request):
-        if 10 < request <= 20:
-            print('request {} handled in handler 2'.format(request))
+    """... With helper methods."""
+
+    def check_range(self, request):
+        start, end = self.get_interval_from_db()
+        if start <= request < end:
+            print("request {} handled in handler 2".format(request))
             return True
 
-
-class ConcreteHandler3(Handler):
-    def _handle(self, request):
-        if 20 < request <= 30:
-            print('request {} handled in handler 3'.format(request))
-            return True
+    @staticmethod
+    def get_interval_from_db():
+        return (20, 30)
 
 
-class DefaultHandler(Handler):
-    def _handle(self, request):
-        print('end of chain, no handler for {}'.format(request))
-        return True
-
-
-class Client(object):
-    def __init__(self):
-        self.handler = ConcreteHandler1(ConcreteHandler3(ConcreteHandler2(DefaultHandler())))
-
-    def delegate(self, requests):
-        for request in requests:
-            self.handler.handle(request)
-
-
-def coroutine(func):
-    def start(*args, **kwargs):
-        cr = func(*args, **kwargs)
-        next(cr)
-        return cr
-
-    return start
-
-
-@coroutine
-def coroutine1(target):
-    while True:
-        request = yield
-        if 0 < request <= 10:
-            print('request {} handled in coroutine 1'.format(request))
-        else:
-            target.send(request)
-
-
-@coroutine
-def coroutine2(target):
-    while True:
-        request = yield
-        if 10 < request <= 20:
-            print('request {} handled in coroutine 2'.format(request))
-        else:
-            target.send(request)
-
-
-@coroutine
-def coroutine3(target):
-    while True:
-        request = yield
-        if 20 < request <= 30:
-            print('request {} handled in coroutine 3'.format(request))
-        else:
-            target.send(request)
-
-
-@coroutine
-def default_coroutine():
-    while True:
-        request = yield
-        print('end of chain, no coroutine for {}'.format(request))
-
-
-class ClientCoroutine:
-    def __init__(self):
-        self.target = coroutine1(coroutine3(coroutine2(default_coroutine())))
-
-    def delegate(self, requests):
-        for request in requests:
-            self.target.send(request)
-
-
-def timeit(func):
-    def count(*args, **kwargs):
-        start = time.time()
-        res = func(*args, **kwargs)
-        count._time = time.time() - start
-        return res
-
-    return count
-
-
-@contextmanager
-def suppress_stdout():
-    try:
-        stdout, sys.stdout = sys.stdout, open(os.devnull, 'w')
-        yield
-    finally:
-        sys.stdout = stdout
+class FallbackHandler(Handler):
+    @staticmethod
+    def check_range(request):
+        print("end of chain, no handler for {}".format(request))
+        return False
 
 
 if __name__ == "__main__":
-    client1 = Client()
-    client2 = ClientCoroutine()
+    h0 = ConcreteHandler0()
+    h1 = ConcreteHandler1()
+    h2 = ConcreteHandler2(FallbackHandler())
+    h0.successor = h1
+    h1.successor = h2
+
     requests = [2, 5, 14, 22, 18, 3, 35, 27, 20]
-
-    client1.delegate(requests)
-    print('-' * 30)
-    client2.delegate(requests)
-
-    requests *= 10000
-    client1_delegate = timeit(client1.delegate)
-    client2_delegate = timeit(client2.delegate)
-    with suppress_stdout():
-        client1_delegate(requests)
-        client2_delegate(requests)
-    # lets check which is faster
-    print(client1_delegate._time, client2_delegate._time)
+    for request in requests:
+        h0.handle(request)
 
 ### OUTPUT ###
-# request 2 handled in handler 1
-# request 5 handled in handler 1
-# request 14 handled in handler 2
-# request 22 handled in handler 3
-# request 18 handled in handler 2
-# request 3 handled in handler 1
+# request 2 handled in handler 0
+# request 5 handled in handler 0
+# request 14 handled in handler 1
+# request 22 handled in handler 2
+# request 18 handled in handler 1
+# request 3 handled in handler 0
 # end of chain, no handler for 35
-# request 27 handled in handler 3
+# request 27 handled in handler 2
 # request 20 handled in handler 2
-# ------------------------------
-# request 2 handled in coroutine 1
-# request 5 handled in coroutine 1
-# request 14 handled in coroutine 2
-# request 22 handled in coroutine 3
-# request 18 handled in coroutine 2
-# request 3 handled in coroutine 1
-# end of chain, no coroutine for 35
-# request 27 handled in coroutine 3
-# request 20 handled in coroutine 2
-# (0.2369999885559082, 0.16199994087219238)

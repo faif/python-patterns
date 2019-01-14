@@ -3,11 +3,8 @@ python-patterns
 
 A collection of design patterns and idioms in Python.
 
-When an implementation is added or modified, be sure to update this file and
-rerun `append_output.sh` (eg. ./append_output.sh borg.py) to keep the output
-comments at the bottom up to date.
-
-Current Patterns:
+Current Patterns
+----------------
 
 __Creational Patterns__:
 
@@ -75,3 +72,29 @@ __Others__:
 | [blackboard](other/blackboard.py) | architectural model, assemble different sub-system knowledge to build a solution, AI approach - non gang of four pattern |
 | [graph_search](other/graph_search.py) | graphing algorithms - non gang of four pattern |
 | [hsm](other/hsm/hsm.py) | hierarchical state machine - non gang of four pattern |
+
+
+Contributing
+------------
+When an implementation is added or modified, please review the following guidelines:
+
+##### Output
+All files with example patterns have `### OUTPUT ###` section at the bottom.
+
+Run `append_output.sh` (e.g. `./append_output.sh borg.py`) to generate/update it.
+
+##### Docstrings
+Add module level description in form of a docstring with links to corresponding references or other useful information.
+
+[strategy.py](behavioral/strategy.py) has a good example of detailed description,
+but sometimes the shorter one as in [template.py](behavioral/template.py) would suffice.
+
+In some cases class-level docstring with doctest would also help (see [adapter.py](structural/adapter.py))
+
+##### Python2/3 compatibility
+Try to keep it (discussion is held in [issue #208](https://github.com/faif/python-patterns/issues/208))
+- use new style classes (inherit from `object`)
+- use `from future import print`
+
+##### Update README
+When everything else is done - update corresponding part of README.
