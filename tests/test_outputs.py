@@ -8,10 +8,10 @@ import sys
 
 import pytest
 
-from behavioral.visitor import main as visitor_main
-from behavioral.visitor import OUTPUT as visitor_output
-from behavioral.strategy import main as strategy_main
-from behavioral.strategy import OUTPUT as strategy_output
+from patterns.behavioral.visitor import main as visitor_main
+from patterns.behavioral.visitor import OUTPUT as visitor_output
+from patterns.behavioral.strategy import main as strategy_main
+from patterns.behavioral.strategy import OUTPUT as strategy_output
 
 @pytest.mark.skipif(sys.version_info < (3,4),
                     reason="requires python3.4 or higher")

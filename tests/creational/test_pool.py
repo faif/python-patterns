@@ -6,7 +6,7 @@ try:
     import queue
 except ImportError:  # python 2.x compatibility
     import Queue as queue
-from creational.pool import ObjectPool
+from patterns.creational.pool import ObjectPool
 
 
 class TestPool(unittest.TestCase):

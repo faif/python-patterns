@@ -3,7 +3,7 @@
 import sys
 from time import time
 import unittest
-from structural.proxy import Proxy, NoTalkProxy
+from patterns.structural.proxy import Proxy, NoTalkProxy
 
 if sys.version_info[0] == 2:
     from StringIO import StringIO

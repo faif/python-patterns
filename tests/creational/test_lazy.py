@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import unittest
-from creational.lazy_evaluation import Person
+from patterns.creational.lazy_evaluation import Person
 
 
 class TestDynamicExpanding(unittest.TestCase):

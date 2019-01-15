@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from structural.flyweight import Card
+from patterns.structural.flyweight import Card
 
 
 class TestCard(unittest.TestCase):

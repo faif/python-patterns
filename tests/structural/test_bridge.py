@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from structural.bridge import DrawingAPI1, DrawingAPI2, CircleShape
+from patterns.structural.bridge import DrawingAPI1, DrawingAPI2, CircleShape
 
 try:
     from unittest.mock import patch

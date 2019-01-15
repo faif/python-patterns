@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from behavioral.state import Radio
+from patterns.behavioral.state import Radio
 
 
 class RadioTest(unittest.TestCase):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from creational.builder import construct_building, House, Flat, ComplexHouse
+from patterns.creational.builder import construct_building, House, Flat, ComplexHouse
 
 
 class TestSimple(unittest.TestCase):

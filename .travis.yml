@@ -9,20 +9,15 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-# Disabled for now since cause more pain than gain
-#  - "pypy"
-#  - "pypy3"
 
 cache:
   - pip
 
 install:
-  - travis_retry pip install -q codecov
-  - pip install flake8
   - pip install -r requirements-dev.txt
 
 script:
-  - pytest --doctest-modules behavioral/ creational/ dft/ fundamental/ other/ structural/  # exclude tests/
+  - pytest --doctest-modules patterns/
   - pytest -s -vv --cov=. --log-level=INFO tests/
   # Actually run all the scripts, contributing to coverage
   - PYTHONPATH=. ./run_all.sh

@@ -7,7 +7,7 @@ try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
-from structural.facade import TestRunner, TC1, TC2, TC3
+from patterns.structural.facade import TestRunner, TC1, TC2, TC3
 
 
 class TestRunnerFacilities(unittest.TestCase):
