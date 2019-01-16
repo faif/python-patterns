@@ -81,10 +81,12 @@ def main():
 if __name__ == "__main__":
     main()
 
-### OUTPUT ###
-# jim got cartoon
-# jack got music
-# gee got movie
-# jim got cartoon
-# jim got cartoon
-# gee got movie
+
+OUTPUT = """
+jim got cartoon
+jack got music
+gee got movie
+jim got cartoon
+jim got cartoon
+gee got movie
+"""

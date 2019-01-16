@@ -91,7 +91,7 @@ class FallbackHandler(Handler):
         return False
 
 
-if __name__ == "__main__":
+def main():
     h0 = ConcreteHandler0()
     h1 = ConcreteHandler1()
     h2 = ConcreteHandler2(FallbackHandler())
@@ -102,13 +102,19 @@ if __name__ == "__main__":
     for request in requests:
         h0.handle(request)
 
-### OUTPUT ###
-# request 2 handled in handler 0
-# request 5 handled in handler 0
-# request 14 handled in handler 1
-# request 22 handled in handler 2
-# request 18 handled in handler 1
-# request 3 handled in handler 0
-# end of chain, no handler for 35
-# request 27 handled in handler 2
-# request 20 handled in handler 2
+
+if __name__ == "__main__":
+    main()
+
+
+OUTPUT = """
+request 2 handled in handler 0
+request 5 handled in handler 0
+request 14 handled in handler 1
+request 22 handled in handler 2
+request 18 handled in handler 1
+request 3 handled in handler 0
+end of chain, no handler for 35
+request 27 handled in handler 2
+request 20 handled in handler 2
+"""

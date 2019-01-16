@@ -81,7 +81,7 @@ class NumObj(object):
         self.increment()  # <- will fail and rollback
 
 
-if __name__ == '__main__':
+def main():
     num_obj = NumObj(-1)
     print(num_obj)
 
@@ -114,30 +114,34 @@ if __name__ == '__main__':
         traceback.print_exc(file=sys.stdout)
     print(num_obj)
 
+if __name__ == '__main__':
+    main()
+    
 
-### OUTPUT ###
-# <NumObj: -1>
-# <NumObj: 0>
-# <NumObj: 1>
-# <NumObj: 2>
-# -- committed
-# <NumObj: 3>
-# <NumObj: 4>
-# <NumObj: 5>
-# -- rolled back
-# <NumObj: 2>
-# -- now doing stuff ...
-# -> doing stuff failed!
-# Traceback (most recent call last):
-# File "memento.py", line 97, in <module>
-#     num_obj.do_stuff()
-#   File "memento.py", line 52, in transaction
-#     raise e
-#   File "memento.py", line 49, in transaction
-#     return self.method(obj, *args, **kwargs)
-#   File "memento.py", line 70, in do_stuff
-#     self.increment()     # <- will fail and rollback
-#   File "memento.py", line 65, in increment
-#     self.value += 1
-# TypeError: Can't convert 'int' object to str implicitly
-# <NumObj: 2>
+OUTPUT = """
+<NumObj: -1>
+<NumObj: 0>
+<NumObj: 1>
+<NumObj: 2>
+-- committed
+<NumObj: 3>
+<NumObj: 4>
+<NumObj: 5>
+-- rolled back
+<NumObj: 2>
+-- now doing stuff ...
+-> doing stuff failed!
+Traceback (most recent call last):
+  File "patterns/behavioral/memento.py", line 108, in main
+    num_obj.do_stuff()
+  File "patterns/behavioral/memento.py", line 63, in transaction
+    raise e
+  File "patterns/behavioral/memento.py", line 60, in transaction
+    return self.method(obj, *args, **kwargs)
+  File "patterns/behavioral/memento.py", line 81, in do_stuff
+    self.increment()  # <- will fail and rollback
+  File "patterns/behavioral/memento.py", line 76, in increment
+    self.value += 1
+TypeError: can only concatenate str (not "int") to str
+<NumObj: 2>
+"""

@@ -59,8 +59,10 @@ def main():
 if __name__ == "__main__":
     main()
 
-### OUTPUT ###
-# renaming foo.txt to bar.txt
-# renaming bar.txt to baz.txt
-# renaming baz.txt to bar.txt
-# renaming bar.txt to foo.txt
+
+OUTPUT = """
+renaming foo.txt to bar.txt
+renaming bar.txt to baz.txt
+renaming baz.txt to bar.txt
+renaming bar.txt to foo.txt
+"""
