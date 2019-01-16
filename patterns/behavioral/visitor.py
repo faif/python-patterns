@@ -6,6 +6,14 @@ http://peter-hoffmann.com/2010/extrinsic-visitor-pattern-python-inheritance.html
 
 *TL;DR80
 Separates an algorithm from an object structure on which it operates.
+
+An interesting recipe could be found in
+Brian Jones, David Beazley "Python Cookbook" (2013):
+- "8.21. Implementing the Visitor Pattern"
+- "8.22. Implementing the Visitor Pattern Without Recursion"
+
+*Examples in Python ecosystem:
+Python's ast.NodeVisitor: https://github.com/python/cpython/blob/master/Lib/ast.py#L250
 """
 
 
