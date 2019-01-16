@@ -10,13 +10,13 @@ __Creational Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [abstract_factory](creational/abstract_factory.py) | use a generic function with specific factories |
-| [borg](creational/borg.py) | a singleton with shared-state among instances |
-| [builder](creational/builder.py) | instead of using multiple constructors, builder object receives parameters and returns constructed objects |
-| [factory_method](creational/factory_method.py) | delegate a specialized function/method to create instances |
-| [lazy_evaluation](creational/lazy_evaluation.py) | lazily-evaluated property pattern in Python |
-| [pool](creational/pool.py) | preinstantiate and maintain a group of instances of the same type |
-| [prototype](creational/prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
+| [abstract_factory](patterns/creational/abstract_factory.py) | use a generic function with specific factories |
+| [borg](patterns/creational/borg.py) | a singleton with shared-state among instances |
+| [builder](patterns/creational/builder.py) | instead of using multiple constructors, builder object receives parameters and returns constructed objects |
+| [factory_method](patterns/creational/factory_method.py) | delegate a specialized function/method to create instances |
+| [lazy_evaluation](patterns/creational/lazy_evaluation.py) | lazily-evaluated property pattern in Python |
+| [pool](patterns/creational/pool.py) | preinstantiate and maintain a group of instances of the same type |
+| [prototype](patterns/creational/prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
 
 __Structural Patterns__:
 
