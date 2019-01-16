@@ -57,21 +57,21 @@ __Design for Testability Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [setter_injection](dft/setter_injection.py) | the client provides the depended-on object to the SUT via the setter injection (implementation variant of dependency injection) |
+| [setter_injection](patterns/dft/setter_injection.py) | the client provides the depended-on object to the SUT via the setter injection (implementation variant of dependency injection) |
 
 __Fundamental Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [delegation_pattern](fundamental/delegation_pattern.py) | an object handles a request by delegating to a second object (the delegate) |
+| [delegation_pattern](patterns/fundamental/delegation_pattern.py) | an object handles a request by delegating to a second object (the delegate) |
 
 __Others__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [blackboard](other/blackboard.py) | architectural model, assemble different sub-system knowledge to build a solution, AI approach - non gang of four pattern |
-| [graph_search](other/graph_search.py) | graphing algorithms - non gang of four pattern |
-| [hsm](other/hsm/hsm.py) | hierarchical state machine - non gang of four pattern |
+| [blackboard](patterns/other/blackboard.py) | architectural model, assemble different sub-system knowledge to build a solution, AI approach - non gang of four pattern |
+| [graph_search](patterns/other/graph_search.py) | graphing algorithms - non gang of four pattern |
+| [hsm](patterns/other/hsm/hsm.py) | hierarchical state machine - non gang of four pattern |
 
 
 Contributing
@@ -86,10 +86,10 @@ Run `append_output.sh` (e.g. `./append_output.sh borg.py`) to generate/update it
 ##### Docstrings
 Add module level description in form of a docstring with links to corresponding references or other useful information.
 
-[strategy.py](behavioral/strategy.py) has a good example of detailed description,
-but sometimes the shorter one as in [template.py](behavioral/template.py) would suffice.
+[strategy.py](patterns/behavioral/strategy.py) has a good example of detailed description,
+but sometimes the shorter one as in [template.py](patterns/behavioral/template.py) would suffice.
 
-In some cases class-level docstring with doctest would also help (see [adapter.py](structural/adapter.py))
+In some cases class-level docstring with doctest would also help (see [adapter.py](patterns/structural/adapter.py))
 
 ##### Python2/3 compatibility
 Try to keep it (discussion is held in [issue #208](https://github.com/faif/python-patterns/issues/208))
