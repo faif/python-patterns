@@ -22,16 +22,16 @@ __Structural Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [3-tier](structural/3-tier.py) | data<->business logic<->presentation separation (strict relationships) |
-| [adapter](structural/adapter.py) | adapt one interface to another using a white-list |
-| [bridge](structural/bridge.py) | a client-provider middleman to soften interface changes |
-| [composite](structural/composite.py) | lets clients treat individual objects and compositions uniformly |
-| [decorator](structural/decorator.py) | wrap functionality with other functionality in order to affect outputs |
-| [facade](structural/facade.py) | use one class as an API to a number of others |
-| [flyweight](structural/flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
-| [front_controller](structural/front_controller.py) | single handler requests coming to the application |
-| [mvc](structural/mvc.py) | model<->view<->controller (non-strict relationships) |
-| [proxy](structural/proxy.py) | an object funnels operations to something else |
+| [3-tier](patterns/structural/3-tier.py) | data<->business logic<->presentation separation (strict relationships) |
+| [adapter](patterns/structural/adapter.py) | adapt one interface to another using a white-list |
+| [bridge](patterns/structural/bridge.py) | a client-provider middleman to soften interface changes |
+| [composite](patterns/structural/composite.py) | lets clients treat individual objects and compositions uniformly |
+| [decorator](patterns/structural/decorator.py) | wrap functionality with other functionality in order to affect outputs |
+| [facade](patterns/structural/facade.py) | use one class as an API to a number of others |
+| [flyweight](patterns/structural/flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
+| [front_controller](patterns/structural/front_controller.py) | single handler requests coming to the application |
+| [mvc](patterns/structural/mvc.py) | model<->view<->controller (non-strict relationships) |
+| [proxy](patterns/structural/proxy.py) | an object funnels operations to something else |
 
 __Behavioral Patterns__:
 
