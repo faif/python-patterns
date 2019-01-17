@@ -26,11 +26,16 @@ class Action(object):
         print('then stop')
 
 
-if __name__ == '__main__':
-
+def main():
     move = Action('move')
     person = Person('Jack', move)
     person.do_action().amount('5m').stop()
 
-### OUTPUT ###
-# Jack move 5m then stop
+
+if __name__ == '__main__':
+    main()
+
+
+OUTPUT = """
+Jack move 5m then stop
+"""

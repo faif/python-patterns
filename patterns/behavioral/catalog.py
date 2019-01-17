@@ -166,11 +166,12 @@ def main():
 
 
 if __name__ == "__main__":
-
     main()
 
-### OUTPUT ###
-# executed method 2!
-# Value x1
-# Value x2
-# executed method 1!
+
+OUTPUT = """
+executed method 2!
+Value x1
+Value x2
+executed method 1!
+"""

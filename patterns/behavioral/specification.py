@@ -90,7 +90,7 @@ class SuperUserSpecification(CompositeSpecification):
         return getattr(candidate, 'super_user', False)
 
 
-if __name__ == '__main__':
+def main():
     print('Specification')
     andrey = User()
     ivan = User(super_user=True)
@@ -102,9 +102,14 @@ if __name__ == '__main__':
     print(root_specification.is_satisfied_by(ivan))
     print(root_specification.is_satisfied_by(vasiliy))
 
+    
+if __name__ == '__main__':
+    main()
 
-### OUTPUT ###
-# Specification
-# False
-# True
-# False
+
+OUTPUT = """
+Specification
+False
+True
+False
+"""
