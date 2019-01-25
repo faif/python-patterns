@@ -119,8 +119,8 @@ if __name__ == '__main__':
     cm2 = Card2('10', 'h', a=1)
     cm3 = Card2('10', 'h', a=2)
 
-    assert (cm1 == cm2) and ( cm1 != cm3)
-    assert (cm1 is cm2) and ( cm1 is not cm3)
+    assert (cm1 == cm2) and (cm1 != cm3)
+    assert (cm1 is cm2) and (cm1 is not cm3)
     assert len(instances_pool) == 2
 
     del cm1

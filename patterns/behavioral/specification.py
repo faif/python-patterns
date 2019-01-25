@@ -102,7 +102,7 @@ def main():
     print(root_specification.is_satisfied_by(ivan))
     print(root_specification.is_satisfied_by(vasiliy))
 
-    
+
 if __name__ == '__main__':
     main()
 

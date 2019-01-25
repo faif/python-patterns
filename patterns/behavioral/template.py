@@ -5,7 +5,7 @@
 An example of the Template pattern in Python
 
 *TL;DR80
-Defines the skeleton of a base algorithm, deferring definition of exact 
+Defines the skeleton of a base algorithm, deferring definition of exact
 steps to subclasses.
 
 *Examples in Python ecosystem:

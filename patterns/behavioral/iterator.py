@@ -29,13 +29,9 @@ def main():
     for number in count_to_two():
         print(number, end=' ')
 
-    print()
-
-    print('Counting to five...')
+    print('\nCounting to five...')
     for number in count_to_five():
         print(number, end=' ')
-        
-    print()
 
 
 if __name__ == "__main__":
@@ -47,4 +43,4 @@ Counting to two...
 one two 
 Counting to five...
 one two three four five 
-"""
+"""  # noqa

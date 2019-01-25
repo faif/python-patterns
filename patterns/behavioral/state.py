@@ -76,7 +76,7 @@ def main():
     for action in actions:
         action()
 
-        
+
 if __name__ == '__main__':
     main()
 

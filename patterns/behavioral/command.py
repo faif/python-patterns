@@ -6,7 +6,8 @@
 Encapsulates all information needed to perform an action or trigger an event.
 
 *Examples in Python ecosystem:
-Django HttpRequest (without `execute` method): https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
+Django HttpRequest (without `execute` method):
+ https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
 from __future__ import print_function
