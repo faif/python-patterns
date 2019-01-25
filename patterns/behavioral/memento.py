@@ -98,7 +98,7 @@ def main():
             print(num_obj)
         num_obj.value += 'x'  # will fail
         print(num_obj)
-    except Exception as e:
+    except Exception:
         a_transaction.rollback()
         print('-- rolled back')
     print(num_obj)
@@ -106,7 +106,7 @@ def main():
     print('-- now doing stuff ...')
     try:
         num_obj.do_stuff()
-    except Exception as e:
+    except Exception:
         print('-> doing stuff failed!')
         import sys
         import traceback
@@ -114,9 +114,10 @@ def main():
         traceback.print_exc(file=sys.stdout)
     print(num_obj)
 
+
 if __name__ == '__main__':
     main()
-    
+
 
 OUTPUT = """
 <NumObj: -1>

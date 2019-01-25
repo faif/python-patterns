@@ -16,4 +16,4 @@ echo "$src" > $1
 echo -e "\n" >> $1
 echo "$output_marker" >> $1
 echo "$output" >> $1
-echo '"""' >> $1
+echo '"""  # noqa' >> $1

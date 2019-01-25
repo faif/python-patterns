@@ -32,7 +32,7 @@ class Delegator(object):
 
     def __getattr__(self, name):
         attr = getattr(self.delegate, name)
-        
+
         if not callable(attr):
             return attr
 

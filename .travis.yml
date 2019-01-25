@@ -20,7 +20,7 @@ script:
   - pytest -s -vv --cov=. --log-level=INFO tests/
   # Actually run all the scripts, contributing to coverage
   - PYTHONPATH=. ./run_all.sh
-  - flake8 *py
+  - flake8 patterns/
 
 after_success:
   - codecov
