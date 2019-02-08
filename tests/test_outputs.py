@@ -18,6 +18,8 @@ from patterns.behavioral.command import main as command_main
 from patterns.behavioral.command import OUTPUT as command_output
 from patterns.behavioral.iterator import main as iterator_main
 from patterns.behavioral.iterator import OUTPUT as iterator_output
+from patterns.behavioral.mediator import main as mediator_main
+from patterns.behavioral.mediator import OUTPUT as mediator_output
 from patterns.behavioral.observer import main as observer_main
 from patterns.behavioral.observer import OUTPUT as observer_output
 from patterns.behavioral.publish_subscribe import main as publish_subscribe_main
@@ -42,6 +44,7 @@ from patterns.behavioral.visitor import OUTPUT as visitor_output
     (chaining_method_main, chaining_method_output),
     (command_main, command_output),
     (iterator_main, iterator_output),
+    (mediator_main, mediator_output),
     (observer_main, observer_output),
     (publish_subscribe_main, publish_subscribe_output),
     (specification_main, specification_output),
