@@ -37,7 +37,7 @@ __Behavioral Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [chain](patterns/behavioral/chain.py) | apply a chain of successive handlers to try and process the data |
+| [chain_of_responsibility](patterns/behavioral/chain_of_responsibility.py) | apply a chain of successive handlers to try and process the data |
 | [catalog](patterns/behavioral/catalog.py) | general methods will call different specialized methods based on construction parameter |
 | [chaining_method](patterns/behavioral/chaining_method.py) | continue callback next object method |
 | [command](patterns/behavioral/command.py) | bundle a command and arguments to call later |

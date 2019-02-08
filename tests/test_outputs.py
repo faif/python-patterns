@@ -10,8 +10,8 @@ import pytest
 
 from patterns.behavioral.catalog import main as catalog_main
 from patterns.behavioral.catalog import OUTPUT as catalog_output
-from patterns.behavioral.chain import main as chain_main
-from patterns.behavioral.chain import OUTPUT as chain_output
+from patterns.behavioral.chain_of_responsibility import main as chain_main
+from patterns.behavioral.chain_of_responsibility import OUTPUT as chain_output
 from patterns.behavioral.chaining_method import main as chaining_method_main
 from patterns.behavioral.chaining_method import OUTPUT as chaining_method_output
 from patterns.behavioral.command import main as command_main
