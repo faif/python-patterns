@@ -74,6 +74,17 @@ __Others__:
 | [hsm](patterns/other/hsm/hsm.py) | hierarchical state machine - non gang of four pattern |
 
 
+Videos
+------
+[Design Patterns in Python by Peter Ullrich](https://www.youtube.com/watch?v=bsyjSW46TDg)
+
+[Sebastian Buczyński - Why you don't need design patterns in Python?](https://www.youtube.com/watch?v=G5OeYHCJuv0)
+
+[You Don't Need That!](https://www.youtube.com/watch?v=imW-trt0i9I)
+
+[Pluggable Libs Through Design Patterns](https://www.youtube.com/watch?v=PfgEU3W0kyU)
+
+
 Contributing
 ------------
 When an implementation is added or modified, please review the following guidelines:
