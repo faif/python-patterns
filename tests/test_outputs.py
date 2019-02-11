@@ -34,6 +34,8 @@ from patterns.behavioral.template import main as template_main
 from patterns.behavioral.template import OUTPUT as template_output
 from patterns.behavioral.visitor import main as visitor_main
 from patterns.behavioral.visitor import OUTPUT as visitor_output
+from patterns.behavioral.registry import main as registry_main
+from patterns.behavioral.registry import OUTPUT as registry_output
 
 
 @pytest.mark.skipif(sys.version_info < (3,4),
@@ -47,6 +49,7 @@ from patterns.behavioral.visitor import OUTPUT as visitor_output
     (mediator_main, mediator_output),
     (observer_main, observer_output),
     (publish_subscribe_main, publish_subscribe_output),
+    (registry_main, registry_output),
     (specification_main, specification_output),
     (state_main, state_output),
     (strategy_main, strategy_output),

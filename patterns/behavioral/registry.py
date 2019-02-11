@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+DISCLAIMER: Python 3 only (metaclass syntax)
+
+"""
+
 
 class RegistryHolder(type):
 
@@ -20,8 +25,7 @@ class RegistryHolder(type):
         return dict(cls.REGISTRY)
 
 
-class BaseRegisteredClass(object):
-    __metaclass__ = RegistryHolder
+class BaseRegisteredClass(metaclass=RegistryHolder):
     """
         Any class that will inherits from BaseRegisteredClass will be included
         inside the dict RegistryHolder.REGISTRY, the key being the name of the
@@ -30,8 +34,8 @@ class BaseRegisteredClass(object):
     pass
 
 
-if __name__ == "__main__":
-    print("Before subclassing: ")
+def main():
+    print("-- Before subclassing: --")
     for k in RegistryHolder.REGISTRY:
         print(k)
 
@@ -39,13 +43,20 @@ if __name__ == "__main__":
         def __init__(self, *args, **kwargs):
             pass
 
-    print("After subclassing: ")
+    print("\n-- After subclassing: --")
     for k in RegistryHolder.REGISTRY:
         print(k)
 
-###  OUTPUT ###
-# Before subclassing:
-# BaseRegisteredClass
-# After subclassing:
-# BaseRegisteredClass
-# ClassRegistree
+
+if __name__ == "__main__":
+    main()
+
+
+OUTPUT = """
+-- Before subclassing: --
+BaseRegisteredClass
+
+-- After subclassing: --
+BaseRegisteredClass
+ClassRegistree
+"""  # noqa
