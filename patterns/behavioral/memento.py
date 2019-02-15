@@ -128,7 +128,7 @@ def main():
     -> doing stuff failed!
     Traceback (most recent call last):
     ...
-    TypeError: can only concatenate str (not "int") to str
+    TypeError: ...str...int...
 
     >>> print(num_obj)
     <NumObj: 2>
