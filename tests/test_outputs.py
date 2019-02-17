@@ -30,8 +30,6 @@ from patterns.behavioral.state import main as state_main
 from patterns.behavioral.state import OUTPUT as state_output
 from patterns.behavioral.strategy import main as strategy_main
 from patterns.behavioral.strategy import OUTPUT as strategy_output
-from patterns.behavioral.template import main as template_main
-from patterns.behavioral.template import OUTPUT as template_output
 from patterns.behavioral.visitor import main as visitor_main
 from patterns.behavioral.visitor import OUTPUT as visitor_output
 
@@ -50,7 +48,6 @@ from patterns.behavioral.visitor import OUTPUT as visitor_output
     (specification_main, specification_output),
     (state_main, state_output),
     (strategy_main, strategy_output),
-    (template_main, template_output),
     (visitor_main, visitor_output),
 ])
 def test_output(main, output):

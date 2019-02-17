@@ -82,67 +82,59 @@ class NumObj(object):
 
 
 def main():
-    num_obj = NumObj(-1)
-    print(num_obj)
+    """
+    >>> num_obj = NumObj(-1)
+    >>> print(num_obj)
+    <NumObj: -1>
 
-    a_transaction = Transaction(True, num_obj)
-    try:
-        for i in range(3):
-            num_obj.increment()
-            print(num_obj)
-        a_transaction.commit()
-        print('-- committed')
+    >>> a_transaction = Transaction(True, num_obj)
 
-        for i in range(3):
-            num_obj.increment()
-            print(num_obj)
-        num_obj.value += 'x'  # will fail
-        print(num_obj)
-    except Exception:
-        a_transaction.rollback()
-        print('-- rolled back')
-    print(num_obj)
+    >>> try:
+    ...    for i in range(3):
+    ...        num_obj.increment()
+    ...        print(num_obj)
+    ...    a_transaction.commit()
+    ...    print('-- committed')
+    ...    for i in range(3):
+    ...        num_obj.increment()
+    ...        print(num_obj)
+    ...    num_obj.value += 'x'  # will fail
+    ...    print(num_obj)
+    ... except Exception:
+    ...    a_transaction.rollback()
+    ...    print('-- rolled back')
+    <NumObj: 0>
+    <NumObj: 1>
+    <NumObj: 2>
+    -- committed
+    <NumObj: 3>
+    <NumObj: 4>
+    <NumObj: 5>
+    -- rolled back
 
-    print('-- now doing stuff ...')
-    try:
-        num_obj.do_stuff()
-    except Exception:
-        print('-> doing stuff failed!')
-        import sys
-        import traceback
+    >>> print(num_obj)
+    <NumObj: 2>
 
-        traceback.print_exc(file=sys.stdout)
-    print(num_obj)
+    >>> print('-- now doing stuff ...')
+    -- now doing stuff ...
+
+    >>> try:
+    ...    num_obj.do_stuff()
+    ... except Exception:
+    ...    print('-> doing stuff failed!')
+    ...    import sys
+    ...    import traceback
+    ...    traceback.print_exc(file=sys.stdout)
+    -> doing stuff failed!
+    Traceback (most recent call last):
+    ...
+    TypeError: ...str...int...
+
+    >>> print(num_obj)
+    <NumObj: 2>
+    """
 
 
-if __name__ == '__main__':
-    main()
-
-
-OUTPUT = """
-<NumObj: -1>
-<NumObj: 0>
-<NumObj: 1>
-<NumObj: 2>
--- committed
-<NumObj: 3>
-<NumObj: 4>
-<NumObj: 5>
--- rolled back
-<NumObj: 2>
--- now doing stuff ...
--> doing stuff failed!
-Traceback (most recent call last):
-  File "patterns/behavioral/memento.py", line 108, in main
-    num_obj.do_stuff()
-  File "patterns/behavioral/memento.py", line 63, in transaction
-    raise e
-  File "patterns/behavioral/memento.py", line 60, in transaction
-    return self.method(obj, *args, **kwargs)
-  File "patterns/behavioral/memento.py", line 81, in do_stuff
-    self.increment()  # <- will fail and rollback
-  File "patterns/behavioral/memento.py", line 76, in increment
-    self.value += 1
-TypeError: can only concatenate str (not "int") to str
-<NumObj: 2>
-"""
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(optionflags=doctest.ELLIPSIS)
