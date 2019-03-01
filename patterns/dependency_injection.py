@@ -2,21 +2,28 @@
 # -*- coding : utf-8 -*-
 
 """
-Port of the Java example of "Constructor Injection" in
+Dependency Injection (DI) is a technique whereby one object supplies the dependencies (services)
+to another object (client).
+It allows to decouple objects: no need to change client code simply because an object it depends on
+needs to be changed to a different one. (Open/Closed principle)
+
+Port of the Java example of Dependency Injection" in
 "xUnit Test Patterns - Refactoring Test Code" by Gerard Meszaros
 (ISBN-10: 0131495054, ISBN-13: 978-0131495050)
 
-production code which is untestable:
+In the following example `time_provider` (service) is embedded into TimeDisplay (client).
+If such service performed an expensive operation you would like to substitute or mock it in tests.
 
 class TimeDisplay(object):
 
     def __init__(self):
-        self.time_provider = datetime.datetime
+        self.time_provider = datetime.datetime.now
 
     def get_current_time_as_html_fragment(self):
-        current_time = self.time_provider.now()
+        current_time = self.time_provider()
         current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
         return current_time_as_html_fragment
+
 """
 
 import datetime
