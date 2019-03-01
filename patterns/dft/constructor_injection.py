@@ -36,8 +36,8 @@ class ProductionCodeTimeProvider(object):
     Production code version of the time provider (just a wrapper for formatting
     datetime for this example).
     """
-
-    def now(self):
+    @staticmethod
+    def now():
         current_time = datetime.datetime.now()
         current_time_formatted = "{}:{}".format(current_time.hour, current_time.minute)
         return current_time_formatted
@@ -47,7 +47,7 @@ class MidnightTimeProvider(object):
     """
     Class implemented as hard-coded stub (in contrast to configurable stub).
     """
-
-    def now(self):
+    @staticmethod
+    def now():
         current_time_is_always_midnight = "24:01"
         return current_time_is_always_midnight
