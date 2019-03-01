@@ -90,8 +90,10 @@ def main():
 
     >>> time_with_si = SetterInjection()
 
-    # >>> time_with_si.get_current_time_as_html_fragment()
-    # AttributeError: 'SetterInjection' object has no attribute 'time_provider'
+    >>> time_with_si.get_current_time_as_html_fragment()
+    Traceback (most recent call last):
+    ...
+    AttributeError: 'SetterInjection' object has no attribute 'time_provider'
 
     >>> time_with_si.set_time_provider(midnight_time_provider)
     >>> time_with_si.get_current_time_as_html_fragment()

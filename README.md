@@ -57,7 +57,7 @@ __Design for Testability Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [setter_injection](patterns/dft/setter_injection.py) | the client provides the depended-on object to the SUT via the setter injection (implementation variant of dependency injection) |
+| [dependency_injection](patterns/dependency_injection.py) | 3 variants of dependency injection |
 
 __Fundamental Patterns__:
 
