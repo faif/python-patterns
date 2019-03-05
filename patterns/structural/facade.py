@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
+Example from https://en.wikipedia.org/wiki/Facade_pattern#Python
+
+
 *What is this pattern about?
 The Facade pattern is a way to provide a simpler unified interface to
 a more complex system. It provides an easier way to access functions
@@ -12,17 +15,6 @@ fact there are many procedures and operations done when that happens
 (e.g., loading programs from disk to memory). In this case, the button
 serves as an unified interface to all the underlying procedures to
 turn on a computer.
-
-*What does this example do?
-The code defines three classes (TC1, TC2, TC3) that represent complex
-parts to be tested. Instead of testing each class separately, the
-TestRunner class acts as the facade to run all tests with only one
-call to the method runAll. By doing that, the client part only needs
-to instantiate the class TestRunner and call the runAll method.
-As seen in the example, the interface provided by the Facade pattern
-is independent from the underlying implementation. Since the client
-just calls the runAll method, we can modify the classes TC1, TC2 or
-TC3 without impact on the way the client uses the system.
 
 *Where is the pattern used practically?
 This pattern can be seen in the Python standard library when we use
@@ -40,84 +32,66 @@ Provides a simpler unified interface to a complex system.
 """
 
 from __future__ import print_function
-import time
-
-SLEEP = 0.1
 
 
-# Complex Parts
-class TC1:
-    def run(self):
-        print(u"###### In Test 1 ######")
-        time.sleep(SLEEP)
-        print(u"Setting up")
-        time.sleep(SLEEP)
-        print(u"Running test")
-        time.sleep(SLEEP)
-        print(u"Tearing down")
-        time.sleep(SLEEP)
-        print(u"Test Finished\n")
+# Complex computer parts
+class CPU(object):
+    """
+    Simple CPU representation.
+    """
+    def freeze(self):
+        print("Freezing processor.")
+
+    def jump(self, position):
+        print("Jumping to:", position)
+
+    def execute(self):
+        print("Executing.")
 
 
-class TC2:
-    def run(self):
-        print(u"###### In Test 2 ######")
-        time.sleep(SLEEP)
-        print(u"Setting up")
-        time.sleep(SLEEP)
-        print(u"Running test")
-        time.sleep(SLEEP)
-        print(u"Tearing down")
-        time.sleep(SLEEP)
-        print(u"Test Finished\n")
+class Memory(object):
+    """
+    Simple memory representation.
+    """
+    def load(self, position, data):
+        print("Loading from {0} data: '{1}'.".format(position, data))
 
 
-class TC3:
-    def run(self):
-        print(u"###### In Test 3 ######")
-        time.sleep(SLEEP)
-        print(u"Setting up")
-        time.sleep(SLEEP)
-        print(u"Running test")
-        time.sleep(SLEEP)
-        print(u"Tearing down")
-        time.sleep(SLEEP)
-        print(u"Test Finished\n")
+class SolidStateDrive(object):
+    """
+    Simple solid state drive representation.
+    """
+    def read(self, lba, size):
+        return "Some data from sector {0} with size {1}".format(lba, size)
 
 
-# Facade
-class TestRunner:
+class ComputerFacade(object):
+    """
+    Represents a facade for various computer parts.
+    """
     def __init__(self):
-        self.tc1 = TC1()
-        self.tc2 = TC2()
-        self.tc3 = TC3()
-        self.tests = [self.tc1, self.tc2, self.tc3]
+        self.cpu = CPU()
+        self.memory = Memory()
+        self.ssd = SolidStateDrive()
 
-    def runAll(self):
-        [i.run() for i in self.tests]
+    def start(self):
+        self.cpu.freeze()
+        self.memory.load("0x00", self.ssd.read("100", "1024"))
+        self.cpu.jump("0x00")
+        self.cpu.execute()
 
 
-# Client
-if __name__ == '__main__':
-    testrunner = TestRunner()
-    testrunner.runAll()
+def main():
+    """
+    >>> computer_facade = ComputerFacade()
+    >>> computer_facade.start()
+    Freezing processor.
+    Loading from 0x00 data: 'Some data from sector 100 with size 1024'.
+    Jumping to: 0x00
+    Executing.
+    """
 
-### OUTPUT ###
-# ###### In Test 1 ######
-# Setting up
-# Running test
-# Tearing down
-# Test Finished
-#
-# ###### In Test 2 ######
-# Setting up
-# Running test
-# Tearing down
-# Test Finished
-#
-# ###### In Test 3 ######
-# Setting up
-# Running test
-# Tearing down
-# Test Finished
-#
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(optionflags=doctest.ELLIPSIS)
