@@ -10,8 +10,6 @@ import pytest
 
 from patterns.behavioral.catalog import main as catalog_main
 from patterns.behavioral.catalog import OUTPUT as catalog_output
-from patterns.behavioral.chain_of_responsibility import main as chain_main
-from patterns.behavioral.chain_of_responsibility import OUTPUT as chain_output
 from patterns.behavioral.chaining_method import main as chaining_method_main
 from patterns.behavioral.chaining_method import OUTPUT as chaining_method_output
 from patterns.behavioral.command import main as command_main
@@ -38,7 +36,6 @@ from patterns.behavioral.visitor import OUTPUT as visitor_output
                     reason="requires python3.4 or higher")
 @pytest.mark.parametrize("main,output", [
     (catalog_main, catalog_output),
-    (chain_main, chain_output),
     (chaining_method_main, chaining_method_output),
     (command_main, command_output),
     (iterator_main, iterator_output),
