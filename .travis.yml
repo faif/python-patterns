@@ -16,11 +16,12 @@ install:
   - pip install -r requirements-dev.txt
 
 script:
-  - pytest --doctest-modules patterns/
+  - if [ "${TRAVIS_PYTHON_VERSION:0:1}" = 2 ]; then export PYEXCLUDE=3; else export PYEXCLUDE=2; fi
+  - flake8 --exclude="*__py${PYEXCLUDE}.py" patterns/
+  - pytest --doctest-modules --ignore-glob="*__py${PYEXCLUDE}.py" patterns/
   - pytest -s -vv --cov=. --log-level=INFO tests/
   # Actually run all the scripts, contributing to coverage
   - PYTHONPATH=. ./run_all.sh
-  - flake8 patterns/
 
 after_success:
   - codecov
