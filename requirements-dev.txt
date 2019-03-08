@@ -1,6 +1,8 @@
 -e .
-pytest~=4.1
-pytest-cov~=2.6
-flake8~=3.6
-codecov~=2.0
-mock~=2.0
+
+pytest~=4.3.0
+pytest-cov~=2.6.0
+flake8~=3.7.0
+codecov~=2.0.0
+
+mock~=2.0.0; python_version < "3.*"

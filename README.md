@@ -37,7 +37,7 @@ __Behavioral Patterns__:
 
 | Pattern | Description |
 |:-------:| ----------- |
-| [chain_of_responsibility](patterns/behavioral/chain_of_responsibility.py) | apply a chain of successive handlers to try and process the data |
+| [chain_of_responsibility](patterns/behavioral/chain_of_responsibility__py3.py) | apply a chain of successive handlers to try and process the data |
 | [catalog](patterns/behavioral/catalog.py) | general methods will call different specialized methods based on construction parameter |
 | [chaining_method](patterns/behavioral/chaining_method.py) | continue callback next object method |
 | [command](patterns/behavioral/command.py) | bundle a command and arguments to call later |
@@ -46,7 +46,7 @@ __Behavioral Patterns__:
 | [memento](patterns/behavioral/memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [observer](patterns/behavioral/observer.py) | provide a callback for notification of events/changes to data |
 | [publish_subscribe](patterns/behavioral/publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
-| [registry](patterns/behavioral/registry.py) | keep track of all subclasses of a given class |
+| [registry](patterns/behavioral/registry__py3.py) | keep track of all subclasses of a given class |
 | [specification](patterns/behavioral/specification.py) |  business rules can be recombined by chaining the business rules together using boolean logic |
 | [state](patterns/behavioral/state.py) | logic is organized into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](patterns/behavioral/strategy.py) | selectable operations over the same data |
