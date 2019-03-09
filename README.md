@@ -28,7 +28,7 @@ __Structural Patterns__:
 | [composite](patterns/structural/composite.py) | lets clients treat individual objects and compositions uniformly |
 | [decorator](patterns/structural/decorator.py) | wrap functionality with other functionality in order to affect outputs |
 | [facade](patterns/structural/facade.py) | use one class as an API to a number of others |
-| [flyweight](patterns/structural/flyweight.py) | transparently reuse existing instances of objects with similar/identical state |
+| [flyweight](patterns/structural/flyweight__py3.py) | transparently reuse existing instances of objects with similar/identical state |
 | [front_controller](patterns/structural/front_controller.py) | single handler requests coming to the application |
 | [mvc](patterns/structural/mvc.py) | model<->view<->controller (non-strict relationships) |
 | [proxy](patterns/structural/proxy.py) | an object funnels operations to something else |
