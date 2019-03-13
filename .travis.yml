@@ -1,27 +1,25 @@
-# vim ft=yaml
 dist: xenial
 language: python
 
 sudo: false
 
-python:
-  - "2.7"
-  - "3.6"
-  - "3.7"
+matrix:
+  include:
+    - python: "2.7"
+      env: TOXENV=ci27
+    - python: "3.6"
+      env: TOXENV=ci36
+    - python: "3.7"
+      env: TOXENV=ci37
 
 cache:
   - pip
 
 install:
-  - pip install -r requirements-dev.txt
+  - pip install tox
 
 script:
-  - if [ "${TRAVIS_PYTHON_VERSION:0:1}" = 2 ]; then export PYEXCLUDE=3; else export PYEXCLUDE=2; fi
-  - flake8 --exclude="*__py${PYEXCLUDE}.py" patterns/
-  - pytest --doctest-modules --ignore-glob="*__py${PYEXCLUDE}.py" patterns/
-  - pytest -s -vv --cov=. --log-level=INFO tests/
-  # Actually run all the scripts, contributing to coverage
-  - PYTHONPATH=. ./run_all.sh
+  - tox
 
 after_success:
   - codecov

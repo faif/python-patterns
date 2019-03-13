@@ -1,7 +1,8 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
-    name="python-patterns",
+    name="patterns",
+    packages=find_packages(),
     description="A collection of design patterns and idioms in Python.",
     classifiers=[
         "Programming Language :: Python :: 2",

@@ -1,3 +1,5 @@
 __pycache__
 *.pyc
 .idea
+*.egg-info/
+.tox/
