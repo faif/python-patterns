@@ -17,6 +17,7 @@ cache:
 
 install:
   - pip install tox
+  - pip install codecov
 
 script:
   - tox
