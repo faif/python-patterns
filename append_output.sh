@@ -1,12 +1,19 @@
 #!/bin/bash
 
+# This script (given path to a python script as an argument)
+# appends python outputs to given file.
+
 set -e
 
-src=$(sed -n -e '/### OUTPUT ###/,$!p' "$1")
-output=$(python "$1" | sed 's/^/# /')
+output_marker='OUTPUT = """'
 
-# These are done separately to avoid having to insert a newline, which causes
-# problems when the text itself has '\n' in strings
+# get everything (excluding part between `output_marker` and the end of the file)
+# into `src` var
+src=$(sed -n -e "/$output_marker/,\$!p" "$1")
+output=$(python "$1")
+
 echo "$src" > $1
-echo -e "\n### OUTPUT ###" >> $1
+echo -e "\n" >> $1
+echo "$output_marker" >> $1
 echo "$output" >> $1
+echo '"""  # noqa' >> $1

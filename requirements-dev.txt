@@ -1,0 +1,7 @@
+-e .
+
+pytest~=4.3.0
+pytest-cov~=2.6.0
+flake8~=3.7.0
+
+mock~=2.0.0; python_version < "3.*"
