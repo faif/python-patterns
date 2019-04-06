@@ -25,22 +25,24 @@ count_to_five = lambda: count_to(5)
 
 
 def main():
-    print('Counting to two...')
-    for number in count_to_two():
-        print(number, end=' ')
+    """
+    # Counting to two...
+    >>> for number in count_to_two():
+    ...     print(number)
+    one
+    two
 
-    print('\nCounting to five...')
-    for number in count_to_five():
-        print(number, end=' ')
+    # Counting to five...
+    >>> for number in count_to_five():
+    ...     print(number)
+    one
+    two
+    three
+    four
+    five
+    """
 
 
 if __name__ == "__main__":
-    main()
-
-
-OUTPUT = """
-Counting to two...
-one two 
-Counting to five...
-one two three four five 
-"""  # noqa
+    import doctest
+    doctest.testmod()

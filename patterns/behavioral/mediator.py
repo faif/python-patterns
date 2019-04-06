@@ -34,21 +34,20 @@ class User(object):
 
 
 def main():
-    molly = User('Molly')
-    mark = User('Mark')
-    ethan = User('Ethan')
+    """
+    >>> molly = User('Molly')
+    >>> mark = User('Mark')
+    >>> ethan = User('Ethan')
 
-    molly.say("Hi Team! Meeting at 3 PM today.")
-    mark.say("Roger that!")
-    ethan.say("Alright.")
+    >>> molly.say("Hi Team! Meeting at 3 PM today.")
+    [Molly says]: Hi Team! Meeting at 3 PM today.
+    >>> mark.say("Roger that!")
+    [Mark says]: Roger that!
+    >>> ethan.say("Alright.")
+    [Ethan says]: Alright.
+    """
 
 
 if __name__ == '__main__':
-    main()
-
-
-OUTPUT = """
-[Molly says]: Hi Team! Meeting at 3 PM today.
-[Mark says]: Roger that!
-[Ethan says]: Alright.
-"""  # noqa
+    import doctest
+    doctest.testmod()
