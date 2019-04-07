@@ -2,17 +2,15 @@
 # -*- coding: utf-8 -*-
 
 """*What is this pattern about?
-The Factory Method pattern can be used to create an interface for a
-method, leaving the implementation to the class that gets
-instantiated.
+A Factory is an object for creating other objects.
 
 *What does this example do?
 The code shows a way to localize words in two languages: English and
-Greek. "getLocalizer" is the factory method that constructs a
+Greek. "get_localizer" is the factory function that constructs a
 localizer depending on the language chosen. The localizer object will
 be an instance from a different class according to the language
 localized. However, the main code does not have to worry about which
-localizer will be instantiated, since the method "get" will be called
+localizer will be instantiated, since the method "localize" will be called
 in the same way independently of the language.
 
 *Where can the pattern be used practically?
@@ -25,49 +23,57 @@ purposes.
 
 *References:
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
-https://fkromer.github.io/python-pattern-references/design/#factory-method
-https://sourcemaking.com/design_patterns/factory_method
 
 *TL;DR80
 Creates objects without having to specify the exact class.
 """
 
+from __future__ import unicode_literals
+from __future__ import print_function
 
-class GreekGetter(object):
 
+class GreekLocalizer(object):
     """A simple localizer a la gettext"""
 
     def __init__(self):
-        self.trans = dict(dog="σκύλος", cat="γάτα")
+        self.translations = {"dog": "σκύλος", "cat": "γάτα"}
 
-    def get(self, msgid):
+    def localize(self, msg):
         """We'll punt if we don't have a translation"""
-        return self.trans.get(msgid, str(msgid))
+        return self.translations.get(msg, msg)
 
 
-class EnglishGetter(object):
+class EnglishLocalizer(object):
+    """Simply echoes the message"""
 
-    """Simply echoes the msg ids"""
-
-    def get(self, msgid):
-        return str(msgid)
+    def localize(self, msg):
+        return msg
 
 
 def get_localizer(language="English"):
-    """The factory method"""
-    languages = dict(English=EnglishGetter, Greek=GreekGetter)
-    return languages[language]()
+    """Factory"""
+    localizers = {
+        "English": EnglishLocalizer,
+        "Greek": GreekLocalizer,
+    }
+    return localizers[language]()
 
 
-if __name__ == '__main__':
+def main():
+    """
     # Create our localizers
-    e, g = get_localizer(language="English"), get_localizer(language="Greek")
-    # Localize some text
-    for msgid in "dog parrot cat bear".split():
-        print(e.get(msgid), g.get(msgid))
+    >>> e, g = get_localizer(language="English"), get_localizer(language="Greek")
 
-### OUTPUT ###
-# dog σκύλος
-# parrot parrot
-# cat γάτα
-# bear bear
+    # Localize some text
+    >>> for msg in "dog parrot cat bear".split():
+    ...     print(e.localize(msg), g.localize(msg))
+    dog σκύλος
+    parrot parrot
+    cat γάτα
+    bear bear
+    """
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
