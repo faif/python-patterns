@@ -146,32 +146,24 @@ class CatalogStatic(object):
 
 def main():
     """
-    >>> c = Catalog('param_value_1').main_method()
-    executed method 1!
-    >>> Catalog('param_value_2').main_method()
+    >>> test = Catalog('param_value_2')
+    >>> test.main_method()
     executed method 2!
+
+    >>> test = CatalogInstance('param_value_1')
+    >>> test.main_method()
+    Value x1
+
+    >>> test = CatalogClass('param_value_2')
+    >>> test.main_method()
+    Value x2
+
+    >>> test = CatalogStatic('param_value_1')
+    >>> test.main_method()
+    executed method 1!
     """
-
-    test = Catalog('param_value_2')
-    test.main_method()
-
-    test = CatalogInstance('param_value_1')
-    test.main_method()
-
-    test = CatalogClass('param_value_2')
-    test.main_method()
-
-    test = CatalogStatic('param_value_1')
-    test.main_method()
 
 
 if __name__ == "__main__":
-    main()
-
-
-OUTPUT = """
-executed method 2!
-Value x1
-Value x2
-executed method 1!
-"""
+    import doctest
+    doctest.testmod()

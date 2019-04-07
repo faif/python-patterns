@@ -37,20 +37,18 @@ def on_sale_discount(order):
 
 
 def main():
-    order0 = Order(100)
-    order1 = Order(100, discount_strategy=ten_percent_discount)
-    order2 = Order(1000, discount_strategy=on_sale_discount)
-    print(order0)
-    print(order1)
-    print(order2)
+    """
+    >>> Order(100)
+    <Price: 100, price after discount: 100>
+
+    >>> Order(100, discount_strategy=ten_percent_discount)
+    <Price: 100, price after discount: 90.0>
+
+    >>> Order(1000, discount_strategy=on_sale_discount)
+    <Price: 1000, price after discount: 730.0>
+    """
 
 
 if __name__ == "__main__":
-    main()
-
-
-OUTPUT = """
-<Price: 100, price after discount: 100>
-<Price: 100, price after discount: 90.0>
-<Price: 1000, price after discount: 730.0>
-"""
+    import doctest
+    doctest.testmod()

@@ -12,7 +12,6 @@ Django HttpRequest (without `execute` method):
 
 from __future__ import print_function
 import os
-from os.path import lexists
 
 
 class MoveFileCommand(object):
@@ -32,38 +31,38 @@ class MoveFileCommand(object):
 
 
 def main():
-    command_stack = []
+    """
+    >>> from os.path import lexists
 
-    # commands are just pushed into the command stack
-    command_stack.append(MoveFileCommand('foo.txt', 'bar.txt'))
-    command_stack.append(MoveFileCommand('bar.txt', 'baz.txt'))
+    >>> command_stack = [
+    ...     MoveFileCommand('foo.txt', 'bar.txt'),
+    ...     MoveFileCommand('bar.txt', 'baz.txt')
+    ... ]
 
-    # verify that none of the target files exist
-    assert not lexists("foo.txt")
-    assert not lexists("bar.txt")
-    assert not lexists("baz.txt")
-    try:
-        with open("foo.txt", "w"):  # Creating the file
-            pass
+    # Verify that none of the target files exist
+    >>> assert not lexists("foo.txt")
+    >>> assert not lexists("bar.txt")
+    >>> assert not lexists("baz.txt")
 
-        # they can be executed later on
-        for cmd in command_stack:
-            cmd.execute()
+    # Create empty file
+    >>> open("foo.txt", "w").close()
 
-        # and can also be undone at will
-        for cmd in reversed(command_stack):
-            cmd.undo()
-    finally:
-        os.unlink("foo.txt")
+    # Commands can be executed later on
+    >>> for cmd in command_stack:
+    ...     cmd.execute()
+    renaming foo.txt to bar.txt
+    renaming bar.txt to baz.txt
+
+    # And can also be undone at will
+    >>> for cmd in reversed(command_stack):
+    ...     cmd.undo()
+    renaming baz.txt to bar.txt
+    renaming bar.txt to foo.txt
+
+    >>> os.unlink("foo.txt")
+    """
 
 
 if __name__ == "__main__":
-    main()
-
-
-OUTPUT = """
-renaming foo.txt to bar.txt
-renaming bar.txt to baz.txt
-renaming baz.txt to bar.txt
-renaming bar.txt to foo.txt
-"""
+    import doctest
+    doctest.testmod()
