@@ -70,30 +70,39 @@ class Person(object):
 
 
 def main():
-    Jhon = Person('Jhon', 'Coder')
-    print(u"Name: {0}    Occupation: {1}".format(Jhon.name, Jhon.occupation))
-    print(u"Before we access `relatives`:")
-    print(Jhon.__dict__)
-    print(u"Jhon's relatives: {0}".format(Jhon.relatives))
-    print(u"After we've accessed `relatives`:")
-    print(Jhon.__dict__)
-    print(Jhon.parents)
-    print(Jhon.__dict__)
-    print(Jhon.parents)
-    print(Jhon.call_count2)
+    """
+    >>> Jhon = Person('Jhon', 'Coder')
+
+    >>> Jhon.name
+    'Jhon'
+    >>> Jhon.occupation
+    'Coder'
+
+    # Before we access `relatives`
+    >>> sorted(Jhon.__dict__.items())
+    [('call_count2', 0), ('name', 'Jhon'), ('occupation', 'Coder')]
+
+    >>> Jhon.relatives
+    'Many relatives.'
+
+    # After we've accessed `relatives`
+    >>> sorted(Jhon.__dict__.items())
+    [('call_count2', 0), ..., ('relatives', 'Many relatives.')]
+
+    >>> Jhon.parents
+    'Father and mother'
+
+    >>> sorted(Jhon.__dict__.items())
+    [('_lazy__parents', 'Father and mother'), ('call_count2', 1), ..., ('relatives', 'Many relatives.')]
+
+    >>> Jhon.parents
+    'Father and mother'
+
+    >>> Jhon.call_count2
+    1
+    """
 
 
-if __name__ == '__main__':
-    main()
-
-### OUTPUT ###
-# Name: Jhon    Occupation: Coder
-# Before we access `relatives`:
-# {'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
-# Jhon's relatives: Many relatives.
-# After we've accessed `relatives`:
-# {'relatives': 'Many relatives.', 'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
-# Father and mother
-# {'_lazy__parents': 'Father and mother', 'relatives': 'Many relatives.', 'call_count2': 1, 'name': 'Jhon', 'occupation': 'Coder'}  # noqa flake8
-# Father and mother
-# 1
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(optionflags=doctest.ELLIPSIS)
