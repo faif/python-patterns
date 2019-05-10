@@ -4,7 +4,7 @@
 """
 http://code.activestate.com/recipes/131499-observer-pattern/
 
-*TL;DR80
+*TL;DR
 Maintains a list of dependents and notifies them of any state changes.
 
 *Examples in Python ecosystem:

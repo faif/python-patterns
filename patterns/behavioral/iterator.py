@@ -5,7 +5,7 @@
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 Implementation of the iterator pattern with a generator
 
-*TL;DR80
+*TL;DR
 Traverses a container and accesses the container's elements.
 """
 

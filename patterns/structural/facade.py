@@ -27,7 +27,7 @@ https://sourcemaking.com/design_patterns/facade
 https://fkromer.github.io/python-pattern-references/design/#facade
 http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.html#facade
 
-*TL;DR80
+*TL;DR
 Provides a simpler unified interface to a complex system.
 """
 

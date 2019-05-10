@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-*TL;DR80
+*TL;DR
 Separates presentation, application processing, and data management functions.
 """
 

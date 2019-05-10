@@ -6,7 +6,7 @@ Implementation of the state pattern
 
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
-*TL;DR80
+*TL;DR
 Implements state as a derived class of the state pattern interface.
 Implements state transitions by invoking methods from the pattern's superclass.
 """

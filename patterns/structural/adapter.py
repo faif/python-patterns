@@ -27,7 +27,7 @@ http://ginstrom.com/scribbles/2008/11/06/generic-adapter-class-in-python/
 https://sourcemaking.com/design_patterns/adapter
 http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.html#adapter
 
-*TL;DR80
+*TL;DR
 Allows the interface of an existing class to be used as another interface.
 """
 

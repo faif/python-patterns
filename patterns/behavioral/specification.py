@@ -4,7 +4,7 @@
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
 
-*TL;DR80
+*TL;DR
 Provides recombination business logic by chaining together using boolean logic.
 """
 

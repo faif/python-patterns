@@ -17,7 +17,7 @@ Request receiver in simple form keeps a reference to a single successor.
 As a variation some receivers may be capable of sending requests out
 in several directions, forming a `tree of responsibility`.
 
-*TL;DR80
+*TL;DR
 Allow a request to pass down a chain of receivers until it is handled.
 """
 

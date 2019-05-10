@@ -20,7 +20,7 @@ objects initialised by the program.
 *References:
 http://codesnipers.com/?q=python-flyweights
 
-*TL;DR80
+*TL;DR
 Minimizes memory usage by sharing data with other similar objects.
 """
 

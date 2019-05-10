@@ -20,7 +20,7 @@ instance.
 Below provides an example of such Dispatcher, which contains three
 copies of the prototype: 'default', 'objecta' and 'objectb'.
 
-*TL;DR80
+*TL;DR
 Creates new object instances by cloning prototype.
 """
 

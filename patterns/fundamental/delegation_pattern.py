@@ -5,7 +5,7 @@
 Reference: https://en.wikipedia.org/wiki/Delegation_pattern
 Author: https://github.com/IuryAlves
 
-*TL;DR80
+*TL;DR
 Allows object composition to achieve the same code reuse as inheritance.
 """
 

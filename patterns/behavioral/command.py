@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-*TL;DR80
+*TL;DR
 Encapsulates all information needed to perform an action or trigger an event.
 
 *Examples in Python ecosystem:

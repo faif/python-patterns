@@ -4,7 +4,7 @@
 """
 http://code.activestate.com/recipes/413838-memento-closure/
 
-*TL;DR80
+*TL;DR
 Provides the ability to restore an object to its previous state.
 """
 

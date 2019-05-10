@@ -30,7 +30,7 @@ this kind of arrangement is also included.
 *References:
 https://sourcemaking.com/design_patterns/builder
 
-*TL;DR80
+*TL;DR
 Decouples the creation of a complex object and its representation.
 """
 
