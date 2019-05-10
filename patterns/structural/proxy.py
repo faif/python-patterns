@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-*TL;DR80
+*TL;DR
 Provides an interface to resource that is expensive to duplicate.
 """
 

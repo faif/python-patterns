@@ -4,7 +4,7 @@
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
 
-*TL;DR80
+*TL;DR
 Provides a centralized entry point that controls and manages request handling.
 """
 

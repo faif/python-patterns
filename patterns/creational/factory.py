@@ -24,7 +24,7 @@ purposes.
 *References:
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
-*TL;DR80
+*TL;DR
 Creates objects without having to specify the exact class.
 """
 

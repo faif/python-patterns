@@ -23,7 +23,7 @@ http://grok.zope.org/doc/current/reference/decorators.html
 *References:
 https://sourcemaking.com/design_patterns/decorator
 
-*TL;DR80
+*TL;DR
 Adds behaviour to object without affecting its class.
 """
 

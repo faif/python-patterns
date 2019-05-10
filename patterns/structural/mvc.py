@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-*TL;DR80
+*TL;DR
 Separates data in GUIs from the ways it is presented, and accepted.
 """
 

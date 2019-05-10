@@ -24,7 +24,7 @@ https://python-patterns.guide/gang-of-four/flyweight/
 *Examples in Python ecosystem:
 https://docs.python.org/3/library/sys.html#sys.intern
 
-*TL;DR80
+*TL;DR
 Minimizes memory usage by sharing data with other similar objects.
 """
 

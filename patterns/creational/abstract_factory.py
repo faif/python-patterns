@@ -29,7 +29,7 @@ based on my own criteria, dogs over cats.
 https://sourcemaking.com/design_patterns/abstract_factory
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 
-*TL;DR80
+*TL;DR
 Provides a way to encapsulate a group of individual factories.
 """
 
