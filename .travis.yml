@@ -11,6 +11,8 @@ matrix:
       env: TOXENV=ci36
     - python: "3.7"
       env: TOXENV=ci37
+    - python: "3.8"
+      env: TOXENV=ci38
 
 cache:
   - pip
