@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from patterns.structural.bridge import DrawingAPI1, DrawingAPI2, CircleShape
+from unittest.mock import patch
 
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
+from patterns.structural.bridge import DrawingAPI1, DrawingAPI2, CircleShape
 
 
 class BridgeTest(unittest.TestCase):

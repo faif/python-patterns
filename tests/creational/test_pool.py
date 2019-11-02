@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
+import queue
 
-try:
-    import queue
-except ImportError:  # python 2.x compatibility
-    import Queue as queue
 from patterns.creational.pool import ObjectPool
 
 

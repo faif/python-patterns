@@ -1,10 +1,5 @@
-try:
-    from contextlib import redirect_stdout
-except:
-    pass
-
+from contextlib import redirect_stdout
 import io
-import sys
 
 import pytest
 
@@ -16,8 +11,6 @@ from patterns.behavioral.state import main as state_main
 from patterns.behavioral.state import OUTPUT as state_output
 
 
-@pytest.mark.skipif(sys.version_info < (3,4),
-                    reason="requires python3.4 or higher")
 @pytest.mark.parametrize("main,output", [
     (publish_subscribe_main, publish_subscribe_output),
     (specification_main, specification_output),

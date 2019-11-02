@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from patterns.behavioral.observer import Subject, Data, DecimalViewer, HexViewer
+from unittest.mock import patch
 
-try:
-    from unittest.mock import patch
-except ImportError:
-    from mock import patch
+from patterns.behavioral.observer import Subject, Data, DecimalViewer, HexViewer
 
 
 class TestSubject(unittest.TestCase):
