@@ -5,10 +5,6 @@ sudo: false
 
 matrix:
   include:
-    - python: "2.7"
-      env: TOXENV=ci27
-    - python: "3.6"
-      env: TOXENV=ci36
     - python: "3.7"
       env: TOXENV=ci37
     - python: "3.8"

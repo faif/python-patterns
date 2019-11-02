@@ -1,12 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
+from unittest.mock import patch, call
 from patterns.behavioral.publish_subscribe import Provider, Publisher, Subscriber
-
-try:
-    from unittest.mock import patch, call
-except ImportError:
-    from mock import patch, call
 
 
 class TestProvider(unittest.TestCase):

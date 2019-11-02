@@ -54,10 +54,7 @@ class ObjectPool(object):
 
 
 def main():
-    try:
-        import queue
-    except ImportError:  # python 2.x compatibility
-        import Queue as queue
+    import queue
 
     def test_object(queue):
         pool = ObjectPool(queue, True)

@@ -107,10 +107,8 @@ In some cases class-level docstring with doctest would also help (see [adapter.p
 but readable OUTPUT section is much better.
 
 
-##### Python2/3 compatibility
-Try to keep it (discussion is held in [issue #208](https://github.com/faif/python-patterns/issues/208))
-- use new style classes (inherit from `object`)
-- use `from __future__ import print_function`
+##### Python2 compatibility
+To see Python 2 compatible versions of some patterns please check-out `legacy` tag.
 
 ##### Update README
 When everything else is done - update corresponding part of README.
