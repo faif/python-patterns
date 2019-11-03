@@ -21,7 +21,7 @@ class UnsupportedTransition(BaseException):
     pass
 
 
-class HierachicalStateMachine(object):
+class HierachicalStateMachine:
     def __init__(self):
         self._active_state = Active(self)  # Unit.Inservice.Active()
         self._standby_state = Standby(self)  # Unit.Inservice.Standby()
@@ -85,7 +85,7 @@ class HierachicalStateMachine(object):
             raise UnsupportedMessageType
 
 
-class Unit(object):
+class Unit:
     def __init__(self, HierachicalStateMachine):
         self.hsm = HierachicalStateMachine
 
@@ -125,8 +125,8 @@ class Active(Inservice):
         self._hsm = HierachicalStateMachine
 
     def on_fault_trigger(self):
-        super(Active, self).perform_switchover()
-        super(Active, self).on_fault_trigger()
+        super().perform_switchover()
+        super().on_fault_trigger()
 
     def on_switchover(self):
         self._hsm.on_switchover()  # message ignored
@@ -138,7 +138,7 @@ class Standby(Inservice):
         self._hsm = HierachicalStateMachine
 
     def on_switchover(self):
-        super(Standby, self).on_switchover()  # message ignored
+        super().on_switchover()  # message ignored
         self._hsm._next_state('active')
 
 
@@ -157,17 +157,17 @@ class Suspect(OutOfService):
         self._hsm = HierachicalStateMachine
 
     def on_diagnostics_failed(self):
-        super(Suspect, self).send_diagnostics_failure_report()
-        super(Suspect, self).next_state('failed')
+        super().send_diagnostics_failure_report()
+        super().next_state('failed')
 
     def on_diagnostics_passed(self):
-        super(Suspect, self).send_diagnostics_pass_report()
-        super(Suspect, self).clear_alarm()  # loss of redundancy alarm
-        super(Suspect, self).next_state('standby')
+        super().send_diagnostics_pass_report()
+        super().clear_alarm()  # loss of redundancy alarm
+        super().next_state('standby')
 
     def on_operator_inservice(self):
-        super(Suspect, self).abort_diagnostics()
-        super(Suspect, self).on_operator_inservice()  # message ignored
+        super().abort_diagnostics()
+        super().on_operator_inservice()  # message ignored
 
 
 class Failed(OutOfService):

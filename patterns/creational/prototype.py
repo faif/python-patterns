@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *What is this pattern about?
@@ -25,7 +24,7 @@ Creates new object instances by cloning prototype.
 """
 
 
-class Prototype(object):
+class Prototype:
 
     value = 'default'
 
@@ -37,7 +36,7 @@ class Prototype(object):
         return obj
 
 
-class PrototypeDispatcher(object):
+class PrototypeDispatcher:
     def __init__(self):
         self._objects = {}
 

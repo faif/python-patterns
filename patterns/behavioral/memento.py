@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 http://code.activestate.com/recipes/413838-memento-closure/
@@ -22,7 +21,7 @@ def memento(obj, deep=False):
     return restore
 
 
-class Transaction(object):
+class Transaction:
     """A transaction guard.
 
     This is, in fact, just syntactic sugar around a memento closure.
@@ -44,7 +43,7 @@ class Transaction(object):
             a_state()
 
 
-class Transactional(object):
+class Transactional:
     """Adds transactional semantics to methods. Methods decorated  with
 
     @Transactional will rollback to entry-state upon exceptions.
@@ -65,7 +64,7 @@ class Transactional(object):
         return transaction
 
 
-class NumObj(object):
+class NumObj:
     def __init__(self, value):
         self.value = value
 

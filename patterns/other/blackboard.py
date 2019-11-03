@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 @author: Eugene Duboviy <eugene.dubovoy@gmail.com> | github.com/duboviy
@@ -16,7 +15,7 @@ import abc
 import random
 
 
-class Blackboard(object):
+class Blackboard:
     def __init__(self):
         self.experts = []
         self.common_state = {
@@ -30,7 +29,7 @@ class Blackboard(object):
         self.experts.append(expert)
 
 
-class Controller(object):
+class Controller:
     def __init__(self, blackboard):
         self.blackboard = blackboard
 

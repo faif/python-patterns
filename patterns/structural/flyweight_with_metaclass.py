@@ -13,7 +13,7 @@ class FlyweightMeta(type):
         :return: new class
         """
         dct['pool'] = weakref.WeakValueDictionary()
-        return super(FlyweightMeta, mcs).__new__(mcs, name, parents, dct)
+        return super().__new__(mcs, name, parents, dct)
 
     @staticmethod
     def _serialize_params(cls, *args, **kwargs):
@@ -32,7 +32,7 @@ class FlyweightMeta(type):
 
         instance = pool.get(key)
         if instance is None:
-            instance = super(FlyweightMeta, cls).__call__(*args, **kwargs)
+            instance = super().__call__(*args, **kwargs)
             pool[key] = instance
         return instance
 

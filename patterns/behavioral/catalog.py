@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 A class that uses different static function depending of a parameter passed in
@@ -9,7 +8,7 @@ init. Note the use of a single dictionary instead of multiple conditions
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 
 
-class Catalog(object):
+class Catalog:
     """catalog of multiple static methods that are executed depending on an init
 
     parameter
@@ -45,7 +44,7 @@ class Catalog(object):
 
 
 # Alternative implementation for different levels of methods
-class CatalogInstance(object):
+class CatalogInstance:
 
     """catalog of multiple methods that are executed depending on an init
 
@@ -77,7 +76,7 @@ class CatalogInstance(object):
         self._instance_method_choices[self.param].__get__(self)()
 
 
-class CatalogClass(object):
+class CatalogClass:
 
     """catalog of multiple class methods that are executed depending on an init
 
@@ -112,7 +111,7 @@ class CatalogClass(object):
         self._class_method_choices[self.param].__get__(None, self.__class__)()
 
 
-class CatalogStatic(object):
+class CatalogStatic:
 
     """catalog of multiple static methods that are executed depending on an init
 

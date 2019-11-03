@@ -29,7 +29,7 @@ class TimeDisplay(object):
 import datetime
 
 
-class ConstructorInjection(object):
+class ConstructorInjection:
 
     def __init__(self, time_provider):
         self.time_provider = time_provider
@@ -40,7 +40,7 @@ class ConstructorInjection(object):
         return current_time_as_html_fragment
 
 
-class ParameterInjection(object):
+class ParameterInjection:
 
     def __init__(self):
         pass
@@ -51,7 +51,7 @@ class ParameterInjection(object):
         return current_time_as_html_fragment
 
 
-class SetterInjection(object):
+class SetterInjection:
     """Setter Injection"""
 
     def __init__(self):

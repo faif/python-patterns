@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 http://code.activestate.com/recipes/131499-observer-pattern/
@@ -12,10 +11,8 @@ Django Signals: https://docs.djangoproject.com/en/2.1/topics/signals/
 Flask Signals: http://flask.pocoo.org/docs/1.0/signals/
 """
 
-from __future__ import print_function
 
-
-class Subject(object):
+class Subject:
     def __init__(self):
         self._observers = []
 
@@ -35,7 +32,6 @@ class Subject(object):
                 observer.update(self)
 
 
-# Example usage
 class Data(Subject):
     def __init__(self, name=''):
         Subject.__init__(self)
@@ -54,15 +50,14 @@ class Data(Subject):
 
 class HexViewer:
     def update(self, subject):
-        print(u'HexViewer: Subject %s has data 0x%x' % (subject.name, subject.data))
+        print('HexViewer: Subject {} has data 0x{:x}'.format(subject.name, subject.data))
 
 
 class DecimalViewer:
     def update(self, subject):
-        print(u'DecimalViewer: Subject %s has data %d' % (subject.name, subject.data))
+        print('DecimalViewer: Subject %s has data %d' % (subject.name, subject.data))
 
 
-# Example usage...
 def main():
     """
     >>> data1 = Data('Data 1')

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *What is this pattern about?
@@ -27,10 +26,8 @@ https://sourcemaking.com/design_patterns/decorator
 Adds behaviour to object without affecting its class.
 """
 
-from __future__ import print_function
 
-
-class TextTag(object):
+class TextTag:
     """Represents a base text tag"""
 
     def __init__(self, text):
