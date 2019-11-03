@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *TL;DR
@@ -7,7 +6,7 @@ Separates data in GUIs from the ways it is presented, and accepted.
 """
 
 
-class Model(object):
+class Model:
     def __iter__(self):
         raise NotImplementedError
 
@@ -45,10 +44,10 @@ class ProductModel(Model):
         try:
             return self.products[product]
         except KeyError as e:
-            raise KeyError((str(e) + " not in the model's item list."))
+            raise KeyError(str(e) + " not in the model's item list.")
 
 
-class View(object):
+class View:
     def show_item_list(self, item_type, item_list):
         raise NotImplementedError
 
@@ -81,10 +80,10 @@ class ConsoleView(View):
         print(printout)
 
     def item_not_found(self, item_type, item_name):
-        print('That %s "%s" does not exist in the records' % (item_type, item_name))
+        print('That {} "{}" does not exist in the records'.format(item_type, item_name))
 
 
-class Controller(object):
+class Controller:
     def __init__(self, model, view):
         self.model = model
         self.view = view

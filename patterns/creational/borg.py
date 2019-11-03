@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *What is this pattern about?
@@ -41,7 +40,7 @@ Provides singleton-like behavior sharing state between instances.
 """
 
 
-class Borg(object):
+class Borg:
     __shared_state = {}
 
     def __init__(self):

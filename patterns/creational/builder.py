@@ -36,7 +36,7 @@ Decouples the creation of a complex object and its representation.
 
 
 # Abstract Building
-class Building(object):
+class Building:
     def __init__(self):
         self.build_floor()
         self.build_size()
@@ -74,7 +74,7 @@ class Flat(Building):
 # a concrete class does not have a useful constructor)
 
 
-class ComplexBuilding(object):
+class ComplexBuilding:
     def __repr__(self):
         return 'Floor: {0.floor} | Size: {0.size}'.format(self)
 

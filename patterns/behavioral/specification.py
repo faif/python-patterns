@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
@@ -11,7 +10,7 @@ Provides recombination business logic by chaining together using boolean logic.
 from abc import abstractmethod
 
 
-class Specification(object):
+class Specification:
     def and_specification(self, candidate):
         raise NotImplementedError()
 
@@ -75,7 +74,7 @@ class NotSpecification(CompositeSpecification):
         return bool(not self._wrapped.is_satisfied_by(candidate))
 
 
-class User(object):
+class User:
     def __init__(self, super_user=False):
         self.super_user = super_user
 

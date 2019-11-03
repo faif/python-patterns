@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 Lazily-evaluated property pattern in Python.
@@ -22,11 +21,10 @@ https://github.com/pallets/werkzeug/blob/5a2bf35441006d832ab1ed5a31963cbc366c99a
 Delays the eval of an expr until its value is needed and avoids repeated evals.
 """
 
-from __future__ import print_function
 import functools
 
 
-class lazy_property(object):
+class lazy_property:
     def __init__(self, function):
         self.function = function
         functools.update_wrapper(self, function)
@@ -51,7 +49,7 @@ def lazy_property2(fn):
     return _lazy_property
 
 
-class Person(object):
+class Person:
     def __init__(self, name, occupation):
         self.name = name
         self.occupation = occupation

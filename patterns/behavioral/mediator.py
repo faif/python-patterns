@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 https://www.djangospin.com/design-patterns-python/mediator/
@@ -12,14 +11,14 @@ Encapsulates how a set of objects interact.
 """
 
 
-class ChatRoom(object):
+class ChatRoom:
     """Mediator class"""
 
     def display_message(self, user, message):
         print("[{} says]: {}".format(user, message))
 
 
-class User(object):
+class User:
     """A class whose instances want to interact with each other"""
 
     def __init__(self, name):

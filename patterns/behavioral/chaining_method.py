@@ -1,10 +1,7 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import print_function
 
 
-class Person(object):
+class Person:
     def __init__(self, name, action):
         self.name = name
         self.action = action
@@ -14,7 +11,7 @@ class Person(object):
         return self.action
 
 
-class Action(object):
+class Action:
     def __init__(self, name):
         self.name = name
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *What is this pattern about?
@@ -32,7 +31,7 @@ Stores a set of initialized objects kept ready to use.
 """
 
 
-class ObjectPool(object):
+class ObjectPool:
     def __init__(self, queue, auto_get=False):
         self._queue = queue
         self.item = self._queue.get() if auto_get else None

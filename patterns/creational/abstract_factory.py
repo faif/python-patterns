@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *What is this pattern about?
@@ -36,7 +35,7 @@ Provides a way to encapsulate a group of individual factories.
 import random
 
 
-class PetShop(object):
+class PetShop:
 
     """A pet shop"""
 
@@ -53,7 +52,7 @@ class PetShop(object):
         print("It says {}".format(pet.speak()))
 
 
-class Dog(object):
+class Dog:
     def speak(self):
         return "woof"
 
@@ -61,7 +60,7 @@ class Dog(object):
         return "Dog"
 
 
-class Cat(object):
+class Cat:
     def speak(self):
         return "meow"
 

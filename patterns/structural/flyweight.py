@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *What is this pattern about?
@@ -31,7 +30,7 @@ Minimizes memory usage by sharing data with other similar objects.
 import weakref
 
 
-class Card(object):
+class Card:
     """The Flyweight"""
 
     # Could be a simple dict.
@@ -56,7 +55,7 @@ class Card(object):
     #     self.value, self.suit = value, suit
 
     def __repr__(self):
-        return "<Card: %s%s>" % (self.value, self.suit)
+        return "<Card: {}{}>".format(self.value, self.suit)
 
 
 def main():

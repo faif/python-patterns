@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 *TL;DR
@@ -10,11 +9,10 @@ Django HttpRequest (without `execute` method):
  https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
-from __future__ import print_function
 import os
 
 
-class MoveFileCommand(object):
+class MoveFileCommand:
     def __init__(self, src, dest):
         self.src = src
         self.dest = dest
@@ -26,7 +24,7 @@ class MoveFileCommand(object):
         self.rename(self.dest, self.src)
 
     def rename(self, src, dest):
-        print(u"renaming %s to %s" % (src, dest))
+        print("renaming {} to {}".format(src, dest))
         os.rename(src, dest)
 
 

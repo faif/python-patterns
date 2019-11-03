@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """
 Implementation of the state pattern
@@ -11,10 +10,8 @@ Implements state as a derived class of the state pattern interface.
 Implements state transitions by invoking methods from the pattern's superclass.
 """
 
-from __future__ import print_function
 
-
-class State(object):
+class State:
 
     """Base state. This is to share functionality"""
 
@@ -23,7 +20,7 @@ class State(object):
         self.pos += 1
         if self.pos == len(self.stations):
             self.pos = 0
-        print(u"Scanning... Station is %s %s" % (self.stations[self.pos], self.name))
+        print("Scanning... Station is {} {}".format(self.stations[self.pos], self.name))
 
 
 class AmState(State):
@@ -34,7 +31,7 @@ class AmState(State):
         self.name = "AM"
 
     def toggle_amfm(self):
-        print(u"Switching to FM")
+        print("Switching to FM")
         self.radio.state = self.radio.fmstate
 
 
@@ -46,11 +43,11 @@ class FmState(State):
         self.name = "FM"
 
     def toggle_amfm(self):
-        print(u"Switching to AM")
+        print("Switching to AM")
         self.radio.state = self.radio.amstate
 
 
-class Radio(object):
+class Radio:
 
     """A radio.     It has a scan button, and an AM/FM toggle switch."""
 
