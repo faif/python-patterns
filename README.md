@@ -108,7 +108,7 @@ but readable OUTPUT section is much better.
 
 
 ##### Python2 compatibility
-To see Python 2 compatible versions of some patterns please check-out `legacy` tag.
+To see Python 2 compatible versions of some patterns please check-out the [legacy](https://github.com/faif/python-patterns/tree/legacy) tag.
 
 ##### Update README
 When everything else is done - update corresponding part of README.
