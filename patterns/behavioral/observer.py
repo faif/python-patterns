@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 http://code.activestate.com/recipes/131499-observer-pattern/
 

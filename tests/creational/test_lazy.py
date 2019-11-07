@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 from __future__ import print_function
 import unittest
 from patterns.creational.lazy_evaluation import Person

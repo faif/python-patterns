@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 @author: Eugene Duboviy <eugene.dubovoy@gmail.com> | github.com/duboviy
 

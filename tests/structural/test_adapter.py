@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import unittest
 from patterns.structural.adapter import Dog, Cat, Human, Car, Adapter
 

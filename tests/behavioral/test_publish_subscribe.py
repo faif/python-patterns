@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import unittest
 from unittest.mock import patch, call
 from patterns.behavioral.publish_subscribe import Provider, Publisher, Subscriber

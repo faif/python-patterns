@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 Example from https://en.wikipedia.org/wiki/Facade_pattern#Python
 

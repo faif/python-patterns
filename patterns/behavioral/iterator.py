@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 Implementation of the iterator pattern with a generator

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *What is this pattern about?
 The Borg pattern (also known as the Monostate pattern) is a way to

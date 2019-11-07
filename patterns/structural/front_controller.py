@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 @author: Gordeev Andrey <gordeev.and.and@gmail.com>
 

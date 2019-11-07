@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 https://www.djangospin.com/design-patterns-python/mediator/
 
