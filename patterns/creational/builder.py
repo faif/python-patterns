@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding : utf-8 -*-
-
 """
 *What is this pattern about?
 It decouples the creation of a complex object and its representation,

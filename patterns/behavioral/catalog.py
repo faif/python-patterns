@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 A class that uses different static function depending of a parameter passed in
 init. Note the use of a single dictionary instead of multiple conditions

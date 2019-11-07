@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *What is this pattern about?
 This pattern is used when creating an object is costly (and they are

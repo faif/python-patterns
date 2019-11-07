@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *What is this pattern about?
 The Adapter pattern provides a different interface for a class. We can

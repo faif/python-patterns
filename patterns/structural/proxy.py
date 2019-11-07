@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *TL;DR
 Provides an interface to resource that is expensive to duplicate.

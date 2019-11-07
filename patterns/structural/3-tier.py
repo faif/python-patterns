@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *TL;DR
 Separates presentation, application processing, and data management functions.

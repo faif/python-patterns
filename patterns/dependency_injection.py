@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding : utf-8 -*-
-
 """
 Dependency Injection (DI) is a technique whereby one object supplies the dependencies (services)
 to another object (client).

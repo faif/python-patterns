@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-
-
 class RegistryHolder(type):
 
     REGISTRY = {}

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *What is this pattern about?
 This patterns aims to reduce the number of classes required by an

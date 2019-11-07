@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 An example of the Template pattern in Python
 

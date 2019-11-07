@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 Reference:
 http://www.slideshare.net/ishraqabd/publish-subscribe-model-overview-13368808

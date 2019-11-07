@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 *TL;DR
 Encapsulates all information needed to perform an action or trigger an event.

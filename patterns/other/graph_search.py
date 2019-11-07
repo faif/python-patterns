@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-
-""
-
-
 class GraphSearch:
 
     """Graph search emulation in python, from source

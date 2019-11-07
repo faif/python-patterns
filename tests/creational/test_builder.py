@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import unittest
 from patterns.creational.builder import construct_building, House, Flat, ComplexHouse
 
