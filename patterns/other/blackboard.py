@@ -90,30 +90,37 @@ class Professor(AbstractExpert):
         self.blackboard.common_state['progress'] += random.randint(10, 100)
 
 
+def main():
+    """
+    >>> blackboard = Blackboard()
+    >>> blackboard.add_expert(Student(blackboard))
+    >>> blackboard.add_expert(Scientist(blackboard))
+    >>> blackboard.add_expert(Professor(blackboard))
+
+    >>> c = Controller(blackboard)
+    >>> contributions = c.run_loop()
+
+    >>> from pprint import pprint
+    >>> pprint(contributions)
+    ['Student',
+     'Student',
+     'Student',
+     'Student',
+     'Scientist',
+     'Student',
+     'Student',
+     'Student',
+     'Scientist',
+     'Student',
+     'Scientist',
+     'Student',
+     'Student',
+     'Scientist',
+     'Professor']
+    """
+
+
 if __name__ == '__main__':
-    blackboard = Blackboard()
-
-    blackboard.add_expert(Student(blackboard))
-    blackboard.add_expert(Scientist(blackboard))
-    blackboard.add_expert(Professor(blackboard))
-
-    c = Controller(blackboard)
-    contributions = c.run_loop()
-
-    from pprint import pprint
-
-    pprint(contributions)
-
-### OUTPUT ###
-# ['Student',
-#  'Student',
-#  'Scientist',
-#  'Student',
-#  'Scientist',
-#  'Student',
-#  'Scientist',
-#  'Student',
-#  'Scientist',
-#  'Student',
-#  'Scientist',
-#  'Professor']
+    random.seed(1234)  # for deterministic doctest outputs
+    import doctest
+    doctest.testmod()

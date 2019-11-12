@@ -3,3 +3,4 @@
 pytest~=4.3.0
 pytest-cov~=2.6.0
 flake8~=3.7.0
+pytest-randomly~=3.1.0
