@@ -88,25 +88,23 @@ class SuperUserSpecification(CompositeSpecification):
 
 
 def main():
-    print('Specification')
-    andrey = User()
-    ivan = User(super_user=True)
-    vasiliy = 'not User instance'
+    """
+    >>> andrey = User()
+    >>> ivan = User(super_user=True)
+    >>> vasiliy = 'not User instance'
 
-    root_specification = UserSpecification().and_specification(SuperUserSpecification())
+    >>> root_specification = UserSpecification().and_specification(SuperUserSpecification())
 
-    print(root_specification.is_satisfied_by(andrey))
-    print(root_specification.is_satisfied_by(ivan))
-    print(root_specification.is_satisfied_by(vasiliy))
+    # Is specification satisfied by <name>
+    >>> root_specification.is_satisfied_by(andrey), 'andrey'
+    (False, 'andrey')
+    >>> root_specification.is_satisfied_by(ivan), 'ivan'
+    (True, 'ivan')
+    >>> root_specification.is_satisfied_by(vasiliy), 'vasiliy'
+    (False, 'vasiliy')
+    """
 
 
 if __name__ == '__main__':
-    main()
-
-
-OUTPUT = """
-Specification
-False
-True
-False
-"""
+    import doctest
+    doctest.testmod()
