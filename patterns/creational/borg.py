@@ -19,12 +19,6 @@ instance (i.e., in the __init__ method). Other attributes are usually
 added to the instance's attribute dictionary, but, since the attribute
 dictionary itself is shared (which is __shared_state), all other
 attributes will also be shared.
-For this reason, when the attribute self.state is modified using
-instance rm2, the value of self.state in instance rm1 also changes. The
-same happens if self.state is modified using rm3, which is an
-instance from a subclass.
-Notice that even though they share attributes, the instances are not
-the same, as seen by their ids.
 
 *Where is the pattern used practically?
 Sharing state is useful in applications like managing database connections:
@@ -53,37 +47,44 @@ class YourBorg(Borg):
     pass
 
 
-if __name__ == '__main__':
-    rm1 = Borg()
-    rm2 = Borg()
+def main():
+    """
+    >>> rm1 = Borg()
+    >>> rm2 = Borg()
 
-    rm1.state = 'Idle'
-    rm2.state = 'Running'
+    >>> rm1.state = 'Idle'
+    >>> rm2.state = 'Running'
 
-    print('rm1: {0}'.format(rm1))
-    print('rm2: {0}'.format(rm2))
+    >>> print('rm1: {0}'.format(rm1))
+    rm1: Running
+    >>> print('rm2: {0}'.format(rm2))
+    rm2: Running
 
-    rm2.state = 'Zombie'
+    # When the `state` attribute is modified from instance `rm2`,
+    # the value of `state` in instance `rm1` also changes
+    >>> rm2.state = 'Zombie'
 
-    print('rm1: {0}'.format(rm1))
-    print('rm2: {0}'.format(rm2))
+    >>> print('rm1: {0}'.format(rm1))
+    rm1: Zombie
+    >>> print('rm2: {0}'.format(rm2))
+    rm2: Zombie
 
-    print('rm1 id: {0}'.format(id(rm1)))
-    print('rm2 id: {0}'.format(id(rm2)))
+    # Even though `rm1` and `rm2` share attributes, the instances are not the same
+    >>> rm1 is rm2
+    False
 
-    rm3 = YourBorg()
+    # Shared state is also modified from a subclass instance `rm3`
+    >>> rm3 = YourBorg()
 
-    print('rm1: {0}'.format(rm1))
-    print('rm2: {0}'.format(rm2))
-    print('rm3: {0}'.format(rm3))
+    >>> print('rm1: {0}'.format(rm1))
+    rm1: Init
+    >>> print('rm2: {0}'.format(rm2))
+    rm2: Init
+    >>> print('rm3: {0}'.format(rm3))
+    rm3: Init
+    """
 
-### OUTPUT ###
-# rm1: Running
-# rm2: Running
-# rm1: Zombie
-# rm2: Zombie
-# rm1 id: 140732837899224
-# rm2 id: 140732837899296
-# rm1: Init
-# rm2: Init
-# rm3: Init
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

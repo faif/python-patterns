@@ -62,29 +62,27 @@ class Radio:
         self.state.scan()
 
 
-# Test our radio out
 def main():
-    radio = Radio()
-    actions = [radio.scan] * 2 + [radio.toggle_amfm] + [radio.scan] * 2
-    actions *= 2
+    """
+    >>> radio = Radio()
+    >>> actions = [radio.scan] * 2 + [radio.toggle_amfm] + [radio.scan] * 2
+    >>> actions *= 2
 
-    for action in actions:
-        action()
+    >>> for action in actions:
+    ...    action()
+    Scanning... Station is 1380 AM
+    Scanning... Station is 1510 AM
+    Switching to FM
+    Scanning... Station is 89.1 FM
+    Scanning... Station is 103.9 FM
+    Scanning... Station is 81.3 FM
+    Scanning... Station is 89.1 FM
+    Switching to AM
+    Scanning... Station is 1250 AM
+    Scanning... Station is 1380 AM
+    """
 
 
 if __name__ == '__main__':
-    main()
-
-
-OUTPUT = """
-Scanning... Station is 1380 AM
-Scanning... Station is 1510 AM
-Switching to FM
-Scanning... Station is 89.1 FM
-Scanning... Station is 103.9 FM
-Scanning... Station is 81.3 FM
-Scanning... Station is 89.1 FM
-Switching to AM
-Scanning... Station is 1250 AM
-Scanning... Station is 1380 AM
-"""
+    import doctest
+    doctest.testmod()
