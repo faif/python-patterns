@@ -52,20 +52,22 @@ class PrototypeDispatcher:
 
 
 def main():
-    dispatcher = PrototypeDispatcher()
-    prototype = Prototype()
+    """
+    >>> dispatcher = PrototypeDispatcher()
+    >>> prototype = Prototype()
 
-    d = prototype.clone()
-    a = prototype.clone(value='a-value', category='a')
-    b = prototype.clone(value='b-value', is_checked=True)
-    dispatcher.register_object('objecta', a)
-    dispatcher.register_object('objectb', b)
-    dispatcher.register_object('default', d)
-    print([{n: p.value} for n, p in dispatcher.get_objects().items()])
+    >>> d = prototype.clone()
+    >>> a = prototype.clone(value='a-value', category='a')
+    >>> b = prototype.clone(value='b-value', is_checked=True)
+    >>> dispatcher.register_object('objecta', a)
+    >>> dispatcher.register_object('objectb', b)
+    >>> dispatcher.register_object('default', d)
+
+    >>> [{n: p.value} for n, p in dispatcher.get_objects().items()]
+    [{'objecta': 'a-value'}, {'objectb': 'b-value'}, {'default': 'default'}]
+    """
 
 
 if __name__ == '__main__':
-    main()
-
-### OUTPUT ###
-# [{'objectb': 'b-value'}, {'default': 'default'}, {'objecta': 'a-value'}]
+    import doctest
+    doctest.testmod()
