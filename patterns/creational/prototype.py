@@ -4,7 +4,7 @@ This patterns aims to reduce the number of classes required by an
 application. Instead of relying on subclasses it creates objects by
 copying a prototypical instance at run-time.
 
-This is useful as it make it easier to derive new kinds of objects,
+This is useful as it makes it easier to derive new kinds of objects,
 when instances of the class have only a few different combinations of
 state, and when instantiation is expensive.
 
