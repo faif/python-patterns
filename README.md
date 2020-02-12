@@ -42,6 +42,7 @@ __Behavioral Patterns__:
 | [chaining_method](patterns/behavioral/chaining_method.py) | continue callback next object method |
 | [command](patterns/behavioral/command.py) | bundle a command and arguments to call later |
 | [iterator](patterns/behavioral/iterator.py) | traverse a container and access the container's elements |
+| [iterator](patterns/behavioral/iterator_alt.py) (alt. impl.)| traverse a container and access the container's elements |
 | [mediator](patterns/behavioral/mediator.py) | an object that knows how to connect other objects and act as a proxy |
 | [memento](patterns/behavioral/memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [observer](patterns/behavioral/observer.py) | provide a callback for notification of events/changes to data |
