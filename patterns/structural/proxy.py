@@ -37,7 +37,7 @@ class RealSubject(Subject):
     """
 
     def do_the_job(self, user):
-        print(f'> I am doing the job for {user}')
+        print(f'I am doing the job for {user}')
 
 
 class Proxy(Subject):
@@ -60,29 +60,28 @@ class Proxy(Subject):
 def client(job_doer, user):
     job_doer.do_the_job(user)
 
+def main():
+    """
+    >>> proxy = Proxy()
+
+    >>> real_subject = RealSubject()
+
+    >>> client(proxy, 'admin')
+    [log] Doing the job for admin is requested.
+    I am doing the job for admin
+
+    >>> client(proxy, 'anonymous')
+    [log] Doing the job for anonymous is requested.
+    [log] I can do the job just for `admins`.
+
+    >>> client(real_subject, 'admin')
+    I am doing the job for admin
+
+    >>> client(real_subject, 'anonymous')
+    I am doing the job for anonymous
+    """
+
+
 if __name__ == '__main__':
-    proxy = Proxy()
-    real_subject = RealSubject()
-
-    print('# doing the job with proxy:')
-    client(proxy, 'admin')
-    client(proxy, 'anonymous')
-
-    print()
-
-    print('# doing the job with real-subject:')
-    client(real_subject, 'admin')
-    client(real_subject, 'anonymous')
-
-
-OUTPUT = """
-# doing the job with proxy:
-[log] Doing the job for admin is requested.
-> I am doing the job for admin
-[log] Doing the job for anonymous is requested.
-[log] I can do the job just for `admins`.
-
-# doing the job with real-subject:
-> I am doing the job for admin
-> I am doing the job for anonymous
-"""  # noqa
+    import doctest
+    doctest.testmod()
