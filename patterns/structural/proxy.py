@@ -21,6 +21,9 @@ class Subject:
     As mentioned in the document, interfaces of both RealSubject and Proxy should
     be the same, because the client should be able to use RealSubject or Proxy with
     no code change.
+
+    Not all times this interface is necessary. The point is the client should be
+    able to use RealSubject or Proxy interchangeably with no change in code.
     """
 
     def do_the_job(self, user):
@@ -54,15 +57,32 @@ class Proxy(Subject):
             print(f'[log] I can do the job just for `admins`.')
 
 
+def client(job_doer, user):
+    job_doer.do_the_job(user)
+
 if __name__ == '__main__':
     proxy = Proxy()
-    proxy.do_the_job('admin')
-    proxy.do_the_job('anonymous')
+    real_subject = RealSubject()
+
+    print('# doing the job with proxy:')
+    client(proxy, 'admin')
+    client(proxy, 'anonymous')
+
+    print()
+
+    print('# doing the job with real-subject:')
+    client(real_subject, 'admin')
+    client(real_subject, 'anonymous')
 
 
 OUTPUT = """
+# doing the job with proxy:
 [log] Doing the job for admin is requested.
 > I am doing the job for admin
 [log] Doing the job for anonymous is requested.
 [log] I can do the job just for `admins`.
+
+# doing the job with real-subject:
+> I am doing the job for admin
+> I am doing the job for anonymous
 """  # noqa
