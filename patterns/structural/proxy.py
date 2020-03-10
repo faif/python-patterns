@@ -11,7 +11,8 @@ https://refactoring.guru/design-patterns/proxy/python/example
 https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Fronting.html
 
 *TL;DR
-Add functionality to a resource without changing its interface.
+Add functionality or logic (e.g. logging, caching, authorization) to a resource
+without changing its interface.
 """
 
 
