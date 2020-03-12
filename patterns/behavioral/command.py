@@ -1,61 +1,71 @@
 """
+Command pattern decouples the object invoking a job from the one who knows
+how to do it. As mentioned in the GoF book, a good example is in menu items.
+You have a menu that has lots of items. Each item is responsible for doing a
+special thing and you want your menu item just call the `execute` method when
+it is pressed. To achieve this you implement a command object with the `execute`
+method for each menu item and pass to it.
+
 *TL;DR
-Encapsulates all information needed to perform an action or trigger an event.
+Object oriented implementation of callback functions.
 
 *Examples in Python ecosystem:
 Django HttpRequest (without `execute` method):
- https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
+https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
-import os
 
-
-class MoveFileCommand:
-    def __init__(self, src, dest):
-        self.src = src
-        self.dest = dest
+class Command:
+    """
+    The interface that commands implement. This is used to abstract invoker from
+    the command is going to handle the job.
+    """
 
     def execute(self):
-        self.rename(self.src, self.dest)
+        raise NotImplementedError()
 
-    def undo(self):
-        self.rename(self.dest, self.src)
 
-    def rename(self, src, dest):
-        print("renaming {} to {}".format(src, dest))
-        os.rename(src, dest)
+class MakeBoldCommand(Command):
+    """
+    A simple command to bold a text.
+    """
+
+    def execute(self):
+        print('I am making it bold.')
+
+
+class MakeItalicCommand(Command):
+    """
+    A simple command to italic a text.
+    """
+
+    def execute(self):
+        print('I am making it italic.')
+
+
+class MenuItem:
+    """
+    The invoker class. Here it is items in a menu.
+    """
+
+    def __init__(self, command):
+        self._command = command
+
+    def on_press(self):
+        self._command.execute()
 
 
 def main():
     """
-    >>> from os.path import lexists
+    >>> item1 = MenuItem(MakeBoldCommand())
 
-    >>> command_stack = [
-    ...     MoveFileCommand('foo.txt', 'bar.txt'),
-    ...     MoveFileCommand('bar.txt', 'baz.txt')
-    ... ]
+    >>> item2 = MenuItem(MakeItalicCommand())
 
-    # Verify that none of the target files exist
-    >>> assert not lexists("foo.txt")
-    >>> assert not lexists("bar.txt")
-    >>> assert not lexists("baz.txt")
+    >>> item1.on_press()
+    I am making it bold.
 
-    # Create empty file
-    >>> open("foo.txt", "w").close()
-
-    # Commands can be executed later on
-    >>> for cmd in command_stack:
-    ...     cmd.execute()
-    renaming foo.txt to bar.txt
-    renaming bar.txt to baz.txt
-
-    # And can also be undone at will
-    >>> for cmd in reversed(command_stack):
-    ...     cmd.undo()
-    renaming baz.txt to bar.txt
-    renaming bar.txt to foo.txt
-
-    >>> os.unlink("foo.txt")
+    >>> item2.on_press()
+    I am making it italic.
     """
 
 
