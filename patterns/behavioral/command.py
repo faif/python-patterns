@@ -7,10 +7,10 @@ it is pressed. To achieve this you implement a command object with the `execute`
 method for each menu item and pass to it.
 
 *About the example
-We have a menu containing two items. Each item accept a file name, one hides the file
-and the other deletes it. Both items have undo option.
-Each item is a MenuItem class that accept corresponding command as input and executes
-its `execute` method when it is pressed.
+We have a menu containing two items. Each item accepts a file name, one hides the file
+and the other deletes it. Both items have an undo option.
+Each item is a MenuItem class that accepts the corresponding command as input and executes
+it's execute` method when it is pressed.
 
 *TL;DR
 Object oriented implementation of callback functions.
