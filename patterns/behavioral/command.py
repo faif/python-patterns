@@ -20,8 +20,6 @@ Django HttpRequest (without `execute` method):
 https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
-import os
-
 
 class HideFileCommand:
     """
@@ -33,53 +31,30 @@ class HideFileCommand:
         self._hidden_files = []
 
     def execute(self, filename):
-        if os.path.isfile(filename):
-            print(f'hiding {filename}')
-
-            os.rename(filename, f'.{filename}')
-            self._hidden_files.append(filename)
-        else:
-            print(f'{filename} does not exists to hide')
+        print(f'hiding {filename}')
+        self._hidden_files.append(filename)
 
     def undo(self):
-        if len(self._hidden_files) > 0:
-            filename = self._hidden_files.pop()
-
-            print(f'un-hiding {filename}')
-
-            os.rename(f'.{filename}', filename)
+        filename = self._hidden_files.pop()
+        print(f'un-hiding {filename}')
 
 
 class DeleteFileCommand:
     """
     A command to delete a file given its name
     """
-    _deleted_files_path = 'trash'
 
     def __init__(self):
         # an array of deleted files, to undo them as needed
         self._deleted_files = []
 
-        # create a directory to store deleted files
-        if not os.path.exists(self._deleted_files_path):
-            os.makedirs(self._deleted_files_path)
-
     def execute(self, filename):
-        if os.path.isfile(filename):
-            print(f'deleting {filename}')
-
-            os.rename(filename, f'{self._deleted_files_path}/{filename}')
-            self._deleted_files.append(filename)
-        else:
-            print(f'{filename} does not exists to delete')
+        print(f'deleting {filename}')
+        self._deleted_files.append(filename)
 
     def undo(self):
-        if len(self._deleted_files) > 0:
-            filename = self._deleted_files.pop()
-
-            print(f'restoring {filename}')
-
-            os.rename(f'{self._deleted_files_path}/{filename}', filename)
+        filename = self._deleted_files.pop()
+        print(f'restoring {filename}')
 
 
 class MenuItem:
@@ -105,15 +80,10 @@ def main():
 
     # create a file named `test-file` to work with
     >>> test_file_name = 'test-file'
-    >>> open(test_file_name, 'w').close()
 
     # deleting `test-file`
     >>> item1.on_do_press(test_file_name)
     deleting test-file
-
-    # hiding `test-file` but it does not exists
-    >>> item2.on_do_press(test_file_name)
-    test-file does not exists to hide
 
     # restoring `test-file`
     >>> item1.on_undo_press()
@@ -122,10 +92,13 @@ def main():
     # hiding `test-file`
     >>> item2.on_do_press(test_file_name)
     hiding test-file
+
+    # un-hiding `test-file`
+    >>> item2.on_undo_press()
+    un-hiding test-file
     """
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
