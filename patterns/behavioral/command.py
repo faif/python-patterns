@@ -77,7 +77,7 @@ class DeleteFileCommand:
         if len(self._deleted_files) > 0:
             filename = self._deleted_files.pop()
 
-            print(f'un-deleting {filename}')
+            print(f'restoring {filename}')
 
             os.rename(f'{self._deleted_files_path}/{filename}', filename)
 
@@ -115,9 +115,9 @@ def main():
     >>> item2.on_do_press(test_file_name)
     test-file does not exists to hide
 
-    # un-deleting `test-file`
+    # restoring `test-file`
     >>> item1.on_undo_press()
-    un-deleting test-file
+    restoring test-file
 
     # hiding `test-file`
     >>> item2.on_do_press(test_file_name)
