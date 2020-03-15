@@ -10,7 +10,7 @@ method for each menu item and pass to it.
 We have a menu containing two items. Each item accepts a file name, one hides the file
 and the other deletes it. Both items have an undo option.
 Each item is a MenuItem class that accepts the corresponding command as input and executes
-it's execute` method when it is pressed.
+it's `execute` method when it is pressed.
 
 *TL;DR
 Object oriented implementation of callback functions.
@@ -54,20 +54,21 @@ class DeleteFileCommand:
     """
     A command to delete a file given its name
     """
+    _deleted_files_path = 'trash'
 
     def __init__(self):
         # an array of deleted files, to undo them as needed
         self._deleted_files = []
 
         # create a directory to store deleted files
-        if not os.path.exists('bin'):
-            os.makedirs('bin')
+        if not os.path.exists(self._deleted_files_path):
+            os.makedirs(self._deleted_files_path)
 
     def execute(self, filename):
         if os.path.isfile(filename):
             print(f'deleting {filename}')
 
-            os.rename(filename, f'bin/{filename}')
+            os.rename(filename, f'{self._deleted_files_path}/{filename}')
             self._deleted_files.append(filename)
         else:
             print(f'{filename} dose not exists to delete')
@@ -78,7 +79,7 @@ class DeleteFileCommand:
 
             print(f'un-deleting {filename}')
 
-            os.rename(f'bin/{filename}', filename)
+            os.rename(f'{self._deleted_files_path}/{filename}', filename)
 
 
 class MenuItem:
