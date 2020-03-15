@@ -39,7 +39,7 @@ class HideFileCommand:
             os.rename(filename, f'.{filename}')
             self._hidden_files.append(filename)
         else:
-            print(f'{filename} dose not exists to hide')
+            print(f'{filename} does not exists to hide')
 
     def undo(self):
         if len(self._hidden_files) > 0:
@@ -71,7 +71,7 @@ class DeleteFileCommand:
             os.rename(filename, f'{self._deleted_files_path}/{filename}')
             self._deleted_files.append(filename)
         else:
-            print(f'{filename} dose not exists to delete')
+            print(f'{filename} does not exists to delete')
 
     def undo(self):
         if len(self._deleted_files) > 0:
@@ -111,9 +111,9 @@ def main():
     >>> item1.on_do_press(test_file_name)
     deleting test-file
 
-    # hiding `test-file` but it dose not exists
+    # hiding `test-file` but it does not exists
     >>> item2.on_do_press(test_file_name)
-    test-file dose not exists to hide
+    test-file does not exists to hide
 
     # un-deleting `test-file`
     >>> item1.on_undo_press()
