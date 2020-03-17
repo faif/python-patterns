@@ -2,8 +2,8 @@
 Command pattern decouples the object invoking a job from the one who knows
 how to do it. As mentioned in the GoF book, a good example is in menu items.
 You have a menu that has lots of items. Each item is responsible for doing a
-special thing and you want your menu item just call the `execute` method when
-it is pressed. To achieve this you implement a command object with the `execute`
+special thing and you want your menu item just call the execute method when
+it is pressed. To achieve this you implement a command object with the execute
 method for each menu item and pass to it.
 
 *About the example
@@ -16,7 +16,7 @@ it's execute method when it is pressed.
 Object oriented implementation of callback functions.
 
 *Examples in Python ecosystem:
-Django HttpRequest (without `execute` method):
+Django HttpRequest (without execute method):
 https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
