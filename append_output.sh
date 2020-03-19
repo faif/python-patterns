@@ -10,7 +10,7 @@ output_marker='OUTPUT = """'
 # get everything (excluding part between `output_marker` and the end of the file)
 # into `src` var
 src=$(sed -n -e "/$output_marker/,\$!p" "$1")
-output=$(python "$1")
+output=$(python3 "$1")
 
 echo "$src" > $1
 echo -e "\n" >> $1
