@@ -3,3 +3,4 @@ __pycache__
 .idea
 *.egg-info/
 .tox/
+venv
