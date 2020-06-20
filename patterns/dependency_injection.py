@@ -24,27 +24,30 @@ class TimeDisplay(object):
 """
 
 import datetime
+from typing import Callable
 
 
 class ConstructorInjection:
-
-    def __init__(self, time_provider):
+    def __init__(self, time_provider: Callable) -> None:
         self.time_provider = time_provider
 
-    def get_current_time_as_html_fragment(self):
+    def get_current_time_as_html_fragment(self) -> str:
         current_time = self.time_provider()
-        current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
+        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
+            current_time
+        )
         return current_time_as_html_fragment
 
 
 class ParameterInjection:
-
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
-    def get_current_time_as_html_fragment(self, time_provider):
+    def get_current_time_as_html_fragment(self, time_provider: Callable) -> str:
         current_time = time_provider()
-        current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
+        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
+            current_time
+        )
         return current_time_as_html_fragment
 
 
@@ -54,16 +57,18 @@ class SetterInjection:
     def __init__(self):
         pass
 
-    def set_time_provider(self, time_provider):
+    def set_time_provider(self, time_provider: Callable):
         self.time_provider = time_provider
 
     def get_current_time_as_html_fragment(self):
         current_time = self.time_provider()
-        current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
+        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
+            current_time
+        )
         return current_time_as_html_fragment
 
 
-def production_code_time_provider():
+def production_code_time_provider() -> str:
     """
     Production code version of the time provider (just a wrapper for formatting
     datetime for this example).
@@ -73,7 +78,7 @@ def production_code_time_provider():
     return current_time_formatted
 
 
-def midnight_time_provider():
+def midnight_time_provider() -> str:
     """Hard-coded stub"""
     return "24:01"
 
@@ -107,4 +112,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)
