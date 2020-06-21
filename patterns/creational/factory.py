@@ -44,7 +44,7 @@ class EnglishLocalizer:
         return msg
 
 
-def get_localizer(language: str = "English",) -> object:
+def get_localizer(language: str = "English") -> object:
 
     """Factory"""
     localizers = {
