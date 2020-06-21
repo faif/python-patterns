@@ -29,10 +29,10 @@ Creates objects without having to specify the exact class.
 class GreekLocalizer:
     """A simple localizer a la gettext"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.translations = {"dog": "σκύλος", "cat": "γάτα"}
 
-    def localize(self, msg):
+    def localize(self, msg: str) -> str:
         """We'll punt if we don't have a translation"""
         return self.translations.get(msg, msg)
 
@@ -40,16 +40,18 @@ class GreekLocalizer:
 class EnglishLocalizer:
     """Simply echoes the message"""
 
-    def localize(self, msg):
+    def localize(self, msg: str) -> str:
         return msg
 
 
-def get_localizer(language="English"):
+def get_localizer(language: str = "English",) -> object:
+
     """Factory"""
     localizers = {
         "English": EnglishLocalizer,
         "Greek": GreekLocalizer,
     }
+
     return localizers[language]()
 
 
@@ -70,4 +72,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
