@@ -5,8 +5,6 @@ Separates presentation, application processing, and data management functions.
 
 from typing import Dict, KeysView, Optional, Type, TypeVar, Union
 
-T = TypeVar("T")
-
 
 class Data:
     """ Data Store Class """
@@ -17,9 +15,7 @@ class Data:
         "cheese": {"price": 2.00, "quantity": 10},
     }
 
-    def __get__(
-        self, obj: Optional[T], klas: Type[T]
-    ) -> Dict[str, Dict[str, Dict[str, Union[int, float]]]]:
+    def __get__(self, obj, klas):
 
         print("(Fetching from Data Store)")
         return {"products": self.products}
