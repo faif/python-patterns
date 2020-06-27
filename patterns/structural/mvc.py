@@ -3,19 +3,24 @@
 Separates data in GUIs from the ways it is presented, and accepted.
 """
 
+from abc import ABC, abstractmethod
 
-class Model:
+
+class Model(ABC):
+    @abstractmethod
     def __iter__(self):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def get(self, item):
         """Returns an object with a .items() call method
         that iterates over key,value pairs of its information."""
-        raise NotImplementedError
+        pass
 
     @property
+    @abstractmethod
     def item_type(self):
-        raise NotImplementedError
+        pass
 
 
 class ProductModel(Model):
@@ -27,12 +32,12 @@ class ProductModel(Model):
             return "{:.2f}".format(self)
 
     products = {
-        'milk': {'price': Price(1.50), 'quantity': 10},
-        'eggs': {'price': Price(0.20), 'quantity': 100},
-        'cheese': {'price': Price(2.00), 'quantity': 10},
+        "milk": {"price": Price(1.50), "quantity": 10},
+        "eggs": {"price": Price(0.20), "quantity": 100},
+        "cheese": {"price": Price(2.00), "quantity": 10},
     }
 
-    item_type = 'product'
+    item_type = "product"
 
     def __iter__(self):
         for item in self.products:
@@ -45,36 +50,39 @@ class ProductModel(Model):
             raise KeyError(str(e) + " not in the model's item list.")
 
 
-class View:
+class View(ABC):
+    @abstractmethod
     def show_item_list(self, item_type, item_list):
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def show_item_information(self, item_type, item_name, item_info):
         """Will look for item information by iterating over key,value pairs
         yielded by item_info.items()"""
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def item_not_found(self, item_type, item_name):
-        raise NotImplementedError
+        pass
 
 
 class ConsoleView(View):
     def show_item_list(self, item_type, item_list):
-        print(item_type.upper() + ' LIST:')
+        print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
-        print('')
+        print("")
 
     @staticmethod
     def capitalizer(string):
         return string[0].upper() + string[1:].lower()
 
     def show_item_information(self, item_type, item_name, item_info):
-        print(item_type.upper() + ' INFORMATION:')
-        printout = 'Name: %s' % item_name
+        print(item_type.upper() + " INFORMATION:")
+        printout = "Name: %s" % item_name
         for key, value in item_info.items():
-            printout += ', ' + self.capitalizer(str(key)) + ': ' + str(value)
-        printout += '\n'
+            printout += ", " + self.capitalizer(str(key)) + ": " + str(value)
+        printout += "\n"
         print(printout)
 
     def item_not_found(self, item_type, item_name):
@@ -102,16 +110,16 @@ class Controller:
             self.view.show_item_information(item_type, item_name, item_info)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     model = ProductModel()
     view = ConsoleView()
     controller = Controller(model, view)
     controller.show_items()
-    controller.show_item_information('cheese')
-    controller.show_item_information('eggs')
-    controller.show_item_information('milk')
-    controller.show_item_information('arepas')
+    controller.show_item_information("cheese")
+    controller.show_item_information("eggs")
+    controller.show_item_information("milk")
+    controller.show_item_information("arepas")
 
 
 ### OUTPUT ###
