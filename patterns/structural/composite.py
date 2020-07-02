@@ -55,29 +55,34 @@ class Ellipse(Graphic):
         print("Ellipse: {}".format(self.name))
 
 
-if __name__ == '__main__':
-    ellipse1 = Ellipse("1")
-    ellipse2 = Ellipse("2")
-    ellipse3 = Ellipse("3")
-    ellipse4 = Ellipse("4")
+def main():
+    """
+    >>> ellipse1 = Ellipse("1")
+    >>> ellipse2 = Ellipse("2")
+    >>> ellipse3 = Ellipse("3")
+    >>> ellipse4 = Ellipse("4")
 
-    graphic1 = CompositeGraphic()
-    graphic2 = CompositeGraphic()
+    >>> graphic1 = CompositeGraphic()
+    >>> graphic2 = CompositeGraphic()
 
-    graphic1.add(ellipse1)
-    graphic1.add(ellipse2)
-    graphic1.add(ellipse3)
-    graphic2.add(ellipse4)
+    >>> graphic1.add(ellipse1)
+    >>> graphic1.add(ellipse2)
+    >>> graphic1.add(ellipse3)
+    >>> graphic2.add(ellipse4)
 
-    graphic = CompositeGraphic()
+    >>> graphic = CompositeGraphic()
 
-    graphic.add(graphic1)
-    graphic.add(graphic2)
+    >>> graphic.add(graphic1)
+    >>> graphic.add(graphic2)
 
-    graphic.render()
+    >>> graphic.render()
+    Ellipse: 1
+    Ellipse: 2
+    Ellipse: 3
+    Ellipse: 4
+    """
 
-### OUTPUT ###
-# Ellipse: 1
-# Ellipse: 2
-# Ellipse: 3
-# Ellipse: 4
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
