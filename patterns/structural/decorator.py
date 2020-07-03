@@ -55,12 +55,18 @@ class ItalicWrapper(TextTag):
         return "<i>{}</i>".format(self._wrapped.render())
 
 
-if __name__ == '__main__':
-    simple_hello = TextTag("hello, world!")
-    special_hello = ItalicWrapper(BoldWrapper(simple_hello))
-    print("before:", simple_hello.render())
-    print("after:", special_hello.render())
+def main():
+    """
+    >>> simple_hello = TextTag("hello, world!")
+    >>> special_hello = ItalicWrapper(BoldWrapper(simple_hello))
+    
+    >>> print("before:", simple_hello.render())
+    before: hello, world!
 
-### OUTPUT ###
-# before: hello, world!
-# after: <i><b>hello, world!</b></i>
+    >>> print("after:", special_hello.render())
+    after: <i><b>hello, world!</b></i>
+    """
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
