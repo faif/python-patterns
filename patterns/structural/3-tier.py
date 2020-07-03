@@ -61,32 +61,36 @@ class Ui:
 
 
 def main():
-    ui = Ui()
-    ui.get_product_list()
-    ui.get_product_information("cheese")
-    ui.get_product_information("eggs")
-    ui.get_product_information("milk")
-    ui.get_product_information("arepas")
+    """
+    >>> ui = Ui()
+    >>> ui.get_product_list()
+    PRODUCT LIST:
+    (Fetching from Data Store)
+    milk
+    eggs
+    cheese
+    <BLANKLINE>
 
+    >>> ui.get_product_information("cheese")
+    (Fetching from Data Store)
+    PRODUCT INFORMATION:
+    Name: Cheese, Price: 2.00, Quantity: 10
+
+    >>> ui.get_product_information("eggs")
+    (Fetching from Data Store)
+    PRODUCT INFORMATION:
+    Name: Eggs, Price: 0.20, Quantity: 100
+
+    >>> ui.get_product_information("milk")
+    (Fetching from Data Store)
+    PRODUCT INFORMATION:
+    Name: Milk, Price: 1.50, Quantity: 10
+
+    >>> ui.get_product_information("arepas")
+    (Fetching from Data Store)
+    That product 'arepas' does not exist in the records
+    """
 
 if __name__ == "__main__":
-    main()
-
-### OUTPUT ###
-# PRODUCT LIST:
-# (Fetching from Data Store)
-# cheese
-# eggs
-# milk
-#
-# (Fetching from Data Store)
-# PRODUCT INFORMATION:
-# Name: Cheese, Price: 2.00, Quantity: 10
-# (Fetching from Data Store)
-# PRODUCT INFORMATION:
-# Name: Eggs, Price: 0.20, Quantity: 100
-# (Fetching from Data Store)
-# PRODUCT INFORMATION:
-# Name: Milk, Price: 1.50, Quantity: 10
-# (Fetching from Data Store)
-# That product "arepas" does not exist in the records
+    import doctest
+    doctest.testmod()
