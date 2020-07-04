@@ -59,13 +59,14 @@ def main():
     """
     >>> simple_hello = TextTag("hello, world!")
     >>> special_hello = ItalicWrapper(BoldWrapper(simple_hello))
-    
+
     >>> print("before:", simple_hello.render())
     before: hello, world!
 
     >>> print("after:", special_hello.render())
     after: <i><b>hello, world!</b></i>
     """
+
 
 if __name__ == '__main__':
     import doctest
