@@ -61,19 +61,20 @@ class Request:
 def main():
     """
     >>> front_controller = RequestController()
-    
+
     >>> front_controller.dispatch_request(Request('mobile'))
     Displaying mobile index page
 
     >>> front_controller.dispatch_request(Request('tablet'))
     Displaying tablet index page
-    
+
     >>> front_controller.dispatch_request(Request('desktop'))
     cant dispatch the request
-    
+
     >>> front_controller.dispatch_request('mobile')
     request must be a Request object
     """
+
 
 if __name__ == "__main__":
     import doctest

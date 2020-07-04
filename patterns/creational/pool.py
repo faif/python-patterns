@@ -79,6 +79,7 @@ def main():
         print(sample_queue.get())
     """
 
+
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
