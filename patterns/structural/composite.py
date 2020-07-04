@@ -47,7 +47,7 @@ class CompositeGraphic(Graphic):
     def add(self, graphic: Graphic) -> None:
         self.graphics.append(graphic)
 
-    def remove(self, graphic: Graphic):
+    def remove(self, graphic: Graphic) -> None:
         self.graphics.remove(graphic)
 
 
