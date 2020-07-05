@@ -3,10 +3,10 @@ A class that uses different static function depending of a parameter passed in
 init. Note the use of a single dictionary instead of multiple conditions
 """
 
+from __future__ import annotations
+from typing import Callable, Dict, Any
+
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
-
-
-from typing import Callable, Dict
 
 
 class Catalog:
@@ -20,7 +20,7 @@ class Catalog:
         # dictionary that will be used to determine which static method is
         # to be executed but that will be also used to store possible param
         # value
-        self._static_method_choices: Dict[Callable] = {
+        self._static_method_choices = {
             "param_value_1": self._static_method_1,
             "param_value_2": self._static_method_2,
         }
@@ -105,10 +105,10 @@ class CatalogClass:
         print(f"Value {cls.x1}")
 
     @classmethod
-    def _class_method_2(cls)->None:
+    def _class_method_2(cls) -> None:
         print(f"Value {cls.x2}")
 
-    _class_method_choices: Dict[Callable] = {
+    _class_method_choices = {
         "param_value_1": _class_method_1,
         "param_value_2": _class_method_2,
     }
@@ -143,16 +143,17 @@ class CatalogStatic:
     def _static_method_2() -> None:
         print("executed method 2!")
 
-    _static_method_choices: Dict[Callable] = {
+    _static_method_choices = {
         "param_value_1": _static_method_1,
         "param_value_2": _static_method_2,
     }
 
-    def main_method(self):
+    def main_method(self) -> None:
         """will execute either _static_method_1 or _static_method_2
 
         depending on self.param value
         """
+
         self._static_method_choices[self.param].__get__(None, self.__class__)()
 
 
