@@ -4,3 +4,5 @@ __pycache__
 *.egg-info/
 .tox/
 venv
+.vscode/
+.python-version

@@ -26,33 +26,37 @@ https://infinitescript.com/2014/10/the-23-gang-of-three-design-patterns/
 Describes a group of objects that is treated as a single instance.
 """
 
+from abc import ABC, abstractmethod
+from typing import List
 
-class Graphic:
-    def render(self):
-        raise NotImplementedError("You should implement this.")
+
+class Graphic(ABC):
+    @abstractmethod
+    def render(self) -> None:
+        raise NotImplementedError("You should implement this!")
 
 
 class CompositeGraphic(Graphic):
-    def __init__(self):
-        self.graphics = []
+    def __init__(self) -> None:
+        self.graphics: List[Graphic] = []
 
-    def render(self):
+    def render(self) -> None:
         for graphic in self.graphics:
             graphic.render()
 
-    def add(self, graphic):
+    def add(self, graphic: Graphic) -> None:
         self.graphics.append(graphic)
 
-    def remove(self, graphic):
+    def remove(self, graphic: Graphic) -> None:
         self.graphics.remove(graphic)
 
 
 class Ellipse(Graphic):
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self.name = name
 
-    def render(self):
-        print("Ellipse: {}".format(self.name))
+    def render(self) -> None:
+        print(f"Ellipse: {self.name}")
 
 
 def main():

@@ -12,28 +12,31 @@ class Catalog:
     parameter
     """
 
-    def __init__(self, param):
+    def __init__(self, param: str) -> None:
 
         # dictionary that will be used to determine which static method is
         # to be executed but that will be also used to store possible param
         # value
-        self._static_method_choices = {'param_value_1': self._static_method_1, 'param_value_2': self._static_method_2}
+        self._static_method_choices = {
+            "param_value_1": self._static_method_1,
+            "param_value_2": self._static_method_2,
+        }
 
         # simple test to validate param value
         if param in self._static_method_choices.keys():
             self.param = param
         else:
-            raise ValueError("Invalid Value for Param: {0}".format(param))
+            raise ValueError(f"Invalid Value for Param: {param}")
 
     @staticmethod
-    def _static_method_1():
+    def _static_method_1() -> None:
         print("executed method 1!")
 
     @staticmethod
-    def _static_method_2():
+    def _static_method_2() -> None:
         print("executed method 2!")
 
-    def main_method(self):
+    def main_method(self) -> None:
         """will execute either _static_method_1 or _static_method_2
 
         depending on self.param value
@@ -49,24 +52,27 @@ class CatalogInstance:
     parameter
     """
 
-    def __init__(self, param):
-        self.x1 = 'x1'
-        self.x2 = 'x2'
+    def __init__(self, param: str) -> None:
+        self.x1 = "x1"
+        self.x2 = "x2"
         # simple test to validate param value
         if param in self._instance_method_choices:
             self.param = param
         else:
-            raise ValueError("Invalid Value for Param: {0}".format(param))
+            raise ValueError(f"Invalid Value for Param: {param}")
 
-    def _instance_method_1(self):
-        print("Value {}".format(self.x1))
+    def _instance_method_1(self) -> None:
+        print(f"Value {self.x1}")
 
-    def _instance_method_2(self):
-        print("Value {}".format(self.x2))
+    def _instance_method_2(self) -> None:
+        print(f"Value {self.x2}")
 
-    _instance_method_choices = {'param_value_1': _instance_method_1, 'param_value_2': _instance_method_2}
+    _instance_method_choices = {
+        "param_value_1": _instance_method_1,
+        "param_value_2": _instance_method_2,
+    }
 
-    def main_method(self):
+    def main_method(self) -> None:
         """will execute either _instance_method_1 or _instance_method_2
 
         depending on self.param value
@@ -81,25 +87,28 @@ class CatalogClass:
     parameter
     """
 
-    x1 = 'x1'
-    x2 = 'x2'
+    x1 = "x1"
+    x2 = "x2"
 
-    def __init__(self, param):
+    def __init__(self, param: str) -> None:
         # simple test to validate param value
         if param in self._class_method_choices:
             self.param = param
         else:
-            raise ValueError("Invalid Value for Param: {0}".format(param))
+            raise ValueError(f"Invalid Value for Param: {param}")
 
     @classmethod
-    def _class_method_1(cls):
-        print("Value {}".format(cls.x1))
+    def _class_method_1(cls) -> None:
+        print(f"Value {cls.x1}")
 
     @classmethod
-    def _class_method_2(cls):
-        print("Value {}".format(cls.x2))
+    def _class_method_2(cls) -> None:
+        print(f"Value {cls.x2}")
 
-    _class_method_choices = {'param_value_1': _class_method_1, 'param_value_2': _class_method_2}
+    _class_method_choices = {
+        "param_value_1": _class_method_1,
+        "param_value_2": _class_method_2,
+    }
 
     def main_method(self):
         """will execute either _class_method_1 or _class_method_2
@@ -116,28 +125,32 @@ class CatalogStatic:
     parameter
     """
 
-    def __init__(self, param):
+    def __init__(self, param: str) -> None:
         # simple test to validate param value
         if param in self._static_method_choices:
             self.param = param
         else:
-            raise ValueError("Invalid Value for Param: {0}".format(param))
+            raise ValueError(f"Invalid Value for Param: {param}")
 
     @staticmethod
-    def _static_method_1():
+    def _static_method_1() -> None:
         print("executed method 1!")
 
     @staticmethod
-    def _static_method_2():
+    def _static_method_2() -> None:
         print("executed method 2!")
 
-    _static_method_choices = {'param_value_1': _static_method_1, 'param_value_2': _static_method_2}
+    _static_method_choices = {
+        "param_value_1": _static_method_1,
+        "param_value_2": _static_method_2,
+    }
 
-    def main_method(self):
+    def main_method(self) -> None:
         """will execute either _static_method_1 or _static_method_2
 
         depending on self.param value
         """
+
         self._static_method_choices[self.param].__get__(None, self.__class__)()
 
 
@@ -163,4 +176,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
