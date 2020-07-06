@@ -75,29 +75,32 @@ def random_animal():
 
 
 # Show pets with various factories
-if __name__ == "__main__":
-
+def main():
+    """
     # A Shop that sells only cats
-    cat_shop = PetShop(Cat)
-    cat_shop.show_pet()
-    print("")
+    >>> cat_shop = PetShop(Cat)
+    >>> cat_shop.show_pet()
+    We have a lovely Cat
+    It says meow
 
     # A shop that sells random animals
-    shop = PetShop(random_animal)
-    for i in range(3):
-        shop.show_pet()
-        print("=" * 20)
+    >>> shop = PetShop(random_animal)
+    >>> for i in range(3):
+    ...    shop.show_pet()
+    ...    print("=" * 20)
+    We have a lovely Cat
+    It says meow
+    ====================
+    We have a lovely Dog
+    It says woof
+    ====================
+    We have a lovely Dog
+    It says woof
+    ====================
+    """
 
-### OUTPUT ###
-# We have a lovely Cat
-# It says meow
-#
-# We have a lovely Dog
-# It says woof
-# ====================
-# We have a lovely Cat
-# It says meow
-# ====================
-# We have a lovely Cat
-# It says meow
-# ====================
+
+if __name__ == "__main__":
+    random.seed(1234)   # for deterministic doctest outputs
+    import doctest
+    doctest.testmod()
