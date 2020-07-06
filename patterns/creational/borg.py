@@ -25,7 +25,9 @@ Sharing state is useful in applications like managing database connections:
 https://github.com/onetwopunch/pythonDbTemplate/blob/master/database.py
 
 *References:
-https://fkromer.github.io/python-pattern-references/design/#singleton
+- https://fkromer.github.io/python-pattern-references/design/#singleton
+- https://learning.oreilly.com/library/view/python-cookbook/0596001673/ch05s23.html
+- http://www.aleax.it/5ep.html
 
 *TL;DR
 Provides singleton-like behavior sharing state between instances.
@@ -33,24 +35,31 @@ Provides singleton-like behavior sharing state between instances.
 
 
 class Borg:
-    __shared_state = {}
+    _shared_state = {}
 
     def __init__(self):
-        self.__dict__ = self.__shared_state
-        self.state = 'Init'
-
-    def __str__(self):
-        return self.state
+        self.__dict__ = self._shared_state
 
 
 class YourBorg(Borg):
-    pass
 
+    def __init__(self, state=None):
+        super().__init__()
+        if state:
+            self.state = state
+        else:
+            # initiate the first instance with default state
+            if not hasattr(self, 'state'):
+                self.state = 'Init'
+
+    def __str__(self):
+        return self.state
+        
 
 def main():
     """
-    >>> rm1 = Borg()
-    >>> rm2 = Borg()
+    >>> rm1 = YourBorg()
+    >>> rm2 = YourBorg()
 
     >>> rm1.state = 'Idle'
     >>> rm2.state = 'Running'
@@ -73,15 +82,25 @@ def main():
     >>> rm1 is rm2
     False
 
-    # Shared state is also modified from a subclass instance `rm3`
+    # New instances also get the same shared state
     >>> rm3 = YourBorg()
 
     >>> print('rm1: {0}'.format(rm1))
-    rm1: Init
+    rm1: Zombie
     >>> print('rm2: {0}'.format(rm2))
-    rm2: Init
+    rm2: Zombie
     >>> print('rm3: {0}'.format(rm3))
-    rm3: Init
+    rm3: Zombie
+
+    # A new instance can explicitly change the state during creation
+    >>> rm4 = YourBorg('Running')
+
+    >>> print('rm4: {0}'.format(rm4))
+    rm4: Running
+
+    # Existing instances reflect that change as well
+    >>> print('rm3: {0}'.format(rm3))
+    rm3: Running
     """
 
 
