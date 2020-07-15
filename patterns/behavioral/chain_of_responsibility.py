@@ -65,7 +65,7 @@ class ConcreteHandler1(Handler):
 
     def check_range(self, request: int) -> Optional[bool]:
         if self.start <= request < self.end:
-            print("request {} handled in handler 1".format(request))
+            print(f"request {request} handled in handler 1")
             return True
 
 
@@ -75,7 +75,7 @@ class ConcreteHandler2(Handler):
     def check_range(self, request: int) -> Optional[bool]:
         start, end = self.get_interval_from_db()
         if start <= request < end:
-            print("request {} handled in handler 2".format(request))
+            print(f"request {request} handled in handler 2")
             return True
 
     @staticmethod
