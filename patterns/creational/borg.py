@@ -42,19 +42,18 @@ class Borg:
 
 
 class YourBorg(Borg):
-
     def __init__(self, state=None):
         super().__init__()
         if state:
             self.state = state
         else:
             # initiate the first instance with default state
-            if not hasattr(self, 'state'):
-                self.state = 'Init'
+            if not hasattr(self, "state"):
+                self.state = "Init"
 
     def __str__(self):
         return self.state
-        
+
 
 def main():
     """
@@ -106,4 +105,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

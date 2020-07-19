@@ -101,6 +101,7 @@ def main():
 
 
 if __name__ == "__main__":
-    random.seed(1234)   # for deterministic doctest outputs
+    random.seed(1234)  # for deterministic doctest outputs
     import doctest
+
     doctest.testmod()

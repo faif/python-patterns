@@ -21,7 +21,6 @@ Allow a request to pass down a chain of receivers until it is handled.
 from abc import ABC, abstractmethod
 from typing import Callable, Optional, Tuple, TypeVar
 
-
 T = TypeVar("T")
 
 
@@ -115,4 +114,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

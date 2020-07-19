@@ -17,10 +17,10 @@ class Blackboard:
     def __init__(self):
         self.experts = []
         self.common_state = {
-            'problems': 0,
-            'suggestions': 0,
-            'contributions': [],
-            'progress': 0,  # percentage, if 100 -> task is finished
+            "problems": 0,
+            "suggestions": 0,
+            "contributions": [],
+            "progress": 0,  # percentage, if 100 -> task is finished
         }
 
     def add_expert(self, expert):
@@ -32,26 +32,25 @@ class Controller:
         self.blackboard = blackboard
 
     def run_loop(self):
-        while self.blackboard.common_state['progress'] < 100:
+        while self.blackboard.common_state["progress"] < 100:
             for expert in self.blackboard.experts:
                 if expert.is_eager_to_contribute:
                     expert.contribute()
-        return self.blackboard.common_state['contributions']
+        return self.blackboard.common_state["contributions"]
 
 
 class AbstractExpert(metaclass=abc.ABCMeta):
-
     def __init__(self, blackboard):
         self.blackboard = blackboard
 
     @property
     @abc.abstractmethod
     def is_eager_to_contribute(self):
-        raise NotImplementedError('Must provide implementation in subclass.')
+        raise NotImplementedError("Must provide implementation in subclass.")
 
     @abc.abstractmethod
     def contribute(self):
-        raise NotImplementedError('Must provide implementation in subclass.')
+        raise NotImplementedError("Must provide implementation in subclass.")
 
 
 class Student(AbstractExpert):
@@ -60,10 +59,10 @@ class Student(AbstractExpert):
         return True
 
     def contribute(self):
-        self.blackboard.common_state['problems'] += random.randint(1, 10)
-        self.blackboard.common_state['suggestions'] += random.randint(1, 10)
-        self.blackboard.common_state['contributions'] += [self.__class__.__name__]
-        self.blackboard.common_state['progress'] += random.randint(1, 2)
+        self.blackboard.common_state["problems"] += random.randint(1, 10)
+        self.blackboard.common_state["suggestions"] += random.randint(1, 10)
+        self.blackboard.common_state["contributions"] += [self.__class__.__name__]
+        self.blackboard.common_state["progress"] += random.randint(1, 2)
 
 
 class Scientist(AbstractExpert):
@@ -72,22 +71,22 @@ class Scientist(AbstractExpert):
         return random.randint(0, 1)
 
     def contribute(self):
-        self.blackboard.common_state['problems'] += random.randint(10, 20)
-        self.blackboard.common_state['suggestions'] += random.randint(10, 20)
-        self.blackboard.common_state['contributions'] += [self.__class__.__name__]
-        self.blackboard.common_state['progress'] += random.randint(10, 30)
+        self.blackboard.common_state["problems"] += random.randint(10, 20)
+        self.blackboard.common_state["suggestions"] += random.randint(10, 20)
+        self.blackboard.common_state["contributions"] += [self.__class__.__name__]
+        self.blackboard.common_state["progress"] += random.randint(10, 30)
 
 
 class Professor(AbstractExpert):
     @property
     def is_eager_to_contribute(self):
-        return True if self.blackboard.common_state['problems'] > 100 else False
+        return True if self.blackboard.common_state["problems"] > 100 else False
 
     def contribute(self):
-        self.blackboard.common_state['problems'] += random.randint(1, 2)
-        self.blackboard.common_state['suggestions'] += random.randint(10, 20)
-        self.blackboard.common_state['contributions'] += [self.__class__.__name__]
-        self.blackboard.common_state['progress'] += random.randint(10, 100)
+        self.blackboard.common_state["problems"] += random.randint(1, 2)
+        self.blackboard.common_state["suggestions"] += random.randint(10, 20)
+        self.blackboard.common_state["contributions"] += [self.__class__.__name__]
+        self.blackboard.common_state["progress"] += random.randint(10, 100)
 
 
 def main():
@@ -120,7 +119,8 @@ def main():
     """
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     random.seed(1234)  # for deterministic doctest outputs
     import doctest
+
     doctest.testmod()
