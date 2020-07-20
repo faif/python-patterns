@@ -31,7 +31,7 @@ class Subject:
 
 
 class Data(Subject):
-    def __init__(self, name=''):
+    def __init__(self, name=""):
         Subject.__init__(self)
         self.name = name
         self._data = 0
@@ -48,12 +48,14 @@ class Data(Subject):
 
 class HexViewer:
     def update(self, subject):
-        print('HexViewer: Subject {} has data 0x{:x}'.format(subject.name, subject.data))
+        print(
+            "HexViewer: Subject {} has data 0x{:x}".format(subject.name, subject.data)
+        )
 
 
 class DecimalViewer:
     def update(self, subject):
-        print('DecimalViewer: Subject %s has data %d' % (subject.name, subject.data))
+        print("DecimalViewer: Subject %s has data %d" % (subject.name, subject.data))
 
 
 def main():
@@ -97,4 +99,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

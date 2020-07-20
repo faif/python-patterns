@@ -47,7 +47,10 @@ class AndSpecification(CompositeSpecification):
         self._other = other
 
     def is_satisfied_by(self, candidate):
-        return bool(self._one.is_satisfied_by(candidate) and self._other.is_satisfied_by(candidate))
+        return bool(
+            self._one.is_satisfied_by(candidate)
+            and self._other.is_satisfied_by(candidate)
+        )
 
 
 class OrSpecification(CompositeSpecification):
@@ -59,7 +62,10 @@ class OrSpecification(CompositeSpecification):
         self._other = other
 
     def is_satisfied_by(self, candidate):
-        return bool(self._one.is_satisfied_by(candidate) or self._other.is_satisfied_by(candidate))
+        return bool(
+            self._one.is_satisfied_by(candidate)
+            or self._other.is_satisfied_by(candidate)
+        )
 
 
 class NotSpecification(CompositeSpecification):
@@ -84,7 +90,7 @@ class UserSpecification(CompositeSpecification):
 
 class SuperUserSpecification(CompositeSpecification):
     def is_satisfied_by(self, candidate):
-        return getattr(candidate, 'super_user', False)
+        return getattr(candidate, "super_user", False)
 
 
 def main():
@@ -105,6 +111,7 @@ def main():
     """
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

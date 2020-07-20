@@ -5,8 +5,7 @@ http://code.activestate.com/recipes/413838-memento-closure/
 Provides the ability to restore an object to its previous state.
 """
 
-from copy import copy
-from copy import deepcopy
+from copy import copy, deepcopy
 
 
 def memento(obj, deep=False):
@@ -67,14 +66,14 @@ class NumObj:
         self.value = value
 
     def __repr__(self):
-        return '<%s: %r>' % (self.__class__.__name__, self.value)
+        return "<%s: %r>" % (self.__class__.__name__, self.value)
 
     def increment(self):
         self.value += 1
 
     @Transactional
     def do_stuff(self):
-        self.value = '1111'  # <- invalid value
+        self.value = "1111"  # <- invalid value
         self.increment()  # <- will fail and rollback
 
 
@@ -134,4 +133,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

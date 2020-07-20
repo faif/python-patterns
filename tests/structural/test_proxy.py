@@ -1,9 +1,9 @@
 import sys
-from time import time
 import unittest
 from io import StringIO
+from time import time
 
-from patterns.structural.proxy import Proxy, NoTalkProxy
+from patterns.structural.proxy import NoTalkProxy, Proxy
 
 
 class ProxyTest(unittest.TestCase):
@@ -24,27 +24,27 @@ class ProxyTest(unittest.TestCase):
         sys.stdout = cls.saved_stdout
 
     def test_sales_manager_shall_talk_through_proxy_with_delay(cls):
-        cls.p.busy = 'No'
+        cls.p.busy = "No"
         start_time = time()
         cls.p.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
-        expected_print_output = 'Proxy checking for Sales Manager availability\n\
-Sales Manager ready to talk\n'
+        expected_print_output = "Proxy checking for Sales Manager availability\n\
+Sales Manager ready to talk\n"
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
         cls.assertEqual(int(execution_time * 10), expected_execution_time)
 
     def test_sales_manager_shall_respond_through_proxy_with_delay(cls):
-        cls.p.busy = 'Yes'
+        cls.p.busy = "Yes"
         start_time = time()
         cls.p.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
-        expected_print_output = 'Proxy checking for Sales Manager availability\n\
-Sales Manager is busy\n'
+        expected_print_output = "Proxy checking for Sales Manager availability\n\
+Sales Manager is busy\n"
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
         cls.assertEqual(int(execution_time * 10), expected_execution_time)
@@ -68,27 +68,27 @@ class NoTalkProxyTest(unittest.TestCase):
         sys.stdout = cls.saved_stdout
 
     def test_sales_manager_shall_not_talk_through_proxy_with_delay(cls):
-        cls.ntp.busy = 'No'
+        cls.ntp.busy = "No"
         start_time = time()
         cls.ntp.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
-        expected_print_output = 'Proxy checking for Sales Manager availability\n\
-This Sales Manager will not talk to you whether he/she is busy or not\n'
+        expected_print_output = "Proxy checking for Sales Manager availability\n\
+This Sales Manager will not talk to you whether he/she is busy or not\n"
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
         cls.assertEqual(int(execution_time * 10), expected_execution_time)
 
     def test_sales_manager_shall_not_respond_through_proxy_with_delay(cls):
-        cls.ntp.busy = 'Yes'
+        cls.ntp.busy = "Yes"
         start_time = time()
         cls.ntp.talk()
         end_time = time()
         execution_time = end_time - start_time
         print_output = cls.output.getvalue()
-        expected_print_output = 'Proxy checking for Sales Manager availability\n\
-This Sales Manager will not talk to you whether he/she is busy or not\n'
+        expected_print_output = "Proxy checking for Sales Manager availability\n\
+This Sales Manager will not talk to you whether he/she is busy or not\n"
         cls.assertEqual(print_output, expected_print_output)
         expected_execution_time = 1
         cls.assertEqual(int(execution_time * 10), expected_execution_time)

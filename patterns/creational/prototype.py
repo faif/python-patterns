@@ -24,7 +24,7 @@ Creates new object instances by cloning prototype.
 
 class Prototype:
 
-    value = 'default'
+    value = "default"
 
     def clone(self, **attrs):
         """Clone a prototype and update inner attributes dictionary"""
@@ -68,6 +68,7 @@ def main():
     """
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

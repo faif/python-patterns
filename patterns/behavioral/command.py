@@ -20,23 +20,25 @@ Django HttpRequest (without execute method):
 https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
+from typing import Union
+
 
 class HideFileCommand:
     """
     A command to hide a file given its name
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # an array of files hidden, to undo them as needed
         self._hidden_files = []
 
-    def execute(self, filename):
-        print(f'hiding {filename}')
+    def execute(self, filename: str) -> None:
+        print(f"hiding {filename}")
         self._hidden_files.append(filename)
 
-    def undo(self):
+    def undo(self) -> None:
         filename = self._hidden_files.pop()
-        print(f'un-hiding {filename}')
+        print(f"un-hiding {filename}")
 
 
 class DeleteFileCommand:
@@ -44,17 +46,17 @@ class DeleteFileCommand:
     A command to delete a file given its name
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # an array of deleted files, to undo them as needed
         self._deleted_files = []
 
-    def execute(self, filename):
-        print(f'deleting {filename}')
+    def execute(self, filename: str) -> None:
+        print(f"deleting {filename}")
         self._deleted_files.append(filename)
 
-    def undo(self):
+    def undo(self) -> None:
         filename = self._deleted_files.pop()
-        print(f'restoring {filename}')
+        print(f"restoring {filename}")
 
 
 class MenuItem:
@@ -62,13 +64,13 @@ class MenuItem:
     The invoker class. Here it is items in a menu.
     """
 
-    def __init__(self, command):
+    def __init__(self, command: Union[HideFileCommand, DeleteFileCommand]) -> None:
         self._command = command
 
-    def on_do_press(self, filename):
+    def on_do_press(self, filename: str) -> None:
         self._command.execute(filename)
 
-    def on_undo_press(self):
+    def on_undo_press(self) -> None:
         self._command.undo()
 
 
@@ -101,4 +103,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -36,7 +36,7 @@ class lazy_property:
 
 
 def lazy_property2(fn):
-    attr = '_lazy__' + fn.__name__
+    attr = "_lazy__" + fn.__name__
 
     @property
     def _lazy_property(self):
@@ -101,4 +101,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(optionflags=doctest.ELLIPSIS)

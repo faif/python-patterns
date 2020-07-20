@@ -45,24 +45,24 @@ class Building:
         raise NotImplementedError
 
     def __repr__(self):
-        return 'Floor: {0.floor} | Size: {0.size}'.format(self)
+        return "Floor: {0.floor} | Size: {0.size}".format(self)
 
 
 # Concrete Buildings
 class House(Building):
     def build_floor(self):
-        self.floor = 'One'
+        self.floor = "One"
 
     def build_size(self):
-        self.size = 'Big'
+        self.size = "Big"
 
 
 class Flat(Building):
     def build_floor(self):
-        self.floor = 'More than One'
+        self.floor = "More than One"
 
     def build_size(self):
-        self.size = 'Small'
+        self.size = "Small"
 
 
 # In some very complex cases, it might be desirable to pull out the building
@@ -73,15 +73,15 @@ class Flat(Building):
 
 class ComplexBuilding:
     def __repr__(self):
-        return 'Floor: {0.floor} | Size: {0.size}'.format(self)
+        return "Floor: {0.floor} | Size: {0.size}".format(self)
 
 
 class ComplexHouse(ComplexBuilding):
     def build_floor(self):
-        self.floor = 'One'
+        self.floor = "One"
 
     def build_size(self):
-        self.size = 'Big and fancy'
+        self.size = "Big and fancy"
 
 
 def construct_building(cls):
@@ -110,4 +110,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
