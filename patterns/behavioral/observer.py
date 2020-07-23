@@ -8,54 +8,61 @@ Maintains a list of dependents and notifies them of any state changes.
 Django Signals: https://docs.djangoproject.com/en/2.1/topics/signals/
 Flask Signals: http://flask.pocoo.org/docs/1.0/signals/
 """
+from __future__ import annotations
+
+from typing import List, Optional, Protocol
+
+
+# define a generic observer type
+class Observer(Protocol):
+    def update(self, subject: Subject) -> None:
+        pass
 
 
 class Subject:
-    def __init__(self):
-        self._observers = []
+    def __init__(self) -> None:
+        self._observers: List[Observer] = []
 
-    def attach(self, observer):
+    def attach(self, observer: Observer) -> None:
         if observer not in self._observers:
             self._observers.append(observer)
 
-    def detach(self, observer):
+    def detach(self, observer: Observer) -> None:
         try:
             self._observers.remove(observer)
         except ValueError:
             pass
 
-    def notify(self, modifier=None):
+    def notify(self, modifier: Optional[Observer] = None) -> None:
         for observer in self._observers:
             if modifier != observer:
                 observer.update(self)
 
 
 class Data(Subject):
-    def __init__(self, name=""):
-        Subject.__init__(self)
+    def __init__(self, name: str = "") -> None:
+        super().__init__()
         self.name = name
         self._data = 0
 
     @property
-    def data(self):
+    def data(self) -> int:
         return self._data
 
     @data.setter
-    def data(self, value):
+    def data(self, value: int) -> None:
         self._data = value
         self.notify()
 
 
 class HexViewer:
-    def update(self, subject):
-        print(
-            "HexViewer: Subject {} has data 0x{:x}".format(subject.name, subject.data)
-        )
+    def update(self, subject: Data) -> None:
+        print(f"HexViewer: Subject {subject.name} has data 0x{subject.data:x}")
 
 
 class DecimalViewer:
-    def update(self, subject):
-        print("DecimalViewer: Subject %s has data %d" % (subject.name, subject.data))
+    def update(self, subject: Data) -> None:
+        print(f"DecimalViewer: Subject {subject.name} has data {subject.data}")
 
 
 def main():
