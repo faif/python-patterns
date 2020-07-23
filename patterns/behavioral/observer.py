@@ -5,8 +5,8 @@ http://code.activestate.com/recipes/131499-observer-pattern/
 Maintains a list of dependents and notifies them of any state changes.
 
 *Examples in Python ecosystem:
-Django Signals: https://docs.djangoproject.com/en/2.1/topics/signals/
-Flask Signals: http://flask.pocoo.org/docs/1.0/signals/
+Django Signals: https://docs.djangoproject.com/en/3.1/topics/signals/
+Flask Signals: https://flask.palletsprojects.com/en/1.1.x/signals/
 """
 from __future__ import annotations
 
