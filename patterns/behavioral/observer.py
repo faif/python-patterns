@@ -8,8 +8,10 @@ Maintains a list of dependents and notifies them of any state changes.
 Django Signals: https://docs.djangoproject.com/en/3.1/topics/signals/
 Flask Signals: https://flask.palletsprojects.com/en/1.1.x/signals/
 """
+
 from __future__ import annotations
 
+from contextlib import suppress
 from typing import List, Optional, Protocol
 
 
@@ -28,10 +30,8 @@ class Subject:
             self._observers.append(observer)
 
     def detach(self, observer: Observer) -> None:
-        try:
+        with suppress(ValueError):
             self._observers.remove(observer)
-        except ValueError:
-            pass
 
     def notify(self, modifier: Optional[Observer] = None) -> None:
         for observer in self._observers:
