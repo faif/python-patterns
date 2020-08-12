@@ -56,7 +56,7 @@ class Proxy(Subject):
         if user == "admin":
             self._real_subject.do_the_job(user)
         else:
-            print(f"[log] I can do the job just for `admins`.")
+            print("[log] I can do the job just for `admins`.")
 
 
 def client(job_doer: Union[RealSubject, Proxy], user: str) -> None:
