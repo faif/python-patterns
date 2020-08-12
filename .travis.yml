@@ -6,9 +6,9 @@ sudo: false
 matrix:
   include:
     - python: "3.7"
-      env: TOXENV=ci37
+      env: TOXENV=py37
     - python: "3.8"
-      env: TOXENV=ci38
+      env: TOXENV=py38
 
 cache:
   - pip
