@@ -7,7 +7,12 @@ class BorgTest(unittest.TestCase):
     def setUp(self):
         self.b1 = Borg()
         self.b2 = Borg()
+        # creating YourBorg instance implicitly sets the state attribute
+        # for all borg instances.
         self.ib1 = YourBorg()
+
+    def tearDown(self):
+        self.ib1.state = "Init"
 
     def test_initial_borg_state_shall_be_init(self):
         b = Borg()

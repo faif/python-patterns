@@ -1,16 +1,15 @@
 import sys
 import unittest
 from io import StringIO
-from time import time
 
-from patterns.structural.proxy import NoTalkProxy, Proxy
+from patterns.structural.proxy import Proxy, client
 
 
 class ProxyTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """ Class scope setup. """
-        cls.p = Proxy()
+        cls.proxy = Proxy()
 
     def setUp(cls):
         """ Function/test case scope setup. """
@@ -23,72 +22,16 @@ class ProxyTest(unittest.TestCase):
         cls.output.close()
         sys.stdout = cls.saved_stdout
 
-    def test_sales_manager_shall_talk_through_proxy_with_delay(cls):
-        cls.p.busy = "No"
-        start_time = time()
-        cls.p.talk()
-        end_time = time()
-        execution_time = end_time - start_time
-        print_output = cls.output.getvalue()
-        expected_print_output = "Proxy checking for Sales Manager availability\n\
-Sales Manager ready to talk\n"
-        cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 1
-        cls.assertEqual(int(execution_time * 10), expected_execution_time)
+    def test_do_the_job_for_admin_shall_pass(self):
+        client(self.proxy, "admin")
+        assert self.output.getvalue() == (
+            "[log] Doing the job for admin is requested.\n"
+            "I am doing the job for admin\n"
+        )
 
-    def test_sales_manager_shall_respond_through_proxy_with_delay(cls):
-        cls.p.busy = "Yes"
-        start_time = time()
-        cls.p.talk()
-        end_time = time()
-        execution_time = end_time - start_time
-        print_output = cls.output.getvalue()
-        expected_print_output = "Proxy checking for Sales Manager availability\n\
-Sales Manager is busy\n"
-        cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 1
-        cls.assertEqual(int(execution_time * 10), expected_execution_time)
-
-
-class NoTalkProxyTest(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        """ Class scope setup. """
-        cls.ntp = NoTalkProxy()
-
-    def setUp(cls):
-        """ Function/test case scope setup. """
-        cls.output = StringIO()
-        cls.saved_stdout = sys.stdout
-        sys.stdout = cls.output
-
-    def tearDown(cls):
-        """ Function/test case scope teardown. """
-        cls.output.close()
-        sys.stdout = cls.saved_stdout
-
-    def test_sales_manager_shall_not_talk_through_proxy_with_delay(cls):
-        cls.ntp.busy = "No"
-        start_time = time()
-        cls.ntp.talk()
-        end_time = time()
-        execution_time = end_time - start_time
-        print_output = cls.output.getvalue()
-        expected_print_output = "Proxy checking for Sales Manager availability\n\
-This Sales Manager will not talk to you whether he/she is busy or not\n"
-        cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 1
-        cls.assertEqual(int(execution_time * 10), expected_execution_time)
-
-    def test_sales_manager_shall_not_respond_through_proxy_with_delay(cls):
-        cls.ntp.busy = "Yes"
-        start_time = time()
-        cls.ntp.talk()
-        end_time = time()
-        execution_time = end_time - start_time
-        print_output = cls.output.getvalue()
-        expected_print_output = "Proxy checking for Sales Manager availability\n\
-This Sales Manager will not talk to you whether he/she is busy or not\n"
-        cls.assertEqual(print_output, expected_print_output)
-        expected_execution_time = 1
-        cls.assertEqual(int(execution_time * 10), expected_execution_time)
+    def test_do_the_job_for_anonymous_shall_reject(self):
+        client(self.proxy, "anonymous")
+        assert self.output.getvalue() == (
+            "[log] Doing the job for anonymous is requested.\n"
+            "[log] I can do the job just for `admins`.\n"
+        )
