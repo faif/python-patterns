@@ -19,7 +19,7 @@ Allow a request to pass down a chain of receivers until it is handled.
 """
 
 from abc import ABC, abstractmethod
-from typing import Callable, Optional, Tuple, TypeVar
+from typing import Optional, Tuple, TypeVar
 
 T = TypeVar("T")
 
