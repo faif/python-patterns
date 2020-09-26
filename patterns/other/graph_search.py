@@ -53,6 +53,9 @@ class GraphSearch:
         dist_to = {start: 0}
         edge_to = {}
 
+        if start == end:
+            return queue
+
         while len(queue):
             value = queue.pop(0)
             for node in self.graph[value]:
@@ -60,34 +63,71 @@ class GraphSearch:
                     edge_to[node] = value
                     dist_to[node] = dist_to[value] + 1
                     queue.append(node)
-            if end in edge_to.values():
-                break
-
-        path = []
-        node = end
-        while dist_to[node] != 0:
-            path.insert(0, node)
-            node = edge_to[node]
-        path.insert(0, start)
-        return path
+                    if end in edge_to.keys():
+                        path = []
+                        node = end
+                        while dist_to[node] != 0:
+                            path.insert(0, node)
+                            node = edge_to[node]
+                        path.insert(0, start)
+                        return path
 
 
 def main():
     """
     # example of graph usage
-    >>> graph = {'A': ['B', 'C'], 'B': ['C', 'D'], 'C': ['D'], 'D': ['C'], 'E': ['F'], 'F': ['C']}
+    >>> graph = {
+    ...     'A': ['B', 'C'],
+    ...     'B': ['C', 'D'],
+    ...     'C': ['D', 'G'],
+    ...     'D': ['C'],
+    ...     'E': ['F'],
+    ...     'F': ['C'],
+    ...     'G': ['E'],
+    ...     'H': ['C']
+    ... }
 
     # initialization of new graph search object
-    >>> graph1 = GraphSearch(graph)
+    >>> graph_search = GraphSearch(graph)
 
-    >>> print(graph1.find_path_dfs('A', 'D'))
+    >>> print(graph_search.find_path_dfs('A', 'D'))
     ['A', 'B', 'C', 'D']
-    >>> print(graph1.find_all_paths_dfs('A', 'D'))
+
+    # start the search somewhere in the middle
+    >>> print(graph_search.find_path_dfs('G', 'F'))
+    ['G', 'E', 'F']
+
+    # unreachable node
+    >>> print(graph_search.find_path_dfs('C', 'H'))
+    None
+
+    # non existing node
+    >>> print(graph_search.find_path_dfs('C', 'X'))
+    None
+
+    >>> print(graph_search.find_all_paths_dfs('A', 'D'))
     [['A', 'B', 'C', 'D'], ['A', 'B', 'D'], ['A', 'C', 'D']]
-    >>> print(graph1.find_shortest_path_dfs('A', 'D'))
+    >>> print(graph_search.find_shortest_path_dfs('A', 'D'))
     ['A', 'B', 'D']
-    >>> print(graph1.find_shortest_path_bfs('A', 'D'))
+    >>> print(graph_search.find_shortest_path_dfs('A', 'F'))
+    ['A', 'C', 'G', 'E', 'F']
+
+    >>> print(graph_search.find_shortest_path_bfs('A', 'D'))
     ['A', 'B', 'D']
+    >>> print(graph_search.find_shortest_path_bfs('A', 'F'))
+    ['A', 'C', 'G', 'E', 'F']
+
+    # start the search somewhere in the middle
+    >>> print(graph_search.find_shortest_path_bfs('G', 'F'))
+    ['G', 'E', 'F']
+
+    # unreachable node
+    >>> print(graph_search.find_shortest_path_bfs('A', 'H'))
+    None
+
+    # non existing node
+    >>> print(graph_search.find_shortest_path_bfs('A', 'X'))
+    None
     """
 
 
