@@ -1,3 +1,4 @@
+Welcome to python-patterns
 python-patterns
 ===============
 
