@@ -2,7 +2,7 @@ class RegistryHolder(type):
 
     REGISTRY = {}
 
-    def __new__(cls, name, bases, attrs):
+    def __new__(cls, name, bases, attrs): # This statement makes a function name new
         new_cls = type.__new__(cls, name, bases, attrs)
         """
             Here the name of the class is used as key but it could be any class
@@ -12,7 +12,7 @@ class RegistryHolder(type):
         return new_cls
 
     @classmethod
-    def get_registry(cls):
+    def get_registry(cls): # This statement makes a function name get_registry
         return dict(cls.REGISTRY)
 
 
