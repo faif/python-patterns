@@ -1,5 +1,7 @@
+#impoting modules
 from setuptools import find_packages, setup
 
+#creating setup
 setup(
     name="patterns",
     packages=find_packages(),
