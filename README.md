@@ -1,4 +1,4 @@
-python-patterns
+﻿python-patterns
 ===============
 
 A collection of design patterns and idioms in Python.
@@ -17,7 +17,7 @@ __Creational Patterns__:
 | [lazy_evaluation](patterns/creational/lazy_evaluation.py) | lazily-evaluated property pattern in Python |
 | [pool](patterns/creational/pool.py) | preinstantiate and maintain a group of instances of the same type |
 | [prototype](patterns/creational/prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
-
+| [Singleton](patterns/creational/singleton.py) | restricting the instantiation of a class to one instance |
 __Structural Patterns__:
 
 | Pattern | Description |
