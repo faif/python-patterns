@@ -34,3 +34,9 @@ if __name__ == "__main__":
     print(id(sun))
     sun1=Sun()
     print(id(sun1))
+
+
+OUTPUT = """
+139919126109152
+139919126109152
+"""  # noqa
