@@ -1,3 +1,5 @@
+/*Clever Project*/
+
 # REDNAFI
 # This only works with embedded venv not virtualenv
 # Install venv: python3.8 -m venv venv
