@@ -10,7 +10,7 @@ jobs:
       - run: bandit -r . || true
       - run: black --check . || true
       - run: codespell --quiet-level=2 || true  # --ignore-words-list="" --skip=""
-      - run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      - run: flake8 . --count --show-source --statistics
       - run: isort --profile black . || true
       - run: tox
       - run: pip install -r requirements.txt || true
