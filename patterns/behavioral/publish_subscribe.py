@@ -65,7 +65,7 @@ def main():
     >>> vani.subscribe("movie")
     >>> vani.unsubscribe("movie")
 
-    # Note that no one subscirbed to `ads`
+    # Note that no one subscribed to `ads`
     # and that vani changed their mind
 
     >>> fftv.publish("cartoon")
