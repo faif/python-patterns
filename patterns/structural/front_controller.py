@@ -27,7 +27,7 @@ class Dispatcher:
         elif request.type == Request.tablet_type:
             self.tablet_view.show_index_page()
         else:
-            print("cant dispatch the request")
+            print("Cannot dispatch the request")
 
 
 class RequestController:
@@ -69,7 +69,7 @@ def main():
     Displaying tablet index page
 
     >>> front_controller.dispatch_request(Request('desktop'))
-    cant dispatch the request
+    Cannot dispatch the request
 
     >>> front_controller.dispatch_request('mobile')
     request must be a Request object
