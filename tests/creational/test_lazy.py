@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import unittest
 
 from patterns.creational.lazy_evaluation import Person
@@ -19,7 +17,7 @@ class TestDynamicExpanding(unittest.TestCase):
         self.assertNotIn("relatives", self.John.__dict__)
 
     def test_extended_properties(self):
-        print(u"John's relatives: {0}".format(self.John.relatives))
+        print(f"John's relatives: {self.John.relatives}")
         self.assertDictEqual(
             {
                 "name": "John",
@@ -31,7 +29,7 @@ class TestDynamicExpanding(unittest.TestCase):
         )
 
     def test_relatives_after_access(self):
-        print(u"John's relatives: {0}".format(self.John.relatives))
+        print(f"John's relatives: {self.John.relatives}")
         self.assertIn("relatives", self.John.__dict__)
 
     def test_parents(self):

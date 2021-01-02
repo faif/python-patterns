@@ -42,7 +42,7 @@ class BoldWrapper(TextTag):
         self._wrapped = wrapped
 
     def render(self):
-        return "<b>{}</b>".format(self._wrapped.render())
+        return f"<b>{self._wrapped.render()}</b>"
 
 
 class ItalicWrapper(TextTag):
@@ -52,7 +52,7 @@ class ItalicWrapper(TextTag):
         self._wrapped = wrapped
 
     def render(self):
-        return "<i>{}</i>".format(self._wrapped.render())
+        return f"<i>{self._wrapped.render()}</i>"
 
 
 def main():

@@ -10,13 +10,13 @@ Decouples an abstraction from its implementation.
 # ConcreteImplementor 1/2
 class DrawingAPI1:
     def draw_circle(self, x, y, radius):
-        print("API1.circle at {}:{} radius {}".format(x, y, radius))
+        print(f"API1.circle at {x}:{y} radius {radius}")
 
 
 # ConcreteImplementor 2/2
 class DrawingAPI2:
     def draw_circle(self, x, y, radius):
-        print("API2.circle at {}:{} radius {}".format(x, y, radius))
+        print(f"API2.circle at {x}:{y} radius {radius}")
 
 
 # Refined Abstraction

@@ -74,7 +74,7 @@ def production_code_time_provider() -> str:
     datetime for this example).
     """
     current_time = datetime.datetime.now()
-    current_time_formatted = "{}:{}".format(current_time.hour, current_time.minute)
+    current_time_formatted = f"{current_time.hour}:{current_time.minute}"
     return current_time_formatted
 
 

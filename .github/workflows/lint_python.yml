@@ -7,13 +7,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - run: pip install --upgrade pip
-      - run: pip install black codespell flake8 isort pytest pyupgrade tox
-      - run: black --check . || true
+      - run: pip install black codespell flake8 isort mypy pytest pyupgrade tox
+      - run: black --check .
       - run: codespell --quiet-level=2  # --ignore-words-list="" --skip=""
       - run: flake8 . --count --show-source --statistics
       - run: isort --profile black .
       - run: tox
       - run: pip install -e .
+      - run: mypy --ignore-missing-imports  .
       - run: pytest .
       - run: pytest --doctest-modules . || true
-      - run: shopt -s globstar && pyupgrade --py36-plus **/*.py || true
+      - run: shopt -s globstar && pyupgrade --py36-plus **/*.py

@@ -29,7 +29,7 @@ class ProductModel(Model):
         __str__ functionality."""
 
         def __str__(self):
-            return "{:.2f}".format(self)
+            return f"{self:.2f}"
 
     products = {
         "milk": {"price": Price(1.50), "quantity": 10},
@@ -40,8 +40,7 @@ class ProductModel(Model):
     item_type = "product"
 
     def __iter__(self):
-        for item in self.products:
-            yield item
+        yield from self.products
 
     def get(self, product):
         try:
@@ -86,7 +85,7 @@ class ConsoleView(View):
         print(printout)
 
     def item_not_found(self, item_type, item_name):
-        print('That {} "{}" does not exist in the records'.format(item_type, item_name))
+        print(f'That {item_type} "{item_name}" does not exist in the records')
 
 
 class Controller:

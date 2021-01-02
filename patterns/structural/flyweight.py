@@ -53,7 +53,7 @@ class Card:
     #     self.value, self.suit = value, suit
 
     def __repr__(self):
-        return "<Card: {}{}>".format(self.value, self.suit)
+        return f"<Card: {self.value}{self.suit}>"
 
 
 def main():
