@@ -6,14 +6,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      - run: pip install bandit black codespell flake8 isort pytest pyupgrade tox
-      - run: bandit -r . || true
+      - run: pip install --upgrade pip
+      - run: pip install black codespell flake8 isort pytest pyupgrade tox
       - run: black --check . || true
-      - run: codespell --quiet-level=2 || true  # --ignore-words-list="" --skip=""
+      - run: codespell --quiet-level=2  # --ignore-words-list="" --skip=""
       - run: flake8 . --count --show-source --statistics
-      - run: isort --profile black . || true
+      - run: isort --profile black .
       - run: tox
-      - run: pip install -r requirements.txt || true
-      - run: pytest . || true
+      - run: pip install -e .
+      - run: pytest .
       - run: pytest --doctest-modules . || true
       - run: shopt -s globstar && pyupgrade --py36-plus **/*.py || true
