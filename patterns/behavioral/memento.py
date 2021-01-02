@@ -66,7 +66,7 @@ class NumObj:
         self.value = value
 
     def __repr__(self):
-        return "<%s: %r>" % (self.__class__.__name__, self.value)
+        return f"<{self.__class__.__name__}: {self.value!r}>"
 
     def increment(self):
         self.value += 1

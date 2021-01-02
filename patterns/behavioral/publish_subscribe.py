@@ -46,7 +46,7 @@ class Subscriber:
         self.provider.unsubscribe(msg, self)
 
     def run(self, msg):
-        print("{} got {}".format(self.name, msg))
+        print(f"{self.name} got {msg}")
 
 
 def main():

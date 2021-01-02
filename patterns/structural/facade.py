@@ -51,7 +51,7 @@ class Memory:
     """
 
     def load(self, position, data):
-        print("Loading from {0} data: '{1}'.".format(position, data))
+        print(f"Loading from {position} data: '{data}'.")
 
 
 class SolidStateDrive:
@@ -60,7 +60,7 @@ class SolidStateDrive:
     """
 
     def read(self, lba, size):
-        return "Some data from sector {0} with size {1}".format(lba, size)
+        return f"Some data from sector {lba} with size {size}"
 
 
 class ComputerFacade:

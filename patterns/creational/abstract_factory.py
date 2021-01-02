@@ -46,8 +46,8 @@ class PetShop:
         """Creates and shows a pet using the abstract factory"""
 
         pet = self.pet_factory()
-        print("We have a lovely {}".format(pet))
-        print("It says {}".format(pet.speak()))
+        print(f"We have a lovely {pet}")
+        print(f"It says {pet.speak()}")
 
 
 class Dog:
