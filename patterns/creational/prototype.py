@@ -31,6 +31,7 @@ class Prototype:
 
     def clone(self, **attrs: Any) -> None:
         """Clone a prototype and update inner attributes dictionary"""
+        # Python in Practice, Mark Summerfield
         # copy.deepcopy can be used instead of next line.
         obj = self.__class__(**self.__dict__)
         obj.__dict__.update(attrs)
