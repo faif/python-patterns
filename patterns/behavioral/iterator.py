@@ -14,8 +14,12 @@ def count_to(count):
 
 
 # Test the generator
-count_to_two = lambda: count_to(2)
-count_to_five = lambda: count_to(5)
+def count_to_two() -> None:
+    return count_to(2)
+
+
+def count_to_five() -> None:
+    return count_to(5)
 
 
 def main():

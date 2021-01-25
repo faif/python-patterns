@@ -39,9 +39,8 @@ ifeq ("$(wildcard venv/bin/pip-sync)","")
 endif
 
 # pip-tools
-	@pip-compile --upgrade requirements-dev.txt
-	@pip-compile --upgrade requirements.txt
-	@pip-sync requirements-dev.txt requirements.txt
+	# @pip-compile --upgrade requirements-dev.txt
+	@pip-sync requirements-dev.txt
 
 
 .PHONY: pylinter
@@ -85,4 +84,4 @@ endif
 			--select "B,C,E,F,W,T4,B9" \
 			--ignore "E203,E266,E501,W503,F403,F401,E402" \
 			--exclude ".git,__pycache__,old, build, \
-						dist, venv" $(path)
+						dist, venv, .tox" $(path)
