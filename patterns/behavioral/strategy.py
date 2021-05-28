@@ -7,23 +7,26 @@ Strategy lets the algorithm vary independently from clients that use it.
 Enables selecting an algorithm at runtime.
 """
 
+
 from __future__ import annotations
 
 from typing import Callable, Type
 
 
 class DiscountStrategyValidator:  # Descriptor class for check perform
-    def validate(self, obj: Order, value: Callable) -> bool:
+    @staticmethod
+    def validate(obj: Order, value: Callable) -> bool:
         try:
             if obj.price - value(obj) < 0:
                 raise ValueError(f"Discount cannot be applied due to negative price resulting. {value.__name__}")
-            return True
         except ValueError as ex:
             print(str(ex))
             return False
+        else:
+            return True
 
     def __set_name__(self, owner, name: str) -> None:
-        self.private_name = '_' + name
+        self.private_name = f"_{name}"
 
     def __set__(self, obj: Order, value: Callable = None) -> None:
         if value and self.validate(obj, value):
