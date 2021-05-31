@@ -18,7 +18,9 @@ class DiscountStrategyValidator:  # Descriptor class for check perform
     def validate(obj: Order, value: Callable) -> bool:
         try:
             if obj.price - value(obj) < 0:
-                raise ValueError(f"Discount cannot be applied due to negative price resulting. {value.__name__}")
+                raise ValueError(
+                    f"Discount cannot be applied due to negative price resulting. {value.__name__}"
+                )
         except ValueError as ex:
             print(str(ex))
             return False
