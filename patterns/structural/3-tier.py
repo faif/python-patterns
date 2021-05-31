@@ -7,7 +7,7 @@ from typing import Dict, KeysView, Optional, Union
 
 
 class Data:
-    """ Data Store Class """
+    """Data Store Class"""
 
     products = {
         "milk": {"price": 1.50, "quantity": 10},
@@ -22,7 +22,7 @@ class Data:
 
 
 class BusinessLogic:
-    """ Business logic holding data store instances """
+    """Business logic holding data store instances"""
 
     data = Data()
 
@@ -36,7 +36,7 @@ class BusinessLogic:
 
 
 class Ui:
-    """ UI interaction class """
+    """UI interaction class"""
 
     def __init__(self) -> None:
         self.business_logic = BusinessLogic()

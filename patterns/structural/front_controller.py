@@ -31,7 +31,7 @@ class Dispatcher:
 
 
 class RequestController:
-    """ front controller """
+    """front controller"""
 
     def __init__(self):
         self.dispatcher = Dispatcher()
@@ -44,7 +44,7 @@ class RequestController:
 
 
 class Request:
-    """ request """
+    """request"""
 
     mobile_type = "mobile"
     tablet_type = "tablet"
