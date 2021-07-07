@@ -8,17 +8,17 @@ from patterns.structural.proxy import Proxy, client
 class ProxyTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        """ Class scope setup. """
+        """Class scope setup."""
         cls.proxy = Proxy()
 
     def setUp(cls):
-        """ Function/test case scope setup. """
+        """Function/test case scope setup."""
         cls.output = StringIO()
         cls.saved_stdout = sys.stdout
         sys.stdout = cls.output
 
     def tearDown(cls):
-        """ Function/test case scope teardown. """
+        """Function/test case scope teardown."""
         cls.output.close()
         sys.stdout = cls.saved_stdout
 
