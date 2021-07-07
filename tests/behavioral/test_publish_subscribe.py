@@ -27,7 +27,7 @@ class TestProvider(unittest.TestCase):
         cls.assertEqual(len(pro.subscribers[subscription]), 0)
 
     def test_publisher_shall_append_subscription_message_to_queue(cls):
-        """ msg_queue ~ Provider.notify(msg) ~ Publisher.publish(msg) """
+        """msg_queue ~ Provider.notify(msg) ~ Publisher.publish(msg)"""
         expected_msg = "expected msg"
         pro = Provider()
         pub = Publisher(pro)
