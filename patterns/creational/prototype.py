@@ -20,6 +20,7 @@ copies of the prototype: 'default', 'objecta' and 'objectb'.
 *TL;DR
 Creates new object instances by cloning prototype.
 """
+from __future__ import annotations
 
 from typing import Any, Dict
 
@@ -29,7 +30,7 @@ class Prototype:
         self.value = value
         self.__dict__.update(attrs)
 
-    def clone(self, **attrs: Any) -> "Prototype":
+    def clone(self, **attrs: Any) -> Prototype:
         """Clone a prototype and update inner attributes dictionary"""
         # Python in Practice, Mark Summerfield
         # copy.deepcopy can be used instead of next line.
