@@ -12,7 +12,7 @@ Flask Signals: https://flask.palletsprojects.com/en/1.1.x/signals/
 from __future__ import annotations
 
 from contextlib import suppress
-from typing import List, Optional, Protocol
+from typing import Protocol
 
 
 # define a generic observer type
@@ -23,7 +23,7 @@ class Observer(Protocol):
 
 class Subject:
     def __init__(self) -> None:
-        self._observers: List[Observer] = []
+        self._observers: list[Observer] = []
 
     def attach(self, observer: Observer) -> None:
         if observer not in self._observers:
@@ -33,7 +33,7 @@ class Subject:
         with suppress(ValueError):
             self._observers.remove(observer)
 
-    def notify(self, modifier: Optional[Observer] = None) -> None:
+    def notify(self, modifier: Observer | None = None) -> None:
         for observer in self._observers:
             if modifier != observer:
                 observer.update(self)
