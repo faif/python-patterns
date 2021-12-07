@@ -22,7 +22,7 @@ Creates new object instances by cloning prototype.
 """
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any
 
 
 class Prototype:
@@ -43,7 +43,7 @@ class PrototypeDispatcher:
     def __init__(self):
         self._objects = {}
 
-    def get_objects(self) -> Dict[str, Prototype]:
+    def get_objects(self) -> dict[str, Prototype]:
         """Get all objects"""
         return self._objects
 

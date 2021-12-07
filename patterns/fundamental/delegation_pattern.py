@@ -8,7 +8,7 @@ Allows object composition to achieve the same code reuse as inheritance.
 
 from __future__ import annotations
 
-from typing import Any, Callable, Union
+from typing import Any, Callable
 
 
 class Delegator:
@@ -31,7 +31,7 @@ class Delegator:
     def __init__(self, delegate: Delegate):
         self.delegate = delegate
 
-    def __getattr__(self, name: str) -> Union[Any, Callable]:
+    def __getattr__(self, name: str) -> Any | Callable:
         attr = getattr(self.delegate, name)
 
         if not callable(attr):

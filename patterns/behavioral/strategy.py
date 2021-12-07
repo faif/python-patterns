@@ -10,7 +10,7 @@ Enables selecting an algorithm at runtime.
 
 from __future__ import annotations
 
-from typing import Callable, Type
+from typing import Callable
 
 
 class DiscountStrategyValidator:  # Descriptor class for check perform
@@ -36,7 +36,7 @@ class DiscountStrategyValidator:  # Descriptor class for check perform
         else:
             setattr(obj, self.private_name, None)
 
-    def __get__(self, obj: object, objtype: Type = None):
+    def __get__(self, obj: object, objtype: type = None):
         return getattr(obj, self.private_name)
 
 
