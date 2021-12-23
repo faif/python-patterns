@@ -54,26 +54,6 @@ class AbstractExpert(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def contribute(self):
-        """
-        This function is responsible for contributing to the common state of the project.
-        It adds a random number between 1 and 2 to problems, between 10 and
-        20 suggestions,
-        and it adds this class name to contributions. It also increments progress by a random number between 10 and 100.
-        """
-        """
-        :param self:
-        :returns None:
-        """
-        """
-        This function is responsible for contributing to the project.
-        It adds a random number of problems and suggestions, as well as adding its name to the
-        list of contributions.
-        """
-        """
-        This function adds a random number of problems and suggestions to the common state,
-        and also adds its name to the list of contributions. It also
-        increments progress by a random number between 10 and 100.
-        """
         raise NotImplementedError("Must provide implementation in subclass.")
 
 
@@ -83,26 +63,6 @@ class Student(AbstractExpert):
         return True
 
     def contribute(self):
-        """
-        This function is responsible for contributing to the common state of the project.
-        It adds a random number between 1 and 2 to problems, between 10 and
-        20 suggestions,
-        and it adds this class name to contributions. It also increments progress by a random number between 10 and 100.
-        """
-        """
-        :param self:
-        :returns None:
-        """
-        """
-        This function is responsible for contributing to the project.
-        It adds a random number of problems and suggestions, as well as adding its name to the
-        list of contributions.
-        """
-        """
-        This function adds a random number of problems and suggestions to the common state,
-        and also adds its name to the list of contributions. It also
-        increments progress by a random number between 10 and 100.
-        """
         self.blackboard.common_state["problems"] += random.randint(1, 10)
         self.blackboard.common_state["suggestions"] += random.randint(1, 10)
         self.blackboard.common_state["contributions"] += [self.__class__.__name__]
@@ -115,26 +75,6 @@ class Scientist(AbstractExpert):
         return random.randint(0, 1)
 
     def contribute(self):
-        """
-        This function is responsible for contributing to the common state of the project.
-        It adds a random number between 1 and 2 to problems, between 10 and
-        20 suggestions,
-        and it adds this class name to contributions. It also increments progress by a random number between 10 and 100.
-        """
-        """
-        :param self:
-        :returns None:
-        """
-        """
-        This function is responsible for contributing to the project.
-        It adds a random number of problems and suggestions, as well as adding its name to the
-        list of contributions.
-        """
-        """
-        This function adds a random number of problems and suggestions to the common state,
-        and also adds its name to the list of contributions. It also
-        increments progress by a random number between 10 and 100.
-        """
         self.blackboard.common_state["problems"] += random.randint(10, 20)
         self.blackboard.common_state["suggestions"] += random.randint(10, 20)
         self.blackboard.common_state["contributions"] += [self.__class__.__name__]
@@ -147,26 +87,6 @@ class Professor(AbstractExpert):
         return True if self.blackboard.common_state["problems"] > 100 else False
 
     def contribute(self):
-        """
-        This function is responsible for contributing to the common state of the project.
-        It adds a random number between 1 and 2 to problems, between 10 and
-        20 suggestions,
-        and it adds this class name to contributions. It also increments progress by a random number between 10 and 100.
-        """
-        """
-        :param self:
-        :returns None:
-        """
-        """
-        This function is responsible for contributing to the project.
-        It adds a random number of problems and suggestions, as well as adding its name to the
-        list of contributions.
-        """
-        """
-        This function adds a random number of problems and suggestions to the common state,
-        and also adds its name to the list of contributions. It also
-        increments progress by a random number between 10 and 100.
-        """
         self.blackboard.common_state["problems"] += random.randint(1, 2)
         self.blackboard.common_state["suggestions"] += random.randint(10, 20)
         self.blackboard.common_state["contributions"] += [self.__class__.__name__]
