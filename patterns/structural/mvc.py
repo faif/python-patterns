@@ -99,6 +99,18 @@ class Controller:
         self.view.show_item_list(item_type, items)
 
     def show_item_information(self, item_name):
+        """
+        Show information about a {item_type} item.
+        :param str item_name: the name of the {item_type} item to show information about
+        """
+        """
+        Show information about a {item_type} item.
+        :param str item_name: the name of the {item_type} item to show information about
+        """
+        """
+        Prints the information of a given item.
+        :param str item_name: name of the item to be found
+        """
         try:
             item_info = self.model.get(item_name)
         except Exception:
