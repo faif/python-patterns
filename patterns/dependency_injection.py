@@ -17,15 +17,6 @@ class TimeDisplay(object):
         self.time_provider = datetime.datetime.now
 
     def get_current_time_as_html_fragment(self):
-        """
-        Returns the current time as a string in 12-hour clock format with seconds and am/pm.
-        """
-        """
-        Returns the current time as a string in 12-hour clock format with seconds and am/pm.
-        """
-        """
-        Returns the current time as a string in 12-hour clock format with seconds and am/pm.
-        """
         current_time = self.time_provider()
         current_time_as_html_fragment = "<span class=\"tinyBoldText\">{}</span>".format(current_time)
         return current_time_as_html_fragment
@@ -70,15 +61,6 @@ class SetterInjection:
         self.time_provider = time_provider
 
     def get_current_time_as_html_fragment(self):
-        """
-        Returns the current time as a string in 12-hour clock format with seconds and am/pm.
-        """
-        """
-        Returns the current time as a string in 12-hour clock format with seconds and am/pm.
-        """
-        """
-        Returns the current time as a string in 12-hour clock format with seconds and am/pm.
-        """
         current_time = self.time_provider()
         current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
             current_time
