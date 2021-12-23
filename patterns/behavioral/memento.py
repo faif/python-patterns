@@ -55,6 +55,7 @@ class Transactional:
 
         :param method: The function to be decorated.
         """
+
         def transaction(*args, **kwargs):
             state = memento(obj)
             try:
