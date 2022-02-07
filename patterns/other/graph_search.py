@@ -58,8 +58,10 @@ class GraphSearch:
             :type end: str or int
 
             :returns queue_path_to_end, dist_to[end]: A list of nodes
-        representing the shortest path from `start` to `end`, and a dictionary mapping each node in the graph (except for `start`) with its distance from it
-        (in terms of hops). If no such path exists, returns an empty list and an empty dictionary instead.
+        representing the shortest path from `start` to `end`, and a dictionary
+        mapping each node in the graph (except for `start`) with its distance from it
+        (in terms of hops). If no such path exists, returns an empty list and an empty
+        dictionary instead.
         """
         queue = [start]
         dist_to = {start: 0}
