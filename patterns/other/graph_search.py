@@ -49,6 +49,20 @@ class GraphSearch:
         return shortest
 
     def find_shortest_path_bfs(self, start, end):
+        """
+        Finds the shortest path between two nodes in a graph using breadth-first search.
+
+        :param start: The node to start from.
+        :type start: str or int
+        :param end: The node to find the shortest path to.
+            :type end: str or int
+
+            :returns queue_path_to_end, dist_to[end]: A list of nodes
+        representing the shortest path from `start` to `end`, and a dictionary
+        mapping each node in the graph (except for `start`) with its distance from it
+        (in terms of hops). If no such path exists, returns an empty list and an empty
+        dictionary instead.
+        """
         queue = [start]
         dist_to = {start: 0}
         edge_to = {}

@@ -36,6 +36,12 @@ class lazy_property:
 
 
 def lazy_property2(fn):
+    """
+    A lazy property decorator.
+
+    The function decorated is called the first time to retrieve the result and
+    then that calculated result is used the next time you access the value.
+    """
     attr = "_lazy__" + fn.__name__
 
     @property

@@ -50,6 +50,12 @@ class Transactional:
         self.method = method
 
     def __get__(self, obj, T):
+        """
+        A decorator that makes a function transactional.
+
+        :param method: The function to be decorated.
+        """
+
         def transaction(*args, **kwargs):
             state = memento(obj)
             try:
