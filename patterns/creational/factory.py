@@ -12,8 +12,8 @@ in the same way independently of the language.
 
 *Where can the pattern be used practically?
 The Factory Method can be seen in the popular web framework Django:
-http://django.wikispaces.asu.edu/*NEW*+Django+Design+Patterns For
-example, in a contact form of a web page, the subject and the message
+https://shorturl.at/ctMPZ
+For example, in a contact form of a web page, the subject and the message
 fields are created using the same form factory (CharField()), even
 though they have different implementations according to their
 purposes.
