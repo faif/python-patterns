@@ -20,7 +20,7 @@ Django HttpRequest (without execute method):
 https://docs.djangoproject.com/en/2.1/ref/request-response/#httprequest-objects
 """
 
-from typing import Union
+from typing import List, Union
 
 
 class HideFileCommand:
@@ -30,7 +30,7 @@ class HideFileCommand:
 
     def __init__(self) -> None:
         # an array of files hidden, to undo them as needed
-        self._hidden_files = []
+        self._hidden_files: List[str] = []
 
     def execute(self, filename: str) -> None:
         print(f"hiding {filename}")
@@ -48,7 +48,7 @@ class DeleteFileCommand:
 
     def __init__(self) -> None:
         # an array of deleted files, to undo them as needed
-        self._deleted_files = []
+        self._deleted_files: List[str] = []
 
     def execute(self, filename: str) -> None:
         print(f"deleting {filename}")
