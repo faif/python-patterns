@@ -19,13 +19,11 @@ Allow a request to pass down a chain of receivers until it is handled.
 """
 
 from abc import ABC, abstractmethod
-from typing import Optional, Tuple, TypeVar
-
-T = TypeVar("T")
+from typing import Optional, Tuple
 
 
 class Handler(ABC):
-    def __init__(self, successor: Optional[T] = None):
+    def __init__(self, successor: Optional["Handler"] = None):
         self.successor = successor
 
     def handle(self, request: int) -> None:
@@ -55,6 +53,7 @@ class ConcreteHandler0(Handler):
         if 0 <= request < 10:
             print(f"request {request} handled in handler 0")
             return True
+        return None
 
 
 class ConcreteHandler1(Handler):
@@ -66,6 +65,7 @@ class ConcreteHandler1(Handler):
         if self.start <= request < self.end:
             print(f"request {request} handled in handler 1")
             return True
+        return None
 
 
 class ConcreteHandler2(Handler):
@@ -76,6 +76,7 @@ class ConcreteHandler2(Handler):
         if start <= request < end:
             print(f"request {request} handled in handler 2")
             return True
+        return None
 
     @staticmethod
     def get_interval_from_db() -> Tuple[int, int]:

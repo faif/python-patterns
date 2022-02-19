@@ -77,7 +77,8 @@ class CatalogInstance:
 
         depending on self.param value
         """
-        self._instance_method_choices[self.param].__get__(self)()
+        self._instance_method_choices[self.param].__get__(self)()  # type: ignore
+        # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
 class CatalogClass:
@@ -115,7 +116,8 @@ class CatalogClass:
 
         depending on self.param value
         """
-        self._class_method_choices[self.param].__get__(None, self.__class__)()
+        self._class_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
+        # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
 class CatalogStatic:
@@ -151,7 +153,8 @@ class CatalogStatic:
         depending on self.param value
         """
 
-        self._static_method_choices[self.param].__get__(None, self.__class__)()
+        self._static_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
+        # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
 def main():

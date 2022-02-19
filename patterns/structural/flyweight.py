@@ -34,7 +34,7 @@ class Card:
     # Could be a simple dict.
     # With WeakValueDictionary garbage collection can reclaim the object
     # when there are no other references to it.
-    _pool = weakref.WeakValueDictionary()
+    _pool: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
 
     def __new__(cls, value, suit):
         # If the object exists in the pool - just return it
