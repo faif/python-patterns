@@ -90,12 +90,6 @@ Contributing
 ------------
 When an implementation is added or modified, please review the following guidelines:
 
-##### Output
-All files with example patterns have `### OUTPUT ###` section at the bottom 
-(migration to OUTPUT = """...""" is in progress).
-
-Run `append_output.sh` (e.g. `./append_output.sh borg.py`) to generate/update it.
-
 ##### Docstrings
 Add module level description in form of a docstring with links to corresponding references or other useful information.
 
