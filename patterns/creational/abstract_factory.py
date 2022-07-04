@@ -116,6 +116,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     random.seed(1234)  # for deterministic doctest outputs
+    shop = PetShop(random_animal)
     import doctest
 
     doctest.testmod()
