@@ -7,7 +7,7 @@ Traverses a container and accesses the container's elements.
 """
 
 
-def count_to(count):
+def count_to(count: int):
     """Counts by word numbers, up to a maximum of five"""
     numbers = ["one", "two", "three", "four", "five"]
     yield from numbers[:count]

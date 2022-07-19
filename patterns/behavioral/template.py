@@ -10,28 +10,28 @@ Django class based views: https://docs.djangoproject.com/en/2.1/topics/class-bas
 """
 
 
-def get_text():
+def get_text() -> str:
     return "plain-text"
 
 
-def get_pdf():
+def get_pdf() -> str:
     return "pdf"
 
 
-def get_csv():
+def get_csv() -> str:
     return "csv"
 
 
-def convert_to_text(data):
+def convert_to_text(data: str) -> str:
     print("[CONVERT]")
     return f"{data} as text"
 
 
-def saver():
+def saver() -> None:
     print("[SAVE]")
 
 
-def template_function(getter, converter=False, to_save=False):
+def template_function(getter, converter=False, to_save=False) -> None:
     data = getter()
     print(f"Got `{data}`")
 
