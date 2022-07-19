@@ -4,8 +4,10 @@ jobs:
   lint_python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
       - run: pip install --upgrade pip
       - run: pip install black codespell flake8 isort mypy pytest pyupgrade tox
       - run: black --check .
@@ -17,4 +19,4 @@ jobs:
       - run: mypy --ignore-missing-imports . || true
       - run: pytest .
       - run: pytest --doctest-modules . || true
-      - run: shopt -s globstar && pyupgrade --py36-plus **/*.py
+      - run: shopt -s globstar && pyupgrade --py37-plus **/*.py
