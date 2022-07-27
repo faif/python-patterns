@@ -38,12 +38,12 @@ from typing import Dict
 class Borg:
     _shared_state: Dict[str, str] = {}
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__dict__ = self._shared_state
 
 
 class YourBorg(Borg):
-    def __init__(self, state=None):
+    def __init__(self, state: str = None) -> None:
         super().__init__()
         if state:
             self.state = state
@@ -52,7 +52,7 @@ class YourBorg(Borg):
             if not hasattr(self, "state"):
                 self.state = "Init"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.state
 
 
