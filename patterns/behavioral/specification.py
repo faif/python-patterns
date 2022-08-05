@@ -35,7 +35,7 @@ class CompositeSpecification(Specification):
     def or_specification(self, candidate) -> OrSpecification:
         return OrSpecification(self, candidate)
 
-    def not_specification(self) -> NotSpecification:
+    def not_specification(self, candidate) -> NotSpecification:
         return NotSpecification(self)
 
 

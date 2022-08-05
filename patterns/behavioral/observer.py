@@ -55,12 +55,12 @@ class Data(Subject):
         self.notify()
 
 
-class HexViewer:
+class HexViewer(Observer):
     def update(self, subject: Data) -> None:
         print(f"HexViewer: Subject {subject.name} has data 0x{subject.data:x}")
 
 
-class DecimalViewer:
+class DecimalViewer(Observer):
     def update(self, subject: Data) -> None:
         print(f"DecimalViewer: Subject {subject.name} has data {subject.data}")
 
