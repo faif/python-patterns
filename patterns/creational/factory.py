@@ -22,12 +22,14 @@ http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 Creates objects without having to specify the exact class.
 """
 
+from typing import Type, Union
+
 
 class GreekLocalizer:
     """A simple localizer a la gettext"""
 
     def __init__(self) -> None:
-        self.translations = {"dog": "σκύλος", "cat": "γάτα"}
+        self.translations: dict[str, str] = {"dog": "σκύλος", "cat": "γάτα"}
 
     def localize(self, msg: str) -> str:
         """We'll punt if we don't have a translation"""
@@ -44,7 +46,7 @@ class EnglishLocalizer:
 def get_localizer(language: str = "English") -> object:
 
     """Factory"""
-    localizers = {
+    localizers: dict[str, Union[Type[EnglishLocalizer], Type[GreekLocalizer]]] = {
         "English": EnglishLocalizer,
         "Greek": GreekLocalizer,
     }

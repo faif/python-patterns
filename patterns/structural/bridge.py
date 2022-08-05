@@ -5,34 +5,41 @@ http://en.wikibooks.org/wiki/Computer_Science_Design_Patterns/Bridge_Pattern#Pyt
 *TL;DR
 Decouples an abstraction from its implementation.
 """
+from typing import Union
 
 
 # ConcreteImplementor 1/2
 class DrawingAPI1:
-    def draw_circle(self, x, y, radius):
+    def draw_circle(self, x: Union[int, float], y: Union[int, float], radius: Union[int, float]) -> None:
         print(f"API1.circle at {x}:{y} radius {radius}")
 
 
 # ConcreteImplementor 2/2
 class DrawingAPI2:
-    def draw_circle(self, x, y, radius):
+    def draw_circle(self, x, y, radius) -> None:
         print(f"API2.circle at {x}:{y} radius {radius}")
 
 
 # Refined Abstraction
 class CircleShape:
-    def __init__(self, x, y, radius, drawing_api):
+    def __init__(
+        self,
+        x: Union[int, float],
+        y: Union[int, float],
+        radius: Union[int, float],
+        drawing_api: Union[DrawingAPI1, DrawingAPI2]
+    ) -> None:
         self._x = x
         self._y = y
         self._radius = radius
         self._drawing_api = drawing_api
 
     # low-level i.e. Implementation specific
-    def draw(self):
+    def draw(self) -> None:
         self._drawing_api.draw_circle(self._x, self._y, self._radius)
 
     # high-level i.e. Abstraction specific
-    def scale(self, pct):
+    def scale(self, pct) -> None:
         self._radius *= pct
 
 

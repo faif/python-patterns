@@ -20,14 +20,15 @@ Delays the eval of an expr until its value is needed and avoids repeated evals.
 """
 
 import functools
+from typing import Any, Callable
 
 
 class lazy_property:
-    def __init__(self, function):
+    def __init__(self, function: Callable) -> None:
         self.function = function
         functools.update_wrapper(self, function)
 
-    def __get__(self, obj, type_):
+    def __get__(self, obj: Any, type_: Any) -> Any:
         if obj is None:
             return self
         val = self.function(obj)
@@ -35,7 +36,7 @@ class lazy_property:
         return val
 
 
-def lazy_property2(fn):
+def lazy_property2(fn: Callable) -> Any:
     """
     A lazy property decorator.
 
@@ -54,19 +55,19 @@ def lazy_property2(fn):
 
 
 class Person:
-    def __init__(self, name, occupation):
-        self.name = name
-        self.occupation = occupation
-        self.call_count2 = 0
+    def __init__(self, name: str, occupation: str) -> None:
+        self.name: str = name
+        self.occupation: str = occupation
+        self.call_count2: int = 0
 
     @lazy_property
-    def relatives(self):
+    def relatives(self) -> str:
         # Get all relatives, let's assume that it costs much time.
         relatives = "Many relatives."
         return relatives
 
     @lazy_property2
-    def parents(self):
+    def parents(self) -> str:
         self.call_count2 += 1
         return "Father and mother"
 

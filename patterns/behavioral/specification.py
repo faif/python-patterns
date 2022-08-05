@@ -5,45 +5,46 @@
 Provides recombination business logic by chaining together using boolean logic.
 """
 
+from __future__ import annotations
 from abc import abstractmethod
 
 
 class Specification:
-    def and_specification(self, candidate):
+    def and_specification(self, candidate) -> None:
         raise NotImplementedError()
 
-    def or_specification(self, candidate):
+    def or_specification(self, candidate) -> None:
         raise NotImplementedError()
 
-    def not_specification(self):
+    def not_specification(self, candidate) -> None:
         raise NotImplementedError()
 
     @abstractmethod
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> None:
         pass
 
 
 class CompositeSpecification(Specification):
     @abstractmethod
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> None:
         pass
 
-    def and_specification(self, candidate):
+    def and_specification(self, candidate) -> AndSpecification:
         return AndSpecification(self, candidate)
 
-    def or_specification(self, candidate):
+    def or_specification(self, candidate) -> OrSpecification:
         return OrSpecification(self, candidate)
 
-    def not_specification(self):
+    def not_specification(self) -> NotSpecification:
         return NotSpecification(self)
 
 
 class AndSpecification(CompositeSpecification):
-    def __init__(self, one, other):
+    def __init__(self, one, other) -> None:
         self._one: Specification = one
         self._other: Specification = other
 
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> bool:
         return bool(
             self._one.is_satisfied_by(candidate)
             and self._other.is_satisfied_by(candidate)
@@ -51,11 +52,11 @@ class AndSpecification(CompositeSpecification):
 
 
 class OrSpecification(CompositeSpecification):
-    def __init__(self, one, other):
+    def __init__(self, one, other) -> None:
         self._one: Specification = one
         self._other: Specification = other
 
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> bool:
         return bool(
             self._one.is_satisfied_by(candidate)
             or self._other.is_satisfied_by(candidate)
@@ -63,25 +64,25 @@ class OrSpecification(CompositeSpecification):
 
 
 class NotSpecification(CompositeSpecification):
-    def __init__(self, wrapped):
+    def __init__(self, wrapped) -> None:
         self._wrapped: Specification = wrapped
 
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> bool:
         return bool(not self._wrapped.is_satisfied_by(candidate))
 
 
 class User:
-    def __init__(self, super_user=False):
+    def __init__(self, super_user=False) -> None:
         self.super_user = super_user
 
 
 class UserSpecification(CompositeSpecification):
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> bool:
         return isinstance(candidate, User)
 
 
 class SuperUserSpecification(CompositeSpecification):
-    def is_satisfied_by(self, candidate):
+    def is_satisfied_by(self, candidate) -> bool:
         return getattr(candidate, "super_user", False)
 
 

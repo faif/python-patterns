@@ -20,14 +20,14 @@ copies of the prototype: 'default', 'objecta' and 'objectb'.
 *TL;DR
 Creates new object instances by cloning prototype.
 """
-from __future__ import annotations
 
+from __future__ import annotations
 from typing import Any
 
 
 class Prototype:
     def __init__(self, value: str = "default", **attrs: Any) -> None:
-        self.value = value
+        self.value: str = value
         self.__dict__.update(attrs)
 
     def clone(self, **attrs: Any) -> Prototype:
@@ -41,7 +41,7 @@ class Prototype:
 
 class PrototypeDispatcher:
     def __init__(self):
-        self._objects = {}
+        self._objects: dict[str, Prototype] = {}
 
     def get_objects(self) -> dict[str, Prototype]:
         """Get all objects"""

@@ -1,8 +1,9 @@
 import weakref
+from typing import Type
 
 
 class FlyweightMeta(type):
-    def __new__(mcs, name, parents, dct):
+    def __new__(mcs, name, parents, dct) -> Type:
         """
         Set up object pool
 
@@ -16,7 +17,7 @@ class FlyweightMeta(type):
         return super().__new__(mcs, name, parents, dct)
 
     @staticmethod
-    def _serialize_params(cls, *args, **kwargs):
+    def _serialize_params(cls, *args, **kwargs) -> str:
         """
         Serialize input parameters to a key.
         Simple implementation is just to serialize it as a string
@@ -26,7 +27,7 @@ class FlyweightMeta(type):
         key = "".join(args_list)
         return key
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args, **kwargs) -> Type:
         key = FlyweightMeta._serialize_params(cls, *args, **kwargs)
         pool = getattr(cls, "pool", {})
 
@@ -38,7 +39,7 @@ class FlyweightMeta(type):
 
 
 class Card2(metaclass=FlyweightMeta):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         # print('Init {}: {}'.format(self.__class__, (args, kwargs)))
         pass
 

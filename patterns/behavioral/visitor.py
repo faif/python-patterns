@@ -15,6 +15,9 @@ which is then being used e.g. in tools like `pyflakes`.
 - `Black` formatter tool implements it's own: https://github.com/ambv/black/blob/master/black.py#L718
 """
 
+from __future__ import annotations
+from typing import Union
+
 
 class Node:
     pass
@@ -33,7 +36,7 @@ class C(A, B):
 
 
 class Visitor:
-    def visit(self, node, *args, **kwargs):
+    def visit(self, node: Node, *args, **kwargs) -> Union[generic_visit, visit_B]:
         meth = None
         for cls in node.__class__.__mro__:
             meth_name = "visit_" + cls.__name__
@@ -45,10 +48,10 @@ class Visitor:
             meth = self.generic_visit
         return meth(node, *args, **kwargs)
 
-    def generic_visit(self, node, *args, **kwargs):
+    def generic_visit(self, node, *args, **kwargs) -> None:
         print("generic_visit " + node.__class__.__name__)
 
-    def visit_B(self, node, *args, **kwargs):
+    def visit_B(self, node, *args, **kwargs) -> None:
         print("visit_B " + node.__class__.__name__)
 
 

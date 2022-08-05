@@ -44,7 +44,7 @@ class RealSubject(Subject):
 
 class Proxy(Subject):
     def __init__(self) -> None:
-        self._real_subject = RealSubject()
+        self._real_subject: RealSubject = RealSubject()
 
     def do_the_job(self, user: str) -> None:
         """

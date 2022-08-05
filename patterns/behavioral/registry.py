@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Dict
 
 
@@ -5,7 +6,7 @@ class RegistryHolder(type):
 
     REGISTRY: Dict[str, "RegistryHolder"] = {}
 
-    def __new__(cls, name, bases, attrs):
+    def __new__(cls, name: str, bases: tuple, attrs: dict) -> type:
         new_cls = type.__new__(cls, name, bases, attrs)
         """
             Here the name of the class is used as key but it could be any class
@@ -15,7 +16,7 @@ class RegistryHolder(type):
         return new_cls
 
     @classmethod
-    def get_registry(cls):
+    def get_registry(cls) -> dict:
         return dict(cls.REGISTRY)
 
 

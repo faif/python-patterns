@@ -1,15 +1,22 @@
-class GraphSearch:
+from typing import Optional, Union
 
+
+class GraphSearch:
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/
 
     dfs stands for Depth First Search
     bfs stands for Breadth First Search"""
 
-    def __init__(self, graph):
-        self.graph = graph
+    def __init__(self, graph: dict[Union[str, int], list[Union[str, int]]]) -> None:
+        self.graph: dict[Union[str, int], list[Union[str, int]]] = graph
 
-    def find_path_dfs(self, start, end, path=None):
+    def find_path_dfs(
+        self,
+        start: Union[str, int],
+        end: Union[str, int],
+        path: Optional[list[Union[str, int]]] = None
+    ) -> list[Union[str, int]]:
         path = path or []
 
         path.append(start)
@@ -21,7 +28,12 @@ class GraphSearch:
                 if newpath:
                     return newpath
 
-    def find_all_paths_dfs(self, start, end, path=None):
+    def find_all_paths_dfs(
+        self,
+        start: Union[str, int],
+        end: Union[str, int],
+        path: Optional[list[Union[str, int]]] = None
+    ) -> list[Union[str, int]]:
         path = path or []
         path.append(start)
         if start == end:
@@ -33,7 +45,12 @@ class GraphSearch:
                 paths.extend(newpaths)
         return paths
 
-    def find_shortest_path_dfs(self, start, end, path=None):
+    def find_shortest_path_dfs(
+        self,
+        start: Union[str, int],
+        end: Union[str, int],
+        path: Optional[list[Union[str, int]]] = None
+    ) -> list[Union[str, int]]:
         path = path or []
         path.append(start)
 
@@ -48,7 +65,11 @@ class GraphSearch:
                         shortest = newpath
         return shortest
 
-    def find_shortest_path_bfs(self, start, end):
+    def find_shortest_path_bfs(
+        self,
+        start: Union[str, int],
+        end: Union[str, int],
+    ) -> list[Union[str, int]]:
         """
         Finds the shortest path between two nodes in a graph using breadth-first search.
 

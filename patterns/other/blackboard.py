@@ -14,7 +14,7 @@ import random
 
 
 class Blackboard:
-    def __init__(self):
+    def __init__(self) -> None:
         self.experts = []
         self.common_state = {
             "problems": 0,
@@ -23,15 +23,15 @@ class Blackboard:
             "progress": 0,  # percentage, if 100 -> task is finished
         }
 
-    def add_expert(self, expert):
+    def add_expert(self, expert) -> None:
         self.experts.append(expert)
 
 
 class Controller:
-    def __init__(self, blackboard):
+    def __init__(self, blackboard) -> None:
         self.blackboard = blackboard
 
-    def run_loop(self):
+    def run_loop(self) -> list[str]:
         """
         This function is a loop that runs until the progress reaches 100.
         It checks if an expert is eager to contribute and then calls its contribute method.
@@ -44,25 +44,25 @@ class Controller:
 
 
 class AbstractExpert(metaclass=abc.ABCMeta):
-    def __init__(self, blackboard):
+    def __init__(self, blackboard) -> None:
         self.blackboard = blackboard
 
     @property
     @abc.abstractmethod
-    def is_eager_to_contribute(self):
+    def is_eager_to_contribute(self) -> None:
         raise NotImplementedError("Must provide implementation in subclass.")
 
     @abc.abstractmethod
-    def contribute(self):
+    def contribute(self) -> None:
         raise NotImplementedError("Must provide implementation in subclass.")
 
 
 class Student(AbstractExpert):
     @property
-    def is_eager_to_contribute(self):
+    def is_eager_to_contribute(self) -> bool:
         return True
 
-    def contribute(self):
+    def contribute(self) -> None:
         self.blackboard.common_state["problems"] += random.randint(1, 10)
         self.blackboard.common_state["suggestions"] += random.randint(1, 10)
         self.blackboard.common_state["contributions"] += [self.__class__.__name__]
@@ -71,10 +71,10 @@ class Student(AbstractExpert):
 
 class Scientist(AbstractExpert):
     @property
-    def is_eager_to_contribute(self):
+    def is_eager_to_contribute(self) -> int:
         return random.randint(0, 1)
 
-    def contribute(self):
+    def contribute(self) -> None:
         self.blackboard.common_state["problems"] += random.randint(10, 20)
         self.blackboard.common_state["suggestions"] += random.randint(10, 20)
         self.blackboard.common_state["contributions"] += [self.__class__.__name__]
@@ -83,10 +83,10 @@ class Scientist(AbstractExpert):
 
 class Professor(AbstractExpert):
     @property
-    def is_eager_to_contribute(self):
+    def is_eager_to_contribute(self) -> bool:
         return True if self.blackboard.common_state["problems"] > 100 else False
 
-    def contribute(self):
+    def contribute(self) -> None:
         self.blackboard.common_state["problems"] += random.randint(1, 2)
         self.blackboard.common_state["suggestions"] += random.randint(10, 20)
         self.blackboard.common_state["contributions"] += [self.__class__.__name__]

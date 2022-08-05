@@ -28,23 +28,26 @@ https://sourcemaking.com/design_patterns/object_pool
 Stores a set of initialized objects kept ready to use.
 """
 
+from typing import Type
+from queue import Queue
+
 
 class ObjectPool:
-    def __init__(self, queue, auto_get=False):
-        self._queue = queue
-        self.item = self._queue.get() if auto_get else None
+    def __init__(self, queue: Queue[str], auto_get=False) -> None:
+        self._queue: Queue[str] = queue
+        self.item: str = self._queue.get() if auto_get else None
 
-    def __enter__(self):
+    def __enter__(self) -> str:
         if self.item is None:
             self.item = self._queue.get()
         return self.item
 
-    def __exit__(self, Type, value, traceback):
+    def __exit__(self, type_: Type, value, traceback) -> None:
         if self.item is not None:
             self._queue.put(self.item)
             self.item = None
 
-    def __del__(self):
+    def __del__(self) -> None:
         if self.item is not None:
             self._queue.put(self.item)
             self.item = None

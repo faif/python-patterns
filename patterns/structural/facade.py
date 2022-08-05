@@ -35,13 +35,13 @@ class CPU:
     Simple CPU representation.
     """
 
-    def freeze(self):
+    def freeze(self) -> None:
         print("Freezing processor.")
 
-    def jump(self, position):
+    def jump(self, position: str) -> None:
         print("Jumping to:", position)
 
-    def execute(self):
+    def execute(self) -> None:
         print("Executing.")
 
 
@@ -50,7 +50,7 @@ class Memory:
     Simple memory representation.
     """
 
-    def load(self, position, data):
+    def load(self, position: str, data: str) -> None:
         print(f"Loading from {position} data: '{data}'.")
 
 
@@ -59,7 +59,7 @@ class SolidStateDrive:
     Simple solid state drive representation.
     """
 
-    def read(self, lba, size):
+    def read(self, lba: str, size: str) -> str:
         return f"Some data from sector {lba} with size {size}"
 
 
@@ -68,12 +68,12 @@ class ComputerFacade:
     Represents a facade for various computer parts.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.cpu = CPU()
         self.memory = Memory()
         self.ssd = SolidStateDrive()
 
-    def start(self):
+    def start(self) -> None:
         self.cpu.freeze()
         self.memory.load("0x00", self.ssd.read("100", "1024"))
         self.cpu.jump("0x00")

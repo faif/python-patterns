@@ -9,13 +9,13 @@ from typing import Dict, KeysView, Optional, Union
 class Data:
     """Data Store Class"""
 
-    products = {
+    products: dict[str, dict[str, Union[int, float]]] = {
         "milk": {"price": 1.50, "quantity": 10},
         "eggs": {"price": 0.20, "quantity": 100},
         "cheese": {"price": 2.00, "quantity": 10},
     }
 
-    def __get__(self, obj, klas):
+    def __get__(self, obj, klas) -> dict[str, dict]:
 
         print("(Fetching from Data Store)")
         return {"products": self.products}
