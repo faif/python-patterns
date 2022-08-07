@@ -13,12 +13,10 @@ from __future__ import annotations
 import abc
 import random
 
-from typing import List
-
 
 class Blackboard:
     def __init__(self) -> None:
-        self.experts: List = []
+        self.experts: []
         self.common_state = {
             "problems": 0,
             "suggestions": 0,
@@ -34,7 +32,7 @@ class Controller:
     def __init__(self, blackboard: Blackboard) -> None:
         self.blackboard = blackboard
 
-    def run_loop(self) -> List[str]:
+    def run_loop(self):
         """
         This function is a loop that runs until the progress reaches 100.
         It checks if an expert is eager to contribute and then calls its contribute method.
