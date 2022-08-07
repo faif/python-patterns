@@ -16,7 +16,7 @@ import random
 
 class Blackboard:
     def __init__(self) -> None:
-        self.experts: []
+        self.experts = []
         self.common_state = {
             "problems": 0,
             "suggestions": 0,
