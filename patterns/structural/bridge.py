@@ -10,7 +10,9 @@ from typing import Union
 
 # ConcreteImplementor 1/2
 class DrawingAPI1:
-    def draw_circle(self, x: Union[int, float], y: Union[int, float], radius: Union[int, float]) -> None:
+    def draw_circle(
+        self, x: Union[int, float], y: Union[int, float], radius: Union[int, float]
+    ) -> None:
         print(f"API1.circle at {x}:{y} radius {radius}")
 
 
@@ -27,7 +29,7 @@ class CircleShape:
         x: Union[int, float],
         y: Union[int, float],
         radius: Union[int, float],
-        drawing_api: Union[DrawingAPI1, DrawingAPI2]
+        drawing_api: Union[DrawingAPI1, DrawingAPI2],
     ) -> None:
         self._x = x
         self._y = y

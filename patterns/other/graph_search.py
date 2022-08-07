@@ -15,7 +15,7 @@ class GraphSearch:
         self,
         start: Union[str, int],
         end: Union[str, int],
-        path: Optional[list[Union[str, int]]] = None
+        path: Optional[list[Union[str, int]]] = None,
     ) -> list[Union[str, int]]:
         path = path or []
 
@@ -32,7 +32,7 @@ class GraphSearch:
         self,
         start: Union[str, int],
         end: Union[str, int],
-        path: Optional[list[Union[str, int]]] = None
+        path: Optional[list[Union[str, int]]] = None,
     ) -> list[Union[str, int]]:
         path = path or []
         path.append(start)
@@ -49,7 +49,7 @@ class GraphSearch:
         self,
         start: Union[str, int],
         end: Union[str, int],
-        path: Optional[list[Union[str, int]]] = None
+        path: Optional[list[Union[str, int]]] = None,
     ) -> list[Union[str, int]]:
         path = path or []
         path.append(start)
