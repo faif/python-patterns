@@ -5,23 +5,27 @@
 Provides a centralized entry point that controls and manages request handling.
 """
 
+from __future__ import annotations
+
+from typing import Any
+
 
 class MobileView:
-    def show_index_page(self):
+    def show_index_page(self) -> None:
         print("Displaying mobile index page")
 
 
 class TabletView:
-    def show_index_page(self):
+    def show_index_page(self) -> None:
         print("Displaying tablet index page")
 
 
 class Dispatcher:
-    def __init__(self):
+    def __init__(self) -> None:
         self.mobile_view = MobileView()
         self.tablet_view = TabletView()
 
-    def dispatch(self, request):
+    def dispatch(self, request: Request) -> None:
         """
         This function is used to dispatch the request based on the type of device.
         If it is a mobile, then mobile view will be called and if it is a tablet,
@@ -39,10 +43,10 @@ class Dispatcher:
 class RequestController:
     """front controller"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.dispatcher = Dispatcher()
 
-    def dispatch_request(self, request):
+    def dispatch_request(self, request: Any) -> None:
         """
         This function takes a request object and sends it to the dispatcher.
         """

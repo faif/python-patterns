@@ -28,7 +28,7 @@ class Delegator:
     AttributeError: 'Delegate' object has no attribute 'do_anything'
     """
 
-    def __init__(self, delegate: Delegate):
+    def __init__(self, delegate: Delegate) -> None:
         self.delegate = delegate
 
     def __getattr__(self, name: str) -> Any | Callable:
@@ -44,7 +44,7 @@ class Delegator:
 
 
 class Delegate:
-    def __init__(self):
+    def __init__(self) -> None:
         self.p1 = 123
 
     def do_something(self, something: str) -> str:
