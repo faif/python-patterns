@@ -40,7 +40,7 @@ class ProductModel(Model):
 
     item_type: str = "product"
 
-    def __iter__(self) -> Generator[dict[str, dict[str, Price]]]:
+    def __iter__(self) -> Generator[dict[str, dict[str, Price]], None, None]:
         yield from self.products
 
     def get(self, product) -> dict[str, Price]:

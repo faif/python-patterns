@@ -7,7 +7,6 @@ Allows object composition to achieve the same code reuse as inheritance.
 """
 
 from __future__ import annotations
-
 from typing import Any, Callable
 
 
