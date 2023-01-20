@@ -21,6 +21,14 @@ http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 *TL;DR
 Creates objects without having to specify the exact class.
 """
+from typing import Dict
+from typing import Protocol
+from typing import Type
+
+
+class Localizer(Protocol):
+    def localize(self, msg: str) -> str:
+        pass
 
 
 class GreekLocalizer:
@@ -41,10 +49,10 @@ class EnglishLocalizer:
         return msg
 
 
-def get_localizer(language: str = "English") -> object:
+def get_localizer(language: str = "English") -> Localizer:
 
     """Factory"""
-    localizers = {
+    localizers: Dict[str, Type[Localizer]] = {
         "English": EnglishLocalizer,
         "Greek": GreekLocalizer,
     }
