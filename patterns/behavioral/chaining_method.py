@@ -2,13 +2,12 @@ from __future__ import annotations
 
 
 class Person:
-    def __init__(self, name: str, action: Action) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
-        self.action = action
 
-    def do_action(self) -> Action:
-        print(self.name, self.action.name, end=" ")
-        return self.action
+    def do_action(self, action: Action) -> Action:
+        print(self.name, action.name, end=" ")
+        return action
 
 
 class Action:
@@ -26,8 +25,8 @@ class Action:
 def main():
     """
     >>> move = Action('move')
-    >>> person = Person('Jack', move)
-    >>> person.do_action().amount('5m').stop()
+    >>> person = Person('Jack')
+    >>> person.do_action(move).amount('5m').stop()
     Jack move 5m then stop
     """
 
