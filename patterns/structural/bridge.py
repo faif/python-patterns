@@ -22,7 +22,9 @@ class DrawingAPI2:
 
 # Refined Abstraction
 class CircleShape:
-    def __init__(self, x: int, y: int, radius: int, drawing_api: Union[DrawingAPI2, DrawingAPI1]) -> None:
+    def __init__(
+        self, x: int, y: int, radius: int, drawing_api: Union[DrawingAPI2, DrawingAPI1]
+    ) -> None:
         self._x = x
         self._y = y
         self._radius = radius

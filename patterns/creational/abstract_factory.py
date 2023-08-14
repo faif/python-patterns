@@ -80,6 +80,7 @@ class PetShop:
 
 # Additional factories:
 
+
 # Create a random animal
 def random_animal(name: str) -> Pet:
     """Let's be dynamic!"""
