@@ -16,7 +16,6 @@ class Data:
     }
 
     def __get__(self, obj, klas):
-
         print("(Fetching from Data Store)")
         return {"products": self.products}
 

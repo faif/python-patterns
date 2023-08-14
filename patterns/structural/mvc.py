@@ -4,6 +4,8 @@ Separates data in GUIs from the ways it is presented, and accepted.
 """
 
 from abc import ABC, abstractmethod
+from ProductModel import Price
+from typing import Dict, List, Union
 
 
 class Model(ABC):
@@ -28,7 +30,7 @@ class ProductModel(Model):
         """A polymorphic way to pass a float with a particular
         __str__ functionality."""
 
-        def __str__(self):
+        def __str__(self) -> str:
             return f"{self:.2f}"
 
     products = {
@@ -39,10 +41,10 @@ class ProductModel(Model):
 
     item_type = "product"
 
-    def __iter__(self):
+    def __iter__(self) -> None:
         yield from self.products
 
-    def get(self, product):
+    def get(self, product: str) -> Dict[str, Union[Price, int]]:
         try:
             return self.products[product]
         except KeyError as e:
@@ -66,17 +68,19 @@ class View(ABC):
 
 
 class ConsoleView(View):
-    def show_item_list(self, item_type, item_list):
+    def show_item_list(self, item_type: str, item_list: List[str]) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
         print("")
 
     @staticmethod
-    def capitalizer(string):
+    def capitalizer(string: str) -> str:
         return string[0].upper() + string[1:].lower()
 
-    def show_item_information(self, item_type, item_name, item_info):
+    def show_item_information(
+        self, item_type: str, item_name: str, item_info: Dict[str, Union[Price, int]]
+    ) -> None:
         print(item_type.upper() + " INFORMATION:")
         printout = "Name: %s" % item_name
         for key, value in item_info.items():
@@ -84,21 +88,21 @@ class ConsoleView(View):
         printout += "\n"
         print(printout)
 
-    def item_not_found(self, item_type, item_name):
+    def item_not_found(self, item_type: str, item_name: str) -> None:
         print(f'That {item_type} "{item_name}" does not exist in the records')
 
 
 class Controller:
-    def __init__(self, model, view):
+    def __init__(self, model: ProductModel, view: ConsoleView) -> None:
         self.model = model
         self.view = view
 
-    def show_items(self):
+    def show_items(self) -> None:
         items = list(self.model)
         item_type = self.model.item_type
         self.view.show_item_list(item_type, items)
 
-    def show_item_information(self, item_name):
+    def show_item_information(self, item_name: str) -> None:
         """
         Show information about a {item_type} item.
         :param str item_name: the name of the {item_type} item to show information about

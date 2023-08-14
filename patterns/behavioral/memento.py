@@ -5,14 +5,14 @@ http://code.activestate.com/recipes/413838-memento-closure/
 Provides the ability to restore an object to its previous state.
 """
 
-from typing import Callable, List
+from typing import Any, Type, Callable, List
 from copy import copy, deepcopy
 
 
-def memento(obj, deep=False):
+def memento(obj: Any, deep: bool = False) -> Callable:
     state = deepcopy(obj.__dict__) if deep else copy(obj.__dict__)
 
-    def restore():
+    def restore() -> None:
         obj.__dict__.clear()
         obj.__dict__.update(state)
 
@@ -28,15 +28,15 @@ class Transaction:
     deep = False
     states: List[Callable[[], None]] = []
 
-    def __init__(self, deep, *targets):
+    def __init__(self, deep: bool, *targets: Any) -> None:
         self.deep = deep
         self.targets = targets
         self.commit()
 
-    def commit(self):
+    def commit(self) -> None:
         self.states = [memento(target, self.deep) for target in self.targets]
 
-    def rollback(self):
+    def rollback(self) -> None:
         for a_state in self.states:
             a_state()
 
@@ -47,10 +47,10 @@ class Transactional:
     @Transactional will rollback to entry-state upon exceptions.
     """
 
-    def __init__(self, method):
+    def __init__(self, method: Callable) -> None:
         self.method = method
 
-    def __get__(self, obj, T):
+    def __get__(self, obj: Any, T: Type) -> Callable:
         """
         A decorator that makes a function transactional.
 
@@ -69,17 +69,17 @@ class Transactional:
 
 
 class NumObj:
-    def __init__(self, value):
+    def __init__(self, value: int) -> None:
         self.value = value
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<{self.__class__.__name__}: {self.value!r}>"
 
-    def increment(self):
+    def increment(self) -> None:
         self.value += 1
 
     @Transactional
-    def do_stuff(self):
+    def do_stuff(self) -> None:
         self.value = "1111"  # <- invalid value
         self.increment()  # <- will fail and rollback
 

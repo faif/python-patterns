@@ -2,7 +2,6 @@ from typing import Dict
 
 
 class RegistryHolder(type):
-
     REGISTRY: Dict[str, "RegistryHolder"] = {}
 
     def __new__(cls, name, bases, attrs):

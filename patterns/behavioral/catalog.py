@@ -13,7 +13,6 @@ class Catalog:
     """
 
     def __init__(self, param: str) -> None:
-
         # dictionary that will be used to determine which static method is
         # to be executed but that will be also used to store possible param
         # value
