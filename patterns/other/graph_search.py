@@ -1,3 +1,6 @@
+from typing import Any, Dict, List, Optional, Union
+
+
 class GraphSearch:
 
     """Graph search emulation in python, from source
@@ -6,10 +9,12 @@ class GraphSearch:
     dfs stands for Depth First Search
     bfs stands for Breadth First Search"""
 
-    def __init__(self, graph):
+    def __init__(self, graph: Dict[str, List[str]]) -> None:
         self.graph = graph
 
-    def find_path_dfs(self, start, end, path=None):
+    def find_path_dfs(
+        self, start: str, end: str, path: Optional[List[str]] = None
+    ) -> Optional[List[str]]:
         path = path or []
 
         path.append(start)
@@ -21,7 +26,9 @@ class GraphSearch:
                 if newpath:
                     return newpath
 
-    def find_all_paths_dfs(self, start, end, path=None):
+    def find_all_paths_dfs(
+        self, start: str, end: str, path: Optional[List[str]] = None
+    ) -> List[Union[List[str], Any]]:
         path = path or []
         path.append(start)
         if start == end:
@@ -33,7 +40,9 @@ class GraphSearch:
                 paths.extend(newpaths)
         return paths
 
-    def find_shortest_path_dfs(self, start, end, path=None):
+    def find_shortest_path_dfs(
+        self, start: str, end: str, path: Optional[List[str]] = None
+    ) -> Optional[List[str]]:
         path = path or []
         path.append(start)
 
@@ -48,7 +57,7 @@ class GraphSearch:
                         shortest = newpath
         return shortest
 
-    def find_shortest_path_bfs(self, start, end):
+    def find_shortest_path_bfs(self, start: str, end: str) -> Optional[List[str]]:
         """
         Finds the shortest path between two nodes in a graph using breadth-first search.
 

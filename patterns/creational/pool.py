@@ -27,24 +27,25 @@ https://sourcemaking.com/design_patterns/object_pool
 *TL;DR
 Stores a set of initialized objects kept ready to use.
 """
+from queue import Queue
 
 
 class ObjectPool:
-    def __init__(self, queue, auto_get=False):
+    def __init__(self, queue: Queue, auto_get: bool = False) -> None:
         self._queue = queue
         self.item = self._queue.get() if auto_get else None
 
-    def __enter__(self):
+    def __enter__(self) -> str:
         if self.item is None:
             self.item = self._queue.get()
         return self.item
 
-    def __exit__(self, Type, value, traceback):
+    def __exit__(self, Type: None, value: None, traceback: None) -> None:
         if self.item is not None:
             self._queue.put(self.item)
             self.item = None
 
-    def __del__(self):
+    def __del__(self) -> None:
         if self.item is not None:
             self._queue.put(self.item)
             self.item = None
