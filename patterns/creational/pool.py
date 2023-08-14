@@ -28,6 +28,8 @@ https://sourcemaking.com/design_patterns/object_pool
 Stores a set of initialized objects kept ready to use.
 """
 from queue import Queue
+from types import TracebackType
+from typing import Union
 
 
 class ObjectPool:
@@ -40,7 +42,12 @@ class ObjectPool:
             self.item = self._queue.get()
         return self.item
 
-    def __exit__(self, Type: None, value: None, traceback: None) -> None:
+    def __exit__(
+        self,
+        Type: Union[type[BaseException], None],
+        value: Union[BaseException, None],
+        traceback: Union[TracebackType, None],
+    ) -> None:
         if self.item is not None:
             self._queue.put(self.item)
             self.item = None
