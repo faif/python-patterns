@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 """Implementation of the state pattern"""
 
-# http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
-from __future__ import print_function
-
 
 class State(object):
 
