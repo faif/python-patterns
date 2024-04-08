@@ -19,3 +19,87 @@ This pattern is characterized by the following:
 References:
 - https://en.wikipedia.org/wiki/Servant_(design_pattern)
 """
+import math
+
+class Position:
+    """Representation of a 2D position with x and y coordinates."""
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+class Circle:
+    """Representation of a circle defined by a radius and a position."""
+
+    def __init__(self, radius, position: Position):
+        self.radius = radius
+        self.position = position
+
+class Rectangle:
+    """Representation of a rectangle defined by width, height, and a position."""
+
+    def __init__(self, width, height, position: Position):
+        self.width = width
+        self.height = height
+        self.position = position
+
+
+class GeometryTools:
+    """
+    Servant class providing geometry-related services, including area and
+    perimeter calculations and position updates.
+    """
+
+    @staticmethod
+    def calculate_area(shape):
+        """
+        Calculate the area of a given shape.
+
+        Args:
+            shape: The geometric shape whose area is to be calculated.
+
+        Returns:
+            The area of the shape.
+
+        Raises:
+            ValueError: If the shape type is unsupported.
+        """
+        if isinstance(shape, Circle):
+            return math.pi * shape.radius ** 2
+        elif isinstance(shape, Rectangle):
+            return shape.width * shape.height
+        else:
+            raise ValueError("Unsupported shape type")
+
+    @staticmethod
+    def calculate_perimeter(shape):
+        """
+        Calculate the perimeter of a given shape.
+
+        Args:
+            shape: The geometric shape whose perimeter is to be calculated.
+
+        Returns:
+            The perimeter of the shape.
+
+        Raises:
+            ValueError: If the shape type is unsupported.
+        """
+        if isinstance(shape, Circle):
+            return 2 * math.pi * shape.radius
+        elif isinstance(shape, Rectangle):
+            return 2 * (shape.width + shape.height)
+        else:
+            raise ValueError("Unsupported shape type")
+
+    @staticmethod
+    def move_to(shape, new_position: Position):
+        """
+        Move a given shape to a new position.
+
+        Args:
+            shape: The geometric shape to be moved.
+            new_position: The new position to move the shape to.
+        """
+        shape.position = new_position
+        print(f"Moved to ({shape.position.x}, {shape.position.y})")
