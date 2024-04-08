@@ -10,3 +10,6 @@ venv/
 .vscode/
 .python-version
 .coverage
+.project
+.pydevproject
+/.pytest_cache/
