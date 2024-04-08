@@ -46,10 +46,10 @@ class Visitor:
         return meth(node, *args, **kwargs)
 
     def generic_visit(self, node, *args, **kwargs):
-        print("generic_visit " + node.__class__.__name__)
+        return "generic_visit " + node.__class__.__name__
 
     def visit_B(self, node, *args, **kwargs):
-        print("visit_B " + node.__class__.__name__)
+        return "visit_B " + node.__class__.__name__
 
 
 def main():
@@ -58,13 +58,13 @@ def main():
     >>> visitor = Visitor()
 
     >>> visitor.visit(a)
-    generic_visit A
+    'generic_visit A'
 
     >>> visitor.visit(b)
-    visit_B B
+    'visit_B B'
 
     >>> visitor.visit(c)
-    visit_B C
+    'visit_B C'
     """
 
 

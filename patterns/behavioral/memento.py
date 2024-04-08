@@ -42,7 +42,7 @@ class Transaction:
 
 
 class Transactional:
-    """Adds transactional semantics to methods. Methods decorated  with
+    """Adds transactional semantics to methods. Methods decorated with
 
     @Transactional will rollback to entry-state upon exceptions.
     """

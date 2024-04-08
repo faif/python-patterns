@@ -15,7 +15,7 @@ class ChatRoom:
     """Mediator class"""
 
     def display_message(self, user: User, message: str) -> None:
-        print(f"[{user} says]: {message}")
+        return f"[{user} says]: {message}"
 
 
 class User:
@@ -26,7 +26,7 @@ class User:
         self.chat_room = ChatRoom()
 
     def say(self, message: str) -> None:
-        self.chat_room.display_message(self, message)
+        return self.chat_room.display_message(self, message)
 
     def __str__(self) -> str:
         return self.name
@@ -39,11 +39,11 @@ def main():
     >>> ethan = User('Ethan')
 
     >>> molly.say("Hi Team! Meeting at 3 PM today.")
-    [Molly says]: Hi Team! Meeting at 3 PM today.
+    '[Molly says]: Hi Team! Meeting at 3 PM today.'
     >>> mark.say("Roger that!")
-    [Mark says]: Roger that!
+    '[Mark says]: Roger that!'
     >>> ethan.say("Alright.")
-    [Ethan says]: Alright.
+    '[Ethan says]: Alright.'
     """
 
 
