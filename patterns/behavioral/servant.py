@@ -103,3 +103,25 @@ class GeometryTools:
         """
         shape.position = new_position
         print(f"Moved to ({shape.position.x}, {shape.position.y})")
+
+
+def main():
+    """
+    >>> servant = GeometryTools()
+    >>> circle = Circle(5, Position(0, 0))
+    >>> rectangle = Rectangle(3, 4, Position(0, 0))
+    >>> servant.calculate_area(circle)
+    78.53981633974483
+    >>> servant.calculate_perimeter(rectangle)
+    14
+    >>> servant.move_to(circle, Position(3, 4))
+    Moved to (3, 4)
+    >>> servant.move_to(rectangle, Position(5, 6))
+    Moved to (5, 6)
+    """
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
