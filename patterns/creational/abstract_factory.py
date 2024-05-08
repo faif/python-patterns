@@ -62,7 +62,6 @@ class Cat(Pet):
 
 
 class PetShop:
-
     """A pet shop"""
 
     def __init__(self, animal_factory: Type[Pet]) -> None:
@@ -79,6 +78,7 @@ class PetShop:
 
 
 # Additional factories:
+
 
 # Create a random animal
 def random_animal(name: str) -> Pet:

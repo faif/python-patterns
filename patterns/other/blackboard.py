@@ -8,6 +8,7 @@ where the solution is the sum of its parts.
 
 https://en.wikipedia.org/wiki/Blackboard_system
 """
+
 from __future__ import annotations
 
 import abc

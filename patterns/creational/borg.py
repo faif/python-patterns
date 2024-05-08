@@ -32,6 +32,7 @@ https://github.com/onetwopunch/pythonDbTemplate/blob/master/database.py
 *TL;DR
 Provides singleton-like behavior sharing state between instances.
 """
+
 from typing import Dict
 
 

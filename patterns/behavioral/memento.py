@@ -5,8 +5,8 @@ http://code.activestate.com/recipes/413838-memento-closure/
 Provides the ability to restore an object to its previous state.
 """
 
-from typing import Callable, List
 from copy import copy, deepcopy
+from typing import Callable, List
 
 
 def memento(obj, deep=False):
