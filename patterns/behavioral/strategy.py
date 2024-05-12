@@ -55,7 +55,9 @@ class Order:
         return self.price - discount
 
     def __repr__(self) -> str:
-        return f"<Order price: {self.price} with discount strategy: {getattr(self.discount_strategy,'__name__',None)}>"
+        return f"""
+        <Order price: {self.price} with discount strategy: {getattr(self.discount_strategy, '__name__', None)}>
+        """
 
 
 def ten_percent_discount(order: Order) -> float:
