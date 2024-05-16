@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 pip install --upgrade pip
 pip install black codespell flake8 isort mypy pytest pyupgrade tox
