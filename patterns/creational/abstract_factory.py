@@ -77,7 +77,6 @@ class PetShop:
         return pet
 
 
-
 # Show pets with various factories
 def main() -> None:
     """
