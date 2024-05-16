@@ -105,7 +105,12 @@ To see Python 2 compatible versions of some patterns please check-out the [legac
 When everything else is done - update corresponding part of README.
 
 ##### Travis CI
-Please run `tox` or `tox -e ci37` before submitting a patch to be sure your changes will pass CI.
+Please run the following before submitting a patch
+- `black .` This lints your code.
+
+Then either:
+- `tox` or `tox -e ci37` This runs unit tests. see tox.ini for further details.
+- If you have a bash compatible shell use `./lint.sh` This script will lint and test your code. This script mirrors the CI pipeline actions.      
 
 You can also run `flake8` or `pytest` commands manually. Examples can be found in `tox.ini`.
 
