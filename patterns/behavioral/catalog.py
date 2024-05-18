@@ -46,7 +46,6 @@ class Catalog:
 
 # Alternative implementation for different levels of methods
 class CatalogInstance:
-
     """catalog of multiple methods that are executed depending on an init
 
     parameter
@@ -82,7 +81,6 @@ class CatalogInstance:
 
 
 class CatalogClass:
-
     """catalog of multiple class methods that are executed depending on an init
 
     parameter
@@ -121,7 +119,6 @@ class CatalogClass:
 
 
 class CatalogStatic:
-
     """catalog of multiple static methods that are executed depending on an init
 
     parameter

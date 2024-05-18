@@ -10,3 +10,5 @@ venv/
 .vscode/
 .python-version
 .coverage
+build/
+dist/

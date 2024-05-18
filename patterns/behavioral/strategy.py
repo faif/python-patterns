@@ -7,7 +7,6 @@ Strategy lets the algorithm vary independently from clients that use it.
 Enables selecting an algorithm at runtime.
 """
 
-
 from __future__ import annotations
 
 from typing import Callable
@@ -56,7 +55,8 @@ class Order:
         return self.price - discount
 
     def __repr__(self) -> str:
-        return f"<Order price: {self.price} with discount strategy: {getattr(self.discount_strategy,'__name__',None)}>"
+        strategy = getattr(self.discount_strategy, "__name__", None)
+        return f"<Order price: {self.price} with discount strategy: {strategy}>"
 
 
 def ten_percent_discount(order: Order) -> float:
