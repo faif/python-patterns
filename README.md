@@ -105,10 +105,7 @@ To see Python 2 compatible versions of some patterns please check-out the [legac
 
 ##### Update README
 When everything else is done - update corresponding part of README.
-
-##### Travis CI
-Please run the following before submitting a patch
-- `black .` This lints your code.
+.
 
 Then either:
 - `tox` or `tox -e ci37` This runs unit tests. see tox.ini for further details.
