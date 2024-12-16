@@ -1,10 +1,6 @@
 python-patterns
 ===============
 
-
-Current Patterns
-----------------
-
 __Creational Patterns__:
 
 | Pattern | Description |
