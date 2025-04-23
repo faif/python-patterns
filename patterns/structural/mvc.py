@@ -4,6 +4,8 @@ Separates data in GUIs from the ways it is presented, and accepted.
 """
 
 from abc import ABC, abstractmethod
+from inspect import signature
+from sys import argv
 
 
 class Model(ABC):
@@ -113,6 +115,23 @@ class Controller:
             self.view.show_item_information(item_type, item_name, item_info)
 
 
+class Router:
+    def __init__(self):
+        self.routes = {}
+
+    def register(self, path, controller, model, view):
+        model = model()
+        view = view()
+        self.routes[path] = controller(model, view)
+
+    def resolve(self, path):
+        if self.routes.get(path):
+            controller = self.routes[path]
+            return controller
+        else:
+            return None
+
+
 def main():
     """
     >>> model = ProductModel()
@@ -147,6 +166,26 @@ def main():
 
 
 if __name__ == "__main__":
-    import doctest
+    router = Router()
+    router.register("products", Controller, ProductModel, ConsoleView)
+    controller = router.resolve(argv[1])
 
+    command = str(argv[2]) if len(argv) > 2 else None
+    args = ' '.join(map(str, argv[3:])) if len(argv) > 3 else None
+
+    if hasattr(controller, command):
+        command = getattr(controller, command)
+        sig = signature(command)
+
+        if len(sig.parameters) > 0:
+            if args:
+                command(args)
+            else:
+                print("Command requires arguments.")
+        else:
+            command()
+    else:
+        print(f"Command {command} not found in the controller.")
+
+    import doctest
     doctest.testmod()
