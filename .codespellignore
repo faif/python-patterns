@@ -1,0 +1,14 @@
+__pycache__
+*.pyc
+.idea
+*.egg-info/
+.tox/
+env/
+venv/
+.env
+.venv
+.vscode/
+.python-version
+.coverage
+build/
+dist/
