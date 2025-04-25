@@ -2,13 +2,15 @@
 
 pip install --upgrade pip
 pip install black codespell flake8 isort mypy pytest pyupgrade tox
-black --check .
-codespell --quiet-level=2  # --ignore-words-list="" --skip=""
-flake8 . --count --show-source --statistics
-isort --profile black .
-tox
 pip install -e .
-mypy --ignore-missing-imports . || true
-pytest .
-pytest --doctest-modules . || true
-shopt -s globstar && pyupgrade --py37-plus **/*.py
+
+source_dir="./patterns"
+
+codespell --quiet-level=2 ./patterns  # --ignore-words-list="" --skip=""
+flake8 "${source_dir}"  --count --show-source --statistics
+isort --profile black "${source_dir}"
+tox 
+mypy --ignore-missing-imports "${source_dir}" || true
+pytest "${source_dir}"
+pytest --doctest-modules "${source_dir}" || true
+shopt -s globstar && pyupgrade --py37-plus ${source_dir}/*.py
