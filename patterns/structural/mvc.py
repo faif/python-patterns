@@ -14,14 +14,14 @@ class Model(ABC):
         pass
 
     @abstractmethod
-    def get(self, item):
+    def get(self, item: str) -> dict:
         """Returns an object with a .items() call method
         that iterates over key,value pairs of its information."""
         pass
 
     @property
     @abstractmethod
-    def item_type(self):
+    def item_type(self) -> str:
         pass
 
 
@@ -30,7 +30,7 @@ class ProductModel(Model):
         """A polymorphic way to pass a float with a particular
         __str__ functionality."""
 
-        def __str__(self):
+        def __str__(self) -> str:
             return f"{self:.2f}"
 
     products = {
@@ -44,7 +44,7 @@ class ProductModel(Model):
     def __iter__(self):
         yield from self.products
 
-    def get(self, product):
+    def get(self, product: str) -> dict:
         try:
             return self.products[product]
         except KeyError as e:
@@ -53,32 +53,32 @@ class ProductModel(Model):
 
 class View(ABC):
     @abstractmethod
-    def show_item_list(self, item_type, item_list):
+    def show_item_list(self, item_type: str, item_list: dict) -> None:
         pass
 
     @abstractmethod
-    def show_item_information(self, item_type, item_name, item_info):
+    def show_item_information(self, item_type: str, item_name: str, item_info: str) -> None:
         """Will look for item information by iterating over key,value pairs
         yielded by item_info.items()"""
         pass
 
     @abstractmethod
-    def item_not_found(self, item_type, item_name):
+    def item_not_found(self, item_type, item_name) -> None:
         pass
 
 
 class ConsoleView(View):
-    def show_item_list(self, item_type, item_list):
+    def show_item_list(self, item_type, item_list) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
         print("")
 
     @staticmethod
-    def capitalizer(string):
+    def capitalizer(string) -> str:
         return string[0].upper() + string[1:].lower()
 
-    def show_item_information(self, item_type, item_name, item_info):
+    def show_item_information(self, item_type, item_name, item_info) -> None:
         print(item_type.upper() + " INFORMATION:")
         printout = "Name: %s" % item_name
         for key, value in item_info.items():
@@ -86,7 +86,7 @@ class ConsoleView(View):
         printout += "\n"
         print(printout)
 
-    def item_not_found(self, item_type, item_name):
+    def item_not_found(self, item_type, item_name) -> None:
         print(f'That {item_type} "{item_name}" does not exist in the records')
 
 
@@ -95,12 +95,12 @@ class Controller:
         self.model = model
         self.view = view
 
-    def show_items(self):
+    def show_items(self) -> None:
         items = list(self.model)
         item_type = self.model.item_type
         self.view.show_item_list(item_type, items)
 
-    def show_item_information(self, item_name):
+    def show_item_information(self, item_name) -> None:
         """
         Show information about a {item_type} item.
         :param str item_name: the name of the {item_type} item to show information about
@@ -117,16 +117,16 @@ class Controller:
 
 class Router:
     def __init__(self):
-        self.routes = {}
+        self.routes: dict = {}
 
-    def register(self, path, controller, model, view):
-        model = model()
-        view = view()
+    def register(self, path: str, controller: object, model: object, view: object) -> None:
+        model: object = model()
+        view: object = view()
         self.routes[path] = controller(model, view)
 
-    def resolve(self, path):
+    def resolve(self, path) -> Controller:
         if self.routes.get(path):
-            controller = self.routes[path]
+            controller: object = self.routes[path]
             return controller
         else:
             return None
@@ -166,12 +166,12 @@ def main():
 
 
 if __name__ == "__main__":
-    router = Router()
+    router: object = Router()
     router.register("products", Controller, ProductModel, ConsoleView)
-    controller = router.resolve(argv[1])
+    controller: object = router.resolve(argv[1])
 
-    command = str(argv[2]) if len(argv) > 2 else None
-    args = ' '.join(map(str, argv[3:])) if len(argv) > 3 else None
+    command: str = str(argv[2]) if len(argv) > 2 else None
+    args: str = ' '.join(map(str, argv[3:])) if len(argv) > 3 else None
 
     if hasattr(controller, command):
         command = getattr(controller, command)
