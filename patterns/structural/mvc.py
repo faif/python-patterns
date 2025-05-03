@@ -170,8 +170,8 @@ if __name__ == "__main__":
     router.register("products", Controller, ProductModel, ConsoleView)
     controller: object = router.resolve(argv[1])
 
-    command: str = str(argv[2]) if len(argv) > 2 else None
-    args: str = ' '.join(map(str, argv[3:])) if len(argv) > 3 else None
+    command: str = str(argv[2]) if len(argv) > 2 else ""
+    args: str = ' '.join(map(str, argv[3:])) if len(argv) > 3 else ""
 
     if hasattr(controller, command):
         command = getattr(controller, command)
