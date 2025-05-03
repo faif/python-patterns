@@ -2,12 +2,12 @@ name: lint_python
 on: [pull_request, push]
 jobs:
   lint_python:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: 3.12
       - shell: bash
         name: Lint and test
         run: ./lint.sh
