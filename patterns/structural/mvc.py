@@ -120,16 +120,16 @@ class Router:
         self.routes: dict = {}
 
     def register(self, path: str, controller_class: object, model_class: object, view_class: object) -> None:
-        model_instance: object = model_class()
-        view_instance: object = view_class()
+        model_instance = model_class()
+        view_instance = view_class()
         self.routes[path] = controller_class(model_instance, view_instance)
 
     def resolve(self, path: str) -> Controller:
         if self.routes.get(path):
-            controller_class: object = self.routes[path]
-            return controller_class
+            controller: Controller = self.routes[path]
+            return controller
         else:
-            return None
+            raise KeyError(f"No controller registered for path '{path}'")
 
 
 def main():
