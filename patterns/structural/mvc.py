@@ -63,12 +63,12 @@ class View(ABC):
         pass
 
     @abstractmethod
-    def item_not_found(self, item_type, item_name) -> None:
+    def item_not_found(self, item_type: str, item_name: str) -> None:
         pass
 
 
 class ConsoleView(View):
-    def show_item_list(self, item_type, item_list) -> None:
+    def show_item_list(self, item_type: str, item_list: dict) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
@@ -86,21 +86,21 @@ class ConsoleView(View):
         printout += "\n"
         print(printout)
 
-    def item_not_found(self, item_type, item_name) -> None:
+    def item_not_found(self, item_type: str, item_name: str) -> None:
         print(f'That {item_type} "{item_name}" does not exist in the records')
 
 
 class Controller:
-    def __init__(self, model, view):
-        self.model = model
-        self.view = view
+    def __init__(self, model_class, view_class) -> None:
+        self.model = model_class
+        self.view = view_class
 
     def show_items(self) -> None:
         items = list(self.model)
         item_type = self.model.item_type
         self.view.show_item_list(item_type, items)
 
-    def show_item_information(self, item_name) -> None:
+    def show_item_information(self, item_name: str) -> None:
         """
         Show information about a {item_type} item.
         :param str item_name: the name of the {item_type} item to show information about
@@ -119,15 +119,15 @@ class Router:
     def __init__(self):
         self.routes: dict = {}
 
-    def register(self, path: str, controller: object, model: object, view: object) -> None:
-        model: object = model()
-        view: object = view()
-        self.routes[path] = controller(model, view)
+    def register(self, path: str, controller_class: object, model_class: object, view_class: object) -> None:
+        model_instance: object = model_class()
+        view_instance: object = view_class()
+        self.routes[path] = controller_class(model_instance, view_instance)
 
-    def resolve(self, path) -> Controller:
+    def resolve(self, path: str) -> Controller:
         if self.routes.get(path):
-            controller: object = self.routes[path]
-            return controller
+            controller_class: object = self.routes[path]
+            return controller_class
         else:
             return None
 
@@ -170,11 +170,11 @@ if __name__ == "__main__":
     router.register("products", Controller, ProductModel, ConsoleView)
     controller: object = router.resolve(argv[1])
 
-    command: str = str(argv[2]) if len(argv) > 2 else ""
+    action: str = str(argv[2]) if len(argv) > 2 else ""
     args: str = ' '.join(map(str, argv[3:])) if len(argv) > 3 else ""
 
-    if hasattr(controller, command):
-        command = getattr(controller, command)
+    if hasattr(controller, action):
+        command = getattr(controller, action)
         sig = signature(command)
 
         if len(sig.parameters) > 0:
@@ -185,7 +185,7 @@ if __name__ == "__main__":
         else:
             command()
     else:
-        print(f"Command {command} not found in the controller.")
+        print(f"Command {action} not found in the controller.")
 
     import doctest
     doctest.testmod()
