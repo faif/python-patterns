@@ -166,9 +166,9 @@ def main():
 
 
 if __name__ == "__main__":
-    router: object = Router()
+    router = Router()
     router.register("products", Controller, ProductModel, ConsoleView)
-    controller: object = router.resolve(argv[1])
+    controller: Controller = router.resolve(argv[1])
 
     action: str = str(argv[2]) if len(argv) > 2 else ""
     args: str = ' '.join(map(str, argv[3:])) if len(argv) > 3 else ""
