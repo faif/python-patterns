@@ -9,6 +9,7 @@ from sys import argv
 
 
 class Model(ABC):
+    """The Model is the data layer of the application."""
     @abstractmethod
     def __iter__(self):
         pass
@@ -26,6 +27,7 @@ class Model(ABC):
 
 
 class ProductModel(Model):
+    """The Model is the data layer of the application."""
     class Price(float):
         """A polymorphic way to pass a float with a particular
         __str__ functionality."""
@@ -52,12 +54,13 @@ class ProductModel(Model):
 
 
 class View(ABC):
+    """The View is the presentation layer of the application."""
     @abstractmethod
     def show_item_list(self, item_type: str, item_list: dict) -> None:
         pass
 
     @abstractmethod
-    def show_item_information(self, item_type: str, item_name: str, item_info: str) -> None:
+    def show_item_information(self, item_type: str, item_name: str, item_info: dict) -> None:
         """Will look for item information by iterating over key,value pairs
         yielded by item_info.items()"""
         pass
@@ -68,6 +71,7 @@ class View(ABC):
 
 
 class ConsoleView(View):
+    """The View is the presentation layer of the application."""
     def show_item_list(self, item_type: str, item_list: dict) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
@@ -75,10 +79,12 @@ class ConsoleView(View):
         print("")
 
     @staticmethod
-    def capitalizer(string) -> str:
+    def capitalizer(string: str) -> str:
+        """Capitalizes the first letter of a string and lowercases the rest."""
         return string[0].upper() + string[1:].lower()
 
-    def show_item_information(self, item_type, item_name, item_info) -> None:
+    def show_item_information(self, item_type: str, item_name: str, item_info: dict) -> None:
+        """Will look for item information by iterating over key,value pairs"""
         print(item_type.upper() + " INFORMATION:")
         printout = "Name: %s" % item_name
         for key, value in item_info.items():
@@ -91,9 +97,10 @@ class ConsoleView(View):
 
 
 class Controller:
-    def __init__(self, model_class, view_class) -> None:
-        self.model = model_class
-        self.view = view_class
+    """The Controller is the intermediary between the Model and the View."""
+    def __init__(self, model_class: Model, view_class: View) -> None:
+        self.model: Model = model_class
+        self.view: View = view_class
 
     def show_items(self) -> None:
         items = list(self.model)
@@ -106,22 +113,23 @@ class Controller:
         :param str item_name: the name of the {item_type} item to show information about
         """
         try:
-            item_info = self.model.get(item_name)
+            item_info: str = self.model.get(item_name)
         except Exception:
-            item_type = self.model.item_type
+            item_type: str = self.model.item_type
             self.view.item_not_found(item_type, item_name)
         else:
-            item_type = self.model.item_type
+            item_type: str = self.model.item_type
             self.view.show_item_information(item_type, item_name, item_info)
 
 
 class Router:
+    """The Router is the entry point of the application."""
     def __init__(self):
         self.routes = {}
 
-    def register(self, path: str, controller_class, model_class, view_class) -> None:
-        model_instance = model_class()
-        view_instance = view_class()
+    def register(self, path: str, controller_class: Controller, model_class: Model, view_class: View) -> None:
+        model_instance: Model = model_class()
+        view_instance: View = view_class()
         self.routes[path] = controller_class(model_instance, view_instance)
 
     def resolve(self, path: str) -> Controller:
