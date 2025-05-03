@@ -117,9 +117,9 @@ class Controller:
 
 class Router:
     def __init__(self):
-        self.routes: dict = {}
+        self.routes = {}
 
-    def register(self, path: str, controller_class: object, model_class: object, view_class: object) -> None:
+    def register(self, path: str, controller_class, model_class, view_class) -> None:
         model_instance = model_class()
         view_instance = view_class()
         self.routes[path] = controller_class(model_instance, view_instance)
