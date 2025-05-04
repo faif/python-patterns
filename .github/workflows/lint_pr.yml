@@ -94,8 +94,11 @@ jobs:
         if: ${{ matrix.tool == 'pytest' }}
         id: pytest
         run: |
-          pytest ./patterns
-          pytest --doctest-modules ./patterns || true
+          echo "Running pytest discovery..."
+          python -m pytest --collect-only -v
+          echo "Running tests..."
+          python -m pytest ./tests -v
+          python -m pytest --doctest-modules ./patterns -v || true
       
       # Check Python version compatibility
       - name: Check Python version compatibility
