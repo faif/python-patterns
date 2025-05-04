@@ -234,14 +234,14 @@ jobs:
                 fi
                 
                 # Run doctests for the file
-                echo "    pytest --cov-config=.coveragerc --doctest-modules -v --cov=main --cov-append $file" >> tox_pr.ini
+                echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
                 
                 has_tests=true
               fi
               
               # Run test files directly if modified
               if [[ $file == tests/* ]]; then
-                echo "    pytest -xvs --cov-config=.coveragerc --cov=main --cov-append $file" >> tox_pr.ini
+                echo "    pytest -xvs --cov=patterns --cov-append $file" >> tox_pr.ini
                 has_tests=true
               fi
             fi
@@ -250,8 +250,8 @@ jobs:
           # If we didn't find any specific tests to run, mention it
           if [ "$has_tests" = false ]; then
             echo "    python -c \"print('No specific tests found for changed files. Consider adding tests.')\"" >> tox_pr.ini
-            # Add a minimal test to avoid failure
-            echo "    pytest -xk \"not integration\" --no-header" >> tox_pr.ini
+            # Add a minimal test to avoid failure, but ensure it generates coverage data
+            echo "    pytest -xvs --cov=patterns --cov-append -k \"not integration\" --no-header" >> tox_pr.ini
           fi
           
           # Add coverage report command
