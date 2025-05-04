@@ -6,6 +6,7 @@ Separates data in GUIs from the ways it is presented, and accepted.
 from abc import ABC, abstractmethod
 from inspect import signature
 from sys import argv
+from typing import Any
 
 
 class Model(ABC):
@@ -72,7 +73,7 @@ class View(ABC):
 
 class ConsoleView(View):
     """The View is the presentation layer of the application."""
-    def show_item_list(self, item_type: str, item_list: dict[any, any]) -> None:
+    def show_item_list(self, item_type: str, item_list: dict[Any, Any]) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
@@ -112,10 +113,10 @@ class Controller:
         Show information about a {item_type} item.
         :param str item_name: the name of the {item_type} item to show information about
         """
+        item_type: str = self.model.item_type
         try:
             item_info: dict = self.model.get(item_name)
         except Exception:
-            item_type: str = self.model.item_type
             self.view.item_not_found(item_type, item_name)
         else:
             self.view.show_item_information(item_type, item_name, item_info)
