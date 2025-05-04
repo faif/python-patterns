@@ -123,19 +123,12 @@ def main():
     ['Student',
      'Scientist',
      'Student',
-     'Student',
-     'Scientist',
-     'Student',
-     'Scientist',
-     'Student',
-     'Student',
-     'Scientist',
-     'Professor']
+     'Student',]
     """
 
 
 if __name__ == "__main__":
-    #random.seed(1234)  # for deterministic doctest outputs
+    random.seed(1234)  # for deterministic doctest outputs
     import doctest
 
     doctest.testmod()
