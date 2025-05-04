@@ -90,7 +90,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    animals = ['dog', 'cat']
+    animals = [Dog, Cat]
     random_animal: type[Pet] = random.choice(animals)
 
     shop = PetShop(random_animal)
