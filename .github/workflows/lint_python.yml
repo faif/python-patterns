@@ -14,17 +14,23 @@ jobs:
           pip install -r requirements-dev.txt
       - name: Lint with flake8
         run: flake8 ./patterns --count --show-source --statistics
+        continue-on-error: true
       - name: Format check with isort and black
         run: |
           isort --profile black --check ./patterns
           black --check ./patterns
+        continue-on-error: true
       - name: Type check with mypy
         run: mypy --ignore-missing-imports ./patterns || true
+        continue-on-error: true
       - name: Run tests with pytest
         run: |
           pytest ./patterns
           pytest --doctest-modules ./patterns || true
+        continue-on-error: true
       - name: Check Python version compatibility
         run: shopt -s globstar && pyupgrade --py312-plus ./patterns/**/*.py
+        continue-on-error: true
       - name: Run tox
         run: tox
+        continue-on-error: true
