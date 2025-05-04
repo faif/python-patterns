@@ -91,7 +91,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     animals = ['dog', 'cat']
-    random_animal = random.choice(animals)
+    random_animal: Pet = random.choice(animals)
 
     shop = PetShop(random_animal)
     import doctest
