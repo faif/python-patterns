@@ -8,6 +8,23 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.12
-      - shell: bash
-        name: Lint and test
-        run: ./lint.sh
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+      - name: Lint with flake8
+        run: flake8 ./patterns --count --show-source --statistics
+      - name: Format check with isort and black
+        run: |
+          isort --profile black --check ./patterns
+          black --check ./patterns
+      - name: Type check with mypy
+        run: mypy --ignore-missing-imports ./patterns || true
+      - name: Run tests with pytest
+        run: |
+          pytest ./patterns
+          pytest --doctest-modules ./patterns || true
+      - name: Check Python version compatibility
+        run: shopt -s globstar && pyupgrade --py312-plus ./patterns/**/*.py
+      - name: Run tox
+        run: tox
