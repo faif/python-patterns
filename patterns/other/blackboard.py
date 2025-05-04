@@ -15,7 +15,7 @@ import random
 class AbstractExpert(ABC):
     """Abstract class for experts in the blackboard system."""
     @abstractmethod
-    def __init__(self, blackboard: object) -> None:
+    def __init__(self, blackboard) -> None:
         self.blackboard = blackboard
 
     @property
