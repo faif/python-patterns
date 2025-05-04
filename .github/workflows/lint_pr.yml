@@ -8,15 +8,6 @@ jobs:
         with:
           fetch-depth: 0  # To get all history for git diff commands
           
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.12
-          
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
-          
       - name: Get changed Python files
         id: changed-files
         run: |
@@ -28,42 +19,59 @@ jobs:
             CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep '\.py$' || echo "")
           fi
           echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-          echo "Changed Python files: $CHANGED_FILES"
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No Python files changed, PR will still require approval"
+            echo "has_python_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changed Python files: $CHANGED_FILES"
+            echo "has_python_changes=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: PR information
+        if: ${{ github.event_name == 'pull_request' && steps.changed-files.outputs.has_python_changes == 'false' }}
+        run: echo "This PR contains no Python changes, but still requires manual approval."
+          
+      - uses: actions/setup-python@v4
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+        with:
+          python-version: 3.12
+          
+      - name: Install dependencies
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
           
       - name: Lint with flake8
-        if: ${{ steps.changed-files.outputs.files != '' }}
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: |
           echo "Linting files: ${{ steps.changed-files.outputs.files }}"
           flake8 ${{ steps.changed-files.outputs.files }} --count --show-source --statistics
-        continue-on-error: true
         
       - name: Format check with isort and black
-        if: ${{ steps.changed-files.outputs.files != '' }}
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: |
           echo "Checking format with isort for: ${{ steps.changed-files.outputs.files }}"
           isort --profile black --check ${{ steps.changed-files.outputs.files }}
           echo "Checking format with black for: ${{ steps.changed-files.outputs.files }}"
           black --check ${{ steps.changed-files.outputs.files }}
-        continue-on-error: true
         
       - name: Type check with mypy
-        if: ${{ steps.changed-files.outputs.files != '' }}
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: |
           echo "Type checking: ${{ steps.changed-files.outputs.files }}"
           mypy --ignore-missing-imports ${{ steps.changed-files.outputs.files }}
-        continue-on-error: true
         
       - name: Run tests with pytest
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: |
           pytest ./patterns
           pytest --doctest-modules ./patterns || true
-        continue-on-error: true
         
       - name: Check Python version compatibility
-        if: ${{ steps.changed-files.outputs.files != '' }}
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: pyupgrade --py312-plus ${{ steps.changed-files.outputs.files }}
-        continue-on-error: true
         
       - name: Run tox
+        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: tox
-        continue-on-error: true
