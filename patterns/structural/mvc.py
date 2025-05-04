@@ -72,7 +72,7 @@ class View(ABC):
 
 class ConsoleView(View):
     """The View is the presentation layer of the application."""
-    def show_item_list(self, item_type: str, item_list: list) -> None:
+    def show_item_list(self, item_type: str, item_list: dict[any, any]) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
@@ -118,7 +118,6 @@ class Controller:
             item_type: str = self.model.item_type
             self.view.item_not_found(item_type, item_name)
         else:
-            item_type: str = self.model.item_type
             self.view.show_item_information(item_type, item_name, item_info)
 
 
@@ -127,7 +126,12 @@ class Router:
     def __init__(self):
         self.routes = {}
 
-    def register(self, path: str, controller_class: type[Controller], model_class: type[Model], view_class: type[View]) -> None:
+    def register(
+            self,
+            path: str,
+            controller_class: type[Controller],
+            model_class: type[Model],
+            view_class: type[View]) -> None:
         model_instance: Model = model_class()
         view_instance: View = view_class()
         self.routes[path] = controller_class(model_instance, view_instance)
