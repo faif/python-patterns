@@ -218,12 +218,18 @@ jobs:
 
   summary:
     needs: [check_changes, lint]
-    # Only run if there are Python changes and after the lint job completes (success or failure)
-    if: ${{ always() && needs.check_changes.outputs.has_python_changes == 'true' }}
+    # Run summary in all cases, regardless of whether lint job ran
+    if: ${{ always() }}
     runs-on: ubuntu-24.04
     steps:
       - name: Summarize results
         run: |
           echo "## Pull Request Lint Results" >> $GITHUB_STEP_SUMMARY
-          echo "Linting has completed for all Python files changed in this PR." >> $GITHUB_STEP_SUMMARY
-          echo "See individual job logs for detailed results." >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ needs.check_changes.outputs.has_python_changes }}" == "true" ]]; then
+            echo "Linting has completed for all Python files changed in this PR." >> $GITHUB_STEP_SUMMARY
+            echo "See individual job logs for detailed results." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Python files were changed in this PR. Linting was skipped." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⚠️ **Note:** This PR still requires manual approval regardless of linting results." >> $GITHUB_STEP_SUMMARY
