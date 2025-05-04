@@ -12,6 +12,7 @@ https://en.wikipedia.org/wiki/Blackboard_system
 from abc import ABC, abstractmethod
 import random
 
+
 class AbstractExpert(ABC):
     """Abstract class for experts in the blackboard system."""
     @abstractmethod
@@ -20,18 +21,18 @@ class AbstractExpert(ABC):
 
     @property
     @abstractmethod
-    def is_eager_to_contribute(self):
+    def is_eager_to_contribute(self) -> bool:
         raise NotImplementedError("Must provide implementation in subclass.")
 
     @abstractmethod
-    def contribute(self):
+    def contribute(self) -> None:
         raise NotImplementedError("Must provide implementation in subclass.")
 
 
 class Blackboard:
     """The blackboard system that holds the common state."""
     def __init__(self) -> None:
-        self.experts = []
+        self.experts: list = [AbstractExpert]   
         self.common_state = {
             "problems": 0,
             "suggestions": 0,
@@ -138,7 +139,7 @@ def main():
 
 
 if __name__ == "__main__":
-    random.seed(1234)  # for deterministic doctest outputs
+    #random.seed(1234)  # for deterministic doctest outputs
     import doctest
 
     doctest.testmod()
