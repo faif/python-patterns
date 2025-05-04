@@ -1,8 +1,11 @@
 name: lint_pull_request
 on: [pull_request, push]
 jobs:
-  lint_pull_request:
+  check_changes:
     runs-on: ubuntu-24.04
+    outputs:
+      has_python_changes: ${{ steps.changed-files.outputs.has_python_changes }}
+      files: ${{ steps.changed-files.outputs.files }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,48 +33,89 @@ jobs:
       - name: PR information
         if: ${{ github.event_name == 'pull_request' && steps.changed-files.outputs.has_python_changes == 'false' }}
         run: echo "This PR contains no Python changes, but still requires manual approval."
+
+  lint:
+    needs: check_changes
+    if: ${{ needs.check_changes.outputs.has_python_changes == 'true' }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [flake8, format, mypy, pytest, pyupgrade, tox]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
           
       - uses: actions/setup-python@v4
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         with:
           python-version: 3.12
           
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            
       - name: Install dependencies
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
-          
+      
+      # Flake8 linting
       - name: Lint with flake8
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+        if: ${{ matrix.tool == 'flake8' }}
+        id: flake8
         run: |
-          echo "Linting files: ${{ steps.changed-files.outputs.files }}"
-          flake8 ${{ steps.changed-files.outputs.files }} --count --show-source --statistics
-        
-      - name: Format check with isort and black
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+          echo "Linting files: ${{ needs.check_changes.outputs.files }}"
+          flake8 ${{ needs.check_changes.outputs.files }} --count --show-source --statistics
+      
+      # Format checking with isort and black
+      - name: Format check
+        if: ${{ matrix.tool == 'format' }}
+        id: format
         run: |
-          echo "Checking format with isort for: ${{ steps.changed-files.outputs.files }}"
-          isort --profile black --check ${{ steps.changed-files.outputs.files }}
-          echo "Checking format with black for: ${{ steps.changed-files.outputs.files }}"
-          black --check ${{ steps.changed-files.outputs.files }}
-        
+          echo "Checking format with isort for: ${{ needs.check_changes.outputs.files }}"
+          isort --profile black --check ${{ needs.check_changes.outputs.files }}
+          echo "Checking format with black for: ${{ needs.check_changes.outputs.files }}"
+          black --check ${{ needs.check_changes.outputs.files }}
+      
+      # Type checking with mypy
       - name: Type check with mypy
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+        if: ${{ matrix.tool == 'mypy' }}
+        id: mypy
         run: |
-          echo "Type checking: ${{ steps.changed-files.outputs.files }}"
-          mypy --ignore-missing-imports ${{ steps.changed-files.outputs.files }}
-        
+          echo "Type checking: ${{ needs.check_changes.outputs.files }}"
+          mypy --ignore-missing-imports ${{ needs.check_changes.outputs.files }}
+      
+      # Run tests with pytest
       - name: Run tests with pytest
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+        if: ${{ matrix.tool == 'pytest' }}
+        id: pytest
         run: |
           pytest ./patterns
           pytest --doctest-modules ./patterns || true
-        
+      
+      # Check Python version compatibility
       - name: Check Python version compatibility
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
-        run: pyupgrade --py312-plus ${{ steps.changed-files.outputs.files }}
-        
+        if: ${{ matrix.tool == 'pyupgrade' }}
+        id: pyupgrade
+        run: pyupgrade --py312-plus ${{ needs.check_changes.outputs.files }}
+      
+      # Run tox
       - name: Run tox
-        if: ${{ steps.changed-files.outputs.has_python_changes == 'true' }}
+        if: ${{ matrix.tool == 'tox' }}
+        id: tox
         run: tox
+
+  summary:
+    needs: [check_changes, lint]
+    if: ${{ always() && needs.check_changes.outputs.has_python_changes == 'true' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Summarize results
+        run: |
+          echo "## Pull Request Lint Results" >> $GITHUB_STEP_SUMMARY
+          echo "Linting has completed for all Python files changed in this PR." >> $GITHUB_STEP_SUMMARY
+          echo "See individual job logs for detailed results." >> $GITHUB_STEP_SUMMARY
