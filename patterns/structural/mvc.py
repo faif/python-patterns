@@ -12,7 +12,7 @@ from typing import Any
 class Model(ABC):
     """The Model is the data layer of the application."""
     @abstractmethod
-    def __iter__(self):
+    def __iter__(self) -> Any:
         pass
 
     @abstractmethod
@@ -44,7 +44,7 @@ class ProductModel(Model):
 
     item_type = "product"
 
-    def __iter__(self):
+    def __iter__(self) -> Any:
         yield from self.products
 
     def get(self, product: str) -> dict:
