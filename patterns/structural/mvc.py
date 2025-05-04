@@ -73,7 +73,7 @@ class View(ABC):
 
 class ConsoleView(View):
     """The View is the presentation layer of the application."""
-    def show_item_list(self, item_type: str, item_list: dict[Any, Any]) -> None:
+    def show_item_list(self, item_type: str, item_list: list[Any]) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
