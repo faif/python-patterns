@@ -120,10 +120,13 @@ def main():
 
     >>> from pprint import pprint
     >>> pprint(contributions)
-    ['Student',
-     'Scientist',
-     'Student',
-     'Student',]
+     ['Student',
+    'Scientist',
+    'Student',
+    'Scientist',
+    'Student',
+    'Scientist',
+    'Professor']
     """
 
 
