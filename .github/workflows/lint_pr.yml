@@ -1,7 +1,7 @@
 name: lint_pull_request
 on: [pull_request, push]
 jobs:
-  lint_python:
+  lint_pull_request:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
