@@ -227,21 +227,21 @@ jobs:
                 # Check if specific test exists
                 if [ -n "$pattern_dir" ]; then
                   test_path="tests/${pattern_dir}/test_${module_name}.py"
-                  echo "    if [ -f \"${test_path}\" ]; then echo \"Test file ${test_path} exists: true\" && pytest -xvs --cov=patterns --cov-append ${test_path}; else echo \"Test file ${test_path} exists: false\"; fi" >> tox_pr.ini
+                  echo "    if [ -f \"${test_path}\" ]; then echo \"Test file ${test_path} exists: true\" && pytest -xvs --cov=main --cov-append ${test_path}; else echo \"Test file ${test_path} exists: false\"; fi" >> tox_pr.ini
                   
                   # Also try to find any test that might include this module
-                  echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\" --no-header" >> tox_pr.ini
+                  echo "    pytest -xvs --cov=main --cov-append tests/${pattern_dir}/ -k \"${module_name}\" --no-header" >> tox_pr.ini
                 fi
                 
                 # Run doctests for the file
-                echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
+                echo "    pytest --doctest-modules -v --cov=main --cov-append $file" >> tox_pr.ini
                 
                 has_tests=true
               fi
               
               # Run test files directly if modified
               if [[ $file == tests/* ]]; then
-                echo "    pytest -xvs --cov=patterns --cov-append $file" >> tox_pr.ini
+                echo "    pytest -xvs --cov=main --cov-append $file" >> tox_pr.ini
                 has_tests=true
               fi
             fi
@@ -251,7 +251,7 @@ jobs:
           if [ "$has_tests" = false ]; then
             echo "    python -c \"print('No specific tests found for changed files. Consider adding tests.')\"" >> tox_pr.ini
             # Add a minimal test to avoid failure, but ensure it generates coverage data
-            echo "    pytest -xvs --cov=patterns --cov-append -k \"not integration\" --no-header" >> tox_pr.ini
+            echo "    pytest -xvs --cov=main --cov-append -k \"not integration\" --no-header" >> tox_pr.ini
           fi
           
           # Add coverage report command
