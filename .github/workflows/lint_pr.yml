@@ -138,24 +138,48 @@ jobs:
         if: ${{ matrix.tool == 'tox' }}
         id: tox
         run: |
-          echo "Running tox for changed files..."
+          echo "Running tox integration for changed files..."
           changed_files="${{ needs.check_changes.outputs.files }}"
           
-          # Create a temporary tox configuration for the changed files
-          echo "[testenv]" > tox_pr.ini
+          # Create a temporary tox configuration that extends the original one
+          echo "[tox]" > tox_pr.ini
+          echo "envlist = py312" >> tox_pr.ini
+          echo "skip_missing_interpreters = true" >> tox_pr.ini
+          
+          echo "[testenv]" >> tox_pr.ini
+          echo "setenv =" >> tox_pr.ini
+          echo "    COVERAGE_FILE = .coverage.{envname}" >> tox_pr.ini
+          echo "deps =" >> tox_pr.ini
+          echo "    -r requirements-dev.txt" >> tox_pr.ini
+          echo "allowlist_externals =" >> tox_pr.ini
+          echo "    pytest" >> tox_pr.ini
           echo "commands =" >> tox_pr.ini
           
-          # Add specific testing commands for each changed file
+          # For tox, let's focus on integration tests and coverage only
+          # to avoid duplicating what individual matrix jobs are doing
+          
+          # Add coverage-focused test commands
           for file in $changed_files; do
             if [[ $file == *.py ]]; then
-              echo "    pytest {posargs} -xvs $file" >> tox_pr.ini
-              echo "    flake8 $file" >> tox_pr.ini
-              echo "    mypy --ignore-missing-imports $file" >> tox_pr.ini
+              # Run coverage tests for implementation files
+              if [[ $file == patterns/* ]]; then
+                module_name=$(basename $file .py)
+                echo "    pytest --cov=patterns/ --cov-append tests/ -k \"$module_name\"" >> tox_pr.ini
+              fi
+              
+              # Run test files directly if modified
+              if [[ $file == tests/* ]]; then
+                echo "    pytest --cov=patterns/ --cov-append $file" >> tox_pr.ini
+              fi
             fi
           done
           
-          # Run tox with the temporary configuration
-          tox -c tox_pr.ini || true
+          # Add coverage report command
+          echo "    coverage report" >> tox_pr.ini
+          
+          # Run tox with the custom configuration
+          echo "Running tox with custom PR configuration..."
+          tox -c tox_pr.ini
 
   summary:
     needs: [check_changes, lint]
