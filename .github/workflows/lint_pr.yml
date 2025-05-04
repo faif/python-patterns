@@ -230,18 +230,18 @@ jobs:
                   echo "    python -c \"import os.path; test_path='${test_path}'; exists=os.path.exists(test_path); print(f'Test file {test_path} exists: {exists}'); exit(0 if exists else 1)\" && pytest -xvs --cov=patterns --cov-append ${test_path}" >> tox_pr.ini || true
                   
                   # Also try to find any test that might include this module
-                  echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\" --no-header" >> tox_pr.ini
+                  echo "    pytest -xvs --cov-config=.coveragerc --cov=main --cov-append tests/${pattern_dir}/ -k \"${module_name}\" --no-header" >> tox_pr.ini
                 fi
                 
                 # Run doctests for the file
-                echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
+                echo "    pytest --cov-config=.coveragerc --doctest-modules -v --cov=main --cov-append $file" >> tox_pr.ini
                 
                 has_tests=true
               fi
               
               # Run test files directly if modified
               if [[ $file == tests/* ]]; then
-                echo "    pytest -xvs --cov=patterns --cov-append $file" >> tox_pr.ini
+                echo "    pytest -xvs --cov-config=.coveragerc --cov=main --cov-append $file" >> tox_pr.ini
                 has_tests=true
               fi
             fi
