@@ -16,10 +16,20 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             # For PRs, compare against base branch
-            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }} HEAD | grep '\.py$' || echo "")
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }} HEAD | grep '\.py$' | grep -v "^setup\.py$" || echo "")
+            # Check if setup.py specifically changed
+            SETUP_PY_CHANGED=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }} HEAD | grep "^setup\.py$" || echo "")
+            if [ ! -z "$SETUP_PY_CHANGED" ]; then
+              CHANGED_FILES="$CHANGED_FILES $SETUP_PY_CHANGED"
+            fi
           else
             # For pushes, use the before/after SHAs
-            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep '\.py$' || echo "")
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep '\.py$' | grep -v "^setup\.py$" || echo "")
+            # Check if setup.py specifically changed
+            SETUP_PY_CHANGED=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep "^setup\.py$" || echo "")
+            if [ ! -z "$SETUP_PY_CHANGED" ]; then
+              CHANGED_FILES="$CHANGED_FILES $SETUP_PY_CHANGED"
+            fi
           fi
           
           # Check if any Python files were changed and set the output accordingly
