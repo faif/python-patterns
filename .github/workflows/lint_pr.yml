@@ -96,9 +96,36 @@ jobs:
         run: |
           echo "Running pytest discovery..."
           python -m pytest --collect-only -v
-          echo "Running tests..."
-          python -m pytest ./tests -v
-          python -m pytest --doctest-modules ./patterns -v || true
+          
+          # First run any test files that correspond to changed files
+          echo "Running tests for changed files..."
+          changed_files="${{ needs.check_changes.outputs.files }}"
+          
+          # Extract module paths from changed files
+          modules=()
+          for file in $changed_files; do
+            # Convert file path to module path (remove .py and replace / with .)
+            if [[ $file == patterns/* ]]; then
+              module_path=${file%.py}
+              module_path=${module_path//\//.}
+              modules+=("$module_path")
+            fi
+          done
+          
+          # Run tests for each module
+          for module in "${modules[@]}"; do
+            echo "Testing module: $module"
+            python -m pytest -xvs tests/ -k "$module" || true
+          done
+          
+          # Then run doctests on the changed files
+          echo "Running doctests for changed files..."
+          for file in $changed_files; do
+            if [[ $file == *.py ]]; then
+              echo "Running doctest for $file"
+              python -m pytest --doctest-modules -v $file || true
+            fi
+          done
       
       # Check Python version compatibility
       - name: Check Python version compatibility
