@@ -183,7 +183,7 @@ jobs:
           echo "commands =" >> tox_pr.ini
           
           # Always run a baseline test with coverage to ensure we have some data
-          echo "    pytest -xvs --cov=patterns tests/ --cov-report=term-missing || true" >> tox_pr.ini
+          echo "    pytest -xvs --cov=patterns tests/ --cov-report=term-missing" >> tox_pr.ini
           
           # Add coverage-focused test commands
           echo "    # Run specific tests for changed files" >> tox_pr.ini
@@ -196,15 +196,15 @@ jobs:
                 echo "    # Testing $file" >> tox_pr.ini
                 
                 # First check if there's a specific test for this module
-                echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/test_${module_name}.py 2>/dev/null || true" >> tox_pr.ini
+                echo "    - python -c \"import os.path; exit(0 if os.path.exists('tests/${pattern_dir}/test_${module_name}.py') else 1)\" && pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/test_${module_name}.py" >> tox_pr.ini
                 
                 # Also run more general tests for the directory
-                echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\" || true" >> tox_pr.ini
+                echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\"" >> tox_pr.ini
               fi
               
               # Run test files directly if modified
               if [[ $file == tests/* ]]; then
-                echo "    pytest -xvs --cov=patterns --cov-append $file || true" >> tox_pr.ini
+                echo "    pytest -xvs --cov=patterns --cov-append $file" >> tox_pr.ini
               fi
             fi
           done
@@ -213,18 +213,18 @@ jobs:
           echo "    # Run doctests" >> tox_pr.ini
           for file in $changed_files; do
             if [[ $file == patterns/*.py ]]; then
-              echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file || true" >> tox_pr.ini
+              echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
             fi
           done
           
-          # Add coverage report command (only executed if there's coverage data)
-          echo "    coverage combine || true" >> tox_pr.ini
-          echo "    coverage report || echo 'No coverage data available'" >> tox_pr.ini
+          # Add coverage report command
+          echo "    coverage combine" >> tox_pr.ini
+          echo "    coverage report" >> tox_pr.ini
           
           # Run tox with the custom configuration
           echo "Running tox with custom PR configuration..."
           cat tox_pr.ini
-          tox -c tox_pr.ini || true  # Don't fail the build if tox fails
+          tox -c tox_pr.ini
 
   summary:
     needs: [check_changes, lint]
