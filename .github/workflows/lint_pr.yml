@@ -180,43 +180,79 @@ jobs:
           echo "allowlist_externals =" >> tox_pr.ini
           echo "    pytest" >> tox_pr.ini
           echo "    coverage" >> tox_pr.ini
+          echo "    python" >> tox_pr.ini
           echo "commands =" >> tox_pr.ini
           
-          # For tox, let's focus on integration tests and coverage only
-          # to avoid duplicating what individual matrix jobs are doing
+          # Check if we have any implementation files that changed
+          pattern_files=0
+          test_files=0
           
-          # Always run a baseline test with coverage
-          echo "    pytest -xvs --cov=patterns tests/ --cov-report=term-missing" >> tox_pr.ini
+          for file in $changed_files; do
+            if [[ $file == patterns/* ]]; then
+              pattern_files=1
+            elif [[ $file == tests/* ]]; then
+              test_files=1
+            fi
+          done
+          
+          # Only run targeted tests, no baseline
+          echo "    # Run specific tests for changed files" >> tox_pr.ini
+          
+          has_tests=false
           
           # Add coverage-focused test commands
-          echo "    # Run specific tests for changed files" >> tox_pr.ini
           for file in $changed_files; do
             if [[ $file == *.py ]]; then
               # Run coverage tests for implementation files
               if [[ $file == patterns/* ]]; then
                 module_name=$(basename $file .py)
-                pattern_dir=$(dirname $file | cut -d'/' -f2)
+                
+                # Get the pattern type (behavioral, structural, etc.)
+                if [[ $file == patterns/behavioral/* ]]; then
+                  pattern_dir="behavioral"
+                elif [[ $file == patterns/creational/* ]]; then
+                  pattern_dir="creational"  
+                elif [[ $file == patterns/structural/* ]]; then
+                  pattern_dir="structural"
+                elif [[ $file == patterns/fundamental/* ]]; then
+                  pattern_dir="fundamental"
+                elif [[ $file == patterns/other/* ]]; then
+                  pattern_dir="other"
+                else
+                  pattern_dir=""
+                fi
+                
                 echo "    # Testing $file" >> tox_pr.ini
                 
-                # Run appropriate tests for this module
-                echo "    python -c \"import os.path; test_path='tests/${pattern_dir}/test_${module_name}.py'; print(f'Test file {test_path} exists: {os.path.exists(test_path)}')\"" >> tox_pr.ini
-                echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\"" >> tox_pr.ini
+                # Check if specific test exists
+                if [ -n "$pattern_dir" ]; then
+                  test_path="tests/${pattern_dir}/test_${module_name}.py"
+                  echo "    python -c \"import os.path; test_path='${test_path}'; exists=os.path.exists(test_path); print(f'Test file {test_path} exists: {exists}'); exit(0 if exists else 1)\" && pytest -xvs --cov=patterns --cov-append ${test_path}" >> tox_pr.ini || true
+                  
+                  # Also try to find any test that might include this module
+                  echo "    pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\" --no-header" >> tox_pr.ini
+                fi
+                
+                # Run doctests for the file
+                echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
+                
+                has_tests=true
               fi
               
               # Run test files directly if modified
               if [[ $file == tests/* ]]; then
                 echo "    pytest -xvs --cov=patterns --cov-append $file" >> tox_pr.ini
+                has_tests=true
               fi
             fi
           done
           
-          # Run doctests on pattern files
-          echo "    # Run doctests" >> tox_pr.ini
-          for file in $changed_files; do
-            if [[ $file == patterns/*.py ]]; then
-              echo "    pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
-            fi
-          done
+          # If we didn't find any specific tests to run, mention it
+          if [ "$has_tests" = false ]; then
+            echo "    python -c \"print('No specific tests found for changed files. Consider adding tests.')\"" >> tox_pr.ini
+            # Add a minimal test to avoid failure
+            echo "    pytest -xk \"not integration\" --no-header" >> tox_pr.ini
+          fi
           
           # Add coverage report command
           echo "    coverage combine" >> tox_pr.ini
@@ -224,7 +260,9 @@ jobs:
           
           # Run tox with the custom configuration
           echo "Running tox with custom PR configuration..."
+          echo "======================== TOX CONFIG ========================"
           cat tox_pr.ini
+          echo "==========================================================="
           tox -c tox_pr.ini
 
   summary:
