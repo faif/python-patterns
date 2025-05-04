@@ -21,7 +21,7 @@ class AbstractExpert(ABC):
 
     @property
     @abstractmethod
-    def is_eager_to_contribute(self) -> bool:
+    def is_eager_to_contribute(self) -> int:
         raise NotImplementedError("Must provide implementation in subclass.")
 
     @abstractmethod
@@ -32,7 +32,7 @@ class AbstractExpert(ABC):
 class Blackboard:
     """The blackboard system that holds the common state."""
     def __init__(self) -> None:
-        self.experts: list = [AbstractExpert]   
+        self.experts: list = []
         self.common_state = {
             "problems": 0,
             "suggestions": 0,
