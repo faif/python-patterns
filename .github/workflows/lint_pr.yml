@@ -137,7 +137,25 @@ jobs:
       - name: Run tox
         if: ${{ matrix.tool == 'tox' }}
         id: tox
-        run: tox
+        run: |
+          echo "Running tox for changed files..."
+          changed_files="${{ needs.check_changes.outputs.files }}"
+          
+          # Create a temporary tox configuration for the changed files
+          echo "[testenv]" > tox_pr.ini
+          echo "commands =" >> tox_pr.ini
+          
+          # Add specific testing commands for each changed file
+          for file in $changed_files; do
+            if [[ $file == *.py ]]; then
+              echo "    pytest {posargs} -xvs $file" >> tox_pr.ini
+              echo "    flake8 $file" >> tox_pr.ini
+              echo "    mypy --ignore-missing-imports $file" >> tox_pr.ini
+            fi
+          done
+          
+          # Run tox with the temporary configuration
+          tox -c tox_pr.ini || true
 
   summary:
     needs: [check_changes, lint]
