@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "patterns"
+description = "A collection of design patterns and idioms in Python."
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "pytest-randomly", "flake8", "mypy", "coverage"]
+
+[tool.setuptools]
+packages = ["patterns"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::Warning:.*test class 'TestRunner'.*"
+]
+# Adding settings from tox.ini for pytest
+testpaths = ["tests", "patterns"]
+python_files = ["test_*.py", "*_test.py"]
+doctest_modules = ["patterns"]
+randomly_seed = 1234
+log_level = "INFO"
+
+[tool.coverage.run]
+branch = true
+source = ["patterns"]
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    "def __repr__",
+    "if self\\.debug",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "@(abc\\.)?abstractmethod"
+]
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 120
+ignore = ["E266", "E731", "W503"]
+exclude = ["venv*"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py312,cov-report
+skip_missing_interpreters = true
+usedevelop = true
+
+[testenv]
+setenv =
+    COVERAGE_FILE = .coverage.{envname}
+deps =
+    -r requirements-dev.txt
+commands =
+    flake8 --exclude="venv/,.tox/" patterns/
+    pytest --randomly-seed=1234 --doctest-modules patterns/
+    pytest -s -vv --cov=patterns/ --log-level=INFO tests/
+
+[testenv:cov-report]
+setenv =
+    COVERAGE_FILE = .coverage
+deps = coverage
+commands =
+    coverage combine
+    coverage report
+"""
