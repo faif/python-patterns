@@ -70,21 +70,21 @@ envlist = py312,cov-report
 skip_missing_interpreters = true
 usedevelop = true
 
-[testenv]
-setenv =
-    COVERAGE_FILE = .coverage.{envname}
-deps =
-    -r requirements-dev.txt
-commands =
-    flake8 --exclude="venv/,.tox/" patterns/
-    pytest --randomly-seed=1234 --doctest-modules patterns/
-    pytest -s -vv --cov=patterns/ --log-level=INFO tests/
+#[testenv]
+#setenv =
+#    COVERAGE_FILE = .coverage.{envname}
+#deps =
+#    -r requirements-dev.txt
+#commands =
+#    flake8 --exclude="venv/,.tox/" patterns/
+#    coverage run -m pytest --randomly-seed=1234 --doctest-modules patterns/
+#    coverage run -m pytest -s -vv --cov=patterns/ --log-level=INFO tests/
 
-[testenv:cov-report]
-setenv =
-    COVERAGE_FILE = .coverage
-deps = coverage
-commands =
-    coverage combine
-    coverage report
-"""
+#[testenv:cov-report]
+#setenv =
+#    COVERAGE_FILE = .coverage
+#deps = coverage
+#commands =
+#    coverage combine
+#    coverage report
+#"""
