@@ -30,7 +30,9 @@ filterwarnings = [
 # Adding settings from tox.ini for pytest
 testpaths = ["tests", "patterns"]
 python_files = ["test_*.py", "*_test.py"]
-doctest_modules = ["patterns"]
+# Enable doctest discovery in patterns directory
+addopts = "--doctest-modules"
+doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE"]
 randomly_seed = 1234
 log_level = "INFO"
 
