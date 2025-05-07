@@ -6,12 +6,13 @@ Separates data in GUIs from the ways it is presented, and accepted.
 from abc import ABC, abstractmethod
 from inspect import signature
 from sys import argv
+from typing import Any
 
 
 class Model(ABC):
     """The Model is the data layer of the application."""
     @abstractmethod
-    def __iter__(self):
+    def __iter__(self) -> Any:
         pass
 
     @abstractmethod
@@ -43,7 +44,7 @@ class ProductModel(Model):
 
     item_type = "product"
 
-    def __iter__(self):
+    def __iter__(self) -> Any:
         yield from self.products
 
     def get(self, product: str) -> dict:
@@ -56,7 +57,7 @@ class ProductModel(Model):
 class View(ABC):
     """The View is the presentation layer of the application."""
     @abstractmethod
-    def show_item_list(self, item_type: str, item_list: dict) -> None:
+    def show_item_list(self, item_type: str, item_list: list) -> None:
         pass
 
     @abstractmethod
@@ -72,7 +73,7 @@ class View(ABC):
 
 class ConsoleView(View):
     """The View is the presentation layer of the application."""
-    def show_item_list(self, item_type: str, item_list: dict) -> None:
+    def show_item_list(self, item_type: str, item_list: list) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
@@ -112,13 +113,12 @@ class Controller:
         Show information about a {item_type} item.
         :param str item_name: the name of the {item_type} item to show information about
         """
+        item_type: str = self.model.item_type
         try:
-            item_info: str = self.model.get(item_name)
+            item_info: dict = self.model.get(item_name)
         except Exception:
-            item_type: str = self.model.item_type
             self.view.item_not_found(item_type, item_name)
         else:
-            item_type: str = self.model.item_type
             self.view.show_item_information(item_type, item_name, item_info)
 
 
@@ -127,7 +127,12 @@ class Router:
     def __init__(self):
         self.routes = {}
 
-    def register(self, path: str, controller_class: Controller, model_class: Model, view_class: View) -> None:
+    def register(
+            self,
+            path: str,
+            controller_class: type[Controller],
+            model_class: type[Model],
+            view_class: type[View]) -> None:
         model_instance: Model = model_class()
         view_instance: View = view_class()
         self.routes[path] = controller_class(model_instance, view_instance)
