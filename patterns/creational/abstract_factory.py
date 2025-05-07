@@ -90,6 +90,9 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    animals = [Dog, Cat]
+    random_animal: Type[Pet] = random.choice(animals)
+
     shop = PetShop(random_animal)
     import doctest
 

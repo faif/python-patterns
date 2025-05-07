@@ -1,13 +1,11 @@
 os: linux
-dist: focal
+dist: noble
 language: python
 
 jobs:
   include:
-    - python: "3.8"
-      env: TOXENV=py38
-    - python: "3.9"
-      env: TOXENV=py39
+    - python: "3.12"
+      env: TOXENV=py312
 
 cache:
   - pip

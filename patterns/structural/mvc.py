@@ -9,28 +9,30 @@ from sys import argv
 
 
 class Model(ABC):
+    """The Model is the data layer of the application."""
     @abstractmethod
     def __iter__(self):
         pass
 
     @abstractmethod
-    def get(self, item):
+    def get(self, item: str) -> dict:
         """Returns an object with a .items() call method
         that iterates over key,value pairs of its information."""
         pass
 
     @property
     @abstractmethod
-    def item_type(self):
+    def item_type(self) -> str:
         pass
 
 
 class ProductModel(Model):
+    """The Model is the data layer of the application."""
     class Price(float):
         """A polymorphic way to pass a float with a particular
         __str__ functionality."""
 
-        def __str__(self):
+        def __str__(self) -> str:
             return f"{self:.2f}"
 
     products = {
@@ -44,7 +46,7 @@ class ProductModel(Model):
     def __iter__(self):
         yield from self.products
 
-    def get(self, product):
+    def get(self, product: str) -> dict:
         try:
             return self.products[product]
         except KeyError as e:
@@ -52,33 +54,37 @@ class ProductModel(Model):
 
 
 class View(ABC):
+    """The View is the presentation layer of the application."""
     @abstractmethod
-    def show_item_list(self, item_type, item_list):
+    def show_item_list(self, item_type: str, item_list: dict) -> None:
         pass
 
     @abstractmethod
-    def show_item_information(self, item_type, item_name, item_info):
+    def show_item_information(self, item_type: str, item_name: str, item_info: dict) -> None:
         """Will look for item information by iterating over key,value pairs
         yielded by item_info.items()"""
         pass
 
     @abstractmethod
-    def item_not_found(self, item_type, item_name):
+    def item_not_found(self, item_type: str, item_name: str) -> None:
         pass
 
 
 class ConsoleView(View):
-    def show_item_list(self, item_type, item_list):
+    """The View is the presentation layer of the application."""
+    def show_item_list(self, item_type: str, item_list: dict) -> None:
         print(item_type.upper() + " LIST:")
         for item in item_list:
             print(item)
         print("")
 
     @staticmethod
-    def capitalizer(string):
+    def capitalizer(string: str) -> str:
+        """Capitalizes the first letter of a string and lowercases the rest."""
         return string[0].upper() + string[1:].lower()
 
-    def show_item_information(self, item_type, item_name, item_info):
+    def show_item_information(self, item_type: str, item_name: str, item_info: dict) -> None:
+        """Will look for item information by iterating over key,value pairs"""
         print(item_type.upper() + " INFORMATION:")
         printout = "Name: %s" % item_name
         for key, value in item_info.items():
@@ -86,50 +92,52 @@ class ConsoleView(View):
         printout += "\n"
         print(printout)
 
-    def item_not_found(self, item_type, item_name):
+    def item_not_found(self, item_type: str, item_name: str) -> None:
         print(f'That {item_type} "{item_name}" does not exist in the records')
 
 
 class Controller:
-    def __init__(self, model, view):
-        self.model = model
-        self.view = view
+    """The Controller is the intermediary between the Model and the View."""
+    def __init__(self, model_class: Model, view_class: View) -> None:
+        self.model: Model = model_class
+        self.view: View = view_class
 
-    def show_items(self):
+    def show_items(self) -> None:
         items = list(self.model)
         item_type = self.model.item_type
         self.view.show_item_list(item_type, items)
 
-    def show_item_information(self, item_name):
+    def show_item_information(self, item_name: str) -> None:
         """
         Show information about a {item_type} item.
         :param str item_name: the name of the {item_type} item to show information about
         """
         try:
-            item_info = self.model.get(item_name)
+            item_info: str = self.model.get(item_name)
         except Exception:
-            item_type = self.model.item_type
+            item_type: str = self.model.item_type
             self.view.item_not_found(item_type, item_name)
         else:
-            item_type = self.model.item_type
+            item_type: str = self.model.item_type
             self.view.show_item_information(item_type, item_name, item_info)
 
 
 class Router:
+    """The Router is the entry point of the application."""
     def __init__(self):
         self.routes = {}
 
-    def register(self, path, controller, model, view):
-        model = model()
-        view = view()
-        self.routes[path] = controller(model, view)
+    def register(self, path: str, controller_class: Controller, model_class: Model, view_class: View) -> None:
+        model_instance: Model = model_class()
+        view_instance: View = view_class()
+        self.routes[path] = controller_class(model_instance, view_instance)
 
-    def resolve(self, path):
+    def resolve(self, path: str) -> Controller:
         if self.routes.get(path):
-            controller = self.routes[path]
+            controller: Controller = self.routes[path]
             return controller
         else:
-            return None
+            raise KeyError(f"No controller registered for path '{path}'")
 
 
 def main():
@@ -168,13 +176,13 @@ def main():
 if __name__ == "__main__":
     router = Router()
     router.register("products", Controller, ProductModel, ConsoleView)
-    controller = router.resolve(argv[1])
+    controller: Controller = router.resolve(argv[1])
 
-    command = str(argv[2]) if len(argv) > 2 else None
-    args = ' '.join(map(str, argv[3:])) if len(argv) > 3 else None
+    action: str = str(argv[2]) if len(argv) > 2 else ""
+    args: str = ' '.join(map(str, argv[3:])) if len(argv) > 3 else ""
 
-    if hasattr(controller, command):
-        command = getattr(controller, command)
+    if hasattr(controller, action):
+        command = getattr(controller, action)
         sig = signature(command)
 
         if len(sig.parameters) > 0:
@@ -185,7 +193,7 @@ if __name__ == "__main__":
         else:
             command()
     else:
-        print(f"Command {command} not found in the controller.")
+        print(f"Command {action} not found in the controller.")
 
     import doctest
     doctest.testmod()

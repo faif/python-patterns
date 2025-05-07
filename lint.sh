@@ -13,4 +13,4 @@ tox
 mypy --ignore-missing-imports "${source_dir}" || true
 pytest "${source_dir}"
 pytest --doctest-modules "${source_dir}" || true
-shopt -s globstar && pyupgrade --py37-plus ${source_dir}/*.py
+shopt -s globstar && pyupgrade --py312-plus ${source_dir}/*.py
