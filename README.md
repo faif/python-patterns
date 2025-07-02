@@ -2,6 +2,7 @@ python-patterns
 ===============
 
 A collection of design patterns and idioms in Python.
+My first time to work on an open_source project in Python building on Python patterns.
 
 Remember that each pattern has its own trade-offs. And you need to pay attention more to why you're choosing a certain pattern than to how to implement it.
 
