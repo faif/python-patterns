@@ -18,7 +18,7 @@ dependencies= [
 ]
 
 maintainers=[
-    { name="faif", email="" }
+    { name="faif" }
 ]
 
 [project.urls]
@@ -30,13 +30,13 @@ Contributors = "https://github.com/faif/python-patterns/graphs/contributors"
 [project.optional-dependencies]
 dev = [
     "mypy",
-    "pipx>=1.7.1"
+    "pipx>=1.7.1",
     "pyupgrade",
     "pytest>=6.2.0",
     "pytest-cov>=2.11.0",
     "pytest-randomly>=3.1.0",
     "black>=25.1.0",
-    "build>=1.2.2"
+    "build>=1.2.2",
     "isort>=5.7.0",
     "flake8>=7.1.0",
     "tox>=4.25.0"
