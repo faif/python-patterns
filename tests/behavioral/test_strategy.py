@@ -1,6 +1,6 @@
 import pytest
 
-from patterns.behavioral.strategy import Order, ten_percent_discount, on_sale_discount
+from patterns.behavioral.strategy import Order, on_sale_discount, ten_percent_discount
 
 
 @pytest.fixture
