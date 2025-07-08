@@ -7,7 +7,7 @@ name = "python-patterns"
 description = "A collection of design patterns and idioms in Python."
 version = "0.1.0"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
