@@ -1,24 +1,46 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "patterns"
+name = "python-patterns"
 description = "A collection of design patterns and idioms in Python."
 version = "0.1.0"
 readme = "README.md"
-requires-python = ">=3.9"
-license = {text = "MIT"}
+requires-python = ">=3.10"
 classifiers = [
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
+dependencies= [
+]
+
+maintainers=[
+    { name="faif" }
+]
+
+[project.urls]
+Homepage = "https://github.com/faif/python-patterns"
+Repository = "https://github.com/faif/python-patterns"
+"Bug Tracker" = "https://github.com/faif/python-patterns/issues"
+Contributors = "https://github.com/faif/python-patterns/graphs/contributors"
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "pytest-randomly", "flake8", "mypy", "coverage"]
+dev = [
+    "mypy",
+    "pipx>=1.7.1",
+    "pyupgrade",
+    "pytest>=6.2.0",
+    "pytest-cov>=2.11.0",
+    "pytest-randomly>=3.1.0",
+    "black>=25.1.0",
+    "build>=1.2.2",
+    "isort>=5.7.0",
+    "flake8>=7.1.0",
+    "tox>=4.25.0"
+]
 
 [tool.setuptools]
 packages = ["patterns"]
