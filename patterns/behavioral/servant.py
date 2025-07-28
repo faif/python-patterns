@@ -19,7 +19,9 @@ This pattern is characterized by the following:
 References:
 - https://en.wikipedia.org/wiki/Servant_(design_pattern)
 """
+
 import math
+
 
 class Position:
     """Representation of a 2D position with x and y coordinates."""
@@ -28,12 +30,14 @@ class Position:
         self.x = x
         self.y = y
 
+
 class Circle:
     """Representation of a circle defined by a radius and a position."""
 
     def __init__(self, radius, position: Position):
         self.radius = radius
         self.position = position
+
 
 class Rectangle:
     """Representation of a rectangle defined by width, height, and a position."""
@@ -65,7 +69,7 @@ class GeometryTools:
             ValueError: If the shape type is unsupported.
         """
         if isinstance(shape, Circle):
-            return math.pi * shape.radius ** 2
+            return math.pi * shape.radius**2
         elif isinstance(shape, Rectangle):
             return shape.width * shape.height
         else:
