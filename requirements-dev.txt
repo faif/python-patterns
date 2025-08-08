@@ -1,0 +1,8 @@
+flake8
+black
+isort
+pytest
+pytest-randomly
+mypy
+pyupgrade
+tox
