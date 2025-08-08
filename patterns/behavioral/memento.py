@@ -47,6 +47,7 @@ def Transactional(method):
 
     :param method: The function to be decorated.
     """
+
     def transaction(obj, *args, **kwargs):
         state = memento(obj)
         try:
@@ -54,7 +55,9 @@ def Transactional(method):
         except Exception as e:
             state()
             raise e
+
     return transaction
+
 
 class NumObj:
     def __init__(self, value):
