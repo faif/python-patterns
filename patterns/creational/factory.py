@@ -40,7 +40,16 @@ class GreekLocalizer:
         """We'll punt if we don't have a translation"""
         return self.translations.get(msg, msg)
 
+class PersianLocalizer:
+    """A simple localizer for Persian"""
 
+    def __init__(self) -> None:
+        self.translations = {"car":"ماشین","bus":"اتوبوس"}
+    
+    def localize(self, msg: str) -> str:
+        """We'll punt if we don't have a translation"""
+        return self.translations.get(msg, msg)
+        
 class EnglishLocalizer:
     """Simply echoes the message"""
 
@@ -53,6 +62,7 @@ def get_localizer(language: str = "English") -> Localizer:
     localizers: Dict[str, Type[Localizer]] = {
         "English": EnglishLocalizer,
         "Greek": GreekLocalizer,
+        "Persian": PersianLocalizer
     }
 
     return localizers[language]()
