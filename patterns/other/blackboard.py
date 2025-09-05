@@ -15,6 +15,7 @@ import random
 
 class AbstractExpert(ABC):
     """Abstract class for experts in the blackboard system."""
+
     @abstractmethod
     def __init__(self, blackboard) -> None:
         self.blackboard = blackboard
@@ -31,6 +32,7 @@ class AbstractExpert(ABC):
 
 class Blackboard:
     """The blackboard system that holds the common state."""
+
     def __init__(self) -> None:
         self.experts: list = []
         self.common_state = {
@@ -46,6 +48,7 @@ class Blackboard:
 
 class Controller:
     """The controller that manages the blackboard system."""
+
     def __init__(self, blackboard: Blackboard) -> None:
         self.blackboard = blackboard
 
@@ -63,6 +66,7 @@ class Controller:
 
 class Student(AbstractExpert):
     """Concrete class for a student expert."""
+
     def __init__(self, blackboard) -> None:
         super().__init__(blackboard)
 
@@ -79,6 +83,7 @@ class Student(AbstractExpert):
 
 class Scientist(AbstractExpert):
     """Concrete class for a scientist expert."""
+
     def __init__(self, blackboard) -> None:
         super().__init__(blackboard)
 

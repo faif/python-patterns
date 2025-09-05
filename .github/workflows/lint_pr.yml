@@ -9,8 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # To get all history for git diff commands
-          
+          fetch-depth: 0 # To get all history for git diff commands
+
       - name: Get changed Python files
         id: changed-files
         run: |
@@ -31,7 +31,7 @@ jobs:
               CHANGED_FILES="$CHANGED_FILES $SETUP_PY_CHANGED"
             fi
           fi
-          
+
           # Check if any Python files were changed and set the output accordingly
           if [ -z "$CHANGED_FILES" ]; then
             echo "No Python files changed"
@@ -40,9 +40,11 @@ jobs:
           else
             echo "Changed Python files: $CHANGED_FILES"
             echo "has_python_changes=true" >> $GITHUB_OUTPUT
-            echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+            # Use proper delimiter formatting for GitHub Actions
+            FILES_SINGLE_LINE=$(echo "$CHANGED_FILES" | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+            echo "files=$FILES_SINGLE_LINE" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: PR information
         if: ${{ github.event_name == 'pull_request' }}
         run: |
@@ -68,27 +70,27 @@ jobs:
             echo "No Python files were changed. Skipping linting."
             exit 0
           fi
-      
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          
+
       - uses: actions/setup-python@v4
         with:
           python-version: 3.12
-          
+
       - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements-dev.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-            
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
-      
+
       # Flake8 linting
       - name: Lint with flake8
         if: ${{ matrix.tool == 'flake8' }}
@@ -96,7 +98,7 @@ jobs:
         run: |
           echo "Linting files: ${{ needs.check_changes.outputs.files }}"
           flake8 ${{ needs.check_changes.outputs.files }} --count --show-source --statistics
-      
+
       # Format checking with isort and black
       - name: Format check
         if: ${{ matrix.tool == 'format' }}
@@ -106,7 +108,7 @@ jobs:
           isort --profile black --check ${{ needs.check_changes.outputs.files }}
           echo "Checking format with black for: ${{ needs.check_changes.outputs.files }}"
           black --check ${{ needs.check_changes.outputs.files }}
-      
+
       # Type checking with mypy
       - name: Type check with mypy
         if: ${{ matrix.tool == 'mypy' }}
@@ -114,7 +116,7 @@ jobs:
         run: |
           echo "Type checking: ${{ needs.check_changes.outputs.files }}"
           mypy --ignore-missing-imports ${{ needs.check_changes.outputs.files }}
-      
+
       # Run tests with pytest
       - name: Run tests with pytest
         if: ${{ matrix.tool == 'pytest' }}
@@ -122,11 +124,11 @@ jobs:
         run: |
           echo "Running pytest discovery..."
           python -m pytest --collect-only -v
-          
+
           # First run any test files that correspond to changed files
           echo "Running tests for changed files..."
           changed_files="${{ needs.check_changes.outputs.files }}"
-          
+
           # Extract module paths from changed files
           modules=()
           for file in $changed_files; do
@@ -137,13 +139,13 @@ jobs:
               modules+=("$module_path")
             fi
           done
-          
+
           # Run tests for each module
           for module in "${modules[@]}"; do
             echo "Testing module: $module"
             python -m pytest -xvs tests/ -k "$module" || true
           done
-          
+
           # Then run doctests on the changed files
           echo "Running doctests for changed files..."
           for file in $changed_files; do
@@ -152,13 +154,13 @@ jobs:
               python -m pytest --doctest-modules -v $file || true
             fi
           done
-      
+
       # Check Python version compatibility
       - name: Check Python version compatibility
         if: ${{ matrix.tool == 'pyupgrade' }}
         id: pyupgrade
         run: pyupgrade --py312-plus ${{ needs.check_changes.outputs.files }}
-      
+
       # Run tox
       - name: Run tox
         if: ${{ matrix.tool == 'tox' }}
@@ -166,12 +168,12 @@ jobs:
         run: |
           echo "Running tox integration for changed files..."
           changed_files="${{ needs.check_changes.outputs.files }}"
-          
+
           # Create a temporary tox configuration that extends the original one
           echo "[tox]" > tox_pr.ini
           echo "envlist = py312" >> tox_pr.ini
           echo "skip_missing_interpreters = true" >> tox_pr.ini
-          
+
           echo "[testenv]" >> tox_pr.ini
           echo "setenv =" >> tox_pr.ini
           echo "    COVERAGE_FILE = .coverage.{envname}" >> tox_pr.ini
@@ -182,11 +184,11 @@ jobs:
           echo "    coverage" >> tox_pr.ini
           echo "    python" >> tox_pr.ini
           echo "commands =" >> tox_pr.ini
-          
+
           # Check if we have any implementation files that changed
           pattern_files=0
           test_files=0
-          
+
           for file in $changed_files; do
             if [[ $file == patterns/* ]]; then
               pattern_files=1
@@ -194,12 +196,12 @@ jobs:
               test_files=1
             fi
           done
-          
+
           # Only run targeted tests, no baseline
           echo "    # Run specific tests for changed files" >> tox_pr.ini
-          
+
           has_tests=false
-          
+
           # Add coverage-focused test commands
           for file in $changed_files; do
             if [[ $file == *.py ]]; then
@@ -246,18 +248,18 @@ jobs:
               fi
             fi
           done
-          
+
           # If we didn't find any specific tests to run, mention it
           if [ "$has_tests" = false ]; then
             echo "    python -c \"print('No specific tests found for changed files. Consider adding tests.')\"" >> tox_pr.ini
             # Add a minimal test to avoid failure, but ensure it generates coverage data
             echo "    coverage run -m pytest -xvs --cov=patterns --cov-append -k \"not integration\" --no-header" >> tox_pr.ini
           fi
-          
+
           # Add coverage report command
           echo "    coverage combine" >> tox_pr.ini
           echo "    coverage report -m" >> tox_pr.ini
-          
+
           # Run tox with the custom configuration
           echo "Running tox with custom PR configuration..."
           echo "======================== TOX CONFIG ========================"
@@ -272,7 +274,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Summarize results
         run: |
           echo "## Pull Request Lint Results" >> $GITHUB_STEP_SUMMARY
