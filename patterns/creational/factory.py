@@ -26,8 +26,7 @@ from typing import Dict, Protocol, Type
 
 
 class Localizer(Protocol):
-    def localize(self, msg: str) -> str:
-        pass
+    def localize(self, msg: str) -> str: ...
 
 
 class GreekLocalizer:
