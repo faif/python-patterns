@@ -29,7 +29,6 @@ class TestPool(unittest.TestCase):
 
 
 class TestNaitivePool(unittest.TestCase):
-
     """def test_object(queue):
     queue_object = QueueObject(queue, True)
     print('Inside func: {}'.format(queue_object.object))"""

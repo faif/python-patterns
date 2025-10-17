@@ -1,7 +1,8 @@
 """
-A class that uses a different static function depending on a parameter passed in
-init. Note the use of a single dictionary instead of multiple conditions.
+A class that uses different static functions depending on a parameter passed
+during initialization. Uses a single dictionary instead of multiple conditions.
 """
+
 
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 
@@ -44,7 +45,8 @@ class Catalog:
 
 # Alternative implementation for different levels of methods
 class CatalogInstance:
-    """catalog of multiple methods that are executed depending on an init parameter
+    """catalog of multiple methods that are executed depending on an init
+    parameter
     """
 
     def __init__(self, param: str) -> None:
@@ -77,7 +79,8 @@ class CatalogInstance:
 
 
 class CatalogClass:
-    """catalog of multiple class methods that are executed depending on an init parameter
+    """catalog of multiple class methods that are executed depending on an init
+    parameter
     """
 
     x1 = "x1"
@@ -113,7 +116,8 @@ class CatalogClass:
 
 
 class CatalogStatic:
-    """catalog of multiple static methods that are executed depending on an init parameter
+    """catalog of multiple static methods that are executed depending on an init
+    parameter
     """
 
     def __init__(self, param: str) -> None:

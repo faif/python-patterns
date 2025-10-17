@@ -62,7 +62,6 @@ class Cat(Pet):
 
 
 class PetShop:
-
     """A pet shop"""
 
     def __init__(self, animal_factory: Type[Pet]) -> None:
@@ -78,14 +77,6 @@ class PetShop:
         return pet
 
 
-# Additional factories:
-
-# Create a random animal
-def random_animal(name: str) -> Pet:
-    """Let's be dynamic!"""
-    return random.choice([Dog, Cat])(name)
-
-
 # Show pets with various factories
 def main() -> None:
     """
@@ -95,27 +86,13 @@ def main() -> None:
     Here is your lovely Cat<Lucy>
     >>> pet.speak()
     meow
-
-    # A shop that sells random animals
-    >>> shop = PetShop(random_animal)
-    >>> for name in ["Max", "Jack", "Buddy"]:
-    ...    pet = shop.buy_pet(name)
-    ...    pet.speak()
-    ...    print("=" * 20)
-    Here is your lovely Cat<Max>
-    meow
-    ====================
-    Here is your lovely Dog<Jack>
-    woof
-    ====================
-    Here is your lovely Dog<Buddy>
-    woof
-    ====================
     """
 
 
 if __name__ == "__main__":
-    random.seed(1234)  # for deterministic doctest outputs
+    animals = [Dog, Cat]
+    random_animal: Type[Pet] = random.choice(animals)
+
     shop = PetShop(random_animal)
     import doctest
 

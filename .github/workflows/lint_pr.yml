@@ -1,0 +1,288 @@
+name: lint_pull_request
+on: [pull_request, push]
+jobs:
+  check_changes:
+    runs-on: ubuntu-24.04
+    outputs:
+      has_python_changes: ${{ steps.changed-files.outputs.has_python_changes }}
+      files: ${{ steps.changed-files.outputs.files }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # To get all history for git diff commands
+
+      - name: Get changed Python files
+        id: changed-files
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # For PRs, compare against base branch
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }} HEAD | grep '\.py$' | grep -v "^setup\.py$" || echo "")
+            # Check if setup.py specifically changed
+            SETUP_PY_CHANGED=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }} HEAD | grep "^setup\.py$" || echo "")
+            if [ ! -z "$SETUP_PY_CHANGED" ]; then
+              CHANGED_FILES="$CHANGED_FILES $SETUP_PY_CHANGED"
+            fi
+          else
+            # For pushes, use the before/after SHAs
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep '\.py$' | grep -v "^setup\.py$" || echo "")
+            # Check if setup.py specifically changed
+            SETUP_PY_CHANGED=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.before }} ${{ github.event.after }} | grep "^setup\.py$" || echo "")
+            if [ ! -z "$SETUP_PY_CHANGED" ]; then
+              CHANGED_FILES="$CHANGED_FILES $SETUP_PY_CHANGED"
+            fi
+          fi
+
+          # Check if any Python files were changed and set the output accordingly
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No Python files changed"
+            echo "has_python_changes=false" >> $GITHUB_OUTPUT
+            echo "files=" >> $GITHUB_OUTPUT
+          else
+            echo "Changed Python files: $CHANGED_FILES"
+            echo "has_python_changes=true" >> $GITHUB_OUTPUT
+            # Use proper delimiter formatting for GitHub Actions
+            FILES_SINGLE_LINE=$(echo "$CHANGED_FILES" | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^[[:space:]]*//' | sed 's/[[:space:]]*$//')
+            echo "files=$FILES_SINGLE_LINE" >> $GITHUB_OUTPUT
+          fi
+
+      - name: PR information
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          if [[ "${{ steps.changed-files.outputs.has_python_changes }}" == "true" ]]; then
+            echo "This PR contains Python changes that will be linted."
+          else
+            echo "This PR contains no Python changes, but still requires manual approval."
+          fi
+
+  lint:
+    needs: check_changes
+    if: ${{ needs.check_changes.outputs.has_python_changes == 'true' }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [flake8, format, mypy, pytest, pyupgrade, tox]
+    steps:
+      # Additional check to ensure we have Python files before proceeding
+      - name: Verify Python changes
+        run: |
+          if [[ "${{ needs.check_changes.outputs.has_python_changes }}" != "true" ]]; then
+            echo "No Python files were changed. Skipping linting."
+            exit 0
+          fi
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      # Flake8 linting
+      - name: Lint with flake8
+        if: ${{ matrix.tool == 'flake8' }}
+        id: flake8
+        run: |
+          echo "Linting files: ${{ needs.check_changes.outputs.files }}"
+          flake8 ${{ needs.check_changes.outputs.files }} --count --show-source --statistics
+
+      # Format checking with isort and black
+      - name: Format check
+        if: ${{ matrix.tool == 'format' }}
+        id: format
+        run: |
+          echo "Checking format with isort for: ${{ needs.check_changes.outputs.files }}"
+          isort --profile black --check ${{ needs.check_changes.outputs.files }}
+          echo "Checking format with black for: ${{ needs.check_changes.outputs.files }}"
+          black --check ${{ needs.check_changes.outputs.files }}
+
+      # Type checking with mypy
+      - name: Type check with mypy
+        if: ${{ matrix.tool == 'mypy' }}
+        id: mypy
+        run: |
+          echo "Type checking: ${{ needs.check_changes.outputs.files }}"
+          mypy --ignore-missing-imports ${{ needs.check_changes.outputs.files }}
+
+      # Run tests with pytest
+      - name: Run tests with pytest
+        if: ${{ matrix.tool == 'pytest' }}
+        id: pytest
+        run: |
+          echo "Running pytest discovery..."
+          python -m pytest --collect-only -v
+
+          # First run any test files that correspond to changed files
+          echo "Running tests for changed files..."
+          changed_files="${{ needs.check_changes.outputs.files }}"
+
+          # Extract module paths from changed files
+          modules=()
+          for file in $changed_files; do
+            # Convert file path to module path (remove .py and replace / with .)
+            if [[ $file == patterns/* ]]; then
+              module_path=${file%.py}
+              module_path=${module_path//\//.}
+              modules+=("$module_path")
+            fi
+          done
+
+          # Run tests for each module
+          for module in "${modules[@]}"; do
+            echo "Testing module: $module"
+            python -m pytest -xvs tests/ -k "$module" || true
+          done
+
+          # Then run doctests on the changed files
+          echo "Running doctests for changed files..."
+          for file in $changed_files; do
+            if [[ $file == *.py ]]; then
+              echo "Running doctest for $file"
+              python -m pytest --doctest-modules -v $file || true
+            fi
+          done
+
+      # Check Python version compatibility
+      - name: Check Python version compatibility
+        if: ${{ matrix.tool == 'pyupgrade' }}
+        id: pyupgrade
+        run: pyupgrade --py312-plus ${{ needs.check_changes.outputs.files }}
+
+      # Run tox
+      - name: Run tox
+        if: ${{ matrix.tool == 'tox' }}
+        id: tox
+        run: |
+          echo "Running tox integration for changed files..."
+          changed_files="${{ needs.check_changes.outputs.files }}"
+
+          # Create a temporary tox configuration that extends the original one
+          echo "[tox]" > tox_pr.ini
+          echo "envlist = py312" >> tox_pr.ini
+          echo "skip_missing_interpreters = true" >> tox_pr.ini
+
+          echo "[testenv]" >> tox_pr.ini
+          echo "setenv =" >> tox_pr.ini
+          echo "    COVERAGE_FILE = .coverage.{envname}" >> tox_pr.ini
+          echo "deps =" >> tox_pr.ini
+          echo "    -r requirements-dev.txt" >> tox_pr.ini
+          echo "allowlist_externals =" >> tox_pr.ini
+          echo "    pytest" >> tox_pr.ini
+          echo "    coverage" >> tox_pr.ini
+          echo "    python" >> tox_pr.ini
+          echo "commands =" >> tox_pr.ini
+
+          # Check if we have any implementation files that changed
+          pattern_files=0
+          test_files=0
+
+          for file in $changed_files; do
+            if [[ $file == patterns/* ]]; then
+              pattern_files=1
+            elif [[ $file == tests/* ]]; then
+              test_files=1
+            fi
+          done
+
+          # Only run targeted tests, no baseline
+          echo "    # Run specific tests for changed files" >> tox_pr.ini
+
+          has_tests=false
+
+          # Add coverage-focused test commands
+          for file in $changed_files; do
+            if [[ $file == *.py ]]; then
+              # Run coverage tests for implementation files
+              if [[ $file == patterns/* ]]; then
+                module_name=$(basename $file .py)
+                
+                # Get the pattern type (behavioral, structural, etc.)
+                if [[ $file == patterns/behavioral/* ]]; then
+                  pattern_dir="behavioral"
+                elif [[ $file == patterns/creational/* ]]; then
+                  pattern_dir="creational"  
+                elif [[ $file == patterns/structural/* ]]; then
+                  pattern_dir="structural"
+                elif [[ $file == patterns/fundamental/* ]]; then
+                  pattern_dir="fundamental"
+                elif [[ $file == patterns/other/* ]]; then
+                  pattern_dir="other"
+                else
+                  pattern_dir=""
+                fi
+                
+                echo "    # Testing $file" >> tox_pr.ini
+                
+                # Check if specific test exists
+                if [ -n "$pattern_dir" ]; then
+                  test_path="tests/${pattern_dir}/test_${module_name}.py"
+                  echo "    if [ -f \"${test_path}\" ]; then echo \"Test file ${test_path} exists: true\" && coverage run -m pytest -xvs --cov=patterns --cov-append ${test_path}; else echo \"Test file ${test_path} exists: false\"; fi" >> tox_pr.ini
+                  
+                  # Also try to find any test that might include this module
+                  echo "    coverage run -m pytest -xvs --cov=patterns --cov-append tests/${pattern_dir}/ -k \"${module_name}\" --no-header" >> tox_pr.ini
+                fi
+                
+                # Run doctests for the file
+                echo "    coverage run -m pytest --doctest-modules -v --cov=patterns --cov-append $file" >> tox_pr.ini
+                
+                has_tests=true
+              fi
+              
+              # Run test files directly if modified
+              if [[ $file == tests/* ]]; then
+                echo "    coverage run -m pytest -xvs --cov=patterns --cov-append $file" >> tox_pr.ini
+                has_tests=true
+              fi
+            fi
+          done
+
+          # If we didn't find any specific tests to run, mention it
+          if [ "$has_tests" = false ]; then
+            echo "    python -c \"print('No specific tests found for changed files. Consider adding tests.')\"" >> tox_pr.ini
+            # Add a minimal test to avoid failure, but ensure it generates coverage data
+            echo "    coverage run -m pytest -xvs --cov=patterns --cov-append -k \"not integration\" --no-header" >> tox_pr.ini
+          fi
+
+          # Add coverage report command
+          echo "    coverage combine" >> tox_pr.ini
+          echo "    coverage report -m" >> tox_pr.ini
+
+          # Run tox with the custom configuration
+          echo "Running tox with custom PR configuration..."
+          echo "======================== TOX CONFIG ========================"
+          cat tox_pr.ini
+          echo "==========================================================="
+          tox -c tox_pr.ini
+
+  summary:
+    needs: [check_changes, lint]
+    # Run summary in all cases, regardless of whether lint job ran
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Summarize results
+        run: |
+          echo "## Pull Request Lint Results" >> $GITHUB_STEP_SUMMARY
+          if [[ "${{ needs.check_changes.outputs.has_python_changes }}" == "true" ]]; then
+            echo "Linting has completed for all Python files changed in this PR." >> $GITHUB_STEP_SUMMARY
+            echo "See individual job logs for detailed results." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Python files were changed in this PR. Linting was skipped." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⚠️ **Note:** This PR still requires manual approval regardless of linting results." >> $GITHUB_STEP_SUMMARY

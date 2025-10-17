@@ -1,5 +1,4 @@
 class GraphSearch:
-
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/
 
