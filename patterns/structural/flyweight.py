@@ -36,7 +36,7 @@ class Card:
     # when there are no other references to it.
     _pool: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
 
-    def __new__(cls, value, suit):
+    def __new__(cls, value: str, suit: str):
         # If the object exists in the pool - just return it
         obj = cls._pool.get(value + suit)
         # otherwise - create new one (and add it to the pool)
@@ -52,7 +52,7 @@ class Card:
     # def __init__(self, value, suit):
     #     self.value, self.suit = value, suit
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<Card: {self.value}{self.suit}>"
 
 
