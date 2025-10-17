@@ -9,34 +9,59 @@ Django Signals: https://docs.djangoproject.com/en/3.1/topics/signals/
 Flask Signals: https://flask.palletsprojects.com/en/1.1.x/signals/
 """
 
+# observer.py
+
 from __future__ import annotations
+from typing import List
 
-from contextlib import suppress
-from typing import Protocol
-
-
-# define a generic observer type
-class Observer(Protocol):
+class Observer:
     def update(self, subject: Subject) -> None:
+        """
+        Receive update from the subject.
+
+        Args:
+            subject (Subject): The subject instance sending the update.
+        """
         pass
 
 
 class Subject:
+    _observers: List[Observer]
+
     def __init__(self) -> None:
-        self._observers: list[Observer] = []
+        """
+        Initialize the subject with an empty observer list.
+        """
+        self._observers = []
 
     def attach(self, observer: Observer) -> None:
+        """
+        Attach an observer to the subject.
+
+        Args:
+            observer (Observer): The observer instance to attach.
+        """
         if observer not in self._observers:
             self._observers.append(observer)
 
     def detach(self, observer: Observer) -> None:
-        with suppress(ValueError):
-            self._observers.remove(observer)
+        """
+        Detach an observer from the subject.
 
-    def notify(self, modifier: Observer | None = None) -> None:
+        Args:
+            observer (Observer): The observer instance to detach.
+        """
+        try:
+            self._observers.remove(observer)
+        except ValueError:
+            pass
+
+    def notify(self) -> None:
+        """
+        Notify all attached observers by calling their update method.
+        """
         for observer in self._observers:
-            if modifier != observer:
-                observer.update(self)
+            observer.update(self)
 
 
 class Data(Subject):
