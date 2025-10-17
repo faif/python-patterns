@@ -1,7 +1,8 @@
 """
-A class that uses different static function depending of a parameter passed in
-init. Note the use of a single dictionary instead of multiple conditions
+A class that uses different static functions depending on a parameter passed
+during initialization. Uses a single dictionary instead of multiple conditions.
 """
+
 
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 

@@ -1,4 +1,4 @@
-﻿flake8
+flake8
 black
 isort
 pytest
