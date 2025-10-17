@@ -1,15 +1,14 @@
 """
-A class that uses different static function depending of a parameter passed in
-init. Note the use of a single dictionary instead of multiple conditions
+A class that uses different static functions depending on a parameter passed
+during initialization. Uses a single dictionary instead of multiple conditions.
 """
+
 
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 
 
 class Catalog:
-    """catalog of multiple static methods that are executed depending on an init
-
-    parameter
+    """catalog of multiple static methods that are executed depending on an init parameter
     """
 
     def __init__(self, param: str) -> None:
@@ -28,26 +27,24 @@ class Catalog:
             raise ValueError(f"Invalid Value for Param: {param}")
 
     @staticmethod
-    def _static_method_1() -> None:
-        print("executed method 1!")
+    def _static_method_1() -> str:
+        return "executed method 1!"
 
     @staticmethod
-    def _static_method_2() -> None:
-        print("executed method 2!")
+    def _static_method_2() -> str:
+        return "executed method 2!"
 
-    def main_method(self) -> None:
+    def main_method(self) -> str:
         """will execute either _static_method_1 or _static_method_2
 
         depending on self.param value
         """
-        self._static_method_choices[self.param]()
+        return self._static_method_choices[self.param]()
 
 
 # Alternative implementation for different levels of methods
 class CatalogInstance:
-
     """catalog of multiple methods that are executed depending on an init
-
     parameter
     """
 
@@ -60,30 +57,28 @@ class CatalogInstance:
         else:
             raise ValueError(f"Invalid Value for Param: {param}")
 
-    def _instance_method_1(self) -> None:
-        print(f"Value {self.x1}")
+    def _instance_method_1(self) -> str:
+        return f"Value {self.x1}"
 
-    def _instance_method_2(self) -> None:
-        print(f"Value {self.x2}")
+    def _instance_method_2(self) -> str:
+        return f"Value {self.x2}"
 
     _instance_method_choices = {
         "param_value_1": _instance_method_1,
         "param_value_2": _instance_method_2,
     }
 
-    def main_method(self) -> None:
+    def main_method(self) -> str:
         """will execute either _instance_method_1 or _instance_method_2
 
         depending on self.param value
         """
-        self._instance_method_choices[self.param].__get__(self)()  # type: ignore
+        return self._instance_method_choices[self.param].__get__(self)()  # type: ignore
         # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
 class CatalogClass:
-
     """catalog of multiple class methods that are executed depending on an init
-
     parameter
     """
 
@@ -98,31 +93,29 @@ class CatalogClass:
             raise ValueError(f"Invalid Value for Param: {param}")
 
     @classmethod
-    def _class_method_1(cls) -> None:
-        print(f"Value {cls.x1}")
+    def _class_method_1(cls) -> str:
+        return f"Value {cls.x1}"
 
     @classmethod
-    def _class_method_2(cls) -> None:
-        print(f"Value {cls.x2}")
+    def _class_method_2(cls) -> str:
+        return f"Value {cls.x2}"
 
     _class_method_choices = {
         "param_value_1": _class_method_1,
         "param_value_2": _class_method_2,
     }
 
-    def main_method(self):
+    def main_method(self) -> str:
         """will execute either _class_method_1 or _class_method_2
 
         depending on self.param value
         """
-        self._class_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
+        return self._class_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
         # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
 class CatalogStatic:
-
     """catalog of multiple static methods that are executed depending on an init
-
     parameter
     """
 
@@ -134,25 +127,25 @@ class CatalogStatic:
             raise ValueError(f"Invalid Value for Param: {param}")
 
     @staticmethod
-    def _static_method_1() -> None:
-        print("executed method 1!")
+    def _static_method_1() -> str:
+        return "executed method 1!"
 
     @staticmethod
-    def _static_method_2() -> None:
-        print("executed method 2!")
+    def _static_method_2() -> str:
+        return "executed method 2!"
 
     _static_method_choices = {
         "param_value_1": _static_method_1,
         "param_value_2": _static_method_2,
     }
 
-    def main_method(self) -> None:
+    def main_method(self) -> str:
         """will execute either _static_method_1 or _static_method_2
 
         depending on self.param value
         """
 
-        self._static_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
+        return self._static_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
         # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
@@ -160,19 +153,19 @@ def main():
     """
     >>> test = Catalog('param_value_2')
     >>> test.main_method()
-    executed method 2!
+    'executed method 2!'
 
     >>> test = CatalogInstance('param_value_1')
     >>> test.main_method()
-    Value x1
+    'Value x1'
 
     >>> test = CatalogClass('param_value_2')
     >>> test.main_method()
-    Value x2
+    'Value x2'
 
     >>> test = CatalogStatic('param_value_1')
     >>> test.main_method()
-    executed method 1!
+    'executed method 1!'
     """
 
 

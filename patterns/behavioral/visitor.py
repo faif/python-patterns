@@ -59,13 +59,13 @@ def main():
     >>> visitor = Visitor()
 
     >>> visitor.visit(a)
-    generic_visit A
+    'generic_visit A'
 
     >>> visitor.visit(b)
-    visit_B B
+    'visit_B B'
 
     >>> visitor.visit(c)
-    visit_B C
+    'visit_B C'
     """
 
 

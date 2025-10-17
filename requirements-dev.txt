@@ -1,8 +1,8 @@
--e .
-
-pytest~=6.2.0
-pytest-cov~=2.11.0
-pytest-randomly~=3.1.0
-black>=20.8b1
-isort~=5.7.0
-flake8~=3.8.0
+flake8
+black
+isort
+pytest
+pytest-randomly
+mypy
+pyupgrade
+tox

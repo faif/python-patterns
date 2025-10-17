@@ -1,0 +1,120 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-patterns"
+description = "A collection of design patterns and idioms in Python."
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies= [
+]
+
+maintainers=[
+    { name="faif" }
+]
+
+[project.urls]
+Homepage = "https://github.com/faif/python-patterns"
+Repository = "https://github.com/faif/python-patterns"
+"Bug Tracker" = "https://github.com/faif/python-patterns/issues"
+Contributors = "https://github.com/faif/python-patterns/graphs/contributors"
+
+[project.optional-dependencies]
+dev = [
+    "mypy",
+    "pipx>=1.7.1",
+    "pyupgrade",
+    "pytest>=6.2.0",
+    "pytest-cov>=2.11.0",
+    "pytest-randomly>=3.1.0",
+    "black>=25.1.0",
+    "build>=1.2.2",
+    "isort>=5.7.0",
+    "flake8>=7.1.0",
+    "tox>=4.25.0"
+]
+
+[tool.setuptools]
+packages = ["patterns"]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::Warning:.*test class 'TestRunner'.*"
+]
+# Adding settings from tox.ini for pytest
+testpaths = ["tests"]
+#testpaths = ["tests", "patterns"]
+python_files = ["test_*.py", "*_test.py"]
+# Enable doctest discovery in patterns directory
+addopts = "--doctest-modules --randomly-seed=1234 --cov=patterns --cov-report=term-missing"
+doctest_optionflags = ["ELLIPSIS", "NORMALIZE_WHITESPACE"]
+log_level = "INFO"
+
+[tool.coverage.run]
+branch = true
+source = ["./"]
+#source = ["patterns"]
+# Ensure coverage data is collected properly
+relative_files = true
+parallel = true
+dynamic_context = "test_function"
+data_file = ".coverage"
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    "def __repr__",
+    "if self\\.debug",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "@(abc\\.)?abstractmethod"
+]
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 120
+ignore = ["E266", "E731", "W503"]
+exclude = ["venv*"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py312,cov-report
+skip_missing_interpreters = true
+usedevelop = true
+
+#[testenv]
+#setenv =
+#    COVERAGE_FILE = .coverage.{envname}
+#deps =
+#    -r requirements-dev.txt
+#commands =
+#    flake8 --exclude="venv/,.tox/" patterns/
+#    coverage run -m pytest --randomly-seed=1234 --doctest-modules patterns/
+#    coverage run -m pytest -s -vv --cov=patterns/ --log-level=INFO tests/
+
+#[testenv:cov-report]
+#setenv =
+#    COVERAGE_FILE = .coverage
+#deps = coverage
+#commands =
+#    coverage combine
+#    coverage report
+#"""

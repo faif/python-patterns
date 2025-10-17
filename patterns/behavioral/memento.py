@@ -5,8 +5,8 @@ http://code.activestate.com/recipes/413838-memento-closure/
 Provides the ability to restore an object to its previous state.
 """
 
-from typing import Any, Type, Callable, List
 from copy import copy, deepcopy
+from typing import Callable, List
 
 
 def memento(obj: Any, deep: bool = False) -> Callable:
@@ -41,10 +41,11 @@ class Transaction:
             a_state()
 
 
-class Transactional:
+def Transactional(method):
     """Adds transactional semantics to methods. Methods decorated  with
+    @Transactional will roll back to entry-state upon exceptions.
 
-    @Transactional will rollback to entry-state upon exceptions.
+    :param method: The function to be decorated.
     """
 
     def __init__(self, method: Callable) -> None:
@@ -65,7 +66,7 @@ class Transactional:
                 state()
                 raise e
 
-        return transaction
+    return transaction
 
 
 class NumObj:

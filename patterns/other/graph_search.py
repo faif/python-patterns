@@ -2,7 +2,6 @@ from typing import Any, Dict, List, Optional, Union
 
 
 class GraphSearch:
-
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/
 

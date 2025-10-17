@@ -4,6 +4,7 @@ Implementation of the iterator pattern using the iterator protocol from Python
 *TL;DR
 Traverses a container and accesses the container's elements.
 """
+
 from __future__ import annotations
 
 
