@@ -19,11 +19,10 @@ Allow a request to pass down a chain of receivers until it is handled.
 """
 
 from abc import ABC, abstractmethod
-from typing import Optional, Tuple
 
 
 class Handler(ABC):
-    def __init__(self, successor: Optional["Handler"] = None):
+    def __init__(self, successor: "Handler | None" = None):
         self.successor = successor
 
     def handle(self, request: int) -> None:
@@ -39,7 +38,7 @@ class Handler(ABC):
             self.successor.handle(request)
 
     @abstractmethod
-    def check_range(self, request: int) -> Optional[bool]:
+    def check_range(self, request: int) -> bool | None:
         """Compare passed value to predefined interval"""
 
 
@@ -49,7 +48,7 @@ class ConcreteHandler0(Handler):
     """
 
     @staticmethod
-    def check_range(request: int) -> Optional[bool]:
+    def check_range(request: int) -> bool | None:
         if 0 <= request < 10:
             print(f"request {request} handled in handler 0")
             return True
@@ -61,7 +60,7 @@ class ConcreteHandler1(Handler):
 
     start, end = 10, 20
 
-    def check_range(self, request: int) -> Optional[bool]:
+    def check_range(self, request: int) -> bool | None:
         if self.start <= request < self.end:
             print(f"request {request} handled in handler 1")
             return True
@@ -71,7 +70,7 @@ class ConcreteHandler1(Handler):
 class ConcreteHandler2(Handler):
     """... With helper methods."""
 
-    def check_range(self, request: int) -> Optional[bool]:
+    def check_range(self, request: int) -> bool | None:
         start, end = self.get_interval_from_db()
         if start <= request < end:
             print(f"request {request} handled in handler 2")
@@ -79,13 +78,13 @@ class ConcreteHandler2(Handler):
         return None
 
     @staticmethod
-    def get_interval_from_db() -> Tuple[int, int]:
+    def get_interval_from_db() -> tuple[int, int]:
         return (20, 30)
 
 
 class FallbackHandler(Handler):
     @staticmethod
-    def check_range(request: int) -> Optional[bool]:
+    def check_range(request: int) -> bool | None:
         print(f"end of chain, no handler for {request}")
         return False
 

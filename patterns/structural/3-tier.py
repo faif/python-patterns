@@ -3,7 +3,7 @@
 Separates presentation, application processing, and data management functions.
 """
 
-from typing import Dict, KeysView, Optional, Union
+from typing import KeysView
 
 
 class Data:
@@ -30,7 +30,7 @@ class BusinessLogic:
 
     def product_information(
         self, product: str
-    ) -> Optional[Dict[str, Union[int, float]]]:
+    ) -> dict[str, int | float] | None:
         return self.data["products"].get(product, None)
 
 

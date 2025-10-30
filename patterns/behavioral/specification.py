@@ -6,7 +6,6 @@ Provides recombination business logic by chaining together using boolean logic.
 """
 
 from abc import abstractmethod
-from typing import Union
 
 
 class Specification:
@@ -44,7 +43,7 @@ class AndSpecification(CompositeSpecification):
         self._one: Specification = one
         self._other: Specification = other
 
-    def is_satisfied_by(self, candidate: Union["User", str]) -> bool:
+    def is_satisfied_by(self, candidate: "User" | str) -> bool:
         return bool(
             self._one.is_satisfied_by(candidate)
             and self._other.is_satisfied_by(candidate)
@@ -56,7 +55,7 @@ class OrSpecification(CompositeSpecification):
         self._one: Specification = one
         self._other: Specification = other
 
-    def is_satisfied_by(self, candidate: Union["User", str]):
+    def is_satisfied_by(self, candidate: "User" | str):
         return bool(
             self._one.is_satisfied_by(candidate)
             or self._other.is_satisfied_by(candidate)
@@ -67,7 +66,7 @@ class NotSpecification(CompositeSpecification):
     def __init__(self, wrapped: "Specification"):
         self._wrapped: Specification = wrapped
 
-    def is_satisfied_by(self, candidate: Union["User", str]):
+    def is_satisfied_by(self, candidate: "User" | str):
         return bool(not self._wrapped.is_satisfied_by(candidate))
 
 
@@ -77,7 +76,7 @@ class User:
 
 
 class UserSpecification(CompositeSpecification):
-    def is_satisfied_by(self, candidate: Union["User", str]) -> bool:
+    def is_satisfied_by(self, candidate: "User" | str) -> bool:
         return isinstance(candidate, User)
 
 

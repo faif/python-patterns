@@ -33,7 +33,7 @@ class Delegator:
     def __init__(self, delegate: Delegate) -> None:
         self.delegate = delegate
 
-    def __getattr__(self, name: str) -> Any | Callable:
+    def __getattr__(self, name: str) -> Any:
         attr = getattr(self.delegate, name)
 
         if not callable(attr):
