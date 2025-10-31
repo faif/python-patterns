@@ -15,8 +15,6 @@ Add functionality or logic (e.g. logging, caching, authorization) to a resource
 without changing its interface.
 """
 
-from typing import Union
-
 
 class Subject:
     """
@@ -59,7 +57,7 @@ class Proxy(Subject):
             print("[log] I can do the job just for `admins`.")
 
 
-def client(job_doer: Union[RealSubject, Proxy], user: str) -> None:
+def client(job_doer: RealSubject | Proxy, user: str) -> None:
     job_doer.do_the_job(user)
 
 

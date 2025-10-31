@@ -14,7 +14,6 @@ Brian Jones, David Beazley "Python Cookbook" (2013):
 which is then being used e.g. in tools like `pyflakes`.
 - `Black` formatter tool implements it's own: https://github.com/ambv/black/blob/master/black.py#L718
 """
-from typing import Union
 
 
 class Node:
@@ -34,7 +33,7 @@ class C(A, B):
 
 
 class Visitor:
-    def visit(self, node: Union[A, C, B], *args, **kwargs) -> None:
+    def visit(self, node: A | C | B, *args, **kwargs) -> None:
         meth = None
         for cls in node.__class__.__mro__:
             meth_name = "visit_" + cls.__name__
@@ -49,7 +48,7 @@ class Visitor:
     def generic_visit(self, node: A, *args, **kwargs) -> None:
         print("generic_visit " + node.__class__.__name__)
 
-    def visit_B(self, node: Union[C, B], *args, **kwargs) -> None:
+    def visit_B(self, node: C | B, *args, **kwargs) -> None:
         print("visit_B " + node.__class__.__name__)
 
 

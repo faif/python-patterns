@@ -12,7 +12,6 @@ Flask Signals: https://flask.palletsprojects.com/en/1.1.x/signals/
 # observer.py
 
 from __future__ import annotations
-from typing import List
 
 class Observer:
     def update(self, subject: Subject) -> None:
@@ -26,7 +25,7 @@ class Observer:
 
 
 class Subject:
-    _observers: List[Observer]
+    _observers: list[Observer]
 
     def __init__(self) -> None:
         """

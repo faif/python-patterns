@@ -20,7 +20,7 @@ Delays the eval of an expr until its value is needed and avoids repeated evals.
 """
 
 import functools
-from typing import Callable, Type
+from typing import Callable
 
 
 class lazy_property:
@@ -28,7 +28,7 @@ class lazy_property:
         self.function = function
         functools.update_wrapper(self, function)
 
-    def __get__(self, obj: "Person", type_: Type["Person"]) -> str:
+    def __get__(self, obj: "Person", type_: type["Person"]) -> str:
         if obj is None:
             return self
         val = self.function(obj)

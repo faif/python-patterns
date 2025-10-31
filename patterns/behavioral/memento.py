@@ -6,7 +6,7 @@ Provides the ability to restore an object to its previous state.
 """
 
 from copy import copy, deepcopy
-from typing import Callable, List
+from typing import Callable
 
 
 def memento(obj: Any, deep: bool = False) -> Callable:
@@ -26,7 +26,7 @@ class Transaction:
     """
 
     deep = False
-    states: List[Callable[[], None]] = []
+    states: list[Callable[[], None]] = []
 
     def __init__(self, deep: bool, *targets: Any) -> None:
         self.deep = deep

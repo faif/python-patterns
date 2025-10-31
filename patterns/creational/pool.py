@@ -29,7 +29,6 @@ Stores a set of initialized objects kept ready to use.
 """
 from queue import Queue
 from types import TracebackType
-from typing import Union
 
 
 class ObjectPool:
@@ -44,9 +43,9 @@ class ObjectPool:
 
     def __exit__(
         self,
-        Type: Union[type[BaseException], None],
-        value: Union[BaseException, None],
-        traceback: Union[TracebackType, None],
+        Type: type[BaseException] | None,
+        value: BaseException | None,
+        traceback: TracebackType | None,
     ) -> None:
         if self.item is not None:
             self._queue.put(self.item)

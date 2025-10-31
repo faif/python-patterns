@@ -5,7 +5,6 @@ http://en.wikibooks.org/wiki/Computer_Science_Design_Patterns/Bridge_Pattern#Pyt
 *TL;DR
 Decouples an abstraction from its implementation.
 """
-from typing import Union
 
 
 # ConcreteImplementor 1/2
@@ -23,7 +22,7 @@ class DrawingAPI2:
 # Refined Abstraction
 class CircleShape:
     def __init__(
-        self, x: int, y: int, radius: int, drawing_api: Union[DrawingAPI2, DrawingAPI1]
+        self, x: int, y: int, radius: int, drawing_api: DrawingAPI2 | DrawingAPI1
     ) -> None:
         self._x = x
         self._y = y
