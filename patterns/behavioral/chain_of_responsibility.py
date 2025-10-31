@@ -22,7 +22,7 @@ from abc import ABC, abstractmethod
 
 
 class Handler(ABC):
-    def __init__(self, successor: "Handler | None" = None):
+    def __init__(self, successor: "Handler" | None = None):
         self.successor = successor
 
     def handle(self, request: int) -> None:
