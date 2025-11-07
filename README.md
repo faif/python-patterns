@@ -50,6 +50,7 @@ __Behavioral Patterns__:
 | [observer](patterns/behavioral/observer.py) | provide a callback for notification of events/changes to data |
 | [publish_subscribe](patterns/behavioral/publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
 | [registry](patterns/behavioral/registry.py) | keep track of all subclasses of a given class |
+| [servant](patterns/behavioral/servant.py) | provide common functionality to a group of classes without using inheritance |
 | [specification](patterns/behavioral/specification.py) |  business rules can be recombined by chaining the business rules together using boolean logic |
 | [state](patterns/behavioral/state.py) | logic is organized into a discrete number of potential states and the next state that can be transitioned to |
 | [strategy](patterns/behavioral/strategy.py) | selectable operations over the same data |
