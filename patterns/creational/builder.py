@@ -1,13 +1,12 @@
 """
-*What is this pattern about?
+What is this pattern about?
 It decouples the creation of a complex object and its representation,
 so that the same process can be reused to build objects from the same
 family.
 This is useful when you must separate the specification of an object
 from its actual representation (generally for abstraction).
 
-*What does this example do?
-
+What does this example do?
 The first example achieves this by using an abstract base
 class for a building, where the initializer (__init__ method) specifies the
 steps needed, and the concrete subclasses implement these steps.
@@ -22,14 +21,13 @@ instance of a different class.
 In general, in Python this won't be necessary, but a second example showing
 this kind of arrangement is also included.
 
-*Where is the pattern used practically?
+Where is the pattern used practically?
+See: https://sourcemaking.com/design_patterns/builder
 
-*References:
-https://sourcemaking.com/design_patterns/builder
-
-*TL;DR
+TL;DR
 Decouples the creation of a complex object and its representation.
 """
+
 
 
 # Abstract Building
