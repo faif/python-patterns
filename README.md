@@ -119,3 +119,27 @@ You can also run `flake8` or `pytest` commands manually. Examples can be found i
 ## Contributing via issue triage [![Open Source Helpers](https://www.codetriage.com/faif/python-patterns/badges/users.svg)](https://www.codetriage.com/faif/python-patterns)
 
 You can triage issues and pull requests which may include reproducing bug reports or asking for vital information, such as version numbers or reproduction instructions. If you would like to start triaging issues, one easy way to get started is to [subscribe to python-patterns on CodeTriage](https://www.codetriage.com/faif/python-patterns).
+
+
+## 🚫 Anti-Patterns
+
+This section lists some common design patterns that are **not recommended** in Python and explains why.
+
+### 🧱 Singleton
+**Why not:**
+- Python modules are already singletons — every module is imported only once.
+- Explicit singleton classes add unnecessary complexity.
+- Better alternatives: use module-level variables or dependency injection.
+
+### 🌀 God Object
+**Why not:**
+- Centralizes too much logic in a single class.
+- Makes code harder to test and maintain.
+- Better alternative: split functionality into smaller, cohesive classes.
+
+### 🔁 Inheritance overuse
+**Why not:**
+- Deep inheritance trees make code brittle.
+- Prefer composition and delegation.
+- “Favor composition over inheritance.”
+
