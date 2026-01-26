@@ -4,7 +4,6 @@ Separates data in GUIs from the ways it is presented, and accepted.
 """
 
 from abc import ABC, abstractmethod
-from ProductModel import Price
 from typing import Dict, List, Union, Any
 from inspect import signature
 from sys import argv
