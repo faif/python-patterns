@@ -14,6 +14,10 @@ Request receiver in simple form keeps a reference to a single successor.
 As a variation some receivers may be capable of sending requests out
 in several directions, forming a `tree of responsibility`.
 
+*Examples in Python ecosystem:
+Django Middleware: https://docs.djangoproject.com/en/stable/topics/http/middleware/
+The middleware components act as a chain where each processes the request/response.
+
 *TL;DR
 Allow a request to pass down a chain of receivers until it is handled.
 """

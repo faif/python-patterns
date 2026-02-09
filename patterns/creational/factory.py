@@ -54,7 +54,7 @@ def get_localizer(language: str = "English") -> Localizer:
         "Greek": GreekLocalizer,
     }
 
-        return localizers.get(language, EnglishLocalizer)()
+    return localizers.get(language, EnglishLocalizer)()
 
 
 
