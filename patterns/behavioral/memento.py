@@ -6,7 +6,7 @@ Provides the ability to restore an object to its previous state.
 """
 
 from copy import copy, deepcopy
-from typing import Callable, List
+from typing import Any, Callable, List, Type
 
 
 def memento(obj: Any, deep: bool = False) -> Callable:

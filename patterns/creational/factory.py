@@ -57,7 +57,6 @@ def get_localizer(language: str = "English") -> Localizer:
     return localizers.get(language, EnglishLocalizer)()
 
 
-
 def main():
     """
     # Create our localizers
