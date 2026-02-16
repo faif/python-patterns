@@ -48,6 +48,7 @@ __Behavioral Patterns__:
 | [mediator](patterns/behavioral/mediator.py) | an object that knows how to connect other objects and act as a proxy |
 | [memento](patterns/behavioral/memento.py) | generate an opaque token that can be used to go back to a previous state |
 | [observer](patterns/behavioral/observer.py) | provide a callback for notification of events/changes to data |
+| [pipeline](patterns/behavioral/pipeline.py) | compose data processing stages |
 | [publish_subscribe](patterns/behavioral/publish_subscribe.py) | a source syndicates events/data to 0+ registered listeners |
 | [registry](patterns/behavioral/registry.py) | keep track of all subclasses of a given class |
 | [servant](patterns/behavioral/servant.py) | provide common functionality to a group of classes without using inheritance |
