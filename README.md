@@ -128,6 +128,28 @@ graph LR
 | [graph_search](patterns/other/graph_search.py) | graphing algorithms - non gang of four pattern |
 | [hsm](patterns/other/hsm/hsm.py) | hierarchical state machine - non gang of four pattern |
 
+## 🚫 Anti-Patterns
+
+This section lists some common design patterns that are **not recommended** in Python and explains why.
+
+### 🧱 Singleton
+**Why not:**
+- Python modules are already singletons — every module is imported only once.
+- Explicit singleton classes add unnecessary complexity.
+- Better alternatives: use module-level variables or dependency injection.
+
+### 🌀 God Object
+**Why not:**
+- Centralizes too much logic in a single class.
+- Makes code harder to test and maintain.
+- Better alternative: split functionality into smaller, cohesive classes.
+
+### 🔁 Inheritance overuse
+**Why not:**
+- Deep inheritance trees make code brittle.
+- Prefer composition and delegation.
+- “Favor composition over inheritance.”
+
 ## Videos
 
 * [Design Patterns in Python by Peter Ullrich](https://www.youtube.com/watch?v=bsyjSW46TDg)
