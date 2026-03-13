@@ -30,7 +30,6 @@ graph LR
 | [lazy_evaluation](patterns/creational/lazy_evaluation.py) | lazily-evaluated property pattern in Python |
 | [pool](patterns/creational/pool.py) | preinstantiate and maintain a group of instances of the same type |
 | [prototype](patterns/creational/prototype.py) | use a factory and clones of a prototype for new instances (if instantiation is expensive) |
-| [singleton](patterns/creational/singleton.py) | restrict the instantiation of a class to one object |
 
 ## Structural Patterns
 
