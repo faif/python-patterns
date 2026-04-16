@@ -10,11 +10,13 @@ class Prototype:
         self._objects[name] = obj
 
     def unregister_object(self, name: str) -> None:
-        del self._objects[name]
+        if name in self._objects:
+            del self._objects[name]
 
     def clone(self, name: str, **attrs: Any) -> Any:
         obj = copy.deepcopy(self._objects.get(name))
-        obj.__dict__.update(attrs)
+        if obj:
+            obj.__dict__.update(attrs)
         return obj
 
 class A:
