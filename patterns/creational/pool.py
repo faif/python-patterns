@@ -27,6 +27,7 @@ https://sourcemaking.com/design_patterns/object_pool
 *TL;DR
 Stores a set of initialized objects kept ready to use.
 """
+
 from queue import Queue
 from types import TracebackType
 from typing import Union

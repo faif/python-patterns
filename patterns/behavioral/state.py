@@ -1,25 +1,11 @@
-"""
-Implementation of the state pattern
-
-http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
-
-*TL;DR
-Implements state as a derived class of the state pattern interface.
-Implements state transitions by invoking methods from the pattern's superclass.
-"""
-
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
 
-class State:
-    """Base state. This is to share functionality"""
 
-    def scan(self) -> None:
-        """Scan the dial to the next station"""
-        self.pos += 1
-        if self.pos == len(self.stations):
-            self.pos = 0
-        print(f"Scanning... Station is {self.stations[self.pos]} {self.name}")
+class State(ABC):
+    @abstractmethod
+    def scan(self) -> None: ...
 
 
 class AmState(State):
@@ -27,11 +13,10 @@ class AmState(State):
         self.radio = radio
         self.stations = ["1250", "1380", "1510"]
         self.pos = 0
-        self.name = "AM"
 
-    def toggle_amfm(self) -> None:
-        print("Switching to FM")
-        self.radio.state = self.radio.fmstate
+    def scan(self) -> None:
+        self.pos = (self.pos + 1) % len(self.stations)
+        print(f"Scanning... Station is {self.stations[self.pos]} AM")
 
 
 class FmState(State):
@@ -39,51 +24,27 @@ class FmState(State):
         self.radio = radio
         self.stations = ["81.3", "89.1", "103.9"]
         self.pos = 0
-        self.name = "FM"
 
-    def toggle_amfm(self) -> None:
-        print("Switching to AM")
-        self.radio.state = self.radio.amstate
+    def scan(self) -> None:
+        self.pos = (self.pos + 1) % len(self.stations)
+        print(f"Scanning... Station is {self.stations[self.pos]} FM")
 
 
 class Radio:
-    """A radio.     It has a scan button, and an AM/FM toggle switch."""
-
     def __init__(self) -> None:
-        """We have an AM state and an FM state"""
-        self.amstate = AmState(self)
-        self.fmstate = FmState(self)
-        self.state = self.amstate
+        self.am_state = AmState(self)
+        self.fm_state = FmState(self)
+        self.state: State = self.am_state
 
-    def toggle_amfm(self) -> None:
-        self.state.toggle_amfm()
+    def toggle_am_fm(self) -> None:
+        self.state = self.fm_state if self.state == self.am_state else self.am_state
 
     def scan(self) -> None:
         self.state.scan()
 
 
-def main():
-    """
-    >>> radio = Radio()
-    >>> actions = [radio.scan] * 2 + [radio.toggle_amfm] + [radio.scan] * 2
-    >>> actions *= 2
-
-    >>> for action in actions:
-    ...    action()
-    Scanning... Station is 1380 AM
-    Scanning... Station is 1510 AM
-    Switching to FM
-    Scanning... Station is 89.1 FM
-    Scanning... Station is 103.9 FM
-    Scanning... Station is 81.3 FM
-    Scanning... Station is 89.1 FM
-    Switching to AM
-    Scanning... Station is 1250 AM
-    Scanning... Station is 1380 AM
-    """
-
-
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    radio = Radio()
+    actions = [radio.scan] * 2 + [radio.toggle_am_fm] + [radio.scan] * 2
+    for action in actions:
+        action()

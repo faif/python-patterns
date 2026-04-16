@@ -9,8 +9,8 @@ where the solution is the sum of its parts.
 https://en.wikipedia.org/wiki/Blackboard_system
 """
 
-from abc import ABC, abstractmethod
 import random
+from abc import ABC, abstractmethod
 
 
 class AbstractExpert(ABC):

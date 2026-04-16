@@ -14,6 +14,7 @@ Brian Jones, David Beazley "Python Cookbook" (2013):
 which is then being used e.g. in tools like `pyflakes`.
 - `Black` formatter tool implements it's own: https://github.com/ambv/black/blob/master/black.py#L718
 """
+
 from typing import Union
 
 

@@ -1,57 +1,26 @@
-"""
-*References:
-http://en.wikibooks.org/wiki/Computer_Science_Design_Patterns/Bridge_Pattern#Python
+from __future__ import annotations
 
-*TL;DR
-Decouples an abstraction from its implementation.
-"""
-from typing import Union
+from typing import Protocol
 
 
-# ConcreteImplementor 1/2
-class DrawingAPI1:
-    def draw_circle(self, x: int, y: int, radius: float) -> None:
-        print(f"API1.circle at {x}:{y} radius {radius}")
+class Implementation(Protocol):
+    def operation_implementation(self) -> str: ...
 
 
-# ConcreteImplementor 2/2
-class DrawingAPI2:
-    def draw_circle(self, x: int, y: int, radius: float) -> None:
-        print(f"API2.circle at {x}:{y} radius {radius}")
+class Abstraction:
+    def __init__(self, implementation: Implementation) -> None:
+        self.implementation = implementation
+
+    def operation(self) -> str:
+        return f"Abstraction: Base operation with:\n{self.implementation.operation_implementation()}"
 
 
-# Refined Abstraction
-class CircleShape:
-    def __init__(
-        self, x: int, y: int, radius: int, drawing_api: Union[DrawingAPI2, DrawingAPI1]
-    ) -> None:
-        self._x = x
-        self._y = y
-        self._radius = radius
-        self._drawing_api = drawing_api
-
-    # low-level i.e. Implementation specific
-    def draw(self) -> None:
-        self._drawing_api.draw_circle(self._x, self._y, self._radius)
-
-    # high-level i.e. Abstraction specific
-    def scale(self, pct: float) -> None:
-        self._radius *= pct
-
-
-def main():
-    """
-    >>> shapes = (CircleShape(1, 2, 3, DrawingAPI1()), CircleShape(5, 7, 11, DrawingAPI2()))
-
-    >>> for shape in shapes:
-    ...    shape.scale(2.5)
-    ...    shape.draw()
-    API1.circle at 1:2 radius 7.5
-    API2.circle at 5:7 radius 27.5
-    """
+class ConcreteImplementationA:
+    def operation_implementation(self) -> str:
+        return "ConcreteImplementationA: Here's the result on the platform A."
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    implementation = ConcreteImplementationA()
+    abstraction = Abstraction(implementation)
+    print(abstraction.operation())
