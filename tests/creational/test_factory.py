@@ -1,6 +1,7 @@
 import unittest
 from patterns.creational.factory import get_localizer, GreekLocalizer, EnglishLocalizer
 
+
 class TestFactory(unittest.TestCase):
     def test_get_localizer_greek(self):
         localizer = get_localizer("Greek")
@@ -22,8 +23,8 @@ class TestFactory(unittest.TestCase):
         self.assertIsInstance(localizer, EnglishLocalizer)
 
     def test_get_localizer_unknown_language(self):
-        # Test fallback for unknown language if applicable, 
-        # or just verify what happens. 
+        # Test fallback for unknown language if applicable,
+        # or just verify what happens.
         # Based on implementation: localizers.get(language, EnglishLocalizer)()
         # It defaults to EnglishLocalizer for unknown keys.
         localizer = get_localizer("Spanish")

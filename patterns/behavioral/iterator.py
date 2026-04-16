@@ -3,6 +3,7 @@ from typing import List, Iterator, Iterable, TypeVar, Generic
 
 T = TypeVar("T")
 
+
 class AlphabeticalOrderIterator(Iterator[T], Generic[T]):
     def __init__(self, collection: List[T]) -> None:
         self._collection = collection
@@ -16,6 +17,7 @@ class AlphabeticalOrderIterator(Iterator[T], Generic[T]):
             raise StopIteration()
         return value
 
+
 class WordsCollection(Iterable[T], Generic[T]):
     def __init__(self, collection: List[T] = []) -> None:
         self._collection = collection
@@ -25,6 +27,7 @@ class WordsCollection(Iterable[T], Generic[T]):
 
     def add_item(self, item: T) -> None:
         self._collection.append(item)
+
 
 if __name__ == "__main__":
     collection = WordsCollection[str]()

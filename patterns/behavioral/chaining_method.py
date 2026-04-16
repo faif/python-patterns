@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import Self
 
+
 class Person:
     def __init__(self, name: str) -> None:
         self.name = name
@@ -16,6 +17,7 @@ class Person:
 
     def __str__(self) -> str:
         return f"Name: {self.name}, Age: {self.age}"
+
 
 if __name__ == "__main__":
     person = Person("Jorge").set_age(28).set_name("Jorge Otero")

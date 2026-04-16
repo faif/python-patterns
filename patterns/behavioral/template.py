@@ -1,6 +1,7 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+
 class AbstractClass(ABC):
     def template_method(self) -> None:
         self.base_operation1()
@@ -19,9 +20,11 @@ class AbstractClass(ABC):
 
     def hook1(self) -> None: ...
 
+
 class ConcreteClass(AbstractClass):
     def required_operations1(self) -> None:
         print("ConcreteClass: Implemented Operation1")
+
 
 if __name__ == "__main__":
     template = ConcreteClass()

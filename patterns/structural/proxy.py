@@ -1,12 +1,15 @@
 from __future__ import annotations
 from typing import Protocol
 
+
 class Subject(Protocol):
     def request(self) -> None: ...
+
 
 class RealSubject:
     def request(self) -> None:
         print("RealSubject: Handling request.")
+
 
 class Proxy:
     def __init__(self, real_subject: RealSubject) -> None:
@@ -23,6 +26,7 @@ class Proxy:
 
     def log_access(self) -> None:
         print("Proxy: Logging the time of request.")
+
 
 if __name__ == "__main__":
     real_subject = RealSubject()

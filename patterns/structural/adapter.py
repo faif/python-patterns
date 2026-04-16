@@ -1,15 +1,22 @@
 from __future__ import annotations
 from typing import Any, Callable
 
+
 class Dog:
     def __init__(self) -> None:
         self.name = "Dog"
-    def bark(self) -> str: return "woof!"
+
+    def bark(self) -> str:
+        return "woof!"
+
 
 class Cat:
     def __init__(self) -> None:
         self.name = "Cat"
-    def meow(self) -> str: return "meow!"
+
+    def meow(self) -> str:
+        return "meow!"
+
 
 class Adapter:
     def __init__(self, obj: Any, **adapted_methods: Callable) -> None:
@@ -18,6 +25,7 @@ class Adapter:
 
     def __getattr__(self, attr: str) -> Any:
         return getattr(self.obj, attr)
+
 
 if __name__ == "__main__":
     objects = []

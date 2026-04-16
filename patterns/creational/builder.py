@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import Any
 
+
 class Director:
     def __init__(self) -> None:
         self.builder: Any = None
@@ -13,6 +14,7 @@ class Director:
     def get_building(self) -> Any:
         return self.builder.building
 
+
 class Builder:
     def __init__(self) -> None:
         self.building: Any = None
@@ -20,9 +22,14 @@ class Builder:
     def new_building(self) -> None:
         self.building = Building()
 
+
 class BuilderHouse(Builder):
-    def build_floor(self) -> None: self.building.floor = "One"
-    def build_size(self) -> None: self.building.size = "Big"
+    def build_floor(self) -> None:
+        self.building.floor = "One"
+
+    def build_size(self) -> None:
+        self.building.size = "Big"
+
 
 class Building:
     def __init__(self) -> None:
@@ -31,6 +38,7 @@ class Building:
 
     def __repr__(self) -> str:
         return f"Floor: {self.floor} | Size: {self.size}"
+
 
 if __name__ == "__main__":
     director = Director()

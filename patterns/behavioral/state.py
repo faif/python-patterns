@@ -1,9 +1,11 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
 
+
 class State(ABC):
     @abstractmethod
     def scan(self) -> None: ...
+
 
 class AmState(State):
     def __init__(self, radio: Radio) -> None:
@@ -15,6 +17,7 @@ class AmState(State):
         self.pos = (self.pos + 1) % len(self.stations)
         print(f"Scanning... Station is {self.stations[self.pos]} AM")
 
+
 class FmState(State):
     def __init__(self, radio: Radio) -> None:
         self.radio = radio
@@ -24,6 +27,7 @@ class FmState(State):
     def scan(self) -> None:
         self.pos = (self.pos + 1) % len(self.stations)
         print(f"Scanning... Station is {self.stations[self.pos]} FM")
+
 
 class Radio:
     def __init__(self) -> None:
@@ -36,6 +40,7 @@ class Radio:
 
     def scan(self) -> None:
         self.state.scan()
+
 
 if __name__ == "__main__":
     radio = Radio()

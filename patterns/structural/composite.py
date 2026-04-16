@@ -2,13 +2,16 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import List
 
+
 class Component(ABC):
     @abstractmethod
     def execute(self) -> None: ...
 
+
 class Leaf(Component):
     def execute(self) -> None:
         print("Leaf executed")
+
 
 class Composite(Component):
     def __init__(self) -> None:
@@ -21,6 +24,7 @@ class Composite(Component):
         print("Composite executing children:")
         for child in self._children:
             child.execute()
+
 
 if __name__ == "__main__":
     root = Composite()

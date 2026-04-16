@@ -2,9 +2,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass(frozen=True)
 class Memento:
     state: str
+
 
 class Originator:
     def __init__(self, state: str) -> None:
@@ -21,13 +23,14 @@ class Originator:
         print(f"Originator: Setting state to: {state}")
         self._state = state
 
+
 if __name__ == "__main__":
     originator = Originator("Initial State")
     caretaker: List[Memento] = []
 
     caretaker.append(originator.save())
     originator.set_state("State #1")
-    
+
     caretaker.append(originator.save())
     originator.set_state("State #2")
 

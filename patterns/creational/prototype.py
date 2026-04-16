@@ -2,6 +2,7 @@ from __future__ import annotations
 import copy
 from typing import Any, Dict
 
+
 class Prototype:
     def __init__(self) -> None:
         self._objects: Dict[str, Any] = {}
@@ -19,12 +20,14 @@ class Prototype:
             obj.__dict__.update(attrs)
         return obj
 
+
 class A:
     def __str__(self) -> str:
         return "I am A"
 
+
 if __name__ == "__main__":
     prototype = Prototype()
-    prototype.register_object('a', A())
-    b = prototype.clone('a', name='I am B')
+    prototype.register_object("a", A())
+    b = prototype.clone("a", name="I am B")
     print(b.name)

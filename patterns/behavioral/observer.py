@@ -1,8 +1,10 @@
 from __future__ import annotations
 from typing import List, Protocol
 
+
 class Observer(Protocol):
     def update(self, subject: Subject) -> None: ...
+
 
 class Subject:
     def __init__(self) -> None:
@@ -22,6 +24,7 @@ class Subject:
         for observer in self._observers:
             observer.update(self)
 
+
 class Data(Subject):
     def __init__(self, name: str = "") -> None:
         super().__init__()
@@ -37,13 +40,16 @@ class Data(Subject):
         self._data = value
         self.notify()
 
+
 class HexViewer:
     def update(self, subject: Data) -> None:
         print(f"HexViewer: Subject {subject.name} has data 0x{subject.data:x}")
 
+
 class DecimalViewer:
     def update(self, subject: Data) -> None:
         print(f"DecimalViewer: Subject {subject.name} has data {subject.data}")
+
 
 if __name__ == "__main__":
     data1 = Data("Data 1")
