@@ -1,112 +1,39 @@
-"""
-What is this pattern about?
-It decouples the creation of a complex object and its representation,
-so that the same process can be reused to build objects from the same
-family.
-This is useful when you must separate the specification of an object
-from its actual representation (generally for abstraction).
+from __future__ import annotations
+from typing import Any
 
-What does this example do?
-The first example achieves this by using an abstract base
-class for a building, where the initializer (__init__ method) specifies the
-steps needed, and the concrete subclasses implement these steps.
+class Director:
+    def __init__(self) -> None:
+        self.builder: Any = None
 
-In other programming languages, a more complex arrangement is sometimes
-necessary. In particular, you cannot have polymorphic behaviour in a constructor in C++ -
-see https://stackoverflow.com/questions/1453131/how-can-i-get-polymorphic-behavior-in-a-c-constructor
-- which means this Python technique will not work. The polymorphism
-required has to be provided by an external, already constructed
-instance of a different class.
+    def construct_building(self) -> None:
+        self.builder.new_building()
+        self.builder.build_floor()
+        self.builder.build_size()
 
-In general, in Python this won't be necessary, but a second example showing
-this kind of arrangement is also included.
+    def get_building(self) -> Any:
+        return self.builder.building
 
-Where is the pattern used practically?
-See: https://sourcemaking.com/design_patterns/builder
+class Builder:
+    def __init__(self) -> None:
+        self.building: Any = None
 
-TL;DR
-Decouples the creation of a complex object and its representation.
-"""
+    def new_building(self) -> None:
+        self.building = Building()
 
+class BuilderHouse(Builder):
+    def build_floor(self) -> None: self.building.floor = "One"
+    def build_size(self) -> None: self.building.size = "Big"
 
-
-# Abstract Building
 class Building:
     def __init__(self) -> None:
-        self.build_floor()
-        self.build_size()
-
-    def build_floor(self):
-        raise NotImplementedError
-
-    def build_size(self):
-        raise NotImplementedError
+        self.floor: str | None = None
+        self.size: str | None = None
 
     def __repr__(self) -> str:
-        return "Floor: {0.floor} | Size: {0.size}".format(self)
-
-
-# Concrete Buildings
-class House(Building):
-    def build_floor(self) -> None:
-        self.floor = "One"
-
-    def build_size(self) -> None:
-        self.size = "Big"
-
-
-class Flat(Building):
-    def build_floor(self) -> None:
-        self.floor = "More than One"
-
-    def build_size(self) -> None:
-        self.size = "Small"
-
-
-# In some very complex cases, it might be desirable to pull out the building
-# logic into another function (or a method on another class), rather than being
-# in the base class '__init__'. (This leaves you in the strange situation where
-# a concrete class does not have a useful constructor)
-
-
-class ComplexBuilding:
-    def __repr__(self) -> str:
-        return "Floor: {0.floor} | Size: {0.size}".format(self)
-
-
-class ComplexHouse(ComplexBuilding):
-    def build_floor(self) -> None:
-        self.floor = "One"
-
-    def build_size(self) -> None:
-        self.size = "Big and fancy"
-
-
-def construct_building(cls) -> Building:
-    building = cls()
-    building.build_floor()
-    building.build_size()
-    return building
-
-
-def main():
-    """
-    >>> house = House()
-    >>> house
-    Floor: One | Size: Big
-
-    >>> flat = Flat()
-    >>> flat
-    Floor: More than One | Size: Small
-
-    # Using an external constructor function:
-    >>> complex_house = construct_building(ComplexHouse)
-    >>> complex_house
-    Floor: One | Size: Big and fancy
-    """
-
+        return f"Floor: {self.floor} | Size: {self.size}"
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    director = Director()
+    director.builder = BuilderHouse()
+    director.construct_building()
+    print(director.get_building())
