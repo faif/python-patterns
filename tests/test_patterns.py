@@ -1,4 +1,3 @@
-import pytest
 from patterns.creational.factory import GreekGetter, EnglishGetter
 from patterns.behavioral.strategy import Order, ten_percent_discount
 
