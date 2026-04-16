@@ -4,7 +4,7 @@ from typing import Type
 
 
 class PetShop:
-    def __init__(self, animal_factory: Type[DogFactory | CatFactory]) -> None:
+    def __init__(self, animal_factory: Type[DogFactory Union CatFactory]) -> None:
         self.pet_factory = animal_factory
 
     def show_pet(self) -> None:
