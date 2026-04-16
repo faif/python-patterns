@@ -1,11 +1,6 @@
 import pytest
 
-from patterns.structural.mvc import (
-    ProductModel,
-    ConsoleView,
-    Controller,
-    Router,
-)
+from patterns.structural.mvc import ConsoleView, Controller, ProductModel, Router
 
 
 def test_productmodel_iteration_and_price_str():

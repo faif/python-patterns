@@ -1,5 +1,6 @@
 import unittest
-from patterns.creational.factory import get_localizer, GreekLocalizer, EnglishLocalizer
+
+from patterns.creational.factory import EnglishLocalizer, GreekLocalizer, get_localizer
 
 
 class TestFactory(unittest.TestCase):
