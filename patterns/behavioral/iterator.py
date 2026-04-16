@@ -1,47 +1,34 @@
-"""
-http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
-Implementation of the iterator pattern with a generator
+from __future__ import annotations
+from typing import List, Iterator, Iterable, TypeVar, Generic
 
-*TL;DR
-Traverses a container and accesses the container's elements.
-"""
+T = TypeVar("T")
 
+class AlphabeticalOrderIterator(Iterator[T], Generic[T]):
+    def __init__(self, collection: List[T]) -> None:
+        self._collection = collection
+        self._position = 0
 
-def count_to(count: int):
-    """Counts by word numbers, up to a maximum of five"""
-    numbers = ["one", "two", "three", "four", "five"]
-    yield from numbers[:count]
+    def __next__(self) -> T:
+        try:
+            value = self._collection[self._position]
+            self._position += 1
+        except IndexError:
+            raise StopIteration()
+        return value
 
+class WordsCollection(Iterable[T], Generic[T]):
+    def __init__(self, collection: List[T] = []) -> None:
+        self._collection = collection
 
-# Test the generator
-def count_to_two() -> None:
-    return count_to(2)
+    def __iter__(self) -> AlphabeticalOrderIterator[T]:
+        return AlphabeticalOrderIterator(self._collection)
 
-
-def count_to_five() -> None:
-    return count_to(5)
-
-
-def main():
-    """
-    # Counting to two...
-    >>> for number in count_to_two():
-    ...     print(number)
-    one
-    two
-
-    # Counting to five...
-    >>> for number in count_to_five():
-    ...     print(number)
-    one
-    two
-    three
-    four
-    five
-    """
-
+    def add_item(self, item: T) -> None:
+        self._collection.append(item)
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    collection = WordsCollection[str]()
+    collection.add_item("First")
+    collection.add_item("Second")
+    collection.add_item("Third")
+    print("\n".join(collection))

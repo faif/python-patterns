@@ -1,73 +1,28 @@
-"""
-An example of the Template pattern in Python
+from __future__ import annotations
+from abc import ABC, abstractmethod
 
-*TL;DR
-Defines the skeleton of a base algorithm, deferring definition of exact
-steps to subclasses.
+class AbstractClass(ABC):
+    def template_method(self) -> None:
+        self.base_operation1()
+        self.required_operations1()
+        self.base_operation2()
+        self.hook1()
 
-*Examples in Python ecosystem:
-Django class based views: https://docs.djangoproject.com/en/2.1/topics/class-based-views/
-"""
+    def base_operation1(self) -> None:
+        print("AbstractClass: Doing the bulk of the work")
 
+    def base_operation2(self) -> None:
+        print("AbstractClass: Allowing subclasses to override operations")
 
-def get_text() -> str:
-    return "plain-text"
+    @abstractmethod
+    def required_operations1(self) -> None: ...
 
+    def hook1(self) -> None: ...
 
-def get_pdf() -> str:
-    return "pdf"
-
-
-def get_csv() -> str:
-    return "csv"
-
-
-def convert_to_text(data: str) -> str:
-    print("[CONVERT]")
-    return f"{data} as text"
-
-
-def saver() -> None:
-    print("[SAVE]")
-
-
-def template_function(getter, converter=False, to_save=False) -> None:
-    data = getter()
-    print(f"Got `{data}`")
-
-    if len(data) <= 3 and converter:
-        data = converter(data)
-    else:
-        print("Skip conversion")
-
-    if to_save:
-        saver()
-
-    print(f"`{data}` was processed")
-
-
-def main():
-    """
-    >>> template_function(get_text, to_save=True)
-    Got `plain-text`
-    Skip conversion
-    [SAVE]
-    `plain-text` was processed
-
-    >>> template_function(get_pdf, converter=convert_to_text)
-    Got `pdf`
-    [CONVERT]
-    `pdf as text` was processed
-
-    >>> template_function(get_csv, to_save=True)
-    Got `csv`
-    Skip conversion
-    [SAVE]
-    `csv` was processed
-    """
-
+class ConcreteClass(AbstractClass):
+    def required_operations1(self) -> None:
+        print("ConcreteClass: Implemented Operation1")
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    template = ConcreteClass()
+    template.template_method()
