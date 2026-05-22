@@ -1,5 +1,4 @@
-"""
-*What is this pattern about?
+"""*What is this pattern about?
 
 The Chain of responsibility is an object oriented version of the
 `if ... elif ... elif ... else ...` idiom, with the
@@ -44,11 +43,12 @@ class Handler(ABC):
 
     @abstractmethod
     def check_range(self, request: int) -> Optional[bool]:
-        """Compare passed value to predefined interval"""
+        """Compare passed value to predefined interval."""
 
 
 class ConcreteHandler0(Handler):
     """Each handler can be different.
+
     Be simple and static...
     """
 
@@ -61,7 +61,10 @@ class ConcreteHandler0(Handler):
 
 
 class ConcreteHandler1(Handler):
-    """... With it's own internal state"""
+    """...
+
+    With it's own internal state
+    """
 
     start, end = 10, 20
 
@@ -73,7 +76,10 @@ class ConcreteHandler1(Handler):
 
 
 class ConcreteHandler2(Handler):
-    """... With helper methods."""
+    """...
+
+    With helper methods.
+    """
 
     def check_range(self, request: int) -> Optional[bool]:
         start, end = self.get_interval_from_db()

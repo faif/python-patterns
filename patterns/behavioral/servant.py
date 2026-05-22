@@ -1,5 +1,4 @@
-"""
-Implementation of the Servant design pattern.
+"""Implementation of the Servant design pattern.
 
 The Servant design pattern is a behavioral pattern used to offer functionality
 to a group of classes without requiring them to inherit from a base class.
@@ -40,7 +39,8 @@ class Circle:
 
 
 class Rectangle:
-    """Representation of a rectangle defined by width, height, and a position."""
+    """Representation of a rectangle defined by width, height, and a
+    position."""
 
     def __init__(self, width, height, position: Position):
         self.width = width
@@ -49,15 +49,12 @@ class Rectangle:
 
 
 class GeometryTools:
-    """
-    Servant class providing geometry-related services, including area and
-    perimeter calculations and position updates.
-    """
+    """Servant class providing geometry-related services, including area
+    and perimeter calculations and position updates."""
 
     @staticmethod
     def calculate_area(shape):
-        """
-        Calculate the area of a given shape.
+        """Calculate the area of a given shape.
 
         Args:
             shape: The geometric shape whose area is to be calculated.
@@ -77,8 +74,7 @@ class GeometryTools:
 
     @staticmethod
     def calculate_perimeter(shape):
-        """
-        Calculate the perimeter of a given shape.
+        """Calculate the perimeter of a given shape.
 
         Args:
             shape: The geometric shape whose perimeter is to be calculated.
@@ -98,8 +94,7 @@ class GeometryTools:
 
     @staticmethod
     def move_to(shape, new_position: Position):
-        """
-        Move a given shape to a new position.
+        """Move a given shape to a new position.
 
         Args:
             shape: The geometric shape to be moved.

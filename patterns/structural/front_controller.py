@@ -26,11 +26,12 @@ class Dispatcher:
         self.tablet_view = TabletView()
 
     def dispatch(self, request: Request) -> None:
-        """
-        This function is used to dispatch the request based on the type of device.
-        If it is a mobile, then mobile view will be called and if it is a tablet,
-        then tablet view will be called.
-        Otherwise, an error message will be printed saying that cannot dispatch the request.
+        """This function is used to dispatch the request based on the type
+        of device.
+
+        If it is a mobile, then mobile view will be called and if it is a
+        tablet, then tablet view will be called. Otherwise, an error
+        message will be printed saying that cannot dispatch the request.
         """
         if request.type == Request.mobile_type:
             self.mobile_view.show_index_page()
@@ -41,15 +42,14 @@ class Dispatcher:
 
 
 class RequestController:
-    """front controller"""
+    """Front controller."""
 
     def __init__(self) -> None:
         self.dispatcher = Dispatcher()
 
     def dispatch_request(self, request: Any) -> None:
-        """
-        This function takes a request object and sends it to the dispatcher.
-        """
+        """This function takes a request object and sends it to the
+        dispatcher."""
         if isinstance(request, Request):
             self.dispatcher.dispatch(request)
         else:
@@ -57,7 +57,7 @@ class RequestController:
 
 
 class Request:
-    """request"""
+    """request."""
 
     mobile_type = "mobile"
     tablet_type = "tablet"

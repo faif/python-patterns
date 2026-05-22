@@ -1,13 +1,15 @@
-"""
-A class that uses different static functions depending on a parameter passed
-during initialization. Uses a single dictionary instead of multiple conditions.
+"""A class that uses different static functions depending on a parameter
+passed during initialization.
+
+Uses a single dictionary instead of multiple conditions.
 """
 
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 
 
 class Catalog:
-    """catalog of multiple static methods that are executed depending on an init parameter"""
+    """Catalog of multiple static methods that are executed depending on an
+    init parameter."""
 
     def __init__(self, param: str) -> None:
         # dictionary that will be used to determine which static method is
@@ -33,7 +35,7 @@ class Catalog:
         return "executed method 2!"
 
     def main_method(self) -> str:
-        """will execute either _static_method_1 or _static_method_2
+        """Will execute either _static_method_1 or _static_method_2.
 
         depending on self.param value
         """
@@ -42,9 +44,8 @@ class Catalog:
 
 # Alternative implementation for different levels of methods
 class CatalogInstance:
-    """catalog of multiple methods that are executed depending on an init
-    parameter
-    """
+    """Catalog of multiple methods that are executed depending on an init
+    parameter."""
 
     def __init__(self, param: str) -> None:
         self.x1 = "x1"
@@ -67,7 +68,7 @@ class CatalogInstance:
     }
 
     def main_method(self) -> str:
-        """will execute either _instance_method_1 or _instance_method_2
+        """Will execute either _instance_method_1 or _instance_method_2.
 
         depending on self.param value
         """
@@ -76,9 +77,8 @@ class CatalogInstance:
 
 
 class CatalogClass:
-    """catalog of multiple class methods that are executed depending on an init
-    parameter
-    """
+    """Catalog of multiple class methods that are executed depending on an
+    init parameter."""
 
     x1 = "x1"
     x2 = "x2"
@@ -104,18 +104,19 @@ class CatalogClass:
     }
 
     def main_method(self) -> str:
-        """will execute either _class_method_1 or _class_method_2
+        """Will execute either _class_method_1 or _class_method_2.
 
         depending on self.param value
         """
-        return self._class_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
+        return self._class_method_choices[self.param].__get__(
+            None, self.__class__
+        )()  # type: ignore
         # type ignore reason: https://github.com/python/mypy/issues/10206
 
 
 class CatalogStatic:
-    """catalog of multiple static methods that are executed depending on an init
-    parameter
-    """
+    """Catalog of multiple static methods that are executed depending on an
+    init parameter."""
 
     def __init__(self, param: str) -> None:
         # simple test to validate param value
@@ -138,12 +139,13 @@ class CatalogStatic:
     }
 
     def main_method(self) -> str:
-        """will execute either _static_method_1 or _static_method_2
+        """Will execute either _static_method_1 or _static_method_2.
 
         depending on self.param value
         """
-
-        return self._static_method_choices[self.param].__get__(None, self.__class__)()  # type: ignore
+        return self._static_method_choices[self.param].__get__(
+            None, self.__class__
+        )()  # type: ignore
         # type ignore reason: https://github.com/python/mypy/issues/10206
 
 

@@ -12,7 +12,9 @@ class Abstraction:
         self.implementation = implementation
 
     def operation(self) -> str:
-        return f"Abstraction: Base operation with:\n{self.implementation.operation_implementation()}"
+        return f"Abstraction: Base operation with:\n{
+            self.implementation.operation_implementation()
+        }"
 
 
 class ConcreteImplementationA:

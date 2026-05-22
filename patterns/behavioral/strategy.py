@@ -1,10 +1,8 @@
-"""
-*What is this pattern about?
-Define a family of algorithms, encapsulate each one, and make them interchangeable.
-Strategy lets the algorithm vary independently from clients that use it.
+"""*What is this pattern about? Define a family of algorithms, encapsulate
+each one, and make them interchangeable. Strategy lets the algorithm vary
+independently from clients that use it.
 
-*TL;DR
-Enables selecting an algorithm at runtime.
+*TL;DR Enables selecting an algorithm at runtime.
 """
 
 from __future__ import annotations
@@ -18,7 +16,9 @@ class DiscountStrategyValidator:  # Descriptor class for check perform
         try:
             if obj.price - value(obj) < 0:
                 raise ValueError(
-                    f"Discount cannot be applied due to negative price resulting. {value.__name__}"
+                    f"Discount cannot be applied due to negative price resulting. {
+                        value.__name__
+                    }"
                 )
         except ValueError as ex:
             print(str(ex))

@@ -28,12 +28,11 @@ http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.ht
 Provides a simpler unified interface to a complex system.
 """
 
-
 # Complex computer parts
+
+
 class CPU:
-    """
-    Simple CPU representation.
-    """
+    """Simple CPU representation."""
 
     def freeze(self) -> None:
         print("Freezing processor.")
@@ -46,27 +45,21 @@ class CPU:
 
 
 class Memory:
-    """
-    Simple memory representation.
-    """
+    """Simple memory representation."""
 
     def load(self, position: str, data: str) -> None:
         print(f"Loading from {position} data: '{data}'.")
 
 
 class SolidStateDrive:
-    """
-    Simple solid state drive representation.
-    """
+    """Simple solid state drive representation."""
 
     def read(self, lba: str, size: str) -> str:
         return f"Some data from sector {lba} with size {size}"
 
 
 class ComputerFacade:
-    """
-    Represents a facade for various computer parts.
-    """
+    """Represents a facade for various computer parts."""
 
     def __init__(self):
         self.cpu = CPU()

@@ -1,15 +1,14 @@
-"""
-Implementation of the iterator pattern using the iterator protocol from Python
+"""Implementation of the iterator pattern using the iterator protocol from
+Python.
 
-*TL;DR
-Traverses a container and accesses the container's elements.
+*TL;DR Traverses a container and accesses the container's elements.
 """
 
 from __future__ import annotations
 
 
 class NumberWords:
-    """Counts by word numbers, up to a maximum of five"""
+    """Counts by word numbers, up to a maximum of five."""
 
     _WORD_MAP = (
         "one",
@@ -38,12 +37,8 @@ class NumberWords:
 
 
 def main():
-    """
-    # Counting to two...
-    >>> for number in NumberWords(start=1, stop=2):
-    ...     print(number)
-    one
-    two
+    """# Counting to two... >>> for number in NumberWords(start=1, stop=2):
+    ...     print(number) one two
 
     # Counting to five...
     >>> for number in NumberWords(start=1, stop=5):

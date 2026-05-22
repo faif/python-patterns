@@ -54,7 +54,7 @@ class ParameterInjection:
 
 
 class SetterInjection:
-    """Setter Injection"""
+    """Setter Injection."""
 
     def __init__(self):
         pass
@@ -71,17 +71,15 @@ class SetterInjection:
 
 
 def production_code_time_provider() -> str:
-    """
-    Production code version of the time provider (just a wrapper for formatting
-    datetime for this example).
-    """
+    """Production code version of the time provider (just a wrapper for
+    formatting datetime for this example)."""
     current_time = datetime.datetime.now()
     current_time_formatted = f"{current_time.hour}:{current_time.minute}"
     return current_time_formatted
 
 
 def midnight_time_provider() -> str:
-    """Hard-coded stub"""
+    """Hard-coded stub."""
     return "24:01"
 
 

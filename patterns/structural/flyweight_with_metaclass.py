@@ -3,13 +3,12 @@ import weakref
 
 class FlyweightMeta(type):
     def __new__(mcs, name, parents, dct):
-        """
-        Set up object pool
+        """Set up object pool.
 
         :param name: class name
         :param parents: class parents
-        :param dct: dict: includes class attributes, class methods,
-        static methods, etc
+        :param dct: dict: includes class attributes, class methods, static
+            methods, etc
         :return: new class
         """
         dct["pool"] = weakref.WeakValueDictionary()
@@ -17,8 +16,8 @@ class FlyweightMeta(type):
 
     @staticmethod
     def _serialize_params(cls, *args, **kwargs):
-        """
-        Serialize input parameters to a key.
+        """Serialize input parameters to a key.
+
         Simple implementation is just to serialize it as a string
         """
         args_list = list(map(str, args))

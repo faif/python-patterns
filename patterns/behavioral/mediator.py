@@ -12,14 +12,14 @@ from __future__ import annotations
 
 
 class ChatRoom:
-    """Mediator class"""
+    """Mediator class."""
 
     def display_message(self, user: User, message: str) -> None:
         return f"[{user} says]: {message}"
 
 
 class User:
-    """A class whose instances want to interact with each other"""
+    """A class whose instances want to interact with each other."""
 
     def __init__(self, name: str) -> None:
         self.name = name

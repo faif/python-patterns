@@ -1,18 +1,16 @@
-"""
-Lazily-evaluated property pattern in Python.
+"""Lazily-evaluated property pattern in Python.
 
 https://en.wikipedia.org/wiki/Lazy_evaluation
 
-*References:
-bottle
+*References: bottle
 https://github.com/bottlepy/bottle/blob/cafc15419cbb4a6cb748e6ecdccf92893bb25ce5/bottle.py#L270
-django
+ django
 https://github.com/django/django/blob/ffd18732f3ee9e6f0374aff9ccf350d85187fac2/django/utils/functional.py#L19
-pip
+ pip
 https://github.com/pypa/pip/blob/cb75cca785629e15efb46c35903827b3eae13481/pip/utils/__init__.py#L821
-pyramid
+ pyramid
 https://github.com/Pylons/pyramid/blob/7909e9503cdfc6f6e84d2c7ace1d3c03ca1d8b73/pyramid/decorator.py#L4
-werkzeug
+ werkzeug
 https://github.com/pallets/werkzeug/blob/5a2bf35441006d832ab1ed5a31963cbc366c99ac/werkzeug/utils.py#L35
 
 *TL;DR
@@ -37,11 +35,11 @@ class lazy_property:
 
 
 def lazy_property2(fn: Callable) -> property:
-    """
-    A lazy property decorator.
+    """A lazy property decorator.
 
-    The function decorated is called the first time to retrieve the result and
-    then that calculated result is used the next time you access the value.
+    The function decorated is called the first time to retrieve the result
+    and then that calculated result is used the next time you access the
+    value.
     """
     attr = "_lazy__" + fn.__name__
 

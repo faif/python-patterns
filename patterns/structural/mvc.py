@@ -1,7 +1,5 @@
-"""
-*TL;DR
-Separates data in GUIs from the ways it is presented, and accepted.
-"""
+"""*TL;DR Separates data in GUIs from the ways it is presented, and
+accepted."""
 
 from abc import ABC, abstractmethod
 from inspect import signature
@@ -18,8 +16,8 @@ class Model(ABC):
 
     @abstractmethod
     def get(self, item: str) -> dict:
-        """Returns an object with a .items() call method
-        that iterates over key,value pairs of its information."""
+        """Returns an object with a .items() call method that iterates over
+        key,value pairs of its information."""
 
     @property
     @abstractmethod
@@ -85,13 +83,15 @@ class ConsoleView(View):
 
     @staticmethod
     def capitalizer(string: str) -> str:
-        """Capitalizes the first letter of a string and lowercases the rest."""
+        """Capitalizes the first letter of a string and lowercases the
+        rest."""
         return string[0].upper() + string[1:].lower()
 
     def show_item_information(
         self, item_type: str, item_name: str, item_info: dict
     ) -> None:
-        """Will look for item information by iterating over key,value pairs"""
+        """Will look for item information by iterating over key,value
+        pairs."""
         print(item_type.upper() + " INFORMATION:")
         printout = "Name: %s" % item_name
         for key, value in item_info.items():
@@ -104,7 +104,8 @@ class ConsoleView(View):
 
 
 class Controller:
-    """The Controller is the intermediary between the Model and the View."""
+    """The Controller is the intermediary between the Model and the
+    View."""
 
     def __init__(self, model_class: Model, view_class: View) -> None:
         self.model: Model = model_class
@@ -116,9 +117,10 @@ class Controller:
         self.view.show_item_list(item_type, items)
 
     def show_item_information(self, item_name: str) -> None:
-        """
-        Show information about a {item_type} item.
-        :param str item_name: the name of the {item_type} item to show information about
+        """Show information about a {item_type} item.
+
+        :param str item_name: the name of the {item_type} item to show
+            information about
         """
         item_type: str = self.model.item_type
         try:
