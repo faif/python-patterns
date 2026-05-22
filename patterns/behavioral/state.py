@@ -37,7 +37,9 @@ class Radio:
         self.state: State = self.am_state
 
     def toggle_am_fm(self) -> None:
-        self.state = self.fm_state if self.state == self.am_state else self.am_state
+        self.state = (
+            self.fm_state if self.state == self.am_state else self.am_state
+        )
 
     def scan(self) -> None:
         self.state.scan()

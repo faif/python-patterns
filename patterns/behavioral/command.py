@@ -64,7 +64,9 @@ class MenuItem:
     The invoker class. Here it is items in a menu.
     """
 
-    def __init__(self, command: Union[HideFileCommand, DeleteFileCommand]) -> None:
+    def __init__(
+        self, command: Union[HideFileCommand, DeleteFileCommand]
+    ) -> None:
         self._command = command
 
     def on_do_press(self, filename: str) -> None:

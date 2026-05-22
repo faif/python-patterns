@@ -56,7 +56,9 @@ class GraphSearch:
                         shortest = newpath
         return shortest
 
-    def find_shortest_path_bfs(self, start: str, end: str) -> Optional[List[str]]:
+    def find_shortest_path_bfs(
+        self, start: str, end: str
+    ) -> Optional[List[str]]:
         """
         Finds the shortest path between two nodes in a graph using breadth-first search.
 

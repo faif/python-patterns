@@ -29,10 +29,14 @@ class CompositeSpecification(Specification):
     def is_satisfied_by(self, candidate):
         pass
 
-    def and_specification(self, candidate: "Specification") -> "AndSpecification":
+    def and_specification(
+        self, candidate: "Specification"
+    ) -> "AndSpecification":
         return AndSpecification(self, candidate)
 
-    def or_specification(self, candidate: "Specification") -> "OrSpecification":
+    def or_specification(
+        self, candidate: "Specification"
+    ) -> "OrSpecification":
         return OrSpecification(self, candidate)
 
     def not_specification(self) -> "NotSpecification":

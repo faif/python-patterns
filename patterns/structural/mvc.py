@@ -6,7 +6,7 @@ Separates data in GUIs from the ways it is presented, and accepted.
 from abc import ABC, abstractmethod
 from inspect import signature
 from sys import argv
-from typing import Any, Dict, List, Union
+from typing import Any
 
 
 class Model(ABC):
@@ -20,7 +20,6 @@ class Model(ABC):
     def get(self, item: str) -> dict:
         """Returns an object with a .items() call method
         that iterates over key,value pairs of its information."""
-        pass
 
     @property
     @abstractmethod
@@ -69,7 +68,6 @@ class View(ABC):
     ) -> None:
         """Will look for item information by iterating over key,value pairs
         yielded by item_info.items()"""
-        pass
 
     @abstractmethod
     def item_not_found(self, item_type: str, item_name: str) -> None:

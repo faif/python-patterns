@@ -77,7 +77,9 @@ class Student(AbstractExpert):
     def contribute(self) -> None:
         self.blackboard.common_state["problems"] += random.randint(1, 10)
         self.blackboard.common_state["suggestions"] += random.randint(1, 10)
-        self.blackboard.common_state["contributions"] += [self.__class__.__name__]
+        self.blackboard.common_state["contributions"] += [
+            self.__class__.__name__
+        ]
         self.blackboard.common_state["progress"] += random.randint(1, 2)
 
 
@@ -94,7 +96,9 @@ class Scientist(AbstractExpert):
     def contribute(self) -> None:
         self.blackboard.common_state["problems"] += random.randint(10, 20)
         self.blackboard.common_state["suggestions"] += random.randint(10, 20)
-        self.blackboard.common_state["contributions"] += [self.__class__.__name__]
+        self.blackboard.common_state["contributions"] += [
+            self.__class__.__name__
+        ]
         self.blackboard.common_state["progress"] += random.randint(10, 30)
 
 
@@ -104,12 +108,16 @@ class Professor(AbstractExpert):
 
     @property
     def is_eager_to_contribute(self) -> bool:
-        return True if self.blackboard.common_state["problems"] > 100 else False
+        return (
+            True if self.blackboard.common_state["problems"] > 100 else False
+        )
 
     def contribute(self) -> None:
         self.blackboard.common_state["problems"] += random.randint(1, 2)
         self.blackboard.common_state["suggestions"] += random.randint(10, 20)
-        self.blackboard.common_state["contributions"] += [self.__class__.__name__]
+        self.blackboard.common_state["contributions"] += [
+            self.__class__.__name__
+        ]
         self.blackboard.common_state["progress"] += random.randint(10, 100)
 
 

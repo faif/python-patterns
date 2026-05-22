@@ -42,7 +42,9 @@ class DiscountStrategyValidator:  # Descriptor class for check perform
 class Order:
     discount_strategy = DiscountStrategyValidator()
 
-    def __init__(self, price: float, discount_strategy: Callable = None) -> None:
+    def __init__(
+        self, price: float, discount_strategy: Callable = None
+    ) -> None:
         self.price: float = price
         self.discount_strategy = discount_strategy
 
@@ -56,7 +58,9 @@ class Order:
 
     def __repr__(self) -> str:
         strategy = getattr(self.discount_strategy, "__name__", None)
-        return f"<Order price: {self.price} with discount strategy: {strategy}>"
+        return (
+            f"<Order price: {self.price} with discount strategy: {strategy}>"
+        )
 
 
 def ten_percent_discount(order: Order) -> float:

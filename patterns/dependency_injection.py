@@ -33,8 +33,8 @@ class ConstructorInjection:
 
     def get_current_time_as_html_fragment(self) -> str:
         current_time = self.time_provider()
-        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
-            current_time
+        current_time_as_html_fragment = (
+            '<span class="tinyBoldText">{}</span>'.format(current_time)
         )
         return current_time_as_html_fragment
 
@@ -43,10 +43,12 @@ class ParameterInjection:
     def __init__(self) -> None:
         pass
 
-    def get_current_time_as_html_fragment(self, time_provider: Callable) -> str:
+    def get_current_time_as_html_fragment(
+        self, time_provider: Callable
+    ) -> str:
         current_time = time_provider()
-        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
-            current_time
+        current_time_as_html_fragment = (
+            '<span class="tinyBoldText">{}</span>'.format(current_time)
         )
         return current_time_as_html_fragment
 
@@ -62,8 +64,8 @@ class SetterInjection:
 
     def get_current_time_as_html_fragment(self):
         current_time = self.time_provider()
-        current_time_as_html_fragment = '<span class="tinyBoldText">{}</span>'.format(
-            current_time
+        current_time_as_html_fragment = (
+            '<span class="tinyBoldText">{}</span>'.format(current_time)
         )
         return current_time_as_html_fragment
 
