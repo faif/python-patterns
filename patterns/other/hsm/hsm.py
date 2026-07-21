@@ -21,7 +21,7 @@ class UnsupportedTransition(BaseException):
     pass
 
 
-class HierachicalStateMachine:
+class HierarchicalStateMachine:
     def __init__(self):
         self._active_state = Active(self)  # Unit.Inservice.Active()
         self._standby_state = Standby(self)  # Unit.Inservice.Standby()
@@ -86,8 +86,8 @@ class HierachicalStateMachine:
 
 
 class Unit:
-    def __init__(self, HierachicalStateMachine):
-        self.hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self.hsm = HierarchicalStateMachine
 
     def on_switchover(self):
         raise UnsupportedTransition
@@ -106,8 +106,8 @@ class Unit:
 
 
 class Inservice(Unit):
-    def __init__(self, HierachicalStateMachine):
-        self._hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self._hsm = HierarchicalStateMachine
 
     def on_fault_trigger(self):
         self._hsm._next_state("suspect")
@@ -121,8 +121,8 @@ class Inservice(Unit):
 
 
 class Active(Inservice):
-    def __init__(self, HierachicalStateMachine):
-        self._hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self._hsm = HierarchicalStateMachine
 
     def on_fault_trigger(self):
         super().perform_switchover()
@@ -134,8 +134,8 @@ class Active(Inservice):
 
 
 class Standby(Inservice):
-    def __init__(self, HierachicalStateMachine):
-        self._hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self._hsm = HierarchicalStateMachine
 
     def on_switchover(self):
         super().on_switchover()  # message ignored
@@ -143,8 +143,8 @@ class Standby(Inservice):
 
 
 class OutOfService(Unit):
-    def __init__(self, HierachicalStateMachine):
-        self._hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self._hsm = HierarchicalStateMachine
 
     def on_operator_inservice(self):
         self._hsm.on_switchover()  # message ignored
@@ -153,8 +153,8 @@ class OutOfService(Unit):
 
 
 class Suspect(OutOfService):
-    def __init__(self, HierachicalStateMachine):
-        self._hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self._hsm = HierarchicalStateMachine
 
     def on_diagnostics_failed(self):
         super().send_diagnostics_failure_report()
@@ -173,5 +173,5 @@ class Suspect(OutOfService):
 class Failed(OutOfService):
     """No need to override any method."""
 
-    def __init__(self, HierachicalStateMachine):
-        self._hsm = HierachicalStateMachine
+    def __init__(self, HierarchicalStateMachine):
+        self._hsm = HierarchicalStateMachine
