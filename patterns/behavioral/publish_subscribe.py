@@ -9,8 +9,8 @@ from __future__ import annotations
 
 class Provider:
     def __init__(self) -> None:
-        self.msg_queue = []
-        self.subscribers = {}
+        self.msg_queue: list[str] = []
+        self.subscribers: dict[str, list[Subscriber]] = {}
 
     def notify(self, msg: str) -> None:
         self.msg_queue.append(msg)

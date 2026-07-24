@@ -29,9 +29,11 @@ Decouples the creation of a complex object and its representation.
 """
 
 
-
 # Abstract Building
 class Building:
+    floor: str
+    size: str
+
     def __init__(self) -> None:
         self.build_floor()
         self.build_size()
@@ -70,6 +72,9 @@ class Flat(Building):
 
 
 class ComplexBuilding:
+    floor: str
+    size: str
+
     def __repr__(self) -> str:
         return "Floor: {0.floor} | Size: {0.size}".format(self)
 

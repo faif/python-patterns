@@ -1,6 +1,3 @@
-from typing import Any, Dict, List, Optional, Union
-
-
 class GraphSearch:
     """Graph search emulation in python, from source
     http://www.python.org/doc/essays/graphs/
@@ -8,12 +5,12 @@ class GraphSearch:
     dfs stands for Depth First Search
     bfs stands for Breadth First Search"""
 
-    def __init__(self, graph: Dict[str, List[str]]) -> None:
+    def __init__(self, graph: dict[str, list[str]]) -> None:
         self.graph = graph
 
     def find_path_dfs(
-        self, start: str, end: str, path: Optional[List[str]] = None
-    ) -> Optional[List[str]]:
+        self, start: str, end: str, path: list[str] | None = None
+    ) -> list[str] | None:
         path = path or []
 
         path.append(start)
@@ -24,15 +21,16 @@ class GraphSearch:
                 newpath = self.find_path_dfs(node, end, path[:])
                 if newpath:
                     return newpath
+        return None
 
     def find_all_paths_dfs(
-        self, start: str, end: str, path: Optional[List[str]] = None
-    ) -> List[Union[List[str], Any]]:
+        self, start: str, end: str, path: list[str] | None = None
+    ) -> list[list[str]]:
         path = path or []
         path.append(start)
         if start == end:
             return [path]
-        paths = []
+        paths: list[list[str]] = []
         for node in self.graph.get(start, []):
             if node not in path:
                 newpaths = self.find_all_paths_dfs(node, end, path[:])
@@ -40,8 +38,8 @@ class GraphSearch:
         return paths
 
     def find_shortest_path_dfs(
-        self, start: str, end: str, path: Optional[List[str]] = None
-    ) -> Optional[List[str]]:
+        self, start: str, end: str, path: list[str] | None = None
+    ) -> list[str] | None:
         path = path or []
         path.append(start)
 
@@ -56,7 +54,7 @@ class GraphSearch:
                         shortest = newpath
         return shortest
 
-    def find_shortest_path_bfs(self, start: str, end: str) -> Optional[List[str]]:
+    def find_shortest_path_bfs(self, start: str, end: str) -> list[str] | None:
         """
         Finds the shortest path between two nodes in a graph using breadth-first search.
 
@@ -71,9 +69,9 @@ class GraphSearch:
         (in terms of hops). If no such path exists, returns an empty list and an empty
         dictionary instead.
         """
-        queue = [start]
-        dist_to = {start: 0}
-        edge_to = {}
+        queue: list[str] = [start]
+        dist_to: dict[str, int] = {start: 0}
+        edge_to: dict[str, str] = {}
 
         if start == end:
             return queue
@@ -86,13 +84,14 @@ class GraphSearch:
                     dist_to[node] = dist_to[value] + 1
                     queue.append(node)
                     if end in edge_to.keys():
-                        path = []
+                        path: list[str] = []
                         node = end
                         while dist_to[node] != 0:
                             path.insert(0, node)
                             node = edge_to[node]
                         path.insert(0, start)
                         return path
+        return None
 
 
 def main():

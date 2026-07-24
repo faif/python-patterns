@@ -6,7 +6,7 @@
 # Usage (line =black line length, path = action path, ignore= exclude folders)
 # ------
 # make pylinter [make pylinter line=88 path=.]
-# make pyupgrade
+# make lock
 
 path := .
 line := 88
@@ -25,22 +25,11 @@ ifeq ("$(VIRTUAL_ENV)","")
 	exit 1
 endif
 
-.PHONY: pyupgrade
-pyupgrade: checkvenv
-# checks if pip-tools is installed
-ifeq ("$(wildcard venv/bin/pip-compile)","")
-	@echo "Installing Pip-tools..."
-	@pip install pip-tools
-endif
-
-ifeq ("$(wildcard venv/bin/pip-sync)","")
-	@echo "Installing Pip-tools..."
-	@pip install pip-tools
-endif
-
-# pip-tools
-	# @pip-compile --upgrade requirements-dev.txt
-	@pip-sync requirements-dev.txt
+.PHONY: lock
+lock: checkvenv
+	@command -v pipenv >/dev/null || python -m pip install pipenv
+	@pipenv lock --dev
+	@pipenv sync --dev
 
 
 .PHONY: pylinter

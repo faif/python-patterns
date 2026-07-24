@@ -1,8 +1,5 @@
-from typing import Dict
-
-
 class RegistryHolder(type):
-    REGISTRY: Dict[str, "RegistryHolder"] = {}
+    REGISTRY: dict[str, "RegistryHolder"] = {}
 
     def __new__(cls, name, bases, attrs):
         new_cls = type.__new__(cls, name, bases, attrs)

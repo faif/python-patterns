@@ -1,6 +1,8 @@
-from patterns.behavioral.servant import GeometryTools, Circle, Rectangle, Position
-import pytest
 import math
+
+import pytest
+
+from patterns.behavioral.servant import Circle, GeometryTools, Position, Rectangle
 
 
 @pytest.fixture

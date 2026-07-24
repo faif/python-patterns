@@ -1,9 +1,9 @@
 import pytest
 
 from patterns.structural.mvc import (
-    ProductModel,
     ConsoleView,
     Controller,
+    ProductModel,
     Router,
 )
 

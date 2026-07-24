@@ -31,12 +31,15 @@ import weakref
 class Card:
     """The Flyweight"""
 
+    value: str
+    suit: str
+
     # Could be a simple dict.
     # With WeakValueDictionary garbage collection can reclaim the object
     # when there are no other references to it.
-    _pool: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
+    _pool: weakref.WeakValueDictionary[str, "Card"] = weakref.WeakValueDictionary()
 
-    def __new__(cls, value: str, suit: str):
+    def __new__(cls, value: str, suit: str) -> "Card":
         # If the object exists in the pool - just return it
         obj = cls._pool.get(value + suit)
         # otherwise - create new one (and add it to the pool)
