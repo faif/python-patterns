@@ -33,18 +33,16 @@ https://github.com/onetwopunch/pythonDbTemplate/blob/master/database.py
 Provides singleton-like behavior sharing state between instances.
 """
 
-from typing import Dict
-
 
 class Borg:
-    _shared_state: Dict[str, str] = {}
+    _shared_state: dict[str, str] = {}
 
     def __init__(self) -> None:
         self.__dict__ = self._shared_state
 
 
 class YourBorg(Borg):
-    def __init__(self, state: str = None) -> None:
+    def __init__(self, state: str | None = None) -> None:
         super().__init__()
         if state:
             self.state = state

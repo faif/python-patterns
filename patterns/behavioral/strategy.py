@@ -9,12 +9,15 @@ Enables selecting an algorithm at runtime.
 
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
+from typing import TypeAlias
+
+DiscountStrategy: TypeAlias = Callable[["Order"], float]
 
 
 class DiscountStrategyValidator:  # Descriptor class for check perform
     @staticmethod
-    def validate(obj: Order, value: Callable) -> bool:
+    def validate(obj: Order, value: DiscountStrategy) -> bool:
         try:
             if obj.price - value(obj) < 0:
                 raise ValueError(
@@ -29,20 +32,24 @@ class DiscountStrategyValidator:  # Descriptor class for check perform
     def __set_name__(self, owner, name: str) -> None:
         self.private_name = f"_{name}"
 
-    def __set__(self, obj: Order, value: Callable = None) -> None:
-        if value and self.validate(obj, value):
+    def __set__(self, obj: Order, value: DiscountStrategy | None = None) -> None:
+        if value is not None and self.validate(obj, value):
             setattr(obj, self.private_name, value)
         else:
             setattr(obj, self.private_name, None)
 
-    def __get__(self, obj: object, objtype: type = None):
+    def __get__(
+        self, obj: Order, objtype: type[Order] | None = None
+    ) -> DiscountStrategy | None:
         return getattr(obj, self.private_name)
 
 
 class Order:
     discount_strategy = DiscountStrategyValidator()
 
-    def __init__(self, price: float, discount_strategy: Callable = None) -> None:
+    def __init__(
+        self, price: float, discount_strategy: DiscountStrategy | None = None
+    ) -> None:
         self.price: float = price
         self.discount_strategy = discount_strategy
 

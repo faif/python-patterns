@@ -11,7 +11,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install .[dev]
+          pip install pipenv
+          pipenv sync --dev --system
+          pip install --no-build-isolation --no-deps -e .
       - name: Lint with flake8
         run: flake8 ./patterns --count --show-source --statistics
         continue-on-error: true
@@ -29,7 +31,7 @@ jobs:
           pytest --doctest-modules ./patterns || true
         continue-on-error: true
       - name: Check Python version compatibility
-        run: shopt -s globstar && pyupgrade --py312-plus ./patterns/**/*.py
+        run: shopt -s globstar && pyupgrade --py310-plus ./patterns/**/*.py
         continue-on-error: true
       - name: Run tox
         run: tox

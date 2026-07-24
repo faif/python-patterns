@@ -31,7 +31,6 @@ Provides a way to encapsulate a group of individual factories.
 """
 
 import random
-from typing import Type
 
 
 class Pet:
@@ -64,7 +63,7 @@ class Cat(Pet):
 class PetShop:
     """A pet shop"""
 
-    def __init__(self, animal_factory: Type[Pet]) -> None:
+    def __init__(self, animal_factory: type[Pet]) -> None:
         """pet_factory is our abstract factory.  We can set it at will."""
 
         self.pet_factory = animal_factory
@@ -91,7 +90,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     animals = [Dog, Cat]
-    random_animal: Type[Pet] = random.choice(animals)
+    random_animal: type[Pet] = random.choice(animals)
 
     shop = PetShop(random_animal)
     import doctest

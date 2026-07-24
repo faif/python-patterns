@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+
+[dev-packages]
+black = ">=25.1.0"
+build = ">=1.2.2"
+codecov = "*"
+codespell = "*"
+flake8 = ">=7.1.0"
+isort = ">=5.7.0"
+mypy = "*"
+pipx = ">=1.7.1"
+pyupgrade = "*"
+pytest = ">=6.2.0"
+pytest-cov = ">=2.11.0"
+pytest-randomly = ">=3.1.0"
+tox = ">=4.25.0"

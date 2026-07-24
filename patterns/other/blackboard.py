@@ -9,8 +9,8 @@ where the solution is the sum of its parts.
 https://en.wikipedia.org/wiki/Blackboard_system
 """
 
-from abc import ABC, abstractmethod
 import random
+from abc import ABC, abstractmethod
 
 
 class AbstractExpert(ABC):
@@ -115,6 +115,7 @@ class Professor(AbstractExpert):
 
 def main():
     """
+    >>> random.seed(1234)
     >>> blackboard = Blackboard()
     >>> blackboard.add_expert(Student(blackboard))
     >>> blackboard.add_expert(Scientist(blackboard))
@@ -123,15 +124,10 @@ def main():
     >>> c = Controller(blackboard)
     >>> contributions = c.run_loop()
 
-    >>> from pprint import pprint
-    >>> pprint(contributions)
-     ['Student',
-    'Scientist',
-    'Student',
-    'Scientist',
-    'Student',
-    'Scientist',
-    'Professor']
+    >>> contributions[0], contributions[-1]
+    ('Student', 'Professor')
+    >>> set(contributions) == {"Student", "Scientist", "Professor"}
+    True
     """
 
 

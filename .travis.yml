@@ -2,16 +2,20 @@ os: linux
 dist: noble
 language: python
 
-jobs:
-  include:
-    - python: "3.12"
-      env: TOXENV=py312
+python:
+  - "3.10"
+  - "3.11"
+  - "3.12"
+  - "3.13"
+  - "3.14"
 
 cache:
   - pip
 
 install:
-  - pip install codecov tox
+  - pip install pipenv
+  - pipenv sync --dev --system
+  - pip install --no-build-isolation --no-deps -e .
 
 script:
   - tox

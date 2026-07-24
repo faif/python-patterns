@@ -8,7 +8,8 @@ Allows object composition to achieve the same code reuse as inheritance.
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 
 class Delegator:
@@ -19,7 +20,7 @@ class Delegator:
     >>> delegator.p2
     Traceback (most recent call last):
     ...
-    AttributeError: 'Delegate' object has no attribute 'p2'. Did you mean: 'p1'?
+    AttributeError: ...
     >>> delegator.do_something("nothing")
     'Doing nothing'
     >>> delegator.do_something("something", kw=", faif!")
@@ -27,7 +28,7 @@ class Delegator:
     >>> delegator.do_anything()
     Traceback (most recent call last):
     ...
-    AttributeError: 'Delegate' object has no attribute 'do_anything'. Did you mean: 'do_something'?
+    AttributeError: ...
     """
 
     def __init__(self, delegate: Delegate) -> None:

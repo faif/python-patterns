@@ -20,15 +20,24 @@ Delays the eval of an expr until its value is needed and avoids repeated evals.
 """
 
 import functools
-from typing import Callable, Type
+from collections.abc import Callable
+from typing import Any, overload
 
 
 class lazy_property:
-    def __init__(self, function: Callable) -> None:
+    def __init__(self, function: Callable[["Person"], str]) -> None:
         self.function = function
-        functools.update_wrapper(self, function)
+        functools.update_wrapper(self, function)  # type: ignore[arg-type]
 
-    def __get__(self, obj: "Person", type_: Type["Person"]) -> str:
+    @overload
+    def __get__(self, obj: None, type_: type["Person"]) -> "lazy_property": ...
+
+    @overload
+    def __get__(self, obj: "Person", type_: type["Person"]) -> str: ...
+
+    def __get__(
+        self, obj: "Person | None", type_: type["Person"]
+    ) -> "lazy_property | str":
         if obj is None:
             return self
         val = self.function(obj)
@@ -36,7 +45,7 @@ class lazy_property:
         return val
 
 
-def lazy_property2(fn: Callable) -> property:
+def lazy_property2(fn: Callable[[Any], str]) -> property:
     """
     A lazy property decorator.
 
@@ -45,13 +54,12 @@ def lazy_property2(fn: Callable) -> property:
     """
     attr = "_lazy__" + fn.__name__
 
-    @property
-    def _lazy_property(self):
+    def _lazy_property(self: Any) -> str:
         if not hasattr(self, attr):
             setattr(self, attr, fn(self))
         return getattr(self, attr)
 
-    return _lazy_property
+    return property(_lazy_property)
 
 
 class Person:

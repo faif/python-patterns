@@ -28,7 +28,8 @@ http://python-3-patterns-idioms-test.readthedocs.io/en/latest/ChangeInterface.ht
 Allows the interface of an existing class to be used as another interface.
 """
 
-from typing import Callable, TypeVar, Any, Dict
+from collections.abc import Callable
+from typing import Any, TypeVar
 
 T = TypeVar("T")
 
@@ -83,7 +84,7 @@ class Adapter:
         """All non-adapted calls are passed to the object."""
         return getattr(self.obj, attr)
 
-    def original_dict(self) -> Dict[str, Any]:
+    def original_dict(self) -> dict[str, Any]:
         """Print original object dict."""
         return self.obj.__dict__
 

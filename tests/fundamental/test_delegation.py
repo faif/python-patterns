@@ -1,6 +1,6 @@
 import pytest
 
-from patterns.fundamental.delegation_pattern import Delegator, Delegate
+from patterns.fundamental.delegation_pattern import Delegate, Delegator
 
 
 def test_delegator_delegates_attribute_and_call():

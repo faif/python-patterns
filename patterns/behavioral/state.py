@@ -14,6 +14,13 @@ from __future__ import annotations
 class State:
     """Base state. This is to share functionality"""
 
+    name: str
+    pos: int
+    stations: list[str]
+
+    def toggle_amfm(self) -> None:
+        raise NotImplementedError
+
     def scan(self) -> None:
         """Scan the dial to the next station"""
         self.pos += 1
@@ -53,7 +60,7 @@ class Radio:
         """We have an AM state and an FM state"""
         self.amstate = AmState(self)
         self.fmstate = FmState(self)
-        self.state = self.amstate
+        self.state: State = self.amstate
 
     def toggle_amfm(self) -> None:
         self.state.toggle_amfm()

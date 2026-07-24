@@ -22,7 +22,7 @@ http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
 Creates objects without having to specify the exact class.
 """
 
-from typing import Dict, Protocol, Type
+from typing import Protocol
 
 
 class Localizer(Protocol):
@@ -49,7 +49,7 @@ class EnglishLocalizer:
 
 def get_localizer(language: str = "English") -> Localizer:
     """Factory"""
-    localizers: Dict[str, Type[Localizer]] = {
+    localizers: dict[str, type[Localizer]] = {
         "English": EnglishLocalizer,
         "Greek": GreekLocalizer,
     }

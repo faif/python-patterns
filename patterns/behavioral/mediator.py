@@ -14,7 +14,7 @@ from __future__ import annotations
 class ChatRoom:
     """Mediator class"""
 
-    def display_message(self, user: User, message: str) -> None:
+    def display_message(self, user: User, message: str) -> str:
         return f"[{user} says]: {message}"
 
 
@@ -25,7 +25,7 @@ class User:
         self.name = name
         self.chat_room = ChatRoom()
 
-    def say(self, message: str) -> None:
+    def say(self, message: str) -> str:
         return self.chat_room.display_message(self, message)
 
     def __str__(self) -> str:

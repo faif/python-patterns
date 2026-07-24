@@ -82,14 +82,16 @@ jobs:
       - uses: actions/cache@v5
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-dev.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('Pipfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+          pip install pipenv
+          pipenv sync --dev --system
+          pip install --no-build-isolation --no-deps -e .
 
       # Flake8 linting
       - name: Lint with flake8
@@ -159,7 +161,7 @@ jobs:
       - name: Check Python version compatibility
         if: ${{ matrix.tool == 'pyupgrade' }}
         id: pyupgrade
-        run: pyupgrade --py312-plus ${{ needs.check_changes.outputs.files }}
+        run: pyupgrade --py310-plus ${{ needs.check_changes.outputs.files }}
 
       # Run tox
       - name: Run tox
@@ -171,14 +173,13 @@ jobs:
 
           # Create a temporary tox configuration that extends the original one
           echo "[tox]" > tox_pr.ini
-          echo "envlist = py312" >> tox_pr.ini
-          echo "skip_missing_interpreters = true" >> tox_pr.ini
+          echo "envlist = py" >> tox_pr.ini
 
           echo "[testenv]" >> tox_pr.ini
           echo "setenv =" >> tox_pr.ini
           echo "    COVERAGE_FILE = .coverage.{envname}" >> tox_pr.ini
           echo "deps =" >> tox_pr.ini
-          echo "    -r requirements-dev.txt" >> tox_pr.ini
+          echo "    -r requirements-dev.lock" >> tox_pr.ini
           echo "allowlist_externals =" >> tox_pr.ini
           echo "    pytest" >> tox_pr.ini
           echo "    coverage" >> tox_pr.ini

@@ -3,13 +3,11 @@ A class that uses different static functions depending on a parameter passed
 during initialization. Uses a single dictionary instead of multiple conditions.
 """
 
-
 __author__ = "Ibrahim Diop <ibrahim@sikilabs.com>"
 
 
 class Catalog:
-    """catalog of multiple static methods that are executed depending on an init parameter
-    """
+    """catalog of multiple static methods that are executed depending on an init parameter"""
 
     def __init__(self, param: str) -> None:
         # dictionary that will be used to determine which static method is
