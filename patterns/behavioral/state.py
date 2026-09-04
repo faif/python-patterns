@@ -8,8 +8,6 @@ Implements state as a derived class of the state pattern interface.
 Implements state transitions by invoking methods from the pattern's superclass.
 """
 
-from __future__ import annotations
-
 
 class State:
     """Base state. This is to share functionality"""

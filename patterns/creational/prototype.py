@@ -21,8 +21,6 @@ copies of the prototype: 'default', 'objecta' and 'objectb'.
 Creates new object instances by cloning prototype.
 """
 
-from __future__ import annotations
-
 from typing import Any
 
 

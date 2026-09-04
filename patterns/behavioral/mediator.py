@@ -8,8 +8,6 @@ This reduces the dependencies between communicating objects, thereby reducing co
 Encapsulates how a set of objects interact.
 """
 
-from __future__ import annotations
-
 
 class ChatRoom:
     """Mediator class"""

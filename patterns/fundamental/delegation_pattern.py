@@ -6,8 +6,6 @@ Author: https://github.com/IuryAlves
 Allows object composition to achieve the same code reuse as inheritance.
 """
 
-from __future__ import annotations
-
 from collections.abc import Callable
 from typing import Any
 

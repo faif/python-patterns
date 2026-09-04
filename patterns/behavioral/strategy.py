@@ -7,8 +7,6 @@ Strategy lets the algorithm vary independently from clients that use it.
 Enables selecting an algorithm at runtime.
 """
 
-from __future__ import annotations
-
 from collections.abc import Callable
 from typing import TypeAlias
 

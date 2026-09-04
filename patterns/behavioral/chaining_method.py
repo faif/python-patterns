@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 
 class Person:
     def __init__(self, name: str) -> None:

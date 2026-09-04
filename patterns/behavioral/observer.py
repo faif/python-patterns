@@ -11,8 +11,6 @@ Flask Signals: https://flask.palletsprojects.com/en/1.1.x/signals/
 
 # observer.py
 
-from __future__ import annotations
-
 
 class Observer:
     def update(self, subject: Subject) -> None:

@@ -5,8 +5,6 @@
 Provides a centralized entry point that controls and manages request handling.
 """
 
-from __future__ import annotations
-
 from typing import Any
 
 

@@ -4,8 +4,6 @@ http://www.slideshare.net/ishraqabd/publish-subscribe-model-overview-13368808
 Author: https://github.com/HanWenfang
 """
 
-from __future__ import annotations
-
 
 class Provider:
     def __init__(self) -> None:
