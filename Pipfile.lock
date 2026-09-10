@@ -386,6 +386,14 @@
             ],
             "version": "==0.4.3"
         },
+        "exceptiongroup": {
+            "hashes": [
+                "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219",
+                "sha256:a7a39a3bd276781e98394987d3a5701d0c4edffb633bb7a5144577f82c773598"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==1.3.1"
+        },
         "filelock": {
             "hashes": [
                 "sha256:142cd9fa77a872c5e78c62329a0d15278fadc686eb89e760017968961a4fd6b2",
@@ -740,11 +748,11 @@
         },
         "pygments": {
             "hashes": [
-                "sha256:6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f",
-                "sha256:81a9e26dd42fd28a23a2d169d86d7ac03b46e2f8b59ed4698fb4785f946d0176"
+                "sha256:2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+                "sha256:610ca751c9bc2492b38eb9a38a7fbc93edbbb2d7182edaf34e66ae493dee5c8c"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==2.20.0"
+            "version": "==2.21.0"
         },
         "pyproject-api": {
             "hashes": [
@@ -782,12 +790,12 @@
         },
         "pytest-randomly": {
             "hashes": [
-                "sha256:47f1d9746c3bc3efabd53ae1ebfb8bb385cf3d4df4b505b6d58d9c97a3dfe70f",
-                "sha256:f55e89e53367b090c0c053697d7f9d77595543d0e0516c93978b50c0f6b252f9"
+                "sha256:8a0d4703115c0c25b38b6e129fc16b1947b9643ff26a41bc1d185d7e5a7689c1",
+                "sha256:e9c575a5873ef168ddbe340ed9e97ce9edb4492ccc821e4b2ac6bb1f0ed515d2"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==4.1.0"
+            "version": "==5.0.0"
         },
         "python-discovery": {
             "hashes": [
