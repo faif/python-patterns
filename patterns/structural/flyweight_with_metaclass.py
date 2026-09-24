@@ -19,12 +19,11 @@ class FlyweightMeta(type):
     def _serialize_params(cls, *args, **kwargs):
         """
         Serialize input parameters to a key.
-        Simple implementation is just to serialize it as a string
+        Simple implementation is just to serialize it as a string. ``repr`` keeps
+        ``("1", "0")``, ``("10",)`` and ``(1,)`` apart, and sorting the keyword
+        arguments makes the key independent of their order.
         """
-        args_list = list(map(str, args))
-        args_list.extend([str(kwargs), cls.__name__])
-        key = "".join(args_list)
-        return key
+        return repr((cls.__name__, args, sorted(kwargs.items())))
 
     def __call__(cls, *args, **kwargs):
         key = FlyweightMeta._serialize_params(cls, *args, **kwargs)
