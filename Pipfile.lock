@@ -396,11 +396,11 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:30cd166e2aee2c7534ce2c33c6367c4cd051b8368e20e2c4eb0c34f699bacfab",
-                "sha256:87296d60478e14204fd9406e79831400fef76693bae2895deec236c98e87a8aa"
+                "sha256:667d7dc0b7d1e1064dd5f8f8e80bdac157a6482e8d2e02cd16fd3b6b33bd6556",
+                "sha256:c22803117490f156e59fafce621f0550a7a853e2bbf4f87f112b11d469b6c81b"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==4.0.3"
+            "version": "==3.24.2"
         },
         "flake8": {
             "hashes": [
