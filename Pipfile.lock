@@ -707,12 +707,12 @@
         },
         "pipx": {
             "hashes": [
-                "sha256:3d4962feb270c778426820c4bd79f5faf20979c512c2f3832b932207b192eda0",
-                "sha256:e29d68d05f5b4707d3d3dbddb0adfc4ca4ddcd77052dbb8f4e1b5ad31629a07c"
+                "sha256:a2596264e05d68aa06b2a41e4b69b6e0045ebfb0029bd6759d05bcd24accdf50",
+                "sha256:b18606c312f50d57d2fb1168e0d8e82cd86d831d83bdd13318f2d07ed1ddc34e"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==1.17.2"
+            "version": "==1.17.5"
         },
         "platformdirs": {
             "hashes": [
