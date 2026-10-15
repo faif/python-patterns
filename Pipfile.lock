@@ -396,11 +396,11 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:5f17ee83ecee8a6f3e389c75822fb70a1c2f0506b99438a6dffa1d56793588c8",
-                "sha256:cf42711a7ac791818b299fab0332a088c65aeeefa36290de98db92c434303b0c"
+                "sha256:2ce9818e3e2d8f284c1a964414447ef148d42a5fd5e2a477a7118e574b293ec1",
+                "sha256:ad7f724afef953e731b1cc39bcd3a09166d72ed7fcdf29e6e88b1c3235c6715d"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==4.0.12"
+            "version": "==4.1.0"
         },
         "flake8": {
             "hashes": [
@@ -707,12 +707,12 @@
         },
         "pipx": {
             "hashes": [
-                "sha256:7e3d172161ab5c45275cfc04bebf7ce2367d9879d252cf3b29535c4f5e3f607f",
-                "sha256:80496c118a04bab2f78060e5a1559c0722dd221d860508d8ebfe38870a156f6f"
+                "sha256:91f9381e7b218ff84b0cdeb79b0b6b4a014e374170a92b5550baba84e212d34a",
+                "sha256:f78052862c4b764155a33b8050e5dc181aca766167cbe833126131e4debae23d"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==1.17.11"
+            "version": "==1.17.12"
         },
         "platformdirs": {
             "hashes": [
