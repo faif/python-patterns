@@ -78,7 +78,7 @@ class GraphSearch:
 
         while len(queue):
             value = queue.pop(0)
-            for node in self.graph[value]:
+            for node in self.graph.get(value, []):
                 if node not in dist_to.keys():
                     edge_to[node] = value
                     dist_to[node] = dist_to[value] + 1
